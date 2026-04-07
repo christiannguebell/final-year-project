@@ -44,6 +44,11 @@
       "key": "applicationId",
       "value": "",
       "type": "string"
+    },
+    {
+      "key": "documentId",
+      "value": "",
+      "type": "string"
     }
   ],
   "item": [
@@ -670,6 +675,79 @@
               {
                 "key": "Authorization",
                 "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "Upload Document",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/documents/upload",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "applicationId", "value": "{{applicationId}}", "type": "text" },
+                { "key": "type", "value": "certificate", "type": "text" },
+                { "key": "document", "type": "file", "src": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Documents by Application",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/documents/application/{{applicationId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Verify Document (Admin)",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/documents/{{documentId}}/verify",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"verified\",\n    \"notes\": \"Document looks good\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Document",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/documents/{{documentId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ]
           }
