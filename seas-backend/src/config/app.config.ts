@@ -15,18 +15,26 @@ interface AppConfig {
   };
 }
 
+const getEnv = (key: string, fallback?: string): string => {
+  const value = process.env[key] || fallback;
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${key}`);
+  }
+  return value;
+};
+
 const config: AppConfig = {
-  port: parseInt(process.env.PORT || '3000'),
-  nodeEnv: process.env.NODE_ENV || 'development',
+  port: parseInt(getEnv('PORT', '3000')),
+  nodeEnv: getEnv('NODE_ENV', 'development'),
   jwt: {
-    secret: process.env.JWT_SECRET || 'default-secret',
-    expiresIn: process.env.JWT_EXPIRES_IN || '7d',
-    refreshSecret: process.env.JWT_REFRESH_SECRET || 'default-refresh-secret',
-    refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '30d',
+    secret: getEnv('JWT_SECRET'),
+    expiresIn: getEnv('JWT_EXPIRES_IN', '7d'),
+    refreshSecret: getEnv('JWT_REFRESH_SECRET'),
+    refreshExpiresIn: getEnv('JWT_REFRESH_EXPIRES_IN', '30d'),
   },
   upload: {
-    dir: process.env.UPLOAD_DIR || 'uploads',
-    maxFileSize: parseInt(process.env.MAX_FILE_SIZE || '5242880'),
+    dir: getEnv('UPLOAD_DIR', 'uploads'),
+    maxFileSize: parseInt(getEnv('MAX_FILE_SIZE', '5242880')),
   },
 };
 
