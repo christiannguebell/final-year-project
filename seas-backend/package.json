@@ -11,10 +11,7 @@
     "test:integration": "jest --testPathPattern=tests/integration",
     "test:coverage": "jest --coverage",
     "lint": "eslint src/ tests/",
-    "lint:fix": "eslint src/ tests/ --fix",
-    "migrate": "knex migrate:latest",
-    "migrate:rollback": "knex migrate:rollback",
-    "seed": "knex seed:run"
+    "lint:fix": "eslint src/ tests/ --fix"
   },
   "keywords": [],
   "author": "",
@@ -49,9 +46,10 @@
     "helmet": "^8.1.0",
     "joi": "^18.1.2",
     "jsonwebtoken": "^9.0.3",
-    "knex": "^3.2.9",
     "multer": "^2.1.1",
     "pg": "^8.20.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.28",
     "uuid": "^13.0.0",
     "winston": "^3.19.0"
   }
