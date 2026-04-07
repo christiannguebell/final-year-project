@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import { initializeDatabase } from './database';
 import { errorHandler, notFoundHandler } from './middlewares';
 import { validateConnections } from './config/connection.validator';
+import { authRoutes } from './modules/auth';
 
 const app: Application = express();
 
@@ -40,6 +41,8 @@ app.get('/api/health', async (_req: Request, res: Response) => {
     });
   }
 });
+
+app.use('/api/auth', authRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
