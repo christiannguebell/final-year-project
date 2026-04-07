@@ -19,6 +19,16 @@
       "key": "refreshToken",
       "value": "",
       "type": "string"
+    },
+    {
+      "key": "adminToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "type": "string"
     }
   ],
   "item": [
@@ -68,22 +78,53 @@
             "body": {
               "mode": "raw",
               "raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}"
-            }
-          },
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (response.status === 200) {",
-                  "    var jsonData = JSON.parse(response.body);",
-                  "    pm.collectionVariables.set('accessToken', jsonData.data.data.accessToken);",
-                  "    pm.collectionVariables.set('refreshToken', jsonData.data.data.refreshToken);",
-                  "}"
-                ]
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "if (response.status === 200) {",
+                    "    var jsonData = JSON.parse(response.body);",
+                    "    pm.collectionVariables.set('accessToken', jsonData.data.data.accessToken);",
+                    "    pm.collectionVariables.set('refreshToken', jsonData.data.data.refreshToken);",
+                    "    pm.collectionVariables.set('userId', jsonData.data.data.user.id);",
+                    "}"
+                  ]
+                }
               }
-            }
-          ]
+            ]
+          }
+        },
+        {
+          "name": "Login as Admin",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/auth/login",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"admin@seas.com\",\n    \"password\": \"admin123\"\n}"
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "if (response.status === 200) {",
+                    "    var jsonData = JSON.parse(response.body);",
+                    "    pm.collectionVariables.set('adminToken', jsonData.data.data.accessToken);",
+                    "}"
+                  ]
+                }
+              }
+            ]
+          }
         },
         {
           "name": "Refresh Token",
@@ -155,6 +196,105 @@
               "mode": "raw",
               "raw": "{\n    \"currentPassword\": \"password123\",\n    \"newPassword\": \"newpassword123\"\n}"
             }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users (Admin)",
+      "item": [
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/users?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" }
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/users/{{userId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/users/{{userId}}",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"firstName\": \"John Updated\",\n    \"lastName\": \"Doe Updated\",\n    \"phone\": \"+9876543210\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Activate User",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/users/{{userId}}/activate",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Deactivate User",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/users/{{userId}}/deactivate",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/users/{{userId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
           }
         }
       ]
