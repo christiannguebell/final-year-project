@@ -1,10 +1,10 @@
-import { UserRole, UserStatus } from '../../database/entities/User.js';
-import { ApplicationStatus } from '../../database/entities/Application.js';
-import { PaymentStatus } from '../../database/entities/Payment.js';
-import { DocumentType, DocumentStatus } from '../../database/entities/Document.js';
-import { ExamSessionStatus } from '../../database/entities/ExamSession.js';
-import { ResultStatus } from '../../database/entities/Result.js';
-import { NotificationType, NotificationStatus } from '../../database/entities/Notification.js';
+import { UserRole, UserStatus } from '../../database/entities/User';
+import { ApplicationStatus } from '../../database/entities/Application';
+import { PaymentStatus } from '../../database/entities/Payment';
+import { DocumentType, DocumentStatus } from '../../database/entities/Document';
+import { ExamSessionStatus } from '../../database/entities/ExamSession';
+import { ResultStatus } from '../../database/entities/Result';
+import { NotificationType, NotificationStatus } from '../../database/entities/Notification';
 
 export {
   UserRole,
