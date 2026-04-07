@@ -13,6 +13,8 @@ import { programsRoutes } from './modules/programs';
 import { applicationsRoutes } from './modules/applications';
 import { documentsRoutes } from './modules/documents';
 import { paymentsRoutes } from './modules/payments';
+import { examsRoutes } from './modules/exams';
+import { resultsRoutes } from './modules/results';
 
 const app: Application = express();
 
@@ -55,6 +57,8 @@ app.use('/api/programs', programsRoutes);
 app.use('/api/applications', applicationsRoutes);
 app.use('/api/documents', documentsRoutes);
 app.use('/api/payments', paymentsRoutes);
+app.use('/api/exams', examsRoutes);
+app.use('/api/results', resultsRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

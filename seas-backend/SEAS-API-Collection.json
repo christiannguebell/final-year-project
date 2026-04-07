@@ -54,6 +54,16 @@
       "key": "paymentId",
       "value": "",
       "type": "string"
+    },
+    {
+      "key": "examSessionId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "examCenterId",
+      "value": "",
+      "type": "string"
     }
   ],
   "item": [
@@ -841,6 +851,126 @@
           "request": {
             "method": "DELETE",
             "url": "{{baseUrl}}/api/payments/{{paymentId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Exams",
+      "item": [
+        {
+          "name": "Create Exam Session (Admin)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/exams/sessions",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"2024 January Session\",\n    \"examDate\": \"2024-02-15T09:00:00Z\",\n    \"registrationStart\": \"2024-01-01T00:00:00Z\",\n    \"registrationEnd\": \"2024-01-31T23:59:59Z\",\n    \"description\": \"January 2024 examination session\"\n}"
+            }
+          }
+        },
+        {
+          "name": "List Exam Sessions",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/exams/sessions",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Get Exam Session by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/exams/sessions/{{examSessionId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Create Exam Center (Admin)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/exams/centers",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Main Examination Center\",\n    \"address\": \"123 University Road\",\n    \"city\": \"Yaounde\",\n    \"capacity\": 500\n}"
+            }
+          }
+        },
+        {
+          "name": "List Exam Centers",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/exams/centers",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Assign Candidates (Admin)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/exams/assign",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"sessionId\": \"{{examSessionId}}\",\n    \"centerId\": \"{{examCenterId}}\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get My Assignment",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/exams/my-assignment",
             "header": [
               {
                 "key": "Authorization",
