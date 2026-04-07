@@ -10,6 +10,7 @@ import { authRoutes } from './modules/auth';
 import { usersRoutes } from './modules/users';
 import { candidatesRoutes } from './modules/candidates';
 import { programsRoutes } from './modules/programs';
+import { applicationsRoutes } from './modules/applications';
 
 const app: Application = express();
 
@@ -49,6 +50,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/candidates', candidatesRoutes);
 app.use('/api/programs', programsRoutes);
+app.use('/api/applications', applicationsRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

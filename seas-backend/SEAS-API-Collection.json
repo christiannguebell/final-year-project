@@ -39,6 +39,11 @@
       "key": "programId",
       "value": "",
       "type": "string"
+    },
+    {
+      "key": "applicationId",
+      "value": "",
+      "type": "string"
     }
   ],
   "item": [
@@ -523,6 +528,144 @@
           "request": {
             "method": "DELETE",
             "url": "{{baseUrl}}/api/programs/{{programId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Applications",
+      "item": [
+        {
+          "name": "Create Application",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/applications",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"programId\": \"{{programId}}\",\n    \"personalStatement\": \"I am passionate about computer science...\"\n}"
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "if (response.status === 201) {",
+                    "    var jsonData = JSON.parse(response.body);",
+                    "    pm.collectionVariables.set('applicationId', jsonData.data.data.id);",
+                    "}"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "Get My Applications",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/applications/mine",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Get Application by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/applications/{{applicationId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update Application",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/applications/{{applicationId}}",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"personalStatement\": \"Updated personal statement\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Submit Application",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/applications/{{applicationId}}/submit",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "List All Applications (Admin)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/applications",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Approve Application (Admin)",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/applications/{{applicationId}}/approve",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Reject Application (Admin)",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/applications/{{applicationId}}/reject",
             "header": [
               {
                 "key": "Authorization",
