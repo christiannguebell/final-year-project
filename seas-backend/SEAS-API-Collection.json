@@ -34,6 +34,11 @@
       "key": "candidateId",
       "value": "",
       "type": "string"
+    },
+    {
+      "key": "programId",
+      "value": "",
+      "type": "string"
     }
   ],
   "item": [
@@ -397,6 +402,131 @@
               {
                 "key": "Authorization",
                 "value": "Bearer {{accessToken}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Programs (Admin)",
+      "item": [
+        {
+          "name": "Create Program",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/programs",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Computer Science\",\n    \"code\": \"CS001\",\n    \"description\": \"Bachelor in Computer Science\",\n    \"durationYears\": 4,\n    \"entryRequirements\": \"Good grades in math\"\n}"
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "if (response.status === 201) {",
+                    "    var jsonData = JSON.parse(response.body);",
+                    "    pm.collectionVariables.set('programId', jsonData.data.data.id);",
+                    "}"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "List Programs",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/programs?status=active",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Get Program by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/programs/{{programId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update Program",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/programs/{{programId}}",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Computer Science Updated\",\n    \"description\": \"Updated description\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Activate Program",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/programs/{{programId}}/activate",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Deactivate Program",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/programs/{{programId}}/deactivate",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Delete Program",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/programs/{{programId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
               }
             ]
           }
