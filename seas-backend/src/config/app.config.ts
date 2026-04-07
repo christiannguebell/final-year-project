@@ -23,7 +23,7 @@ const getEnv = (key: string, fallback?: string): string => {
   return value;
 };
 
-const config: AppConfig = {
+export const config: AppConfig = {
   port: parseInt(getEnv('PORT', '3000')),
   nodeEnv: getEnv('NODE_ENV', 'development'),
   jwt: {

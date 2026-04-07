@@ -4,6 +4,7 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { initializeDatabase } from './database';
+import { errorHandler, notFoundHandler } from './middlewares';
 
 const app: Application = express();
 
@@ -20,5 +21,8 @@ app.get('/api/health', async (_req: Request, res: Response) => {
     res.status(503).json({ success: false, message: 'Database unavailable', data: null });
   }
 });
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 export default app;
