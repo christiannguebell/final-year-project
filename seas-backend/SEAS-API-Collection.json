@@ -29,6 +29,11 @@
       "key": "userId",
       "value": "",
       "type": "string"
+    },
+    {
+      "key": "candidateId",
+      "value": "",
+      "type": "string"
     }
   ],
   "item": [
@@ -293,6 +298,105 @@
               {
                 "key": "Authorization",
                 "value": "Bearer {{adminToken}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Candidates",
+      "item": [
+        {
+          "name": "Create Candidate Profile",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/candidates",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"dateOfBirth\": \"1995-05-15\",\n    \"gender\": \"male\",\n    \"nationality\": \"Cameroon\",\n    \"address\": \"123 Main Street\",\n    \"city\": \"Yaounde\",\n    \"country\": \"Cameroon\"\n}"
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "if (response.status === 201) {",
+                    "    var jsonData = JSON.parse(response.body);",
+                    "    pm.collectionVariables.set('candidateId', jsonData.data.data.id);",
+                    "}"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "Get My Profile",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/candidates/me",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Get Candidate by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/candidates/{{candidateId}}",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update My Profile",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/candidates",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"address\": \"456 New Address\",\n    \"city\": \"Douala\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Upload Profile Photo",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/candidates/photo",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
               }
             ]
           }
