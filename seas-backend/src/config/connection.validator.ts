@@ -48,7 +48,7 @@ export const validateConnections = async (): Promise<ConnectionCheck[]> => {
 
 export const getCriticalConnectionFailures = (results: ConnectionCheck[]): string[] => {
   return results
-    .filter((r) => r.status === 'failed')
+    .filter((r) => r.status === 'failed' && r.name === 'database')
     .map((r) => `${r.name}: ${r.error}`);
 };
 

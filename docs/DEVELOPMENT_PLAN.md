@@ -567,7 +567,7 @@ modules/notifications/
 
 ---
 
-## Phase 15: Route Registry & Integration
+## Phase 15: Route Registry & Integration [COMPLETED]
 
 **Goal:** Wire all modules into the Express app.
 

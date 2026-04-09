@@ -3,19 +3,9 @@ import 'dotenv/config';
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import { initializeDatabase } from './database';
 import { errorHandler, notFoundHandler } from './middlewares';
 import { validateConnections } from './config/connection.validator';
-import { authRoutes } from './modules/auth';
-import { usersRoutes } from './modules/users';
-import { candidatesRoutes } from './modules/candidates';
-import { programsRoutes } from './modules/programs';
-import { applicationsRoutes } from './modules/applications';
-import { documentsRoutes } from './modules/documents';
-import { paymentsRoutes } from './modules/payments';
-import { examsRoutes } from './modules/exams';
-import { resultsRoutes } from './modules/results';
-import { notificationsRoutes } from './modules/notifications';
+import routes from './routes';
 
 const app: Application = express();
 
@@ -51,16 +41,8 @@ app.get('/api/health', async (_req: Request, res: Response) => {
   }
 });
 
-app.use('/api/auth', authRoutes);
-app.use('/api/users', usersRoutes);
-app.use('/api/candidates', candidatesRoutes);
-app.use('/api/programs', programsRoutes);
-app.use('/api/applications', applicationsRoutes);
-app.use('/api/documents', documentsRoutes);
-app.use('/api/payments', paymentsRoutes);
-app.use('/api/exams', examsRoutes);
-app.use('/api/results', resultsRoutes);
-app.use('/api/notifications', notificationsRoutes);
+// Register all routes
+app.use('/api', routes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
