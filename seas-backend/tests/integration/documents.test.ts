@@ -1,16 +1,14 @@
 import request from 'supertest';
-import { Express } from 'express';
+import app from '../../src/app';
 import path from 'path';
 import fs from 'fs';
+import { Express } from 'express';
 
-let app: Express;
 let adminToken: string;
 let candidateToken: string;
 let testApplicationId: string;
 
 beforeAll(async () => {
-  app = require('../../src/app');
-  
   const adminLogin = await request(app)
     .post('/api/auth/login')
     .send({ email: 'admin@seas.com', password: 'admin123' });
