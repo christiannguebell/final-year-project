@@ -9,6 +9,7 @@ import paymentsRoutes from '../modules/payments/payments.routes';
 import examsRoutes from '../modules/exams/exams.routes';
 import resultsRoutes from '../modules/results/results.routes';
 import notificationsRoutes from '../modules/notifications/notifications.routes';
+import analyticsRoutes from '../modules/analytics/analytics.routes';
 
 const router: Router = Router();
 
@@ -22,5 +23,6 @@ router.use('/payments', paymentsRoutes);
 router.use('/exams', examsRoutes);
 router.use('/results', resultsRoutes);
 router.use('/notifications', notificationsRoutes);
+router.use('/analytics', analyticsRoutes);
 
 export default router;
