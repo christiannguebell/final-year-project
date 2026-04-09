@@ -1,200 +1,85 @@
-# SEAS Examination System — Frontend Development Plan
+# SEAS Examination System — Dual Frontend Development Plan
 
-> SPA | React + TypeScript + Vite + Tailwind CSS
-
----
-
-## Phase 1: Project Setup & Foundation
-
-**Goal:** Establish the project baseline, configure tooling, and define the design system.
-
-### Tasks
-
-1. Initialize Vite project with React and TypeScript [COMPLETED]
-2. Configure `pnpm` workspace [COMPLETED]
-3. Install core dependencies
-   - `react-router-dom` — Routing
-   - `axios` — API client
-   - `@tanstack/react-query` — Data fetching & caching
-   - `zustand` — State management
-   - `react-hook-form` + `zod` — Form handling & validation
-   - `lucide-react` — Iconography
-   - `date-fns` — Date manipulation
-4. Setup Tailwind CSS (Vite integration)
-5. Configure Path Aliases (`@/*` to `src/*`) in `vite.config.ts` and `tsconfig.json`
-6. Setup Global Error Boundary and Suspense boundaries
-7. Setup ESLint + Prettier (matching backend standards)
-
-### Folder Structure
-
-```
-seas-frontend/
-├── src/
-│   ├── api/                # Axios instances, API services
-│   ├── assets/             # Images, fonts, global styles
-│   ├── components/         # Shared components
-│   │   ├── common/         # Low-level UI (Buttons, Inputs)
-│   │   ├── layout/         # Grid, Navbar, Sidebar
-│   │   └── modules/        # Domain-specific components
-│   ├── config/             # Environment variables, constants
-│   ├── hooks/              # Reusable custom hooks
-│   ├── layouts/            # Page layouts (AuthLayout, DashboardLayout)
-│   ├── pages/              # View components (Routing entries)
-│   ├── store/              # Zustand global state (auth, ui)
-│   ├── types/              # TypeScript interfaces/enums
-│   ├── utils/              # Helper functions
-│   ├── App.tsx             # Root component
-│   └── main.tsx            # Entry point
-├── public/
-└── tailwind.config.js
-```
+> Two specialized SPAs | React + TypeScript + Vite + Tailwind CSS
 
 ---
 
-## Phase 2: Core Layer & API Integration
+## Architecture Overview
 
-**Goal:** Build the communication bridge between frontend and backend.
+Instead of a single monolithic frontend, the system is split into two distinct applications to ensure better security, smaller bundle sizes, and specialized user experiences.
 
-### Tasks
-
-1. Setup Axios instance with interceptors (Request for JWT, Response for error handling)
-2. Implement `apiClient` service (CRUD helpers)
-3. Setup React Query `QueryClientProvider`
-4. Define Global Types (User, Role, ApplicationStatus)
-5. Build the Authentication Store (`zustand`)
-6. Create Public vs Private Route guards
+1.  **SEAS Public (`seas-public`)**: Focuses on Candidate registration, application submission, payment, and result checking.
+2.  **SEAS Admin (`seas-admin`)**: Focuses on system administration, user management, center allocation, and result publication.
 
 ---
 
-## Phase 3: Auth & Identity Module
+## Phase 1: Shared Foundation (Parallel)
 
-**Goal:** User entry points and account security.
+**Goal:** Establish consistency across both apps.
 
-### Tasks
+### Core Dependencies (Both)
+- `react-router-dom` (Routing)
+- `axios` (API client)
+- `@tanstack/react-query` (Data fetching)
+- `zustand` (State)
+- `react-hook-form` + `zod` (Validation)
+- `tailwind-merge` + `clsx` (Styling utils)
+- `lucide-react` (Icons)
 
-1. Create Layouts (AuthLayout with background/branding)
-2. Implement **Login** page
-3. Implement **Registration** page with role selection
-4. Implement **Forgot/Reset Password** flow
-5. Setup "My Account" / Profile settings page
-6. Handle JWT session persistence (LocalStorage/State)
-
----
-
-## Phase 4: Branding & Design System
-
-**Goal:** Create a premium look and feel.
-
-### Tasks
-
-1. Define a sleek color palette (Hono/Dark Mode compatible)
-2. Build core UI components:
-   - Button (Gradients, Hover effects)
-   - Input/Select/Checkbox (Clean labels, error states)
-   - Data Table (Sorting, Pagination integration)
-   - Modal/Drawer (Animations with `framer-motion`)
-   - Notification Toast system
+### Shared Design System
+- Define a unified color palette in Tailwind configs.
+- Create a shared `ui` library pattern for Buttons, Inputs, and Cards to ensure visual consistency.
 
 ---
 
-## Phase 5: Candidate Dashboard & Application Flow
+## Phase 2: SEAS Public Development (`seas-public`)
 
-**Goal:** The primary candidate experience.
+**Goal:** The candidate-facing portal.
 
-### Tasks
-
-1. Candidate Dashboard (Application status overview)
-2. **Multi-step Application Form**:
-   - Personal Info
-   - Academic Record Entry
-   - Program Selection
-3. **Document Management**:
-   - File upload progress indicators
-   - Previewing uploaded files
-4. Final Submission flow with summary check
+### Modules:
+1.  **Auth**: Registration, OTP/Verification, Login, Password Recovery.
+2.  **Profile**: Candidate Portfolio, Bio-data, Academic History.
+3.  **Application**: Multi-step program selection and document upload.
+4.  **Documents**: View/Replace personal documents.
+5.  **Payments**: Upload receipts and track verification status.
+6.  **Exams**: Download Exam Slip (PDF).
+7.  **Results**: Check individual ranking and final score.
 
 ---
 
-## Phase 6: Admin Dashboard & User Management
+## Phase 3: SEAS Admin Development (`seas-admin`)
 
-**Goal:** System oversight and control.
+**Goal:** The administrative control center.
 
-### Tasks
-
-1. Admin Dashboard (Stats cards: Total users, active apps, revenue)
-2. User Management Table:
-   - Search/Filter by role/status
-   - Manual activation/deactivation
-3. Program Management:
-   - CRUD for school programs
-
----
-
-## Phase 7: Application Review & Validation (Admin)
-
-**Goal:** Admin workflow for processing candidates.
-
-### Tasks
-
-1. List view for all submitted applications
-2. Detailed application review page:
-   - Document verification panel
-   - View academic history
-3. Approve/Reject actions with feedback comments
+### Modules:
+1.  **Dashboard**: High-level metrics and system health.
+2.  **User Management**: Role-based access control, account activation.
+3.  **Programs**: Management of departments and examination subjects.
+4.  **Review System**: Verification of applications, documents, and payments.
+5.  **Logistics**: Exam session scheduling and Center capacity management.
+6.  **Assignment Engine**: Triggering candidate-to-center allocation.
+7.  **Result Processing**: Score entry (Manual/Bulk) and publication.
+8.  **Broadcasting**: Sending system-wide notifications.
 
 ---
 
-## Phase 8: Exams & Center Management
+## Phase 4: Cross-App Integration
 
-**Goal:** Logistical coordination of the entrance exam.
+**Goal:** Ensure smooth handovers and consistent data.
 
-### Tasks
-
-1. **Center Management**: CRUD for exam locations
-2. **Exam Sessions**: Create/Date scheduling
-3. **Assignment Panel**: Trigger candidate allocation logic
-4. **Exam Slip**: Generate/Download PDF exam slip (printing view)
+1.  **API Shared Logic**: Standardize error codes and response handling.
+2.  **Deployment**: Configure two separate Docker containers or deployment targets.
+3.  **CORS**: Update backend `cors` configuration to allow both frontend origins.
 
 ---
 
-## Phase 9: Payments & Verification Flow
-
-**Goal:** Revenue tracking and status updates.
-
-### Tasks
-
-1. Candidate: Upload payment receipt
-2. Admin: Payment verification queue
-3. Visual timeline/stepper for payment -> exam -> result
-
----
-
-## Phase 10: Results & Notifications
-
-**Goal:** Closing the loop with candidates.
-
-### Tasks
-
-1. **Results View**: Candidate lookup (Total score, Ranking)
-2. **Ranking Board**: (Admin only) Export capability
-3. **Notification Center**:
-   - Real-time (contextual) alerts
-   - Inbox view for historical notifications
-4. Final Responsive testing and PWA manifest (optional)
-
----
-
-## Tech Stack & Tools
+## Technical Stack
 
 | Category         | Package                             |
 |------------------|-------------------------------------|
 | Framework        | React 19 + Vite                     |
-| Language         | TypeScript                          |
-| State Management | Zustand                             |
-| Data Fetching    | TanStack Query (v5)                 |
-| Forms            | React Hook Form + Zod               |
-| Styling          | Tailwind CSS + Lucide Icons         |
-| Animation        | Framer Motion                       |
-| HTTP Client      | Axios                               |
-| Routing          | React Router v7                     |
-| Date Formatting  | date-fns                            |
+| Styling          | Tailwind CSS                        |
+| Animations       | Framer Motion                       |
+| Store            | Zustand                             |
+| Forms            | React Hook Form                     |
+| Documentation    | Storybook (Optional)                |
