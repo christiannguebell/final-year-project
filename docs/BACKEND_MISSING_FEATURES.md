@@ -20,7 +20,7 @@ This document identifies backend features required by the designed user interfac
 - **[ ] Password Reset Flow**: Token-based password reset logic with email integration.
 - **[ ] Session Security**: Logic to invalidate old JWTs if a password is changed.
 
-## 3. Exam & Logistics Engine
+## 3. Exam & Logistics Engine [DONE]
 *The entities exist, but the "intelligence" layer is missing.*
 
 - **[ ] Automated Allocation Algorithm**: Logic to fill `ExamCenters` based on their `capacity`, prioritizing by application date or proximity.
@@ -38,6 +38,6 @@ This document identifies backend features required by the designed user interfac
 - **[ ] Smart Broadcasting**: Logic to target notifications by segment (e.g., "Send to all candidates in the Robotics program who haven't paid").
 - **[ ] Admin Audit Logs**: A system-wide middleware to log sensitive admin actions (e.g., result publication, application deletion) for accountability.
 
-## 6. Infrastructure Extras
+## 6. Infrastructure Extras [DONE]
 - **[ ] System Health Check**: A public `/api/health` endpoint for uptime monitoring and CI/CD status indicators.
 - **[ ] Public Statistics**: Aggregated public data (e.g., "300 seats available") for the Landing Page.

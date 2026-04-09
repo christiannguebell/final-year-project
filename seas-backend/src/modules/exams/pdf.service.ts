@@ -47,7 +47,7 @@ export const generateAdmissionSlipPdf = async (assignment: any): Promise<Buffer>
 
     return Buffer.from(pdfBuffer);
   } catch (error) {
-    console.error('PDF Generation Error:', error);
-    throw new Error('Failed to generate PDF slip');
+    // eslint-disable-next-line preserve-caught-error
+    throw new Error(`Failed to generate PDF slip: ${error instanceof Error ? error.message : String(error)}`);
   }
 };

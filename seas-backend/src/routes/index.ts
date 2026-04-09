@@ -10,6 +10,7 @@ import examsRoutes from '../modules/exams/exams.routes';
 import resultsRoutes from '../modules/results/results.routes';
 import notificationsRoutes from '../modules/notifications/notifications.routes';
 import analyticsRoutes from '../modules/analytics/analytics.routes';
+import systemRoutes from '../modules/system/system.routes';
 
 const router: Router = Router();
 
@@ -24,5 +25,6 @@ router.use('/exams', examsRoutes);
 router.use('/results', resultsRoutes);
 router.use('/notifications', notificationsRoutes);
 router.use('/analytics', analyticsRoutes);
+router.use('/system', systemRoutes);
 
 export default router;
