@@ -49,6 +49,15 @@ export class User {
   @Column({ type: 'timestamp', nullable: true })
   resetTokenExpiry!: Date;
 
+  @Column({ nullable: true })
+  otp!: string;
+
+  @Column({ type: 'timestamp', nullable: true })
+  otpExpiry!: Date;
+
+  @Column({ name: 'token_version', default: 0 })
+  tokenVersion!: number;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
 

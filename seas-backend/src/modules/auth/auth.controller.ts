@@ -7,6 +7,7 @@ interface AuthRequest extends Request {
     userId: string;
     email: string;
     role: string;
+    tokenVersion: number;
   };
 }
 
@@ -20,6 +21,17 @@ export const authController = {
       next(error);
     }
   },
+
+  async verifyOtp(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email, otp } = req.body;
+      const result = await authService.verifyOtp(email, otp);
+      res.status(200).json(successResponse(result, 'OTP verified successfully. You are now logged in.'));
+    } catch (error) {
+      next(error);
+    }
+  },
+
 
   async login(req: Request, res: Response, next: NextFunction) {
     try {

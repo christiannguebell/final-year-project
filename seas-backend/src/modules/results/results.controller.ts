@@ -8,6 +8,7 @@ interface AuthRequest extends Request {
     userId: string;
     email: string;
     role: string;
+    tokenVersion: number;
   };
 }
 

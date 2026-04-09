@@ -9,6 +9,8 @@ export interface CreateUserDto {
   phone?: string;
   role?: UserRole;
   status?: UserStatus;
+  otp?: string;
+  otpExpiry?: Date;
 }
 
 export interface LoginDto {
@@ -39,6 +41,8 @@ export const authRepository = {
       phone: data.phone,
       role: data.role || UserRole.CANDIDATE,
       status: UserStatus.PENDING,
+      otp: data.otp,
+      otpExpiry: data.otpExpiry,
     });
     return repository.save(user);
   },
@@ -73,5 +77,6 @@ export const authRepository = {
     });
   },
 };
+
 
 export default authRepository;

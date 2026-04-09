@@ -3,10 +3,13 @@ import jwt from 'jsonwebtoken';
 import config from '../config';
 import { ApiError } from '../common/errors/ApiError';
 
+import { AppDataSource, User } from '../database';
+
 export interface JwtPayload {
   userId: string;
   email: string;
   role: string;
+  tokenVersion: number;
 }
 
 declare global {
@@ -17,7 +20,7 @@ declare global {
   }
 }
 
-export const authenticate = (req: Request, _res: Response, next: NextFunction): void => {
+export const authenticate = async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
   try {
     const authHeader = req.headers.authorization;
 
@@ -28,6 +31,15 @@ export const authenticate = (req: Request, _res: Response, next: NextFunction): 
     const token = authHeader.split(' ')[1];
 
     const decoded = jwt.verify(token, config.jwt.secret) as JwtPayload;
+    
+    // Check tokenVersion for session security
+    const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOne({ where: { id: decoded.userId }});
+    
+    if (!user || user.tokenVersion !== decoded.tokenVersion) {
+      throw ApiError.unauthorized('Session expired due to security changes');
+    }
+
     req.user = decoded;
 
     next();

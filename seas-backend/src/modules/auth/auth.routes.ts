@@ -10,6 +10,7 @@ import {
   changePasswordSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
+  verifyOtpSchema,
 } from './auth.validation';
 
 const router: Router = Router();
@@ -48,6 +49,33 @@ router.use(authLimiter);
  *         description: User registered successfully
  */
 router.post('/register', validate(registerSchema), authController.register);
+
+/**
+ * @openapi
+ * /api/auth/verify-otp:
+ *   post:
+ *     tags:
+ *       - Auth
+ *     summary: Verify OTP
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - otp
+ *             properties:
+ *               email:
+ *                 type: string
+ *               otp:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: OTP verified successfully
+ */
+router.post('/verify-otp', validate(verifyOtpSchema), authController.verifyOtp);
 
 /**
  * @openapi

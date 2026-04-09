@@ -31,6 +31,11 @@ export const resetPasswordSchema = Joi.object({
   newPassword: Joi.string().min(8).max(100).required(),
 });
 
+export const verifyOtpSchema = Joi.object({
+  email: Joi.string().email().required(),
+  otp: Joi.string().length(6).required(),
+});
+
 export default {
   registerSchema,
   loginSchema,
@@ -38,4 +43,5 @@ export default {
   changePasswordSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
+  verifyOtpSchema,
 };
