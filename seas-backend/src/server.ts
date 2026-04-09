@@ -1,11 +1,12 @@
 import 'dotenv/config';
 
 import app from './app';
+import config from './config';
 import { validateConnections, getCriticalConnectionFailures } from './config/connection.validator';
 import logger from './common/logger';
 import { AppDataSource } from './database';
 
-const PORT = process.env.PORT || 3000;
+const PORT = config.port;
 
 let server: any;
 

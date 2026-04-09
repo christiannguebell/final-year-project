@@ -11,6 +11,32 @@ import { idParamSchema, updateUserSchema, listUsersSchema } from './users.valida
 const router: Router = Router();
 
 
+/**
+ * @openapi
+ * /api/users:
+ *   get:
+ *     tags:
+ *       - Users
+ *     summary: List all users (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: List of users
+ */
 router.get(
   '/',
   authenticate,
@@ -19,6 +45,25 @@ router.get(
   usersController.getAll
 );
 
+/**
+ * @openapi
+ * /api/users/{id}:
+ *   get:
+ *     tags:
+ *       - Users
+ *     summary: Get user by ID (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User details
+ */
 router.get(
   '/:id',
   authenticate,
@@ -27,6 +72,38 @@ router.get(
   usersController.getById
 );
 
+/**
+ * @openapi
+ * /api/users/{id}:
+ *   put:
+ *     tags:
+ *       - Users
+ *     summary: Update user (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
+ *               isActive:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ */
 router.put(
   '/:id',
   authenticate,
@@ -37,7 +114,25 @@ router.put(
   usersController.update
 );
 
-
+/**
+ * @openapi
+ * /api/users/{id}/activate:
+ *   patch:
+ *     tags:
+ *       - Users
+ *     summary: Activate user (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User activated
+ */
 router.patch(
   '/:id/activate',
   authenticate,
@@ -47,7 +142,25 @@ router.patch(
   usersController.activate
 );
 
-
+/**
+ * @openapi
+ * /api/users/{id}/deactivate:
+ *   patch:
+ *     tags:
+ *       - Users
+ *     summary: Deactivate user (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User deactivated
+ */
 router.patch(
   '/:id/deactivate',
   authenticate,
@@ -57,7 +170,25 @@ router.patch(
   usersController.deactivate
 );
 
-
+/**
+ * @openapi
+ * /api/users/{id}:
+ *   delete:
+ *     tags:
+ *       - Users
+ *     summary: Delete user (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       204:
+ *         description: User deleted
+ */
 router.delete(
   '/:id',
   authenticate,

@@ -8,6 +8,33 @@ import { createCandidateSchema, updateCandidateSchema, idParamSchema } from './c
 
 const router: Router = Router();
 
+/**
+ * @openapi
+ * /api/candidates:
+ *   post:
+ *     tags:
+ *       - Candidates
+ *     summary: Create candidate profile
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - firstName
+ *               - lastName
+ *             properties:
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Profile created
+ */
 router.post(
   '/',
   authenticate,
@@ -15,12 +42,44 @@ router.post(
   candidatesController.create
 );
 
+/**
+ * @openapi
+ * /api/candidates/me:
+ *   get:
+ *     tags:
+ *       - Candidates
+ *     summary: Get current candidate profile
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Profile details
+ */
 router.get(
   '/me',
   authenticate,
   candidatesController.getMyProfile
 );
 
+/**
+ * @openapi
+ * /api/candidates/{id}:
+ *   get:
+ *     tags:
+ *       - Candidates
+ *     summary: Get candidate profile by ID
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Profile details
+ */
 router.get(
   '/:id',
   authenticate,
@@ -28,6 +87,30 @@ router.get(
   candidatesController.getById
 );
 
+/**
+ * @openapi
+ * /api/candidates:
+ *   put:
+ *     tags:
+ *       - Candidates
+ *     summary: Update current candidate profile
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Profile updated
+ */
 router.put(
   '/',
   authenticate,
@@ -35,6 +118,28 @@ router.put(
   candidatesController.update
 );
 
+/**
+ * @openapi
+ * /api/candidates/photo:
+ *   post:
+ *     tags:
+ *       - Candidates
+ *     summary: Upload profile photo
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               photo:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Photo uploaded
+ */
 router.post(
   '/photo',
   authenticate,

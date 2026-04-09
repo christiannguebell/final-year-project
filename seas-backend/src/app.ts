@@ -9,6 +9,8 @@ import { logger } from './common/logger';
 import routes from './routes';
 import config from './config';
 
+import { apiReference } from '@scalar/express-api-reference';
+import { swaggerSpec } from './config/swagger';
 import { generalLimiter } from './middlewares/security.middleware';
 import { sanitizeInput } from './middlewares/sanitization.middleware';
 
@@ -23,8 +25,10 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https://cdn.jsdelivr.net"],
     },
   },
 }));
@@ -41,6 +45,20 @@ app.use(sanitizeInput);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+/**
+ * @openapi
+ * /api/health:
+ *   get:
+ *     tags:
+ *       - System
+ *     summary: System health check
+ *     description: Checks the status of database and other critical services.
+ *     responses:
+ *       200:
+ *         description: All services operational
+ *       503:
+ *         description: Some services unavailable
+ */
 app.get('/api/health', async (_req: Request, res: Response) => {
   try {
     const connections = await validateConnections();
@@ -62,6 +80,18 @@ app.get('/api/health', async (_req: Request, res: Response) => {
     });
   }
 });
+
+// API Documentation
+app.use(
+  '/api/docs',
+  apiReference({
+    theme: 'purple',
+    layout: 'modern',
+    spec: {
+      content: swaggerSpec,
+    },
+  })
+);
 
 // Register all routes
 app.use('/api', routes);
