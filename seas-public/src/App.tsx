@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
 import Loading from '@/components/common/Loading';
+import DashboardLayout from '@/layouts/DashboardLayout';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,29 +20,34 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Suspense fallback={<Loading />}>
-            <div className="min-h-screen bg-slate-50">
-              <Routes>
+            <Routes>
+              <Route path="/" element={<DashboardLayout />}>
                 <Route
-                  path="/"
+                  index
                   element={
-                    <div className="p-8 max-w-4xl mx-auto">
-                      <h1 className="text-4xl font-bold text-primary mb-4">
-                        SEAS Public Portal
-                      </h1>
-                      <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                        <p className="text-slate-600 leading-relaxed">
-                          Phase 1: Project Setup & Foundation is complete.
-                          <br />
-                          <span className="text-secondary font-medium">
-                            Ready for Phase 2: Core Layer & API Integration.
-                          </span>
-                        </p>
+                    <div className="max-w-5xl mx-auto">
+                      <div className="mb-12 flex items-center justify-between">
+                        <div className="flex flex-col">
+                          <span className="text-xs font-bold text-secondary uppercase tracking-widest mb-1">Overview</span>
+                          <h1 className="text-4xl font-extrabold text-primary font-headline tracking-tight">Candidate Dashboard</h1>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div className="lg:col-span-2 space-y-8">
+                          <div className="bg-surface-container-lowest rounded-xl overflow-hidden p-8 shadow-[0px_8px_24px_rgba(25,28,30,0.06)] border border-outline-variant/15">
+                             <h3 className="text-xl font-bold text-primary mb-4 font-headline">Welcome to SEAS Platform</h3>
+                             <p className="text-sm text-on-surface-variant leading-relaxed">
+                               Phase 1: Project Setup & Foundation is complete, utilizing the "Architectural Blueprint" design system.
+                             </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   }
                 />
-              </Routes>
-            </div>
+              </Route>
+            </Routes>
           </Suspense>
         </BrowserRouter>
       </QueryClientProvider>
