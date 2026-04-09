@@ -1,3 +1,4 @@
+import { jest, describe, it, expect, afterEach } from '@jest/globals';
 import { notificationsService } from '../../../src/modules/notifications/notifications.service';
 import { notificationsRepository } from '../../../src/modules/notifications/notifications.repository';
 import { NOTIFICATION_MESSAGES } from '../../../src/modules/notifications/notifications.constants';
@@ -5,9 +6,17 @@ import { emailService } from '../../../src/services/email.service';
 import { AppDataSource, NotificationType, NotificationStatus, NotificationChannel } from '../../../src/database';
 
 jest.mock('../../../src/modules/notifications/notifications.repository');
-jest.mock('../../../src/services/email.service');
+jest.mock('../../../src/services/email.service', () => ({
+  emailService: {
+    sendTemplatedEmail: jest.fn(),
+    sendMail: jest.fn(),
+  },
+}));
 jest.mock('../../../src/services/email-template.service', () => ({
-  hasTemplate: jest.fn().mockReturnValue(true),
+  emailTemplateService: {
+    hasTemplate: jest.fn().mockReturnValue(true),
+    render: jest.fn().mockReturnValue('<html></html>'),
+  },
 }));
 jest.mock('../../../src/database', () => ({
   AppDataSource: {
@@ -39,7 +48,7 @@ describe('NotificationsService', () => {
 
   describe('createNotification', () => {
     it('should create notification successfully', async () => {
-      (notificationsRepository.create as jest.Mock).mockResolvedValue({
+      (notificationsRepository.create as any).mockResolvedValue({
         id: '1',
         userId: '1',
         type: NotificationType.SYSTEM,
@@ -58,15 +67,15 @@ describe('NotificationsService', () => {
     it.skip('should send email when channel is EMAIL', async () => {
       const mockUser = { id: '1', email: 'test@test.com', firstName: 'John' };
       
-      (AppDataSource.getRepository as jest.Mock)().findOne.mockResolvedValue(mockUser);
+      (AppDataSource.getRepository as any)().findOne.mockResolvedValue(mockUser);
       
-      (notificationsRepository.create as jest.Mock).mockResolvedValue({
+      (notificationsRepository.create as any).mockResolvedValue({
         id: '1',
         userId: '1',
         type: NotificationType.SYSTEM,
         channel: NotificationChannel.EMAIL,
       });
-      (emailService.sendTemplatedEmail as jest.Mock).mockResolvedValue(true);
+      (emailService.sendTemplatedEmail as any).mockResolvedValue(true);
 
       const emailTemplateService = require('../../../src/services/email-template.service');
       emailTemplateService.hasTemplate.mockReturnValue(true);
@@ -88,7 +97,7 @@ describe('NotificationsService', () => {
 
   describe('getNotificationById', () => {
     it('should return notification by id', async () => {
-      (notificationsRepository.findById as jest.Mock).mockResolvedValue({ id: '1' });
+      (notificationsRepository.findById as any).mockResolvedValue({ id: '1' });
 
       const result = await notificationsService.getNotificationById('1');
 
@@ -96,7 +105,7 @@ describe('NotificationsService', () => {
     });
 
     it('should throw not found error', async () => {
-      (notificationsRepository.findById as jest.Mock).mockResolvedValue(null);
+      (notificationsRepository.findById as any).mockResolvedValue(null);
 
       await expect(notificationsService.getNotificationById('999')).rejects.toThrow(
         NOTIFICATION_MESSAGES.NOT_FOUND
@@ -106,7 +115,7 @@ describe('NotificationsService', () => {
 
   describe('getUserNotifications', () => {
     it('should return user notifications', async () => {
-      (notificationsRepository.findByUserId as jest.Mock).mockResolvedValue([
+      (notificationsRepository.findByUserId as any).mockResolvedValue([
         { id: '1', userId: '1' },
       ]);
 
@@ -118,7 +127,7 @@ describe('NotificationsService', () => {
 
   describe('getUnreadNotifications', () => {
     it('should return unread notifications', async () => {
-      (notificationsRepository.findUnreadByUserId as jest.Mock).mockResolvedValue([
+      (notificationsRepository.findUnreadByUserId as any).mockResolvedValue([
         { id: '1', status: NotificationStatus.UNREAD },
       ]);
 
@@ -130,8 +139,8 @@ describe('NotificationsService', () => {
 
   describe('markAsRead', () => {
     it('should mark notification as read', async () => {
-      (notificationsRepository.findById as jest.Mock).mockResolvedValue({ id: '1' });
-      (notificationsRepository.markAsRead as jest.Mock).mockResolvedValue({
+      (notificationsRepository.findById as any).mockResolvedValue({ id: '1' });
+      (notificationsRepository.markAsRead as any).mockResolvedValue({
         id: '1',
         status: NotificationStatus.READ,
       });
@@ -144,7 +153,7 @@ describe('NotificationsService', () => {
 
   describe('markAllAsRead', () => {
     it('should mark all notifications as read', async () => {
-      (notificationsRepository.markAllAsRead as jest.Mock).mockResolvedValue(5);
+      (notificationsRepository.markAllAsRead as any).mockResolvedValue(5);
 
       const result = await notificationsService.markAllAsRead('1');
 
@@ -154,8 +163,8 @@ describe('NotificationsService', () => {
 
   describe('deleteNotification', () => {
     it('should delete notification', async () => {
-      (notificationsRepository.findById as jest.Mock).mockResolvedValue({ id: '1' });
-      (notificationsRepository.delete as jest.Mock).mockResolvedValue(true);
+      (notificationsRepository.findById as any).mockResolvedValue({ id: '1' });
+      (notificationsRepository.delete as any).mockResolvedValue(true);
 
       await notificationsService.deleteNotification('1');
 
@@ -165,13 +174,13 @@ describe('NotificationsService', () => {
 
   describe('broadcast', () => {
     it('should broadcast to multiple users', async () => {
-      (notificationsRepository.createMany as jest.Mock).mockResolvedValue(true);
-      (AppDataSource.getRepository as jest.Mock)().findOne.mockResolvedValue({
+      (notificationsRepository.createMany as any).mockResolvedValue(true);
+      (AppDataSource.getRepository as any)().findOne.mockResolvedValue({
         id: '1',
         email: 'test@test.com',
         firstName: 'John',
       });
-      (emailService.sendTemplatedEmail as jest.Mock).mockResolvedValue(true);
+      (emailService.sendTemplatedEmail as any).mockResolvedValue(true);
 
       const result = await notificationsService.broadcast({
         type: NotificationType.SYSTEM,
