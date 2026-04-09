@@ -3,6 +3,7 @@ import 'dotenv/config';
 interface AppConfig {
   port: number;
   nodeEnv: string;
+  frontendUrl: string;
   jwt: {
     secret: string;
     expiresIn: string;
@@ -26,6 +27,7 @@ const getEnv = (key: string, fallback?: string): string => {
 export const config: AppConfig = {
   port: parseInt(getEnv('PORT', '3000')),
   nodeEnv: getEnv('NODE_ENV', 'development'),
+  frontendUrl: getEnv('FRONTEND_URL', 'http://localhost:3001'),
   jwt: {
     secret: getEnv('JWT_SECRET'),
     expiresIn: getEnv('JWT_EXPIRES_IN', '7d'),

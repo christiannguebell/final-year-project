@@ -1,6 +1,14 @@
 import nodemailer, { Transporter, SendMailOptions } from 'nodemailer';
 import { emailConfig } from '../config/email.config';
+import { emailTemplateService } from './email-template.service';
 import logger from '../common/logger';
+
+interface SendTemplatedEmailOptions {
+  to: string;
+  template: string;
+  data: Record<string, any>;
+  subject?: string;
+}
 
 class EmailService {
   private transporter: Transporter | null = null;
@@ -37,6 +45,23 @@ class EmailService {
       logger.error(`Failed to send email to ${options.to}:`, error);
       throw error;
     }
+  }
+
+  async sendTemplatedEmail(options: SendTemplatedEmailOptions): Promise<void> {
+    if (!emailTemplateService.hasTemplate(options.template)) {
+      throw new Error(`Template '${options.template}' not found`);
+    }
+
+    const html = emailTemplateService.render(options.template, {
+      ...options.data,
+      subject: options.subject,
+    });
+
+    await this.sendMail({
+      to: options.to,
+      subject: options.subject || 'SEAS Notification',
+      html,
+    });
   }
 
   async sendVerificationEmail(to: string, token: string): Promise<void> {

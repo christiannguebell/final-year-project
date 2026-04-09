@@ -52,6 +52,26 @@ export const authRepository = {
     const result = await AppDataSource.getRepository(User).delete(id);
     return (result.affected ?? 0) > 0;
   },
+
+  async findByResetToken(token: string): Promise<User | null> {
+    return AppDataSource.getRepository(User).findOne({
+      where: { resetToken: token },
+    });
+  },
+
+  async setResetToken(userId: string, token: string, expiry: Date): Promise<void> {
+    await AppDataSource.getRepository(User).update(userId, {
+      resetToken: token,
+      resetTokenExpiry: expiry,
+    });
+  },
+
+  async clearResetToken(userId: string): Promise<void> {
+    await AppDataSource.getRepository(User).update(userId, {
+      resetToken: '' as any,
+      resetTokenExpiry: null as any,
+    });
+  },
 };
 
 export default authRepository;

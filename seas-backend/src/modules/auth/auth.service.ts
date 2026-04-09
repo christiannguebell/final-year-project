@@ -7,6 +7,8 @@ import { User, UserRole, UserStatus } from '../../database';
 import { AUTH_MESSAGES } from './auth.constants';
 import { emailService } from '../../services/email.service';
 import { generateId } from '../../common/utils';
+import { notificationsService } from '../notifications/notifications.service';
+import { NotificationType, NotificationChannel } from '../../database';
 
 interface TokenPayload {
   userId: string;
@@ -110,13 +112,20 @@ export const authService = {
   async forgotPassword(email: string): Promise<void> {
     const user = await authRepository.findByEmail(email);
     if (!user) {
-      // Don't reveal if user exists
       return;
     }
 
     const resetToken = generateId();
-    // TODO: Store reset token with expiry
-    // await emailService.sendPasswordResetEmail(user.email, resetToken);
+    const resetTokenExpiry = new Date(Date.now() + 60 * 60 * 1000);
+    await authRepository.setResetToken(user.id, resetToken, resetTokenExpiry);
+
+    const resetUrl = `${config.frontendUrl}/reset-password?token=${resetToken}`;
+    await notificationsService.sendTemplatedEmail(
+      user.id,
+      'password-reset',
+      { name: user.firstName || user.email },
+      resetUrl
+    );
   },
 
   async resetPassword(token: string, newPassword: string): Promise<void> {

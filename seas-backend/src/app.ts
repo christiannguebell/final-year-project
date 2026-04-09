@@ -15,6 +15,7 @@ import { documentsRoutes } from './modules/documents';
 import { paymentsRoutes } from './modules/payments';
 import { examsRoutes } from './modules/exams';
 import { resultsRoutes } from './modules/results';
+import { notificationsRoutes } from './modules/notifications';
 
 const app: Application = express();
 
@@ -59,6 +60,7 @@ app.use('/api/documents', documentsRoutes);
 app.use('/api/payments', paymentsRoutes);
 app.use('/api/exams', examsRoutes);
 app.use('/api/results', resultsRoutes);
+app.use('/api/notifications', notificationsRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

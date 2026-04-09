@@ -1,5 +1,6 @@
 import { AppDataSource } from '../database';
 import { emailService } from '../services/email.service';
+import { emailTemplateService } from '../services/email-template.service';
 import logger from '../common/logger';
 
 export interface ConnectionCheck {
@@ -29,6 +30,7 @@ export const validateConnections = async (): Promise<ConnectionCheck[]> => {
   try {
     if (process.env.SKIP_EMAIL !== 'true') {
       await emailService.initialize();
+      await emailTemplateService.initialize();
       results.push({ name: 'email', status: 'connected' });
       logger.info('Email service connection verified');
     } else {

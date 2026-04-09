@@ -43,6 +43,12 @@ export class User {
   @Column({ nullable: true })
   phone!: string;
 
+  @Column({ nullable: true })
+  resetToken!: string;
+
+  @Column({ type: 'timestamp', nullable: true })
+  resetTokenExpiry!: Date;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
 

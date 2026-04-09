@@ -9,17 +9,22 @@ import {
 } from 'typeorm';
 import { User } from './User';
 
+export enum NotificationChannel {
+  IN_APP = 'in_app',
+  EMAIL = 'email',
+}
+
+export enum NotificationStatus {
+  UNREAD = 'unread',
+  READ = 'read',
+}
+
 export enum NotificationType {
   APPLICATION = 'application',
   PAYMENT = 'payment',
   EXAM = 'exam',
   RESULT = 'result',
   SYSTEM = 'system',
-}
-
-export enum NotificationStatus {
-  UNREAD = 'unread',
-  READ = 'read',
 }
 
 @Entity('notifications')
@@ -36,6 +41,15 @@ export class Notification {
 
   @Column({ type: 'enum', enum: NotificationType })
   type!: NotificationType;
+
+  @Column({ type: 'enum', enum: NotificationChannel, default: NotificationChannel.IN_APP })
+  channel!: NotificationChannel;
+
+  @Column({ name: 'template_id', nullable: true })
+  templateId!: string;
+
+  @Column({ name: 'template_data', type: 'jsonb', nullable: true })
+  templateData!: Record<string, any>;
 
   @Column()
   title!: string;
