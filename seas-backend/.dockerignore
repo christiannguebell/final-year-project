@@ -9,8 +9,8 @@ uploads
 .prettierrc
 .eslintrc.js
 eslint.config.js
-tsconfig.json
-pnpm-lock.yaml
+# tsconfig.json (needed for build)
+# pnpm-lock.yaml (needed for install)
 Dockerfile
 docker-compose.yml
 README.md
