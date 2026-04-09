@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Center | SEAS Exam Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d7e2ff",
+                        "on-surface-variant": "#43474f",
+                        "primary-container": "#002d62",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#cbe7f5",
+                        "tertiary-container": "#17323d",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#9df5bd",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-fixed-dim": "#afcbd8",
+                        "surface-tint": "#3e5e95",
+                        "inverse-primary": "#abc7ff",
+                        "on-tertiary-fixed": "#021f29",
+                        "surface": "#f8f9fb",
+                        "on-tertiary-container": "#809aa7",
+                        "error": "#ba1a1a",
+                        "on-surface": "#191c1e",
+                        "primary-fixed-dim": "#abc7ff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#24467c",
+                        "background": "#f8f9fb",
+                        "on-secondary-fixed": "#002110",
+                        "primary": "#00193c",
+                        "outline": "#747781",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-container": "#7796d1",
+                        "tertiary": "#001d27",
+                        "secondary-container": "#9af2ba",
+                        "secondary-fixed-dim": "#81d9a2",
+                        "secondary": "#046d40",
+                        "on-secondary-container": "#0e7144",
+                        "on-secondary-fixed-variant": "#00522f",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#001b3f",
+                        "on-tertiary-fixed-variant": "#304a55",
+                        "outline-variant": "#c4c6d1",
+                        "surface-bright": "#f8f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container": "#eceef0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+        .glass-nav {
+            background: rgba(248, 249, 251, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 glass-nav">
+<div class="flex justify-between items-center h-16 px-8 max-w-[1920px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-lg font-bold text-[#00193c] tracking-tighter">SEAS Exam Management</span>
+<nav class="hidden md:flex items-center gap-6 font-headline font-semibold tracking-tight">
+<a class="text-slate-500 hover:text-[#002d62] transition-opacity duration-300" href="#">Admissions</a>
+<a class="text-slate-500 hover:text-[#002d62] transition-opacity duration-300" href="#">Programs</a>
+<a class="text-slate-500 hover:text-[#002d62] transition-opacity duration-300" href="#">Resources</a>
+<a class="text-slate-500 hover:text-[#002d62] transition-opacity duration-300" href="#">Help</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity">settings</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="User profile" data-alt="Professional headshot of a student for academic profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlKNSukRcMWB0GSDOlv226PraRQ3BFAL649Sg8-utRCJ5i7eIR-GFwbxpxzxtMDytp9_YAGgRNCiFbnTOKRpOgLZkihHcG0abPV7AdEC2p8QrEhxOG5ZZxVH9ro91QbX_3GalBVjP80Pt9sNHFC6QyDU9n3WbZ6G0jzAERVvklJl1w5-X3eOWJQRffSy8APCvyacwzwJXBArQYdouGqt8Tlg8UXeBq_NDIoJoha1RnQ0pyFU0r4peZHiBEz9M5sSBN8qglte_XAKcP"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col p-4 space-y-2 h-screen w-64 fixed left-0 top-16 bg-[#f2f4f6] font-inter text-sm font-medium">
+<div class="mb-8 px-2 py-4">
+<h2 class="text-[#00193c] font-manrope font-bold text-lg leading-tight">Candidate Portal</h2>
+<p class="text-on-surface-variant text-xs">Engineering &amp; Sciences</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">description</span> Application
+            </a>
+<!-- Active Tab: Payments -->
+<a class="flex items-center gap-3 px-3 py-2 bg-[#ffffff] text-[#046d40] rounded-lg shadow-sm font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span> Payments
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">school</span> Exam Hub
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span> Results
+            </a>
+</nav>
+<div class="pt-4 mt-auto border-t border-outline-variant/15 space-y-1">
+<button class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-lg">
+<span class="material-symbols-outlined">contact_support</span> Support
+            </button>
+<button class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-lg">
+<span class="material-symbols-outlined">logout</span> Sign Out
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 pt-24 pb-12 px-8 min-h-screen">
+<div class="max-w-6xl mx-auto">
+<!-- Header Section -->
+<div class="mb-10">
+<h1 class="text-4xl font-extrabold text-primary tracking-tight mb-2">Payment Center</h1>
+<p class="text-on-surface-variant text-lg">Manage your examination fees and track transaction status.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Payment Methods & Upload (Col 1-7) -->
+<div class="lg:col-span-7 space-y-8">
+<!-- Payment Instructions Card -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<h2 class="text-xl font-bold text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">info</span>
+                            Payment Instructions
+                        </h2>
+<div class="space-y-6">
+<div class="p-4 bg-surface-container-low rounded-lg">
+<h3 class="font-bold text-primary mb-2">Bank Transfer (EFT)</h3>
+<div class="grid grid-cols-2 gap-4 text-sm">
+<div>
+<p class="text-on-surface-variant">Bank Name</p>
+<p class="font-semibold">Institutional Trust Bank</p>
+</div>
+<div>
+<p class="text-on-surface-variant">Account Name</p>
+<p class="font-semibold">SEAS EXAM FUND</p>
+</div>
+<div>
+<p class="text-on-surface-variant">Account Number</p>
+<p class="font-semibold">0049-2281-9902-11</p>
+</div>
+<div>
+<p class="text-on-surface-variant">Swift Code</p>
+<p class="font-semibold">SEASENGXX</p>
+</div>
+</div>
+</div>
+<div class="p-4 border-l-4 border-secondary bg-secondary/5 rounded-r-lg">
+<h3 class="font-bold text-secondary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">smartphone</span> Mobile Payment
+                                </h3>
+<p class="text-sm text-on-surface">Use Merchant Code <span class="font-mono font-bold">#882*19#</span> or scan the QR code available at university kiosks. Use your <span class="font-semibold">Candidate ID</span> as the reference.</p>
+</div>
+</div>
+</section>
+<!-- Proof Upload Form -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<h2 class="text-xl font-bold text-primary mb-6">Submit Payment Proof</h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Transaction ID</label>
+<input class="w-full bg-surface-container-high border-b-2 border-primary focus:ring-0 focus:border-secondary transition-colors p-3 rounded-t-lg" placeholder="e.g. TXN992831200" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Amount Paid (USD)</label>
+<input class="w-full bg-surface-container-high border-b-2 border-primary focus:ring-0 focus:border-secondary transition-colors p-3 rounded-t-lg" placeholder="250.00" type="number"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Upload Receipt (PDF/JPG)</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-10 flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl text-outline group-hover:text-primary mb-2">cloud_upload</span>
+<p class="text-sm font-medium">Click to upload or drag and drop</p>
+<p class="text-xs text-on-surface-variant mt-1">Maximum file size 5MB</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-bold hover:bg-primary-container transition-all active:scale-[0.98]" type="submit">
+                                Confirm Submission
+                            </button>
+</form>
+</section>
+</div>
+<!-- Right Column: Status & Summary (Col 8-12) -->
+<div class="lg:col-span-5 space-y-8">
+<!-- Current Status Card -->
+<section class="bg-primary text-on-primary rounded-xl p-8 shadow-lg overflow-hidden relative">
+<div class="relative z-10">
+<p class="text-on-primary-container text-xs font-bold uppercase tracking-widest mb-2">Current Status</p>
+<h3 class="text-3xl font-extrabold mb-4">Pending Verification</h3>
+<div class="flex items-center gap-4 text-sm opacity-90">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                    Updated 2h ago
+                                </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">assignment</span>
+                                    ID: SEAS-2024-001
+                                </div>
+</div>
+</div>
+<!-- Background graphic -->
+<div class="absolute -right-8 -bottom-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+</section>
+<!-- History Timeline -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<h2 class="text-xl font-bold text-primary mb-6">Payment History</h2>
+<div class="space-y-8 relative before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant/30">
+<!-- History Item 1 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-secondary flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-on-secondary" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div>
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-sm">Application Fee</h4>
+<span class="text-xs font-bold text-secondary">Verified</span>
+</div>
+<p class="text-xs text-on-surface-variant">May 12, 2024 • #TXN882710</p>
+<p class="text-sm font-semibold mt-1">$50.00</p>
+</div>
+</div>
+<!-- History Item 2 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-primary-container flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-white" style="font-variation-settings: 'FILL' 1;">sync</span>
+</div>
+<div>
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-sm">Semester 1 Exam Fee</h4>
+<span class="text-xs font-bold text-primary-container">Pending</span>
+</div>
+<p class="text-xs text-on-surface-variant">Oct 24, 2024 • #TXN992831</p>
+<p class="text-sm font-semibold mt-1">$200.00</p>
+</div>
+</div>
+<!-- History Item 3 -->
+<div class="relative pl-10 opacity-60">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-error/20 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-error" style="font-variation-settings: 'FILL' 1;">close</span>
+</div>
+<div>
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-sm">Lab Certification</h4>
+<span class="text-xs font-bold text-error">Failed</span>
+</div>
+<p class="text-xs text-on-surface-variant">Oct 22, 2024 • #TXN991002</p>
+<p class="text-sm font-semibold mt-1">$75.00</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Summary Card -->
+<section class="bg-surface-container-low rounded-xl p-6">
+<div class="space-y-3">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Total Invoiced</span>
+<span class="font-bold">$325.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Total Paid</span>
+<span class="font-bold text-secondary">$50.00</span>
+</div>
+<div class="pt-3 mt-3 border-t border-outline-variant/30 flex justify-between items-end">
+<div>
+<p class="text-xs font-bold text-primary uppercase">Balance Due</p>
+<p class="text-2xl font-black text-primary">$275.00</p>
+</div>
+<button class="bg-surface-container-lowest p-2 rounded-lg material-symbols-outlined text-primary hover:bg-white transition-colors">download</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-auto bg-surface-container-low border-t border-outline-variant/15 font-inter text-xs tracking-wide">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 max-w-7xl mx-auto gap-8">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-sm font-manrope font-bold text-[#00193c]">SEAS Engineering Excellence</span>
+<p class="text-slate-500 text-center md:text-left">© 2024 SEAS Engineering Excellence. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-slate-500 hover:text-[#046d40] transition-colors duration-200" href="#">Institutional Privacy</a>
+<a class="text-slate-500 hover:text-[#046d40] transition-colors duration-200" href="#">Accessibility</a>
+<a class="text-slate-500 hover:text-[#046d40] transition-colors duration-200" href="#">Technical Standards</a>
+<a class="text-slate-500 hover:text-[#046d40] transition-colors duration-200" href="#">Contact SEAS</a>
+</div>
+</div>
+</footer>
+</body></html>

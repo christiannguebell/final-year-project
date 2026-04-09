@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Results Publication Dashboard | SEAS Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c4c6d1",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#001d27",
+                        "surface-tint": "#3e5e95",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary-fixed": "#001b3f",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#021f29",
+                        "tertiary-fixed": "#cbe7f5",
+                        "surface": "#f8f9fb",
+                        "secondary-fixed": "#9df5bd",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container": "#eceef0",
+                        "secondary": "#046d40",
+                        "on-secondary-container": "#0e7144",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary-fixed": "#002110",
+                        "secondary-fixed-dim": "#81d9a2",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#abc7ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#00193c",
+                        "on-secondary-fixed-variant": "#00522f",
+                        "on-surface-variant": "#43474f",
+                        "on-tertiary-container": "#809aa7",
+                        "primary-fixed-dim": "#abc7ff",
+                        "primary-container": "#002d62",
+                        "on-primary-fixed-variant": "#24467c",
+                        "surface-dim": "#d8dadc",
+                        "tertiary-fixed-dim": "#afcbd8",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#304a55",
+                        "secondary-container": "#9af2ba",
+                        "inverse-surface": "#2d3133",
+                        "surface-bright": "#f8f9fb",
+                        "background": "#f8f9fb",
+                        "error": "#ba1a1a",
+                        "outline": "#747781",
+                        "on-primary-container": "#7796d1",
+                        "surface-container-high": "#e6e8ea",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#17323d",
+                        "primary-fixed": "#d7e2ff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center px-8 h-16 w-full max-w-[1920px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-blue-950 dark:text-white tracking-tighter">SEAS Results Portal</span>
+<nav class="hidden md:flex gap-6 items-center font-['Manrope'] font-semibold tracking-tight">
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 transition-colors" href="#">Exams</a>
+<a class="text-blue-900 dark:text-blue-300 border-b-2 border-blue-900 dark:border-blue-300 pb-1" href="#">Reports</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 transition-colors" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<input class="bg-surface-container-high border-none rounded-xl px-4 py-1.5 text-sm w-64 focus:ring-2 focus:ring-primary" placeholder="Search data..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-slate-200/50 p-2 rounded-full transition-all active:scale-95">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-slate-200/50 p-2 rounded-full transition-all active:scale-95">account_circle</button>
+</div>
+</div>
+<div class="bg-gradient-to-r from-blue-900/10 to-transparent h-[2px] w-full absolute bottom-0"></div>
+</header>
+<div class="flex min-h-screen pt-16">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 bg-slate-50 dark:bg-slate-950 flex flex-col py-6 px-4 gap-2 fixed left-0 border-r-0">
+<div class="mb-6 px-2">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-10 h-10 rounded-xl overflow-hidden">
+<img alt="Engineering Admin" class="w-full h-full object-cover" data-alt="professional male engineering administrator in business attire, clean office background, high-end corporate photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH7CZzGJRmjKXJUrUmjh2RE9ShTu4Xn6VjRwI6AjiTU-6YzDuQhB0x8D7BQ7w9bYohhzdiGsdxTFxQYR_CnWZRjCqm22n0hWMAN7qYGwQT-pJQWWlgB9qGQfYle0XBF7O3HEPaTC0lzUGfGdOPxcgL6cA96BCGieWxL97t83oJDZ6GInTIPizzeaZs2ZIBW7RpXOogbP5LDVGdPNX-mLjT6AUmnRzSM4jeok01yIxqoOM4ALCo5plYtbys-ad2SUsmmIUt_6t7hHqj"/>
+</div>
+<div>
+<p class="font-bold text-primary dark:text-blue-400 text-sm">Admin Console</p>
+<p class="text-xs text-on-surface-variant">Entrance Exam 2024</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:translate-x-1 transition-transform duration-200 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="text-sm font-medium">Score Entry</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:translate-x-1 transition-transform duration-200 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">cloud_upload</span>
+<span class="text-sm font-medium">Bulk Upload</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:translate-x-1 transition-transform duration-200 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="text-sm font-medium">Final Approval</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white dark:bg-blue-900/20 text-blue-900 dark:text-blue-300 font-bold border-r-4 border-blue-900 hover:translate-x-1 transition-transform duration-200 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">publish</span>
+<span class="text-sm font-bold">Publication</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:translate-x-1 transition-transform duration-200 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">history</span>
+<span class="text-sm font-medium">Archived</span>
+</div>
+</nav>
+<button class="mt-4 mx-2 bg-primary text-on-primary py-2.5 rounded-xl text-sm font-bold shadow-md active:scale-95 transition-all">
+                New Exam Cycle
+            </button>
+<div class="mt-auto border-t border-slate-200 pt-4 flex flex-col gap-1">
+<div class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:bg-slate-100 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">help</span>
+<span class="text-xs">Support</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:bg-slate-100 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">terminal</span>
+<span class="text-xs">Logs</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-64 p-8 max-w-[1400px] mx-auto">
+<!-- Hero Header & Global Control -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div class="space-y-2">
+<span class="text-sm font-bold text-secondary uppercase tracking-widest">Administrative Control</span>
+<h1 class="text-4xl font-extrabold text-primary tracking-tight">Results Publication</h1>
+<p class="text-on-surface-variant max-w-lg">Authorize and manage the final release of academic standings for the Entrance Exam 2024 cycle. Ensure all notification channels are synchronized.</p>
+</div>
+<!-- Master Toggle Card -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/15 flex items-center gap-6">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface-variant mb-1 uppercase tracking-tighter">Master Release Status</p>
+<p class="text-lg font-bold text-error">Currently Locked</p>
+</div>
+<div class="h-12 w-[1px] bg-outline-variant/20"></div>
+<button class="bg-gradient-to-br from-secondary to-[#0e7144] text-on-primary px-8 py-3 rounded-lg font-bold flex items-center gap-2 active:scale-95 transition-all shadow-lg shadow-secondary/20">
+<span class="material-symbols-outlined">lock_open</span>
+                        Publish Results
+                    </button>
+</div>
+</div>
+<!-- Bento Statistics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="col-span-1 md:col-span-1 bg-surface-container-low p-6 rounded-xl space-y-4">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">analytics</span>
+<span class="text-xs font-bold text-secondary bg-secondary/10 px-2 py-0.5 rounded">+4.2% YoY</span>
+</div>
+<div>
+<p class="text-3xl font-extrabold text-primary">78.4</p>
+<p class="text-sm font-semibold text-on-surface-variant">Global Mean Score</p>
+</div>
+</div>
+<div class="col-span-1 md:col-span-1 bg-surface-container-lowest p-6 rounded-xl shadow-sm space-y-4 border border-outline-variant/10">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary bg-secondary/10 p-2 rounded-lg">verified</span>
+</div>
+<div>
+<p class="text-3xl font-extrabold text-primary">92.1%</p>
+<p class="text-sm font-semibold text-on-surface-variant">Overall Pass Rate</p>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 bg-primary text-on-primary p-6 rounded-xl relative overflow-hidden flex flex-col justify-between">
+<div class="z-10">
+<p class="text-sm font-bold text-blue-300 uppercase tracking-widest mb-1">Top Percentile Gap</p>
+<p class="text-2xl font-bold">95th Percentile: <span class="text-secondary-fixed">142.5 pts</span></p>
+</div>
+<div class="z-10 flex gap-2 items-center text-blue-200 text-xs">
+<span class="material-symbols-outlined text-sm">info</span>
+                        Validated against historical data for statistical integrity.
+                    </div>
+<!-- Decorative background graphic -->
+<div class="absolute right-0 bottom-0 opacity-10 pointer-events-none transform translate-x-4 translate-y-4">
+<span class="material-symbols-outlined text-9xl">engineering</span>
+</div>
+</div>
+</div>
+<!-- Main Layout: Cohorts vs notifications -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<!-- Cohort Status Table -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden">
+<div class="px-8 py-6 flex justify-between items-center bg-surface-container-low/30">
+<h3 class="text-xl font-bold text-primary">Cohort Release Status</h3>
+<div class="flex gap-2">
+<button class="text-xs font-bold text-primary-container hover:bg-surface-container px-3 py-1 rounded transition-colors">Refresh All</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-xs font-bold text-on-surface-variant uppercase tracking-widest bg-surface-container-low/50">
+<th class="px-8 py-4">Department / Cohort</th>
+<th class="px-8 py-4">Candidates</th>
+<th class="px-8 py-4">Status</th>
+<th class="px-8 py-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-low/20 transition-colors">
+<td class="px-8 py-5">
+<div class="font-bold text-primary">Engineering Dept</div>
+<div class="text-xs text-on-surface-variant">Mechanical, Civil, Robotics</div>
+</td>
+<td class="px-8 py-5 text-sm font-medium">1,240</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-xs font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Ready
+                                        </span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="text-primary hover:underline text-sm font-bold">View Audit</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/20 transition-colors">
+<td class="px-8 py-5">
+<div class="font-bold text-primary">Applied Sciences</div>
+<div class="text-xs text-on-surface-variant">Physics, Applied Math</div>
+</td>
+<td class="px-8 py-5 text-sm font-medium">850</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-xs font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Pending
+                                        </span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="text-primary hover:underline text-sm font-bold">Finalize</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/20 transition-colors">
+<td class="px-8 py-5">
+<div class="font-bold text-primary">Architecture Design</div>
+<div class="text-xs text-on-surface-variant">Urban Planning</div>
+</td>
+<td class="px-8 py-5 text-sm font-medium">420</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container text-xs font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Missing Scores
+                                        </span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="text-error hover:underline text-sm font-bold">Alert Admin</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/20 transition-colors">
+<td class="px-8 py-5">
+<div class="font-bold text-primary">Bio-Informatics</div>
+<div class="text-xs text-on-surface-variant">Genomics, Health Tech</div>
+</td>
+<td class="px-8 py-5 text-sm font-medium">180</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-xs font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Ready
+                                        </span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="text-primary hover:underline text-sm font-bold">View Audit</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Notification Tracker Sidebar -->
+<div class="bg-surface-container-low p-8 rounded-xl space-y-8">
+<div>
+<h3 class="text-lg font-bold text-primary mb-4">Notification Status</h3>
+<p class="text-sm text-on-surface-variant mb-6">Real-time delivery tracking for automated release alerts.</p>
+<!-- Trackers -->
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-sm font-bold">
+<span class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">mail</span>
+                                        Emails
+                                    </span>
+<span class="text-secondary">Sent</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-full"></div>
+</div>
+<p class="text-right text-[10px] text-on-surface-variant font-bold">2,690 of 2,690 Delivered</p>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm font-bold">
+<span class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">sms</span>
+                                        SMS Gateway
+                                    </span>
+<span class="text-primary-container">Queued</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+<p class="text-right text-[10px] text-on-surface-variant font-bold">1,800 of 2,690 Pending Approval</p>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm font-bold">
+<span class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">cloud_sync</span>
+                                        API Webhooks
+                                    </span>
+<span class="text-on-surface-variant">Inactive</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-outline-variant w-0"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/20">
+<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-lg">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div class="space-y-1">
+<p class="text-xs font-bold text-primary uppercase">Critical Warning</p>
+<p class="text-xs text-on-surface-variant">SMS Gateway requires manual token refresh before global release can proceed.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Approval Signature -->
+<div class="mt-12 p-8 bg-gradient-to-br from-surface-container-lowest to-surface-container-low rounded-2xl border border-outline-variant/10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex gap-4 items-center">
+<div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">fact_check</span>
+</div>
+<div>
+<h4 class="text-lg font-bold text-primary">Final Approval Authority</h4>
+<p class="text-sm text-on-surface-variant">The actions on this dashboard are recorded for institutional compliance audits.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 rounded-lg text-sm font-bold text-primary hover:bg-surface-container transition-colors">Download Pre-Release PDF</button>
+<button class="bg-primary text-on-primary px-8 py-2.5 rounded-lg text-sm font-bold shadow-md shadow-primary/10 active:scale-95 transition-all">Sign &amp; Authorize</button>
+</div>
+</div>
+</main>
+</div>
+<!-- Background Pattern -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] z-[-1]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCGtCqX8_RpYhUfMyuXKwmEecFaz3KE4ZEjTbdYWd4k3dzUjtCpVTFfRFUnTx9A3i4K5cvPTWMbauAJ0fWlrYoLXJSh2Rm05K9PAT92NbjyYU4ZO_ARokhra7i0fcdVP1Q7dXwuOevm8O2BtTC2Up4mNGtY4BD_wxA88NOPZfLhPsDmGh5FgMuo6P59b2nbnWCeVSc62_Ytf8zt1csSzNDHzHsNG_GCCWkqQgYtCtCoD2bzGKsZ3A31PUu5b-y-PgXIOmrtX1ilNdEQ');"></div>
+</body></html>

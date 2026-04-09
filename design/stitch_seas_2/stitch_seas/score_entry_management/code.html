@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Score Entry Management | SEAS Results Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c4c6d1",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#001d27",
+                        "surface-tint": "#3e5e95",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary-fixed": "#001b3f",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#021f29",
+                        "tertiary-fixed": "#cbe7f5",
+                        "surface": "#f8f9fb",
+                        "secondary-fixed": "#9df5bd",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container": "#eceef0",
+                        "secondary": "#046d40",
+                        "on-secondary-container": "#0e7144",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary-fixed": "#002110",
+                        "secondary-fixed-dim": "#81d9a2",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#abc7ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#00193c",
+                        "on-secondary-fixed-variant": "#00522f",
+                        "on-surface-variant": "#43474f",
+                        "on-tertiary-container": "#809aa7",
+                        "primary-fixed-dim": "#abc7ff",
+                        "primary-container": "#002d62",
+                        "on-primary-fixed-variant": "#24467c",
+                        "surface-dim": "#d8dadc",
+                        "tertiary-fixed-dim": "#afcbd8",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#304a55",
+                        "secondary-container": "#9af2ba",
+                        "inverse-surface": "#2d3133",
+                        "surface-bright": "#f8f9fb",
+                        "background": "#f8f9fb",
+                        "error": "#ba1a1a",
+                        "outline": "#747781",
+                        "on-primary-container": "#7796d1",
+                        "surface-container-high": "#e6e8ea",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#17323d",
+                        "primary-fixed": "#d7e2ff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex overflow-hidden h-screen">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 bg-slate-50 dark:bg-slate-950 flex flex-col py-6 px-4 gap-2 border-r border-slate-200 dark:border-slate-800">
+<div class="flex flex-col mb-8 px-2">
+<h2 class="text-blue-900 dark:text-blue-400 font-bold text-sm tracking-widest uppercase">Admin Console</h2>
+<p class="text-slate-500 text-xs font-medium">Entrance Exam 2024</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 py-2.5 px-3 bg-white dark:bg-blue-900/20 text-blue-900 dark:text-blue-300 font-bold border-r-4 border-blue-900 cursor-pointer transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="text-sm">Score Entry</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 cursor-pointer transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
+<span class="text-sm">Bulk Upload</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 cursor-pointer transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span class="text-sm">Final Approval</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 cursor-pointer transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="publish">publish</span>
+<span class="text-sm">Publication</span>
+</a>
+<a class="flex items-center gap-3 py-2.5 px-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 cursor-pointer transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-sm">Archived</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-slate-200 dark:border-slate-800 pt-6 space-y-1">
+<div class="flex items-center gap-3 px-3 mb-6">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs">EA</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-primary">Engineering Admin</span>
+<span class="text-[10px] text-slate-500">Tier 1 Access</span>
+</div>
+</div>
+<a class="flex items-center gap-3 py-2 px-3 text-slate-500 text-sm hover:bg-slate-100 dark:hover:bg-slate-900 rounded transition-colors" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help">help</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 py-2 px-3 text-slate-500 text-sm hover:bg-slate-100 dark:hover:bg-slate-900 rounded transition-colors" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="terminal">terminal</span>
+<span>Logs</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col relative overflow-hidden">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm h-16 flex items-center px-8 max-w-[calc(100%-16rem)] ml-64">
+<div class="flex justify-between items-center w-full max-w-[1920px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-blue-950 dark:text-white tracking-tighter">SEAS Results Portal</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 transition-colors font-['Manrope'] font-semibold tracking-tight text-sm" href="#">Dashboard</a>
+<a class="text-blue-900 dark:text-blue-300 border-b-2 border-blue-900 dark:border-blue-300 pb-1 font-['Manrope'] font-semibold tracking-tight text-sm" href="#">Exams</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 transition-colors font-['Manrope'] font-semibold tracking-tight text-sm" href="#">Reports</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 transition-colors font-['Manrope'] font-semibold tracking-tight text-sm" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-1.5 text-sm focus:ring-2 ring-primary/20 w-64 placeholder:text-slate-400 transition-all" placeholder="Search Candidate..." type="text"/>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-200/50 transition-all active:scale-95">
+<span class="material-symbols-outlined text-slate-600" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-200/50 transition-all active:scale-95">
+<span class="material-symbols-outlined text-slate-600" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+<div class="bg-gradient-to-r from-blue-900/10 to-transparent h-[2px] w-full absolute bottom-0 left-0"></div>
+</header>
+<!-- Main Content Area -->
+<main class="mt-16 p-8 flex-1 overflow-y-auto bg-surface">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-3xl font-extrabold text-primary tracking-tight">Score Entry Management</h1>
+<p class="text-on-surface-variant mt-1 font-medium">Undergraduate Engineering Entrance Examination Cycle - Oct 2024</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2 bg-primary text-on-primary font-semibold rounded-md shadow-lg flex items-center gap-2 hover:opacity-90 transition-opacity active:scale-95">
+<span class="material-symbols-outlined text-lg">save</span>
+                            Commit Changes
+                        </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left: Bulk Upload Zone -->
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-surface-container-low p-8 rounded-xl border-none flex flex-col h-full shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="upload_file">upload_file</span>
+</div>
+<h3 class="text-xl font-bold text-primary tracking-tight">Bulk Upload</h3>
+</div>
+<p class="text-sm text-on-surface-variant mb-8 leading-relaxed">
+                                Process large datasets efficiently. Upload your standard SEAS Excel or CSV format file here. Validation happens in real-time.
+                            </p>
+<div class="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-xl bg-surface-container-lowest p-8 text-center hover:border-secondary transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-5xl text-outline mb-4 group-hover:text-secondary transition-colors" data-icon="cloud_upload">cloud_upload</span>
+<p class="text-sm font-bold text-on-surface">Drag &amp; Drop Files</p>
+<p class="text-xs text-on-surface-variant mt-1">Maximum file size: 25MB</p>
+<button class="mt-6 px-4 py-2 text-primary font-bold text-sm bg-primary-fixed rounded hover:bg-primary-fixed-dim transition-colors">Browse Files</button>
+</div>
+<div class="mt-8 space-y-3">
+<div class="flex items-center justify-between text-xs font-semibold text-on-surface-variant px-1">
+<span>Download Templates</span>
+<span class="material-symbols-outlined text-sm">download</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-2 px-3 bg-surface-container-high rounded text-[10px] font-bold text-primary hover:bg-outline-variant/30 transition-colors">EXCEL TEMPLATE</button>
+<button class="flex-1 py-2 px-3 bg-surface-container-high rounded text-[10px] font-bold text-primary hover:bg-outline-variant/30 transition-colors">CSV TEMPLATE</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Manual Entry Table Area -->
+<div class="lg:col-span-8">
+<div class="bg-surface-container-lowest rounded-xl shadow-lg shadow-black/[0.03] overflow-hidden border-none">
+<div class="p-6 bg-surface-container-low flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="list_alt">list_alt</span>
+</div>
+<h3 class="text-xl font-bold text-primary tracking-tight">Manual Score Entry</h3>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-surface-container-lowest text-xs font-bold text-on-surface-variant hover:bg-surface-variant transition-colors rounded">EXPORT VIEW</button>
+<button class="px-4 py-2 bg-secondary text-on-secondary text-xs font-bold rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">person_add</span>
+                                        ADD ROW
+                                    </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container font-label text-[10px] text-on-surface-variant uppercase tracking-wider">
+<th class="px-6 py-4 font-bold">Candidate Information</th>
+<th class="px-4 py-4 font-bold text-center">Mathematics</th>
+<th class="px-4 py-4 font-bold text-center">Physics</th>
+<th class="px-4 py-4 font-bold text-center">Chemistry</th>
+<th class="px-6 py-4 font-bold">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-100 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a young male student in a light blue shirt with a clean library background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu5LRKS7UCzDqPfbj_jwkX7nA-zVTlJsVzZ7ti9d-A-hhFikpk9tVJLbr9UOtVRrDjj7GkIpFscKTRuGK5uMBgw1EGfqxRpY5MdwXu8DllHeVCp7vpKF2ljya9i5ElV72gVYLLtJAsHqghYI0-_a7795YAmk4l5DEfoG2BNrFz9RGz9PtjJPEiYIouhGwnO9OYCcLW9GTo0gqYqPmYVnjynze0eZOw-N-l6_Mz3316Vcoo7UvNoxNzzymkISoAxEfPA_o1nSyrxuLZ"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary leading-none">Arjun Malhotra</p>
+<p class="text-[11px] text-on-surface-variant mt-1">SEAS-2024-0892</p>
+</div>
+</div>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-surface-container-high border-none border-b-2 border-primary focus:ring-0 text-center font-bold text-primary rounded-t-sm text-sm" type="text" value="98.5"/>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-surface-container-high border-none border-b-2 border-primary focus:ring-0 text-center font-bold text-primary rounded-t-sm text-sm" type="text" value="94.0"/>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-surface-container-high border-none border-b-2 border-primary focus:ring-0 text-center font-bold text-primary rounded-t-sm text-sm" type="text" value="92.0"/>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-tight">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                                    Validated
+                                                </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group bg-surface-container-lowest">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-100 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="portrait of a confident young woman student with long dark hair against a neutral architectural background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWHd-R46EOUkfHY-eSPYiX8HZ2j0bFklMoqwA5fopYgIT7Zl6FwXH29ggbMaxJ6_qR0x4SAO12zLMyAUF6femwY8PNSaR7rLev4e-XM4TpgRyM8HFLyfqsNMoCWfqMk7LfYDgPua9LJqcizmsXZbsVytvok_k9DWCg0YWQt16S1UMX82h4XFuyctUg4_BP2a-N3utivVWM--nMZH8HfXcOwBjZ7DFMYXNrW_pFhUnKGEbkgIFicKbvmSFcSjdFNOHG_hzResUKMD9L"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary leading-none">Sarah Chen</p>
+<p class="text-[11px] text-on-surface-variant mt-1">SEAS-2024-1104</p>
+</div>
+</div>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-surface-container-high border-none border-b-2 border-primary focus:ring-0 text-center font-bold text-primary rounded-t-sm text-sm" type="text" value="88.0"/>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-surface-container-high border-none border-b-2 border-primary focus:ring-0 text-center font-bold text-primary rounded-t-sm text-sm" placeholder="0.0" type="text" value="--"/>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-surface-container-high border-none border-b-2 border-primary focus:ring-0 text-center font-bold text-primary rounded-t-sm text-sm" placeholder="0.0" type="text" value="--"/>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant text-[10px] font-bold uppercase tracking-tight">
+<span class="material-symbols-outlined text-sm">pending</span>
+                                                    Pending
+                                                </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-100 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="middle-aged male academic professional with glasses and a friendly expression in a formal office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWlEavlv7ll9mafCKfXAPSIYuG4OlTrtQ7yRxqQ_C0YlZnC-StGzANpo2l6_5JwuaBhNsDzJd0zJVGY9tZqEVpg6zt1bZ6iSkpKvrqFEmNNI5AbeYjPxunfjhRM9BK7_0t_zCoVcBMHF1P6aTLccwgTT3KkaBsSuAKlnU1zmjWL1tcODTTBgwMkGuGXjVpQYAzKLCYGoYGCWVvbhUloO7Tr-bgGLqm7LEe8qhbSWbEQDgqC9zZj9RtOZnw3RLhsKOJJjp7xfTZGpRN"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary leading-none">Marcus Thorne</p>
+<p class="text-[11px] text-on-surface-variant mt-1">SEAS-2024-0453</p>
+</div>
+</div>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-error-container border-none border-b-2 border-error focus:ring-0 text-center font-bold text-error rounded-t-sm text-sm" type="text" value="75.5"/>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-surface-container-high border-none border-b-2 border-primary focus:ring-0 text-center font-bold text-primary rounded-t-sm text-sm" type="text" value="82.0"/>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-surface-container-high border-none border-b-2 border-primary focus:ring-0 text-center font-bold text-primary rounded-t-sm text-sm" type="text" value="79.0"/>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container text-[10px] font-bold uppercase tracking-tight">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">error</span>
+                                                    Data Error
+                                                </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-100 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="portrait of a young woman student with a natural look and thoughtful expression in soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwenjaVcuvptwb3dKyO_7mlcs4NEJOZGaNZFj1tWOtwo4PW5TvtAh-lefzLezc4ABbl-kkFSd5UT4Zg5SGw02IdYx-Q-ycOIVOQ6IGj0C-kHqHChg-39WVCeLl0VcN_Bpo5_GkzKVoZoaAtm_d2AhO4HiBtkNgHWx3-XvWTZuJ4RFDYWCIvb110aBtlFnOWdgpWJVTLozqt_u-QkFGSsWVI7F0bFSEBzxhr78oEAdzjbktwBgXnAh7K2o8hSrKFvhKq2Toe-Dodgbb"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary leading-none">Elena Rodriguez</p>
+<p class="text-[11px] text-on-surface-variant mt-1">SEAS-2024-2291</p>
+</div>
+</div>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-surface-container-high border-none border-b-2 border-primary focus:ring-0 text-center font-bold text-primary rounded-t-sm text-sm" type="text" value="95.0"/>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-surface-container-high border-none border-b-2 border-primary focus:ring-0 text-center font-bold text-primary rounded-t-sm text-sm" type="text" value="91.5"/>
+</td>
+<td class="px-4 py-5 text-center">
+<input class="w-16 h-10 bg-surface-container-high border-none border-b-2 border-primary focus:ring-0 text-center font-bold text-primary rounded-t-sm text-sm" type="text" value="89.0"/>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-tight">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                                    Validated
+                                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-low border-t border-outline-variant/10 flex justify-between items-center">
+<span class="text-xs font-medium text-on-surface-variant">Showing 4 of 2,450 Candidates</span>
+<div class="flex gap-1">
+<button class="w-8 h-8 rounded flex items-center justify-center bg-surface-container-highest text-on-surface transition-colors hover:bg-outline-variant">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center bg-primary text-on-primary font-bold text-xs">1</button>
+<button class="w-8 h-8 rounded flex items-center justify-center bg-surface-container-lowest text-on-surface-variant font-bold text-xs hover:bg-surface-variant">2</button>
+<button class="w-8 h-8 rounded flex items-center justify-center bg-surface-container-lowest text-on-surface-variant font-bold text-xs hover:bg-surface-variant">3</button>
+<button class="w-8 h-8 rounded flex items-center justify-center bg-surface-container-highest text-on-surface transition-colors hover:bg-outline-variant">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary Analytics Glass Section -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface-container-low/60 backdrop-blur-sm p-6 rounded-xl border border-white/40">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Total Entries</p>
+<h4 class="text-2xl font-extrabold text-primary">2,450</h4>
+<div class="mt-4 h-1 w-full bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-low/60 backdrop-blur-sm p-6 rounded-xl border border-white/40">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Validated</p>
+<h4 class="text-2xl font-extrabold text-secondary">2,318</h4>
+<div class="mt-4 h-1 w-full bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[94%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-low/60 backdrop-blur-sm p-6 rounded-xl border border-white/40">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Errors</p>
+<h4 class="text-2xl font-extrabold text-error">12</h4>
+<div class="mt-4 h-1 w-full bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="h-full bg-error w-[2%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-low/60 backdrop-blur-sm p-6 rounded-xl border border-white/40">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Avg Score</p>
+<h4 class="text-2xl font-extrabold text-primary">82.4%</h4>
+<div class="mt-4 h-1 w-full bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="h-full bg-blue-400 w-[82%]"></div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

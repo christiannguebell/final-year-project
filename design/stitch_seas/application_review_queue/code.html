@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Application Review Queue | SEAS Admin Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-primary-fixed-variant": "#24467c",
+                "on-error-container": "#93000a",
+                "outline": "#747781",
+                "on-secondary-container": "#0e7144",
+                "on-primary-container": "#7796d1",
+                "on-secondary-fixed": "#002110",
+                "surface-bright": "#f8f9fb",
+                "primary": "#00193c",
+                "secondary": "#046d40",
+                "primary-container": "#002d62",
+                "on-primary-fixed": "#001b3f",
+                "surface-variant": "#e0e3e5",
+                "surface-dim": "#d8dadc",
+                "surface-container-high": "#e6e8ea",
+                "on-error": "#ffffff",
+                "background": "#f8f9fb",
+                "on-tertiary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "inverse-surface": "#2d3133",
+                "primary-fixed": "#d7e2ff",
+                "on-surface-variant": "#43474f",
+                "surface-container-highest": "#e0e3e5",
+                "tertiary": "#001d27",
+                "inverse-primary": "#abc7ff",
+                "on-surface": "#191c1e",
+                "on-primary": "#ffffff",
+                "tertiary-fixed-dim": "#afcbd8",
+                "secondary-container": "#9af2ba",
+                "on-background": "#191c1e",
+                "tertiary-fixed": "#cbe7f5",
+                "on-secondary": "#ffffff",
+                "surface-container-low": "#f2f4f6",
+                "on-tertiary-fixed": "#021f29",
+                "on-secondary-fixed-variant": "#00522f",
+                "secondary-fixed": "#9df5bd",
+                "secondary-fixed-dim": "#81d9a2",
+                "surface-tint": "#3e5e95",
+                "on-tertiary-fixed-variant": "#304a55",
+                "error-container": "#ffdad6",
+                "primary-fixed-dim": "#abc7ff",
+                "outline-variant": "#c4c6d1",
+                "inverse-on-surface": "#eff1f3",
+                "tertiary-container": "#17323d",
+                "surface-container": "#eceef0",
+                "surface": "#f8f9fb",
+                "on-tertiary-container": "#809aa7"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "fontFamily": {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md flex justify-between items-center px-8 py-3 border-b border-slate-200/50 dark:border-slate-800/50">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-blue-900 dark:text-blue-100">SEAS Admin Portal</span>
+<div class="hidden md:flex items-center gap-1 bg-surface-container px-3 py-1.5 rounded-lg border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-manrope font-semibold tracking-tight text-blue-900 dark:text-blue-200 w-64" placeholder="Quick search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-lg">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-lg">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-lg">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-800 mx-2"></div>
+<img alt="Administrator Profile" class="h-9 w-9 rounded-full object-cover border border-outline-variant/30" data-alt="professional portrait of a university administrator in a modern office environment with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGOj_wHLXfRe0ZOGv3xf6kijig_w1RcSRfy3-tCoODeMSnxl6Jwb93hU_-3vP0pCYkKnW93qJLCqjD6xRl6YQzIY7PkDDiV96oJO8hPxTMasDtQtqu9MM76qKIHrGGM7ZBqN6Nb5ucNjjrSNYD1GWIGBZjYjU5g0_iScaQBOI_T3ew9phucLRNc2fYC-ehF4NQiNg-CtYrIqX94Kd8feKDJBkZIG8zFk3TaWm8OSepfKSeMXPbmVu0XkD-ZkQJF2UDi72zv8iuSTUs"/>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 border-r border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 flex flex-col pt-20">
+<div class="px-6 py-4 mb-2">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="engineering" style="font-variation-settings: 'FILL' 1;">engineering</span>
+</div>
+<div>
+<div class="font-manrope font-extrabold text-blue-900 dark:text-blue-100 text-sm">SEAS Admin</div>
+<div class="text-[10px] text-slate-500 font-medium uppercase tracking-widest">Engineering Excellence</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-inter text-sm font-medium">Dashboard</span>
+</a>
+<!-- Active Tab: Application Queue -->
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-blue-900/20 text-blue-900 dark:text-blue-200 rounded-lg shadow-sm font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="list_alt">list_alt</span>
+<span class="font-inter text-sm">Application Queue</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-inter text-sm font-medium">Faculty Review</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="rule">rule</span>
+<span class="font-inter text-sm font-medium">Decision Matrix</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-inter text-sm font-medium">Archives</span>
+</a>
+</div>
+<div class="px-4 py-6 border-t border-slate-200 dark:border-slate-800 space-y-1">
+<button class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-manrope font-bold text-sm mb-4 hover:opacity-90 transition-opacity">
+                New Cycle
+            </button>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:bg-slate-200 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="text-sm font-medium">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 hover:bg-slate-200 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="text-sm font-medium">Sign Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-8 pb-12">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-8">
+<div class="max-w-2xl">
+<h1 class="text-3xl font-bold tracking-tight text-primary">Application Review Queue</h1>
+<p class="text-on-surface-variant mt-2 text-lg">Manage and evaluate pending student applications for the upcoming academic cycle. Use specialized filters to triage critical reviews.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex -space-x-3">
+<img alt="Reviewer 1" class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="portrait of a female professor with a professional smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNTzi7L1nAiXLg1Y92Y4RGt8jqDN3j7ZT4_fbh4J2HcsSmw-h0pRciTai-4onIjHdK6kt22Sm43I-bjhfPVxrMaX1gSVmOMv-jznEUF7jYx81EE5lbjshJjMYFRGO0kzSqDEVS8ZzmgJ6DutfXm66qkRhZJVehkamNgibFsKdBJLezokyvbSG76Do1wLNotzIiTRVnW2LQ4NUEQzIFs2dpss_BVRLgIkm-OM3H-vBKyycbcJevR0knpVqPLDL7XZHpKLTWXgy69SaB"/>
+<img alt="Reviewer 2" class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="portrait of a male researcher in a lab setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK0aM973CoCOR8uGwG67fNXNfRlIhXa23kANJ42WEz0rmN5BDQQQ24tucRlxqFmJoct9l1P9S_jH4tBGF-aPiCUFW0rCGOPU_xGd04naSx__TlQLCbLnKATN89vzKjaS4YY2XLyKUrKZdiaQDonCk09GxQrV-OyD3A3qEa3yQguWyWJE0J2QDeA9Gm5AgtXxFKEOyC1BV2f-ZVmBlakceEFqoGREBAOW_5WRIjrmj53Z4ap-vm-5g1XdeSaf_zGrJUiy3mU2vxtsxP"/>
+<img alt="Reviewer 3" class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="portrait of a confident middle-aged academic Professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzkNqVARZQ5j-TjVkBTmTVProvhtDjG33Zafh3WOT9A76sKsBi1LRENwPp5VVKe-bUIHCo4-NQHyuwQiTO72w9WZ71rTMg344Qcpya1nOJf960juKfjColYqWO8ID58T1La65j_Ynd9jI5Jn96js5LjtsJuOMER0w6BcIHu8UjH3WxnuZI7nE9D5f40LJ6mxIcrd9T-AdemAVb5uF8S1DADq0az1ocRudBkLrNynHZyAKWSiK4PzsefjPn54eljNfOivKJGA4Fr9Hy"/>
+<div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-600">+12</div>
+</div>
+</div>
+</div>
+<!-- Metrics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm relative overflow-hidden">
+<div class="absolute right-[-10px] top-[-10px] opacity-5">
+<span class="material-symbols-outlined text-8xl" data-icon="pending_actions">pending_actions</span>
+</div>
+<div class="flex items-center gap-3 text-primary mb-4">
+<span class="material-symbols-outlined bg-primary-container/20 p-2 rounded-lg" data-icon="hourglass_empty">hourglass_empty</span>
+<span class="text-sm font-bold uppercase tracking-wider opacity-70">Total Pending</span>
+</div>
+<div class="text-4xl font-extrabold text-primary">128</div>
+<div class="mt-2 text-xs text-secondary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="trending_down">trending_down</span>
+                    12% less than last week
+                </div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm relative overflow-hidden">
+<div class="absolute right-[-10px] top-[-10px] opacity-5">
+<span class="material-symbols-outlined text-8xl" data-icon="timer">timer</span>
+</div>
+<div class="flex items-center gap-3 text-primary mb-4">
+<span class="material-symbols-outlined bg-primary-container/20 p-2 rounded-lg" data-icon="avg_pace">avg_pace</span>
+<span class="text-sm font-bold uppercase tracking-wider opacity-70">Avg Review Time</span>
+</div>
+<div class="text-4xl font-extrabold text-primary">4.2 <span class="text-xl font-normal opacity-50">days</span></div>
+<div class="mt-2 text-xs text-error font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+                    0.5d increase in backlog
+                </div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm relative overflow-hidden">
+<div class="absolute right-[-10px] top-[-10px] opacity-5">
+<span class="material-symbols-outlined text-8xl" data-icon="verified">verified</span>
+</div>
+<div class="flex items-center gap-3 text-secondary mb-4">
+<span class="material-symbols-outlined bg-secondary-container/20 p-2 rounded-lg" data-icon="task_alt">task_alt</span>
+<span class="text-sm font-bold uppercase tracking-wider opacity-70">Approvals Today</span>
+</div>
+<div class="text-4xl font-extrabold text-secondary">31</div>
+<div class="mt-2 text-xs text-on-surface-variant font-medium">Goal: 45 approvals per day</div>
+</div>
+</div>
+<!-- Sophisticated Filter & Search Bar -->
+<div class="bg-surface-container-low p-4 rounded-xl mb-6 flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[200px] relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-lowest border-none pl-10 pr-4 py-2.5 rounded-lg text-sm focus:ring-2 focus:ring-primary/20" placeholder="Search by name, ID or email..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<select class="bg-surface-container-lowest border-none py-2.5 px-4 rounded-lg text-sm focus:ring-2 focus:ring-primary/20 min-w-[160px]">
+<option>All Programs</option>
+<option>Mechanical Engineering</option>
+<option>Computer Science</option>
+<option>Biomedical Engineering</option>
+<option>Electrical Engineering</option>
+</select>
+<select class="bg-surface-container-lowest border-none py-2.5 px-4 rounded-lg text-sm focus:ring-2 focus:ring-primary/20 min-w-[160px]">
+<option>All Statuses</option>
+<option>Submitted</option>
+<option>In Review</option>
+<option>Pending Verification</option>
+<option>Approved</option>
+<option>Rejected</option>
+</select>
+<div class="flex items-center bg-surface-container-lowest px-4 py-2.5 rounded-lg gap-2 cursor-pointer hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="calendar_today">calendar_today</span>
+<span class="text-sm font-medium text-on-surface-variant">Date Range</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                Apply Filters
+            </button>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/10">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">Candidate</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">ID Number</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">Program</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">Date Submitted</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">Status</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Candidate" class="w-9 h-9 rounded-full object-cover" data-alt="portrait of a young student in a casual blue shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB101YGgXuo-UQT9_g51EI8Vts_pvbCrDjm3qp1WahTj539WUu_KIlFahc9nE-s0TWgxHBbF49bTJ8DIXUKgAMIsxGMz67k4XOjpvdniWFfYKVdIb1OsMHQSkFl_200w92ib_LrG2iJ2iMnESyfQAg8KV7ecdVs8cXE3Qb2iSNJfjx7O7qnEg6xFZDbFk8zPvVplT2PJba-bHIBIN6M2ogSBBgyPTg35wWhuuJXHxnarfA2QKyijNKkcfF5vMjs_4aVH-XlI5IJpiqU"/>
+<div>
+<div class="text-sm font-bold text-primary">Julian Thorne</div>
+<div class="text-[11px] text-on-surface-variant">j.thorne@student.edu</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-mono text-on-surface-variant">#SEAS-2024-8821</td>
+<td class="px-6 py-4 text-sm font-medium text-primary">MS Computer Science</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Oct 12, 2024</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 text-[11px] font-bold uppercase tracking-tighter">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                                In Review
+                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 hover:bg-primary-container/20 rounded-lg text-primary transition-colors group relative" title="Review Details">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 hover:bg-secondary-container/20 rounded-lg text-secondary transition-colors group relative" title="Quick Verify">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</button>
+<button class="p-2 hover:bg-surface-variant rounded-lg text-on-surface-variant transition-colors group relative" title="Add Note">
+<span class="material-symbols-outlined" data-icon="note_add">note_add</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Candidate" class="w-9 h-9 rounded-full object-cover" data-alt="portrait of a female student with glasses and a thoughtful expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtQAervp9NQa7UWJXFwJZZ3pRjtJ3ULc6ds8PTJqPc3WfQS-rzpi120wFaYgGZsau9HgBoA2Ye72Y0l3IRKQzeQiUkoKkMmvJ-FVP221w2QYRZTL8nhnMj0Wz1U8ggiITEzBuyx1F8nLE0eB_IshRajW-JOnRZcjcbVNqyomENmyNDVi-Oc6KZz9y7z5q19Io1RVp49nKagEOJ_WUbXzOYJiCwIaX0XBVtJGq-w7YAO0rRehluSpcVhZqinzbRPr5-rDwCTl50XDOP"/>
+<div>
+<div class="text-sm font-bold text-primary">Elena Rodriguez</div>
+<div class="text-[11px] text-on-surface-variant">e.rodriguez@univ.net</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-mono text-on-surface-variant">#SEAS-2024-9012</td>
+<td class="px-6 py-4 text-sm font-medium text-primary">PhD Bio-Engineering</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Oct 11, 2024</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 text-[11px] font-bold uppercase tracking-tighter">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                                Pending Verification
+                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 hover:bg-primary-container/20 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 hover:bg-secondary-container/20 rounded-lg text-secondary transition-colors">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</button>
+<button class="p-2 hover:bg-surface-variant rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="note_add">note_add</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Candidate" class="w-9 h-9 rounded-full object-cover" data-alt="close up portrait of a young man with a slight smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBltEEwk54kFJpsQv1fXRv7ND_fTkrcTP_fSWlVj-dANKwhKVHEr9MyHoJJZQ_Zzxqle8_OPUI8vyW7ziSSXpXNbxzIt0q9FYqiBU3Oil4zkEGDnxwZrO8hptnmjjgjz_SEEvgSNWym1Y_PrK1wczwDz1Kn2Ol5fSkwB0X8y0jc9Oypv7n1FZGt2S_9IeGuLdI2a2c6OaKXdOL5SsYX5fqTKWeeamwugAnNCgb78g2x-6XDzP5wh3jy-NM7eSBZqwq5Qnb9OsBMgG7l"/>
+<div>
+<div class="text-sm font-bold text-primary">Marcus Chen</div>
+<div class="text-[11px] text-on-surface-variant">m.chen@scholar.org</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-mono text-on-surface-variant">#SEAS-2024-8145</td>
+<td class="px-6 py-4 text-sm font-medium text-primary">MS Robotics</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Oct 10, 2024</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold uppercase tracking-tighter">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Submitted
+                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 hover:bg-primary-container/20 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 hover:bg-secondary-container/20 rounded-lg text-secondary transition-colors">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</button>
+<button class="p-2 hover:bg-surface-variant rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="note_add">note_add</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Candidate" class="w-9 h-9 rounded-full object-cover" data-alt="vibrant portrait of a professional woman with a warm expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSZ2HiIkxKqhgmPlH__g2DxJrmGb71E7dyVI3v_oIn0eURMI5WlPs4Px7ayIVqphYETIF5ZSx5vGjUmgngz-Jy7Rdd59hdburmoEDQsblJC_jKqrWRWKUATybvmJqQUdKtQenNitusPmF1HQ132W9CY8Ea5BQF1WAd3xfhRLN1LhRl_Mptn2LZzsPQoviqZCqiXws2KKMlDQR2GOE7wR_KxUG_FPDD6bAaW_dHcNaCwY69eRTBcyvKV7e-tkWxJYbLDAaBRKNzdOwM"/>
+<div>
+<div class="text-sm font-bold text-primary">Sarah Jenkins</div>
+<div class="text-[11px] text-on-surface-variant">s.jenkins@academy.edu</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-mono text-on-surface-variant">#SEAS-2024-7762</td>
+<td class="px-6 py-4 text-sm font-medium text-primary">MS Civil Engineering</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Oct 09, 2024</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[11px] font-bold uppercase tracking-tighter">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                                Approved
+                            </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 hover:bg-primary-container/20 rounded-lg text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 hover:bg-secondary-container/20 rounded-lg text-secondary transition-colors opacity-50 cursor-not-allowed">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</button>
+<button class="p-2 hover:bg-surface-variant rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="note_add">note_add</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Controls -->
+<div class="flex items-center justify-between px-6 py-4 bg-surface-container-low border-t border-outline-variant/10">
+<div class="text-xs text-on-surface-variant font-medium">
+                    Showing <span class="text-primary font-bold">1 - 25</span> of 128 applications
+                </div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-white transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-white text-xs font-medium text-on-surface-variant transition-colors">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-white text-xs font-medium text-on-surface-variant transition-colors">3</button>
+<span class="px-1 text-on-surface-variant">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-white text-xs font-medium text-on-surface-variant transition-colors">6</button>
+</div>
+<button class="p-1.5 rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

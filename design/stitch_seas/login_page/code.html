@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | SEAS Exam Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d7e2ff",
+                        "on-surface-variant": "#43474f",
+                        "primary-container": "#002d62",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#cbe7f5",
+                        "tertiary-container": "#17323d",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed": "#9df5bd",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-fixed-dim": "#afcbd8",
+                        "surface-tint": "#3e5e95",
+                        "inverse-primary": "#abc7ff",
+                        "on-tertiary-fixed": "#021f29",
+                        "surface": "#f8f9fb",
+                        "on-tertiary-container": "#809aa7",
+                        "error": "#ba1a1a",
+                        "on-surface": "#191c1e",
+                        "primary-fixed-dim": "#abc7ff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#24467c",
+                        "background": "#f8f9fb",
+                        "on-secondary-fixed": "#002110",
+                        "primary": "#00193c",
+                        "outline": "#747781",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-container": "#7796d1",
+                        "tertiary": "#001d27",
+                        "secondary-container": "#9af2ba",
+                        "secondary-fixed-dim": "#81d9a2",
+                        "secondary": "#046d40",
+                        "on-secondary-container": "#0e7144",
+                        "on-secondary-fixed-variant": "#00522f",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#001b3f",
+                        "on-tertiary-fixed-variant": "#304a55",
+                        "outline-variant": "#c4c6d1",
+                        "surface-bright": "#f8f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container": "#eceef0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background: rgba(248, 249, 251, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface min-h-screen flex flex-col">
+<!-- TopNavBar Suppression: Logic - Transactional/Login Screen -->
+<header class="fixed top-0 w-full z-50 glass-header px-8 py-4">
+<div class="max-w-[1920px] mx-auto flex justify-between items-center">
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-sm" data-icon="architecture">architecture</span>
+</div>
+<span class="font-headline font-bold text-lg text-primary tracking-tighter">SEAS Exam Management</span>
+</div>
+<div class="hidden md:flex space-x-6">
+<a class="font-headline font-semibold text-primary hover:opacity-80 transition-opacity" href="#">Programs</a>
+<a class="font-headline font-semibold text-primary hover:opacity-80 transition-opacity" href="#">Help</a>
+</div>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center relative px-6 py-24">
+<!-- Background Pattern / Hero Image -->
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<img alt="engineering blueprint" class="w-full h-full object-cover opacity-10" data-alt="abstract architectural blueprint lines and technical drafting on a subtle light blue background with depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuYgpjER7Z3j2m6FoPjOBHhsNI2siCsktg5yKXQ2G1H_v8Ad6AGTJS-Gk7Ga-XRIDxRtVWufxsP4YVUxC3jW2vDWeShTgm6x-adVZixsbeeOr3Zp4VUkRDdsKRUg4ac4ZB-USq-rD6jsF4BjwhFFS_jRyWl5iAMrgyh8O08ZwMb4LI6iwTiG5qUqYwbWPdu08Y1qayT7mH4WmLpVsmwto9Cp701aGzVcRNOgpGrcZjuaTXtIA036YZgI5cWYStRRZy6H3Y7shAPIGH"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-primary-container/5"></div>
+</div>
+<!-- Login Card -->
+<div class="w-full max-w-md z-10">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_8px_24px_rgba(25,28,30,0.06)] p-8 md:p-10">
+<div class="mb-10 text-center">
+<h1 class="font-headline font-extrabold text-3xl text-primary tracking-tight mb-2">Portal Access</h1>
+<p class="text-on-surface-variant font-body">Engineering &amp; Applied Sciences</p>
+</div>
+<!-- Role Selector (Asymmetric/Modern) -->
+<div class="flex bg-surface-container-low p-1 rounded-lg mb-8">
+<button class="flex-1 py-2 px-4 rounded-md text-sm font-semibold transition-all bg-surface-container-lowest text-primary shadow-sm">Candidate</button>
+<button class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all text-on-surface-variant hover:text-primary">Administrator</button>
+</div>
+<form class="space-y-6">
+<!-- Email Field -->
+<div class="space-y-1">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1" for="email">Email Address</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline" data-icon="mail">mail</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-high rounded-md border-none border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all text-on-surface placeholder:text-outline" id="email" name="email" placeholder="engineering.student@seas.edu" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-1">
+<div class="flex justify-between items-center px-1">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" for="password">Password</label>
+<a class="text-xs font-semibold text-secondary hover:underline transition-all" href="#">Forgot Password?</a>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline" data-icon="lock">lock</span>
+<input class="w-full pl-10 pr-10 py-3 bg-surface-container-high rounded-md border-none border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all text-on-surface placeholder:text-outline" id="password" name="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 text-outline hover:text-primary" type="button">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center space-x-3 px-1">
+<div class="relative flex items-center h-5">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" id="remember" type="checkbox"/>
+</div>
+<label class="text-sm font-medium text-on-surface-variant" for="remember">Remember my session</label>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-4 bg-primary text-on-primary rounded-lg font-headline font-bold text-base hover:bg-primary-container transition-all active:scale-[0.98] flex items-center justify-center space-x-2 shadow-lg shadow-primary/10" type="submit">
+<span>Enter Dashboard</span>
+<span class="material-symbols-outlined" data-icon="login">login</span>
+</button>
+</form>
+<!-- Technical Standard Link -->
+<div class="mt-10 pt-8 border-t border-outline-variant/15 text-center">
+<p class="text-xs text-on-surface-variant font-label leading-relaxed">
+                        By logging in, you agree to the <a class="underline hover:text-primary" href="#">Technical Standards</a> and the <a class="underline hover:text-primary" href="#">Honor Code of Conduct</a>.
+                    </p>
+</div>
+</div>
+<!-- Accessibility/Support Quick Actions -->
+<div class="mt-8 flex justify-center space-x-8">
+<a class="flex items-center space-x-2 text-on-surface-variant hover:text-primary transition-colors text-xs font-semibold" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="accessibility_new">accessibility_new</span>
+<span>Accessibility</span>
+</a>
+<a class="flex items-center space-x-2 text-on-surface-variant hover:text-primary transition-colors text-xs font-semibold" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_center">help_center</span>
+<span>Support</span>
+</a>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-12 mt-auto bg-surface dark:bg-primary">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 max-w-7xl mx-auto border-t border-outline-variant/15 pt-8">
+<div class="mb-6 md:mb-0">
+<span class="text-sm font-headline font-bold text-primary dark:text-on-primary tracking-tighter">SEAS Engineering Excellence</span>
+<p class="font-body text-[10px] tracking-wide text-on-surface-variant dark:text-slate-400 mt-1 uppercase">© 2024 SEAS Engineering Excellence. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body text-xs tracking-wide text-slate-500 hover:text-secondary transition-colors duration-200" href="#">Institutional Privacy</a>
+<a class="font-body text-xs tracking-wide text-slate-500 hover:text-secondary transition-colors duration-200" href="#">Accessibility</a>
+<a class="font-body text-xs tracking-wide text-slate-500 hover:text-secondary transition-colors duration-200" href="#">Technical Standards</a>
+<a class="font-body text-xs tracking-wide text-slate-500 hover:text-secondary transition-colors duration-200" href="#">Contact SEAS</a>
+</div>
+</div>
+</footer>
+</body></html>

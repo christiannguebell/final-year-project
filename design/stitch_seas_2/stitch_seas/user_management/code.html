@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Management | SEAS Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d7e2ff",
+                    "on-secondary-container": "#0e7144",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#abc7ff",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-secondary-fixed": "#002110",
+                    "on-primary-container": "#7796d1",
+                    "on-tertiary-container": "#809aa7",
+                    "on-surface": "#191c1e",
+                    "surface-dim": "#d8dadc",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-variant": "#e0e3e5",
+                    "on-primary-fixed": "#001b3f",
+                    "on-tertiary-fixed": "#021f29",
+                    "on-surface-variant": "#43474f",
+                    "surface-tint": "#3e5e95",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#001d27",
+                    "surface-container-high": "#e6e8ea",
+                    "on-primary-fixed-variant": "#24467c",
+                    "primary": "#00193c",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#abc7ff",
+                    "on-error": "#ffffff",
+                    "on-background": "#191c1e",
+                    "surface": "#f8f9fb",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#c4c6d1",
+                    "surface-bright": "#f8f9fb",
+                    "tertiary-fixed": "#cbe7f5",
+                    "tertiary-container": "#17323d",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary-fixed": "#9df5bd",
+                    "inverse-surface": "#2d3133",
+                    "tertiary-fixed-dim": "#afcbd8",
+                    "primary-container": "#002d62",
+                    "secondary": "#046d40",
+                    "on-tertiary-fixed-variant": "#304a55",
+                    "on-secondary-fixed-variant": "#00522f",
+                    "secondary-container": "#9af2ba",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eceef0",
+                    "secondary-fixed-dim": "#81d9a2",
+                    "on-primary": "#ffffff",
+                    "background": "#f8f9fb",
+                    "error": "#ba1a1a",
+                    "outline": "#747781"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-72 flex flex-col fixed left-0 top-0 bg-slate-100 dark:bg-slate-900 flex flex-col h-full p-6 border-r border-slate-200/10 z-50">
+<div class="mb-10 px-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">engineering</span>
+</div>
+<div>
+<h1 class="font-manrope font-black text-xl text-blue-950 dark:text-white tracking-tighter">SEAS</h1>
+<p class="font-manrope text-[10px] uppercase tracking-widest text-slate-500 font-bold">Engineering Excellence</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all scale-100 hover:translate-x-1 duration-200 font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-950 text-blue-950 dark:text-blue-400 font-bold rounded-lg shadow-sm font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span>Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all scale-100 hover:translate-x-1 duration-200 font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined">engineering</span>
+<span>Programs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all scale-100 hover:translate-x-1 duration-200 font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined">description</span>
+<span>Applications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all scale-100 hover:translate-x-1 duration-200 font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Logistics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-300 hover:bg-slate-200/40 dark:hover:bg-slate-800/40 transition-all scale-100 hover:translate-x-1 duration-200 font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Results</span>
+</a>
+</nav>
+<div class="mt-auto space-y-1 border-t border-slate-200/10 pt-6">
+<button class="w-full mb-6 bg-primary text-white font-manrope text-sm font-bold py-3 rounded-lg hover:bg-primary-container transition-colors shadow-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                Create New Program
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:text-blue-900 transition-all font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container/20 transition-all rounded-lg font-manrope text-sm font-medium" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<main class="ml-72 flex-1 flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-40 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-xl flex justify-between items-center h-16 px-8 w-full border-b border-slate-200/20">
+<div class="flex items-center gap-6 flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-900 border-none rounded-full text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-slate-400" placeholder="Search for candidates, IDs, or programs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-slate-200/50 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-slate-600">notifications</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-slate-200/50 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-slate-600">settings</span>
+</div>
+<button class="px-4 py-1.5 text-blue-900 font-manrope text-sm font-semibold tracking-tight border border-blue-900/20 rounded-full hover:bg-blue-50 transition-colors">Support</button>
+<div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-blue-950">Dr. Sarah Chen</p>
+<p class="text-[10px] text-slate-500 font-medium">Senior Admin</p>
+</div>
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" data-alt="professional portrait of a confident female academic in a modern office setting, soft corporate lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMOyKmuv9nWCxOxL6IcYUoOUre6E7AvJDBIz_TT1YtAjJ_tPyPSVvdXmQkYFwspB4cJ3_T0Q39oN1oL4vy3cpbgbpfwvpMgDjyHYe_21FflATbc8L1edaHW0GQxoixMnIYAutFDoEGKFbpHMjEknjt8Y3MMh1fPT2CmjHim-cDCYGBLu7dF0yRQuwrwqLV3pwlEHcAWb2pYT_9xyTIRj2ZGCy7vn8lguEmHDPPX66IQLZph__AEfyNSdbFQVFu6t1BG9FA7f6ZJ-JY"/>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8 max-w-[1400px] mx-auto w-full">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-manrope font-extrabold text-primary tracking-tight">User Management</h2>
+<p class="text-on-surface-variant font-body mt-1">Review and manage candidate applications for academic programs.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest text-primary border border-outline-variant/30 rounded-lg hover:bg-surface-container-low transition-all font-label text-sm font-semibold shadow-sm">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export CSV
+                    </button>
+<button class="flex items-center gap-2 px-5 py-2 bg-secondary text-white rounded-lg hover:opacity-90 transition-all font-label text-sm font-bold shadow-sm">
+<span class="material-symbols-outlined text-sm">person_add</span>
+                        Invite Candidate
+                    </button>
+</div>
+</div>
+<!-- Advanced Filter Bar (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 p-1 bg-surface-container-low rounded-xl">
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm flex flex-col gap-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Academic Program</label>
+<select class="border-none bg-transparent font-body text-sm text-primary focus:ring-0 p-0">
+<option>All Engineering Programs</option>
+<option>Aerospace Engineering</option>
+<option>Quantum Computing</option>
+<option>Robotics &amp; Systems</option>
+</select>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm flex flex-col gap-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Candidate Status</label>
+<div class="flex gap-2 mt-1">
+<button class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded text-[10px] font-bold">Verified</button>
+<button class="px-2 py-1 bg-surface-container-high text-on-surface-variant rounded text-[10px] font-bold">Pending</button>
+<button class="px-2 py-1 bg-surface-container-high text-on-surface-variant rounded text-[10px] font-bold">Blocked</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm flex flex-col gap-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Registration Date</label>
+<div class="flex items-center gap-2 text-primary font-body text-sm">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Oct 12, 23 - Now</span>
+</div>
+</div>
+<div class="bg-primary p-4 rounded-lg shadow-sm flex items-center justify-center gap-3 cursor-pointer hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined text-white">filter_alt</span>
+<span class="text-white font-manrope font-bold text-sm">Apply Advanced Filters</span>
+</div>
+</div>
+<!-- Data Table Card -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_8px_24px_rgba(25,28,30,0.04)]">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/10">
+<th class="px-6 py-4 font-manrope font-bold text-xs text-slate-600 uppercase tracking-wider">Candidate Name</th>
+<th class="px-6 py-4 font-manrope font-bold text-xs text-slate-600 uppercase tracking-wider">ID Number</th>
+<th class="px-6 py-4 font-manrope font-bold text-xs text-slate-600 uppercase tracking-wider">Program</th>
+<th class="px-6 py-4 font-manrope font-bold text-xs text-slate-600 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 font-manrope font-bold text-xs text-slate-600 uppercase tracking-wider">Reg. Date</th>
+<th class="px-6 py-4 font-manrope font-bold text-xs text-slate-600 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">AM</div>
+<div>
+<p class="font-bold text-blue-950 text-sm">Arjun Mehta</p>
+<p class="text-xs text-slate-500">arjun.m@seas.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<code class="text-xs font-mono bg-slate-100 px-2 py-1 rounded text-slate-600">SEAS-2024-8842</code>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm font-medium text-slate-700">Quantum Computing</p>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                    Verified
+                                </span>
+</td>
+<td class="px-6 py-5">
+<p class="text-xs text-slate-500 font-medium">Jan 12, 2024</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-lg transition-all" title="View Details">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-lg transition-all" title="Edit">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all" title="Deactivate">
+<span class="material-symbols-outlined text-lg">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary font-bold text-xs">EK</div>
+<div>
+<p class="font-bold text-blue-950 text-sm">Elena Korolev</p>
+<p class="text-xs text-slate-500">e.korolev@seas.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<code class="text-xs font-mono bg-slate-100 px-2 py-1 rounded text-slate-600">SEAS-2024-1192</code>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm font-medium text-slate-700">Aerospace Engineering</p>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                                    Pending
+                                </span>
+</td>
+<td class="px-6 py-5">
+<p class="text-xs text-slate-500 font-medium">Jan 14, 2024</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-error-container flex items-center justify-center text-error font-bold text-xs">JW</div>
+<div>
+<p class="font-bold text-blue-950 text-sm">James Winston</p>
+<p class="text-xs text-slate-500">j.winston@external.com</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<code class="text-xs font-mono bg-slate-100 px-2 py-1 rounded text-slate-600">SEAS-2023-5501</code>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm font-medium text-slate-700">Robotics &amp; Systems</p>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container text-on-error-container text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                    Blocked
+                                </span>
+</td>
+<td class="px-6 py-5">
+<p class="text-xs text-slate-500 font-medium">Dec 05, 2023</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-on-secondary-container bg-secondary-container hover:bg-secondary-container/80 rounded-lg transition-all px-3 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="text-[10px] font-bold">Activate</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img alt="Sarah J." class="w-9 h-9 rounded-full object-cover" data-alt="close-up portrait of a female student researcher in a bright campus lab setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNCQGmS57mi8yLZ7zTuurGsJiRrnU3UbD7MQ1Ff4bfVo1BYawiB2ucaK7IOZYiNeAOTWBE7d__ZDQebTARYjh5FNkQXEKW9C87e6sJroi3ccAkVKQiA89lP4Kd0iXdo13K7uiRuVV9KkOCy5M3w25tLAZ4mAiEyT7h4s6TutEM0sqiZaMWua48jnhNpDrGU_CLDrTkg6xCZ0x9HtBLYmhW0SAmr2PCNSBk80WdTntAbqMW_dnunW86qy6Vl6hm9CH2JoE07Hlsa6pn"/>
+<div>
+<p class="font-bold text-blue-950 text-sm">Sarah Jenkins</p>
+<p class="text-xs text-slate-500">s.jenkins@seas.edu</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<code class="text-xs font-mono bg-slate-100 px-2 py-1 rounded text-slate-600">SEAS-2024-2204</code>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm font-medium text-slate-700">Robotics &amp; Systems</p>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                    Verified
+                                </span>
+</td>
+<td class="px-6 py-5">
+<p class="text-xs text-slate-500 font-medium">Feb 01, 2024</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg">block</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+<p class="text-xs text-slate-500 font-medium">Showing 1 to 4 of 128 candidates</p>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded hover:bg-slate-200 transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded hover:bg-slate-200 text-xs font-bold text-slate-600 transition-colors">2</button>
+<button class="w-8 h-8 rounded hover:bg-slate-200 text-xs font-bold text-slate-600 transition-colors">3</button>
+<span class="text-slate-400 text-xs">...</span>
+<button class="w-8 h-8 rounded hover:bg-slate-200 text-xs font-bold text-slate-600 transition-colors">12</button>
+<button class="p-2 rounded hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Stats Summary -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-primary p-6 rounded-xl relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-primary-fixed/60 text-xs font-bold uppercase tracking-widest mb-1">Total Verified</p>
+<h3 class="text-white text-4xl font-manrope font-black">2,482</h3>
+<div class="mt-4 flex items-center gap-2 text-secondary-fixed text-xs font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12% this semester</span>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-white/5 text-9xl">check_circle</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-1">Pending Approval</p>
+<h3 class="text-primary text-4xl font-manrope font-black">154</h3>
+<div class="mt-4 flex items-center gap-2 text-primary/60 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">timer</span>
+<span>Average wait: 2.4 days</span>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/5 text-9xl">pending_actions</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest mb-1">New Registrations</p>
+<h3 class="text-primary text-4xl font-manrope font-black">42</h3>
+<div class="mt-4 flex items-center gap-2 text-primary/60 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">history</span>
+<span>In the last 24 hours</span>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/5 text-9xl">person_add</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>

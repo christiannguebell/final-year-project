@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SEAS Exam Management - Document Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#abc7ff",
+                        "outline": "#747781",
+                        "surface-dim": "#d8dadc",
+                        "outline-variant": "#c4c6d1",
+                        "tertiary-fixed": "#cbe7f5",
+                        "on-tertiary-fixed-variant": "#304a55",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#021f29",
+                        "surface-container-low": "#f2f4f6",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#001b3f",
+                        "surface-bright": "#f8f9fb",
+                        "secondary-fixed-dim": "#81d9a2",
+                        "primary": "#00193c",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#24467c",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-container": "#046d40",
+                        "background": "#f8f9fb",
+                        "on-surface": "#191c1e",
+                        "primary-fixed": "#d7e2ff",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#3e5e95",
+                        "secondary-container": "#9af2ba",
+                        "on-secondary-fixed": "#002110",
+                        "surface-container-high": "#e6e8ea",
+                        "tertiary-container": "#17323d",
+                        "primary-container": "#002d62",
+                        "on-secondary-fixed-variant": "#00522f",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "secondary-fixed": "#9df5bd",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#001d27",
+                        "on-tertiary-container": "#809aa7",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface-variant": "#43474f",
+                        "surface-container": "#eceef0",
+                        "secondary": "#046d40",
+                        "tertiary-fixed-dim": "#afcbd8",
+                        "on-primary-container": "#7796d1",
+                        "inverse-primary": "#abc7ff",
+                        "surface": "#f8f9fb",
+                        "on-background": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(248, 249, 251, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 glass-nav">
+<div class="flex justify-between items-center h-16 px-8 max-w-[1920px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-lg font-bold text-primary tracking-tighter font-headline">SEAS Exam Management</span>
+<div class="hidden md:flex gap-6">
+<a class="text-slate-500 hover:text-primary transition-opacity duration-300 font-headline font-semibold text-sm" href="#">Admissions</a>
+<a class="text-slate-500 hover:text-primary transition-opacity duration-300 font-headline font-semibold text-sm" href="#">Programs</a>
+<a class="text-slate-500 hover:text-primary transition-opacity duration-300 font-headline font-semibold text-sm" href="#">Resources</a>
+<a class="text-slate-500 hover:text-primary transition-opacity duration-300 font-headline font-semibold text-sm" href="#">Help</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity">settings</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="User profile" data-alt="professional headshot of an engineering student against a neutral studio background with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkf6kie0JESIUsga3hw2LQqNVIEYuh6bfwvlp0W5d8t0zvRXarntopQQhI7yop0Sep36V8aP1FEL-9Ff09UjYrkSFCt_3hurlXfQN0oVrcw9URa0XJl0Q4Tk-XmXI7C-vvkEZfI16pHBYt_m4aoe54wDMlczj1IS73RRii-ReH3A01Jb6AO2tlVzURYdPDHpoX8FKBD89EK7nSMzdHxGA8nBWdg1laYn00iXfgXW2K_KrE0wZgS2NuDpKLJg-hezASZYUgPeSxIyOs"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Side Navigation Shell -->
+<aside class="h-screen w-64 fixed left-0 top-16 bg-surface-container-low hidden md:flex flex-col p-4 space-y-2">
+<div class="px-4 py-6 mb-4">
+<p class="text-primary font-headline font-bold text-lg">Candidate Portal</p>
+<p class="text-on-surface-variant text-xs font-medium">Engineering &amp; Sciences</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-medium text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-surface-container-lowest text-secondary rounded-lg shadow-sm font-bold transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-medium text-sm">Application</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="font-medium text-sm">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-[20px]">school</span>
+<span class="font-medium text-sm">Exam Hub</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="font-medium text-sm">Results</span>
+</a>
+</nav>
+<div class="pt-4 mt-auto space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-[20px]">contact_support</span>
+<span class="font-medium text-sm">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200/50 rounded-lg transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="font-medium text-sm">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-24 pb-12 px-8 min-h-screen bg-surface">
+<div class="max-w-5xl mx-auto">
+<!-- Header Section -->
+<header class="mb-10">
+<div class="flex items-center gap-2 text-on-surface-variant mb-2">
+<span class="text-xs font-semibold tracking-widest uppercase">Step 4 of 6</span>
+<span class="h-px w-8 bg-outline-variant/30"></span>
+</div>
+<h1 class="text-4xl font-headline font-extrabold text-primary tracking-tight mb-4">Document Center</h1>
+<p class="text-on-surface-variant max-w-2xl leading-relaxed">Please upload the required high-resolution documents for institutional verification. Supported formats: PDF, JPEG, PNG (Max 10MB per file).</p>
+</header>
+<!-- Progress Tracker -->
+<div class="mb-12 flex gap-2 h-1.5">
+<div class="flex-1 bg-secondary rounded-full"></div>
+<div class="flex-1 bg-secondary rounded-full"></div>
+<div class="flex-1 bg-secondary rounded-full"></div>
+<div class="flex-1 bg-primary rounded-full"></div>
+<div class="flex-1 bg-outline-variant/30 rounded-full"></div>
+<div class="flex-1 bg-outline-variant/30 rounded-full"></div>
+</div>
+<!-- Bento Grid Interface -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Mandatory Uploads Section -->
+<div class="lg:col-span-2 space-y-6">
+<!-- National ID/Passport Card -->
+<section class="bg-surface-container-lowest p-6 rounded-xl transition-all duration-300">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline font-bold text-primary text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">badge</span>
+                                    National ID / Passport
+                                </h3>
+<p class="text-on-surface-variant text-sm mt-1">Upload a clear scan of your valid government-issued identification.</p>
+</div>
+<span class="flex items-center gap-1.5 bg-secondary-container/30 text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                COMPLETED
+                            </span>
+</div>
+<!-- Success Preview Box -->
+<div class="bg-surface-container-low rounded-lg p-4 flex items-center justify-between border border-secondary/10">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white rounded flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-secondary">picture_as_pdf</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">Passport_Final_2024.pdf</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">2.4 MB • Uploaded May 12</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 hover:bg-error-container/50 hover:text-error rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Academic Transcripts Card -->
+<section class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-primary/5">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline font-bold text-primary text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                                    Academic Transcripts
+                                </h3>
+<p class="text-on-surface-variant text-sm mt-1">Include all semesters from your most recently completed degree.</p>
+</div>
+<span class="flex items-center gap-1.5 bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full text-xs font-bold">
+<span class="material-symbols-outlined text-sm">pending</span>
+                                PENDING
+                            </span>
+</div>
+<!-- Active Dropzone -->
+<div class="group relative bg-surface-bright border-2 border-dashed border-outline-variant/50 rounded-xl p-10 text-center hover:border-primary/40 hover:bg-primary/5 transition-all cursor-pointer">
+<div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+<p class="text-primary font-bold text-lg">Drop File to Start Upload</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-outline-variant group-hover:text-primary transition-colors mb-4">cloud_upload</span>
+<p class="text-primary font-semibold mb-1">Drag and drop your file here</p>
+<p class="text-on-surface-variant text-xs">or <span class="text-primary underline font-medium">browse files</span> from your computer</p>
+</div>
+</section>
+<!-- Diplomas/Certificates Card -->
+<section class="bg-surface-container-lowest p-6 rounded-xl">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline font-bold text-primary text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">workspace_premium</span>
+                                    Degrees &amp; Diplomas
+                                </h3>
+<p class="text-on-surface-variant text-sm mt-1">Official degree certificates or provisional letters of completion.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Pending Preview Card -->
+<div class="bg-surface-container-low rounded-lg p-4 border border-outline-variant/15 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">article</span>
+<span class="text-xs font-bold text-primary">Bachelor_Degree.png</span>
+</div>
+<span class="text-[10px] text-primary font-black">74%</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[74%]"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[10px] text-on-surface-variant italic">Uploading... 1.2s remaining</span>
+<button class="text-[10px] font-bold text-error uppercase">Cancel</button>
+</div>
+</div>
+<button class="flex items-center justify-center gap-2 border-2 border-dashed border-outline-variant/30 rounded-lg p-4 text-on-surface-variant hover:text-primary hover:border-primary/40 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+<span class="text-xs font-bold uppercase tracking-wider">Add Another</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Guidance & Requirements Sidebar -->
+<div class="space-y-6">
+<div class="bg-primary text-on-primary p-6 rounded-xl shadow-lg relative overflow-hidden">
+<!-- Subtle Background Graphic -->
+<div class="absolute -right-10 -bottom-10 opacity-10">
+<span class="material-symbols-outlined text-9xl">verified_user</span>
+</div>
+<h4 class="font-headline font-bold text-xl mb-4 relative z-10">Verification Protocol</h4>
+<ul class="space-y-4 relative z-10">
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">check_circle</span>
+<p class="text-xs text-on-primary/80 leading-relaxed">Ensure all edges of the document are visible. Cropped documents will be automatically rejected.</p>
+</li>
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">check_circle</span>
+<p class="text-xs text-on-primary/80 leading-relaxed">The resolution must be at least 300 DPI for text legibility.</p>
+</li>
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">check_circle</span>
+<p class="text-xs text-on-primary/80 leading-relaxed">Only English or officially translated copies are accepted.</p>
+</li>
+</ul>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl">
+<h4 class="font-headline font-bold text-primary mb-3">Helpful Resources</h4>
+<div class="space-y-3">
+<a class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">picture_as_pdf</span>
+<span class="text-xs font-medium">Scanning Guide</span>
+</div>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+<a class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">mail</span>
+<span class="text-xs font-medium">Contact Registrar</span>
+</div>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- CTA Section -->
+<div class="pt-4">
+<button class="w-full bg-secondary py-4 rounded-lg text-white font-headline font-bold flex items-center justify-center gap-2 shadow-lg shadow-secondary/20 hover:translate-y-[-2px] transition-all">
+                            Save and Continue
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<button class="w-full mt-3 bg-transparent py-3 text-on-surface-variant font-bold text-sm hover:text-primary transition-colors">
+                            Save for Later
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-surface-bright w-full py-12 mt-auto border-t border-outline-variant/15">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 max-w-7xl mx-auto">
+<div class="mb-8 md:mb-0">
+<span class="text-sm font-manrope font-bold text-primary">SEAS Engineering Excellence</span>
+<p class="font-inter text-xs tracking-wide text-slate-500 mt-2">© 2024 SEAS Engineering Excellence. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-inter text-xs tracking-wide text-slate-500 hover:text-secondary transition-colors duration-200" href="#">Institutional Privacy</a>
+<a class="font-inter text-xs tracking-wide text-slate-500 hover:text-secondary transition-colors duration-200" href="#">Accessibility</a>
+<a class="font-inter text-xs tracking-wide text-slate-500 hover:text-secondary transition-colors duration-200" href="#">Technical Standards</a>
+<a class="font-inter text-xs tracking-wide text-slate-500 hover:text-secondary transition-colors duration-200" href="#">Contact SEAS</a>
+</div>
+</div>
+</footer>
+</body></html>
