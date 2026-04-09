@@ -21,7 +21,7 @@ export const usersService = {
     status?: UserStatus;
     role?: UserRole;
   }) {
-    const { page, limit, offset } = getPaginationParams(params.page, params.limit);
+    const { page, limit } = getPaginationParams(params.page, params.limit);
     const result = await usersRepository.findAll({
       page,
       limit,
@@ -30,7 +30,7 @@ export const usersService = {
       role: params.role,
     });
 
-    const usersWithoutPassword = result.data.map(({ password, ...user }) => user);
+    const usersWithoutPassword = result.data.map(({ password: _password, ...user }) => user);
     return createPaginatedResponse(usersWithoutPassword, result.total, page, limit);
   },
 
@@ -39,7 +39,7 @@ export const usersService = {
     if (!user) {
       throw ApiError.notFound(USER_MESSAGES.NOT_FOUND);
     }
-    const { password, ...userWithoutPassword } = user;
+    const { password: _password, ...userWithoutPassword } = user;
     return userWithoutPassword;
   },
 
@@ -49,16 +49,14 @@ export const usersService = {
       throw ApiError.notFound(USER_MESSAGES.NOT_FOUND);
     }
 
-    if (data.phone) {
-      const existingPhone = await usersRepository.findAll({ page: 1, limit: 1 });
-    }
+
 
     const updatedUser = await usersRepository.update(id, data);
     if (!updatedUser) {
       throw ApiError.notFound(USER_MESSAGES.NOT_FOUND);
     }
 
-    const { password, ...userWithoutPassword } = updatedUser;
+    const { password: _password, ...userWithoutPassword } = updatedUser;
     return userWithoutPassword;
   },
 

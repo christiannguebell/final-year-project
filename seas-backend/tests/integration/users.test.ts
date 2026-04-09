@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../../src/app';
-import { Express } from 'express';
+
 
 let adminToken: string;
 let candidateToken: string;

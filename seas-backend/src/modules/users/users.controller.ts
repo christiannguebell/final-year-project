@@ -3,13 +3,7 @@ import { usersService } from './users.service';
 import { successResponse } from '../../common/utils';
 import { UserStatus, UserRole } from '../../database';
 
-interface AuthRequest extends Request {
-  user?: {
-    userId: string;
-    email: string;
-    role: string;
-  };
-}
+
 
 const getParam = (param: unknown): string => {
   if (typeof param === 'string') return param;

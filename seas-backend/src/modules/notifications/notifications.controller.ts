@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { notificationsService } from './notifications.service';
 import { successResponse } from '../../common/utils';
-import { NotificationType } from '../../database';
+
 
 interface AuthRequest extends Request {
   user?: {

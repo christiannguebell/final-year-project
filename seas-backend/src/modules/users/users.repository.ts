@@ -1,6 +1,6 @@
 import { AppDataSource } from '../../database';
 import { User, UserRole, UserStatus } from '../../database';
-import { Like, FindOptionsWhere } from 'typeorm';
+import { FindOptionsWhere } from 'typeorm';
 
 export interface UserSearchParams {
   page?: number;

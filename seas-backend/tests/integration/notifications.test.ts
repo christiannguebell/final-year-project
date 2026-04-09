@@ -2,7 +2,6 @@ import request from 'supertest';
 import app from '../../src/app';
 
 describe('Notifications API', () => {
-  let adminToken: string;
   let candidateToken: string;
   let testNotificationId: string;
 

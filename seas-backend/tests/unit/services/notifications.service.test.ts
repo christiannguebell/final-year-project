@@ -1,6 +1,5 @@
 import { notificationsService } from '../../../src/modules/notifications/notifications.service';
 import { notificationsRepository } from '../../../src/modules/notifications/notifications.repository';
-import { ApiError } from '../../../src/common/errors/ApiError';
 import { NOTIFICATION_MESSAGES } from '../../../src/modules/notifications/notifications.constants';
 import { emailService } from '../../../src/services/email.service';
 import { AppDataSource, NotificationType, NotificationStatus, NotificationChannel } from '../../../src/database';
@@ -79,7 +78,7 @@ describe('NotificationsService', () => {
           channel: NotificationChannel.EMAIL,
           templateId: 'test-template',
         });
-      } catch (e) {
+      } catch {
         // May throw due to mocking, just check if email service was called
       }
 

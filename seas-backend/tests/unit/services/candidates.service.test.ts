@@ -1,8 +1,6 @@
 import { candidatesService } from '../../../src/modules/candidates/candidates.service';
 import { candidatesRepository } from '../../../src/modules/candidates/candidates.repository';
 import { ApiError } from '../../../src/common/errors/ApiError';
-import { CANDIDATE_MESSAGES } from '../../../src/modules/candidates/candidates.constants';
-import { Gender } from '../../../src/database';
 
 jest.mock('../../../src/modules/candidates/candidates.repository');
 jest.mock('../../../src/common/utils/idGenerator', () => ({

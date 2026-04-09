@@ -4,7 +4,6 @@ import { ApiError } from '../../common/errors/ApiError';
 import { Document, DocumentType, DocumentStatus, UserRole } from '../../database';
 import { DOCUMENT_MESSAGES } from './documents.constants';
 import fs from 'fs';
-import path from 'path';
 
 const UPLOAD_DIR = 'uploads/documents';
 

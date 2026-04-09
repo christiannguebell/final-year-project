@@ -3,7 +3,6 @@ import { paymentsRepository } from '../../../src/modules/payments/payments.repos
 import { applicationsRepository } from '../../../src/modules/applications/applications.repository';
 import { ApiError } from '../../../src/common/errors/ApiError';
 import { PaymentStatus, UserRole } from '../../../src/database';
-import { PAYMENT_MESSAGES } from '../../../src/modules/payments/payments.constants';
 import fs from 'fs';
 
 jest.mock('../../../src/modules/payments/payments.repository');

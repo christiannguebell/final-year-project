@@ -5,10 +5,8 @@ import { authRepository } from './auth.repository';
 import { ApiError } from '../../common/errors/ApiError';
 import { User, UserRole, UserStatus } from '../../database';
 import { AUTH_MESSAGES } from './auth.constants';
-import { emailService } from '../../services/email.service';
 import { generateId } from '../../common/utils';
 import { notificationsService } from '../notifications/notifications.service';
-import { NotificationType, NotificationChannel } from '../../database';
 
 interface TokenPayload {
   userId: string;
@@ -128,7 +126,7 @@ export const authService = {
     );
   },
 
-  async resetPassword(token: string, newPassword: string): Promise<void> {
+  async resetPassword(_token: string, _newPassword: string): Promise<void> {
     // TODO: Implement with stored reset token
     throw ApiError.notImplemented('Password reset not implemented');
   },
@@ -156,7 +154,7 @@ export const authService = {
     if (!user) {
       throw ApiError.notFound(AUTH_MESSAGES.USER_NOT_FOUND);
     }
-    const { password, ...userWithoutPassword } = user;
+    const { password: _password, ...userWithoutPassword } = user;
     return userWithoutPassword;
   },
 };

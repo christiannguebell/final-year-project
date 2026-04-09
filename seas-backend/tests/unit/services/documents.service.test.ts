@@ -3,7 +3,6 @@ import { documentsRepository } from '../../../src/modules/documents/documents.re
 import { applicationsRepository } from '../../../src/modules/applications/applications.repository';
 import { ApiError } from '../../../src/common/errors/ApiError';
 import { DocumentType, DocumentStatus, UserRole } from '../../../src/database';
-import { DOCUMENT_MESSAGES } from '../../../src/modules/documents/documents.constants';
 import fs from 'fs';
 
 jest.mock('../../../src/modules/documents/documents.repository');
@@ -37,7 +36,7 @@ describe('DocumentsService', () => {
       });
 
       const mockFile = { path: '/uploads/documents/test.pdf', originalname: 'test.pdf' } as Express.Multer.File;
-      const result = await documentsService.upload('app1', DocumentType.ID_CARD, mockFile);
+      await documentsService.upload('app1', DocumentType.ID_CARD, mockFile);
 
       expect(result.type).toBe(DocumentType.ID_CARD);
     });
@@ -55,7 +54,7 @@ describe('DocumentsService', () => {
       });
 
       const mockFile = { path: '/uploads/new.pdf', originalname: 'new.pdf' } as Express.Multer.File;
-      const result = await documentsService.upload('app1', DocumentType.ID_CARD, mockFile);
+      await documentsService.upload('app1', DocumentType.ID_CARD, mockFile);
 
       expect(fs.unlinkSync).toHaveBeenCalledWith('/uploads/old.pdf');
     });
@@ -68,7 +67,7 @@ describe('DocumentsService', () => {
         { id: '1', type: DocumentType.ID_CARD },
       ]);
 
-      const result = await documentsService.getByApplicationId('app1', '1', UserRole.CANDIDATE);
+      await documentsService.getByApplicationId('app1', '1', UserRole.CANDIDATE);
 
       expect(result).toHaveLength(1);
     });
@@ -82,7 +81,7 @@ describe('DocumentsService', () => {
         status: DocumentStatus.VERIFIED,
       });
 
-      const result = await documentsService.verify('1', DocumentStatus.VERIFIED);
+      await documentsService.verify('1', DocumentStatus.VERIFIED);
 
       expect(result.status).toBe(DocumentStatus.VERIFIED);
     });

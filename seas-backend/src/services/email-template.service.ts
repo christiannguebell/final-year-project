@@ -27,9 +27,9 @@ class EmailTemplateService {
         this.templates.set(templateName, Handlebars.compile(templateSource));
       }
 
-      console.log(`Loaded ${this.templates.size} email templates`);
-    } catch (error) {
-      console.error('Failed to initialize email templates:', error);
+      // templates loaded
+    } catch {
+      // Failed to initialize
     }
   }
 

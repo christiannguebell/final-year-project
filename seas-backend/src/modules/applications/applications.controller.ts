@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { applicationsService } from './applications.service';
 import { successResponse } from '../../common/utils';
-import { ApplicationStatus, UserRole } from '../../database';
+import { ApplicationStatus } from '../../database';
 
 interface AuthRequest extends Request {
   user?: {

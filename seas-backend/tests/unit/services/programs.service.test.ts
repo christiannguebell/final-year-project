@@ -2,7 +2,6 @@ import { programsService } from '../../../src/modules/programs/programs.service'
 import { programsRepository } from '../../../src/modules/programs/programs.repository';
 import { ApiError } from '../../../src/common/errors/ApiError';
 import { ProgramStatus } from '../../../src/database';
-import { PROGRAM_MESSAGES } from '../../../src/modules/programs/programs.constants';
 
 jest.mock('../../../src/modules/programs/programs.repository');
 

@@ -1,6 +1,6 @@
 import { notificationsRepository } from './notifications.repository';
 import { ApiError } from '../../common/errors/ApiError';
-import { Notification, NotificationType, NotificationStatus, NotificationChannel } from '../../database';
+import { Notification, NotificationType, NotificationChannel } from '../../database';
 import { NOTIFICATION_MESSAGES, EMAIL_TEMPLATES, EMAIL_SUBJECTS } from './notifications.constants';
 import { emailService } from '../../services/email.service';
 import { emailTemplateService } from '../../services/email-template.service';
@@ -84,7 +84,7 @@ export const notificationsService = {
           </div>`,
         });
       }
-    } catch (error) {
+    } catch {
       throw ApiError.internal(NOTIFICATION_MESSAGES.EMAIL_FAILED);
     }
   },
@@ -177,7 +177,7 @@ export const notificationsService = {
                 });
               }
               emailsSent++;
-            } catch (error) {
+            } catch {
               // Continue with other emails
             }
           }

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { authService } from './auth.service';
-import { successResponse, errorResponse } from '../../common/utils';
+import { successResponse } from '../../common/utils';
 
 interface AuthRequest extends Request {
   user?: {

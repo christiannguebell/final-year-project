@@ -72,7 +72,7 @@ export const resultsService = {
 
     const scores = await resultScoresRepository.findByResultId(result.id);
     const totalScore = scores.reduce((sum, s) => sum + (s.score || 0), 0);
-    const maxTotal = scores.reduce((sum, s) => sum + (s.maxScore || 0), 0);
+
 
     const updated = await resultsRepository.update(result.id, {
       totalScore,

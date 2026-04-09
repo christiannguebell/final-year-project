@@ -55,8 +55,10 @@ export const AppDataSource = new DataSource({
 export const initializeDatabase = async (): Promise<void> => {
   try {
     await AppDataSource.initialize();
+    // eslint-disable-next-line no-console
     console.log('Database connection established');
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Database connection failed:', error);
     throw error;
   }

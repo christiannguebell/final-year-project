@@ -2,7 +2,7 @@ import request from 'supertest';
 import app from '../../src/app';
 import path from 'path';
 import fs from 'fs';
-import { Express } from 'express';
+
 
 let adminToken: string;
 let candidateToken: string;
