@@ -8,7 +8,6 @@
     "dev": "nodemon --exec ts-node src/server.ts",
     "test": "jest",
     "test:unit": "jest --testPathPatterns=tests/unit",
-    "test:integration": "jest --testPathPatterns=tests/integration",
     "test:coverage": "jest --coverage",
     "lint": "eslint src/ tests/",
     "lint:fix": "eslint src/ tests/ --fix",
