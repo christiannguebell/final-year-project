@@ -1,0 +1,17 @@
+node_modules
+dist
+coverage
+logs
+uploads
+.env
+.git
+.gitignore
+.prettierrc
+.eslintrc.js
+eslint.config.js
+tsconfig.json
+pnpm-lock.yaml
+Dockerfile
+docker-compose.yml
+README.md
+tests
