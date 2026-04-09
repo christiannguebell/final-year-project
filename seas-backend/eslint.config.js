@@ -19,7 +19,17 @@ export default [
         __filename: 'readonly',
         module: 'readonly',
         require: 'readonly',
+        jest: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
       },
+
     },
 
     plugins: {

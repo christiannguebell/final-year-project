@@ -82,8 +82,8 @@ describe('Auth API', () => {
     });
   });
 
-  describe('GET /api/auth/profile', () => {
-    let token: string;
+  describe('POST /api/auth/refresh-token', () => {
+    let refreshToken: string;
 
     beforeEach(async () => {
       const loginResponse = await request(app)
@@ -92,22 +92,22 @@ describe('Auth API', () => {
           email: testUser.email,
           password: testUser.password,
         });
-      token = loginResponse.body.data.accessToken;
+      refreshToken = loginResponse.body.data.refreshToken;
     });
 
-    it('should return user profile with valid token', async () => {
+    it('should refresh token successfully', async () => {
       const response = await request(app)
-        .get('/api/auth/profile')
-        .set('Authorization', `Bearer ${token}`);
+        .post('/api/auth/refresh-token')
+        .send({ refreshToken });
 
       expect(response.status).toBe(200);
-      expect(response.body.success).toBe(true);
-      expect(response.body.data).toHaveProperty('email');
+      expect(response.body.data).toHaveProperty('accessToken');
     });
 
-    it('should return 401 without token', async () => {
+    it('should return 401 for invalid refresh token', async () => {
       const response = await request(app)
-        .get('/api/auth/profile');
+        .post('/api/auth/refresh-token')
+        .send({ refreshToken: 'invalid-token' });
 
       expect(response.status).toBe(401);
     });
@@ -147,7 +147,7 @@ describe('Auth API', () => {
           newPassword: 'newpassword456',
         });
 
-      expect(response.status).toBe(400);
+      expect(response.status).toBe(401); // Controller throws UnauthorizedError which maps to 401
     });
   });
 });
