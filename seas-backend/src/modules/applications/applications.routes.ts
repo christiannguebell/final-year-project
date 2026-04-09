@@ -5,6 +5,9 @@ import { authenticate } from '../../middlewares/auth.middleware';
 import { authorize } from '../../middlewares/role.middleware';
 import { UserRole } from '../../database';
 import { idParamSchema, createApplicationSchema, updateApplicationSchema, listApplicationsSchema } from './applications.validation';
+import { auditMiddleware } from '../../middlewares/audit.middleware';
+import { AuditAction } from '../../common/logger/audit';
+
 
 const router: Router = Router();
 
@@ -55,17 +58,21 @@ router.patch(
   '/:id/approve',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.APPROVE),
   validate(idParamSchema, 'params'),
   applicationsController.approve
 );
+
 
 router.patch(
   '/:id/reject',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.REJECT),
   validate(idParamSchema, 'params'),
   applicationsController.reject
 );
+
 
 router.delete(
   '/:id',

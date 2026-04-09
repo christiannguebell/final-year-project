@@ -14,6 +14,13 @@ interface AppConfig {
     dir: string;
     maxFileSize: number;
   };
+  rateLimit: {
+    windowMs: number;
+    maxRequests: number;
+  };
+  cors: {
+    origin: string | string[];
+  };
 }
 
 const getEnv = (key: string, fallback?: string): string => {
@@ -37,6 +44,13 @@ export const config: AppConfig = {
   upload: {
     dir: getEnv('UPLOAD_DIR', 'uploads'),
     maxFileSize: parseInt(getEnv('MAX_FILE_SIZE', '5242880')),
+  },
+  rateLimit: {
+    windowMs: parseInt(getEnv('RATE_LIMIT_WINDOW_MS', '900000')),
+    maxRequests: parseInt(getEnv('RATE_LIMIT_MAX_REQUESTS', '100')),
+  },
+  cors: {
+    origin: getEnv('CORS_ORIGIN', 'http://localhost:3001').split(','),
   },
 };
 

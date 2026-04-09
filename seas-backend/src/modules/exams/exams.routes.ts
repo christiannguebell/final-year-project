@@ -5,6 +5,9 @@ import { authenticate } from '../../middlewares/auth.middleware';
 import { authorize } from '../../middlewares/role.middleware';
 import { UserRole } from '../../database';
 import { idParamSchema, createSessionSchema, updateSessionSchema, createCenterSchema, updateCenterSchema, assignCandidatesSchema } from './exams.validation';
+import { auditMiddleware } from '../../middlewares/audit.middleware';
+import { AuditAction } from '../../common/logger/audit';
+
 
 const router: Router = Router();
 
@@ -12,9 +15,11 @@ router.post(
   '/sessions',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.CREATE),
   validate(createSessionSchema),
   examsController.createSession
 );
+
 
 router.get(
   '/sessions',
@@ -33,26 +38,32 @@ router.put(
   '/sessions/:id',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.UPDATE),
   validate(idParamSchema, 'params'),
   validate(updateSessionSchema),
   examsController.updateSession
 );
 
+
 router.delete(
   '/sessions/:id',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.DELETE),
   validate(idParamSchema, 'params'),
   examsController.deleteSession
 );
+
 
 router.post(
   '/centers',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.CREATE),
   validate(createCenterSchema),
   examsController.createCenter
 );
+
 
 router.get(
   '/centers',
@@ -71,26 +82,32 @@ router.put(
   '/centers/:id',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.UPDATE),
   validate(idParamSchema, 'params'),
   validate(updateCenterSchema),
   examsController.updateCenter
 );
 
+
 router.delete(
   '/centers/:id',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.DELETE),
   validate(idParamSchema, 'params'),
   examsController.deleteCenter
 );
+
 
 router.post(
   '/assign',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.ASSIGN),
   validate(assignCandidatesSchema),
   examsController.assignCandidates
 );
+
 
 router.get(
   '/my-assignment',

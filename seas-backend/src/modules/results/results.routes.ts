@@ -11,8 +11,11 @@ import {
   createResultSchema,
   enterScoresSchema,
   updateResultSchema,
-  publishSessionSchema,
 } from './results.validation';
+
+import { auditMiddleware } from '../../middlewares/audit.middleware';
+import { AuditAction } from '../../common/logger/audit';
+
 
 const router: Router = Router();
 
@@ -20,9 +23,11 @@ router.post(
   '/',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.CREATE),
   validate(createResultSchema),
   resultsController.createResult
 );
+
 
 router.get(
   '/',
@@ -61,41 +66,51 @@ router.put(
   '/:id',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.UPDATE),
   validate(idParamSchema, 'params'),
   validate(updateResultSchema),
   resultsController.updateResult
 );
 
+
 router.post(
   '/scores',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.UPDATE),
   validate(enterScoresSchema),
   resultsController.enterScores
 );
+
 
 router.post(
   '/:id/publish',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.PUBLISH),
   validate(idParamSchema, 'params'),
   resultsController.publishResult
 );
+
 
 router.post(
   '/session/:sessionId/publish',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.PUBLISH),
   validate(sessionIdParamSchema, 'params'),
   resultsController.publishSessionResults
 );
+
 
 router.delete(
   '/:id',
   authenticate,
   authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.DELETE),
   validate(idParamSchema, 'params'),
   resultsController.deleteResult
 );
+
 
 export default router;

@@ -5,9 +5,19 @@ import cors from 'cors';
 import helmet from 'helmet';
 import { errorHandler, notFoundHandler } from './middlewares';
 import { validateConnections } from './config/connection.validator';
+import { logger } from './common/logger';
 import routes from './routes';
+import config from './config';
+
+import { generalLimiter } from './middlewares/security.middleware';
+import { sanitizeInput } from './middlewares/sanitization.middleware';
 
 const app: Application = express();
+
+if (config.nodeEnv === 'production') {
+  app.set('trust proxy', 1);
+}
+
 
 app.use(helmet({
   contentSecurityPolicy: {
@@ -18,7 +28,16 @@ app.use(helmet({
     },
   },
 }));
-app.use(cors());
+
+app.use(cors({
+  origin: config.cors.origin,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
+app.use(generalLimiter);
+app.use(sanitizeInput);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -33,7 +52,10 @@ app.get('/api/health', async (_req: Request, res: Response) => {
       data: { connections },
     });
   } catch (error) {
+    logger.error('Health check error:', error);
+
     res.status(503).json({
+
       success: false,
       message: 'Health check failed',
       data: null,
