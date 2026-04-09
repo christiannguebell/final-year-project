@@ -4,7 +4,7 @@ This document identifies backend features required by the designed user interfac
 
 ---
 
-## 1. Analytics & Dashboards
+## 1. Analytics & Dashboards [DONE]
 *The current backend has basic CRUD but lack aggregation logic for dashboards.*
 
 - **[ ] Dashboard Stats Endpoint**: A centralized endpoint to return:
@@ -13,6 +13,12 @@ This document identifies backend features required by the designed user interfac
   - Document verification progress (%) for Admin.
 - **[ ] Program-wise Distribution**: Aggregation query to show application volume per academic program.
 
+## 2. Advanced Authentication [DONE]
+*The core auth is solid, but the recovery and verification flows need refinement.*
+
+- **[ ] OTP Management**: Service to generate, store (with expiry), and verify 6-digit codes during candidate onboarding.
+- **[ ] Password Reset Flow**: Token-based password reset logic with email integration.
+- **[ ] Session Security**: Logic to invalidate old JWTs if a password is changed.
 
 ## 3. Exam & Logistics Engine
 *The entities exist, but the "intelligence" layer is missing.*

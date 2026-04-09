@@ -134,11 +134,11 @@ export const examsController = {
     }
   },
 
-  async assignCandidates(req: AuthRequest, res: Response, next: NextFunction) {
+  async autoAllocateCandidates(req: AuthRequest, res: Response, next: NextFunction) {
     try {
-      const { sessionId, centerId } = req.body;
-      const result = await examsService.assignCandidates({ sessionId, centerId });
-      res.status(200).json(successResponse(result, 'Candidates assigned'));
+      const { sessionId } = req.body;
+      const result = await examsService.autoAllocateCandidates({ sessionId });
+      res.status(200).json(successResponse(result, 'Candidates allocated'));
     } catch (error) {
       next(error);
     }
@@ -152,6 +152,21 @@ export const examsController = {
       }
       const assignment = await examsService.getMyAssignment(userId);
       res.status(200).json(successResponse(assignment));
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async getAdmissionSlip(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const userId = req.user?.userId;
+      if (!userId) {
+        throw new Error('User not authenticated');
+      }
+      const pdfBuffer = await examsService.getAdmissionSlip(userId);
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=admission-slip.pdf');
+      res.status(200).send(pdfBuffer);
     } catch (error) {
       next(error);
     }

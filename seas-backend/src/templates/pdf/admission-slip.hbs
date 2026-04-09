@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admission Slip - {{user.firstName}} {{user.lastName}}</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 40px;
+      color: #333;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 20px;
+    }
+    .header h1 {
+      margin: 0;
+      color: #1e3a8a;
+      font-size: 28px;
+    }
+    .header p {
+      margin: 5px 0 0;
+      color: #64748b;
+      font-size: 14px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1e40af;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 5px;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 10px;
+      font-size: 14px;
+    }
+    .label {
+      font-weight: bold;
+      color: #475569;
+    }
+    .value {
+      color: #0f172a;
+    }
+    .seat-badge {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #f1f5f9;
+      border: 2px dashed #94a3b8;
+      border-radius: 8px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #0f172a;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 20px;
+    }
+    .photo-placeholder {
+      width: 100px;
+      height: 100px;
+      background-color: #e2e8f0;
+      border: 1px solid #cbd5e1;
+      float: right;
+      text-align: center;
+      line-height: 100px;
+      color: #94a3b8;
+      font-size: 12px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>SEAS Admittance Slip</h1>
+    <p>School of Engineering and Applied Sciences Admission Process</p>
+  </div>
+
+  <div class="photo-placeholder">
+    PHOTO
+  </div>
+
+  <div class="section">
+    <div class="section-title">Candidate Details</div>
+    <div class="info-grid">
+      <div class="label">Candidate Name:</div>
+      <div class="value">{{user.firstName}} {{user.lastName}}</div>
+      
+      <div class="label">Candidate No:</div>
+      <div class="value">C-{{application.userId}}</div>
+      
+      <div class="label">Program:</div>
+      <div class="value">{{program.name}}</div>
+      
+      <div class="label">Email:</div>
+      <div class="value">{{user.email}}</div>
+    </div>
+  </div>
+
+  <div class="section" style="clear: both; padding-top: 20px;">
+    <div class="section-title">Exam Information</div>
+    <div class="info-grid">
+      <div class="label">Session:</div>
+      <div class="value">{{session.name}}</div>
+      
+      <div class="label">Date & Time:</div>
+      <div class="value">{{examDateFormatted}}</div>
+      
+      <div class="label">Center:</div>
+      <div class="value"><strong>{{center.name}}</strong></div>
+      
+      <div class="label">Center Address:</div>
+      <div class="value">{{center.address}}, {{center.city}}</div>
+      
+      <div class="label">Seat Number:</div>
+      <div class="value">
+        <div class="seat-badge">{{seatNumber}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Please bring this printed slip and a valid photo ID to the exam center.</p>
+    <p>You must arrive precisely 45 minutes before the exam time detailed above.</p>
+  </div>
+</body>
+</html>

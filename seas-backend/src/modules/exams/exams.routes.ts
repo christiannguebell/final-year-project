@@ -4,7 +4,7 @@ import { validate } from '../../middlewares/validation.middleware';
 import { authenticate } from '../../middlewares/auth.middleware';
 import { authorize } from '../../middlewares/role.middleware';
 import { UserRole } from '../../database';
-import { idParamSchema, createSessionSchema, updateSessionSchema, createCenterSchema, updateCenterSchema, assignCandidatesSchema } from './exams.validation';
+import { idParamSchema, createSessionSchema, updateSessionSchema, createCenterSchema, updateCenterSchema, autoAllocateSchema } from './exams.validation';
 import { auditMiddleware } from '../../middlewares/audit.middleware';
 import { AuditAction } from '../../common/logger/audit';
 
@@ -315,11 +315,11 @@ router.delete(
 
 /**
  * @openapi
- * /api/exams/assign:
+ * /api/exams/auto-allocate:
  *   post:
  *     tags:
  *       - Exams
- *     summary: Assign candidates to centers (Admin only)
+ *     summary: Auto allocate candidates to active centers (Admin only)
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -335,15 +335,15 @@ router.delete(
  *                 type: string
  *     responses:
  *       200:
- *         description: Candidates assigned
+ *         description: Candidates dynamically allocated to centers
  */
 router.post(
-  '/assign',
+  '/auto-allocate',
   authenticate,
   authorize(UserRole.ADMIN),
   auditMiddleware(AuditAction.ASSIGN),
-  validate(assignCandidatesSchema),
-  examsController.assignCandidates
+  validate(autoAllocateSchema),
+  examsController.autoAllocateCandidates
 );
 
 /**
@@ -363,6 +363,30 @@ router.get(
   '/my-assignment',
   authenticate,
   examsController.getMyAssignment
+);
+
+/**
+ * @openapi
+ * /api/exams/my-assignment/slip:
+ *   get:
+ *     tags:
+ *       - Exams
+ *     summary: Download admission slip as PDF
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: PDF admission slip
+ *         content:
+ *           application/pdf:
+ *             schema:
+ *               type: string
+ *               format: binary
+ */
+router.get(
+  '/my-assignment/slip',
+  authenticate,
+  examsController.getAdmissionSlip
 );
 
 export default router;

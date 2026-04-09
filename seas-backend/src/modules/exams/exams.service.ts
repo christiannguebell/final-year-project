@@ -6,6 +6,8 @@ import { ExamSession, ExamSessionStatus } from '../../database';
 import { Application, ApplicationStatus } from '../../database';
 import { AppDataSource } from '../../database';
 import { EXAM_MESSAGES } from './exams.constants';
+import { generateAdmissionSlipPdf } from './pdf.service';
+import { ExamAssignment } from '../../database';
 
 interface CreateSessionData {
   name: string;
@@ -24,7 +26,6 @@ interface CreateCenterData {
 
 interface AssignCandidateData {
   sessionId: string;
-  centerId: string;
 }
 
 export const examsService = {
@@ -103,20 +104,22 @@ export const examsService = {
     await examCentersRepository.delete(id);
   },
 
-  async assignCandidates(data: AssignCandidateData): Promise<any> {
+  async autoAllocateCandidates(data: AssignCandidateData): Promise<any> {
     const session = await examSessionsRepository.findById(data.sessionId);
     if (!session) {
       throw ApiError.notFound(EXAM_MESSAGES.SESSION_NOT_FOUND);
     }
 
-    const center = await examCentersRepository.findById(data.centerId);
-    if (!center) {
-      throw ApiError.notFound(EXAM_MESSAGES.CENTER_NOT_FOUND);
+    const centers = await examCentersRepository.findAll(true); // active only
+    if (centers.length === 0) {
+      throw ApiError.badRequest('No active exam centers available for allocation.');
     }
 
-    const approvedApplications = await AppDataSource.getRepository(Application).find({
-      where: { status: ApplicationStatus.APPROVED } as any,
-    });
+    const approvedApplications = await AppDataSource.getRepository(Application)
+      .createQueryBuilder('application')
+      .where('application.status = :status', { status: ApplicationStatus.APPROVED })
+      .orderBy('application.created_at', 'ASC')
+      .getMany();
 
     if (approvedApplications.length === 0) {
       throw ApiError.badRequest('No approved applications to assign');
@@ -124,28 +127,41 @@ export const examsService = {
 
     const existingAssignments = await examAssignmentsRepository.findBySessionId(data.sessionId);
     const existingApplicationIds = new Set(existingAssignments.map(a => a.applicationId));
+    const candidatesToAssign = approvedApplications.filter(app => !existingApplicationIds.has(app.id));
 
-    const candidatesToAssign = approvedApplications.filter(
-      app => !existingApplicationIds.has(app.id)
-    );
+    let totalAssigned = 0;
+    const assignmentsToSave: any[] = [];
 
-    if (candidatesToAssign.length > center.capacity) {
-      throw ApiError.badRequest(`Center capacity exceeded. Maximum: ${center.capacity}`);
+    for (const center of centers) {
+      if (candidatesToAssign.length === 0) break;
+      
+      const assignmentsInCenter = existingAssignments.filter(a => a.centerId === center.id).length;
+      let centerAvailableCapacity = center.capacity - assignmentsInCenter;
+      
+      let nextSeatIndex = assignmentsInCenter + 1;
+
+      while (centerAvailableCapacity > 0 && candidatesToAssign.length > 0) {
+        const app = candidatesToAssign.shift()!;
+        assignmentsToSave.push({
+          applicationId: app.id,
+          sessionId: data.sessionId,
+          centerId: center.id,
+          seatNumber: `S${String(nextSeatIndex).padStart(3, '0')}`,
+          examTime: session.examDate,
+        });
+        centerAvailableCapacity--;
+        nextSeatIndex++;
+        totalAssigned++;
+      }
     }
 
-    const assignments = candidatesToAssign.map((app, index) => ({
-      applicationId: app.id,
-      sessionId: data.sessionId,
-      centerId: data.centerId,
-      seatNumber: `S${String(index + 1).padStart(3, '0')}`,
-      examTime: session.examDate,
-    }));
-
-    if (assignments.length > 0) {
-      await examAssignmentsRepository.createMany(assignments);
+    if (assignmentsToSave.length > 0) {
+      await examAssignmentsRepository.createMany(assignmentsToSave);
+    } else if (candidatesToAssign.length > 0) {
+       return { assigned: totalAssigned, missed: candidatesToAssign.length, message: 'Centers are completely full, could not allocate everyone.' };
     }
 
-    return { assigned: assignments.length, message: 'Candidates assigned successfully' };
+    return { assigned: totalAssigned, message: 'Candidates allocated successfully.' };
   },
 
   async getMyAssignment(userId: string): Promise<any> {
@@ -161,6 +177,27 @@ export const examsService = {
       const assignment = await examAssignmentsRepository.findByApplicationId(app.id);
       if (assignment) {
         return assignment;
+      }
+    }
+
+    throw ApiError.notFound(EXAM_MESSAGES.NO_ASSIGNMENT);
+  },
+
+  async getAdmissionSlip(userId: string): Promise<Buffer> {
+    const applications = await AppDataSource.getRepository(Application).find({
+      where: { userId } as any,
+    });
+    if (applications.length === 0) {
+      throw ApiError.notFound(EXAM_MESSAGES.NO_ASSIGNMENT);
+    }
+
+    for (const app of applications) {
+      const assignment = await AppDataSource.getRepository(ExamAssignment).findOne({
+        where: { applicationId: app.id } as any,
+        relations: ['application', 'application.user', 'application.program', 'session', 'center']
+      });
+      if (assignment) {
+        return await generateAdmissionSlipPdf(assignment);
       }
     }
 

@@ -36,9 +36,8 @@ export const updateCenterSchema = Joi.object({
   isActive: Joi.boolean().optional(),
 });
 
-export const assignCandidatesSchema = Joi.object({
+export const autoAllocateSchema = Joi.object({
   sessionId: Joi.string().uuid().required(),
-  centerId: Joi.string().uuid().required(),
 });
 
 export default {
@@ -47,5 +46,5 @@ export default {
   updateSessionSchema,
   createCenterSchema,
   updateCenterSchema,
-  assignCandidatesSchema,
+  autoAllocateSchema,
 };
