@@ -1,5 +1,13 @@
 import { AppDataSource } from '../../database';
-import { Notification, NotificationType, NotificationStatus, NotificationChannel } from '../../database';
+import { Notification, NotificationType, NotificationStatus, NotificationChannel, PaymentStatus, User } from '../../database';
+
+export interface UserFilterOptions {
+  programId?: string;
+  applicationStatus?: string;
+  paymentStatus?: string;
+  hasPaid?: boolean;
+  hasApplication?: boolean;
+}
 
 export interface CreateNotificationDto {
   userId: string;
@@ -72,6 +80,54 @@ export const notificationsRepository = {
       userId: userId as any,
     } as any);
     return result.affected || 0;
+  },
+
+  async findUserIdsByFilters(filters: UserFilterOptions): Promise<string[]> {
+    const query = AppDataSource.getRepository(User)
+      .createQueryBuilder('user')
+      .select('user.id', 'id');
+
+    if (filters.hasApplication || filters.applicationStatus) {
+      query.innerJoin('user.applications', 'app');
+    }
+
+    if (filters.hasPaid || filters.paymentStatus) {
+      query.innerJoin('user.payments', 'payment');
+    }
+
+    if (filters.programId) {
+      query.andWhere('app.programId = :programId', { programId: filters.programId });
+    }
+
+    if (filters.applicationStatus) {
+      query.andWhere('app.status = :appStatus', { appStatus: filters.applicationStatus });
+    }
+
+    if (filters.paymentStatus) {
+      query.andWhere('payment.status = :paymentStatus', { paymentStatus: filters.paymentStatus });
+    }
+
+    if (filters.hasPaid === true) {
+      query.andWhere('payment.status = :paidStatus', { paidStatus: PaymentStatus.VERIFIED });
+    }
+
+    if (filters.hasPaid === false) {
+      query.andWhere(
+        '(payment.status != :paidStatus OR payment.status IS NULL)',
+        { paidStatus: PaymentStatus.VERIFIED }
+      );
+    }
+
+    if (filters.hasApplication === true) {
+      query.andWhere('app.id IS NOT NULL');
+    }
+
+    if (filters.hasApplication === false) {
+      query.andWhere('app.id IS NULL');
+    }
+
+    const results = await query.getRawMany();
+    return results.map(r => r.id);
   },
 };
 

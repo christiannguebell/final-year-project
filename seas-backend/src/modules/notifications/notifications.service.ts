@@ -1,11 +1,10 @@
 import { notificationsRepository } from './notifications.repository';
 import { ApiError } from '../../common/errors/ApiError';
-import { Notification, NotificationType, NotificationChannel } from '../../database';
+import { Notification, NotificationType, NotificationChannel, User } from '../../database';
 import { NOTIFICATION_MESSAGES, EMAIL_TEMPLATES, EMAIL_SUBJECTS } from './notifications.constants';
 import { emailService } from '../../services/email.service';
 import { emailTemplateService } from '../../services/email-template.service';
 import { AppDataSource } from '../../database';
-import { User } from '../../database';
 
 interface CreateNotificationData {
   userId: string;
@@ -27,6 +26,13 @@ interface BroadcastData {
   templateData?: Record<string, any>;
   link?: string;
   userIds?: string[];
+  filters?: {
+    programId?: string;
+    applicationStatus?: string;
+    paymentStatus?: string;
+    hasPaid?: boolean;
+    hasApplication?: boolean;
+  };
 }
 
 export const notificationsService = {
@@ -129,9 +135,14 @@ export const notificationsService = {
   async broadcast(data: BroadcastData): Promise<{ sent: number; emailsSent: number }> {
     let sent = 0;
     let emailsSent = 0;
+    let targetUserIds = data.userIds || [];
 
-    if (data.userIds && data.userIds.length > 0) {
-      const notifications = data.userIds.map((userId) => ({
+    if ((!data.userIds || data.userIds.length === 0) && data.filters) {
+      targetUserIds = await notificationsRepository.findUserIdsByFilters(data.filters);
+    }
+
+    if (targetUserIds.length > 0) {
+      const notifications = targetUserIds.map((userId) => ({
         userId,
         type: data.type,
         channel: data.channel || NotificationChannel.IN_APP,
@@ -145,7 +156,7 @@ export const notificationsService = {
       sent = notifications.length;
 
       if (data.channel === NotificationChannel.EMAIL || data.templateId) {
-        for (const userId of data.userIds) {
+        for (const userId of targetUserIds) {
           const user = await AppDataSource.getRepository(User).findOne({
             where: { id: userId } as any,
           });

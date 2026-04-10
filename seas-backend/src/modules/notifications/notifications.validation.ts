@@ -42,6 +42,13 @@ export const broadcastSchema = Joi.object({
   templateData: Joi.object().optional(),
   link: Joi.string().uri().optional(),
   userIds: Joi.array().items(Joi.string().uuid()).optional(),
+  filters: Joi.object({
+    programId: Joi.string().uuid().optional(),
+    applicationStatus: Joi.string().valid('draft', 'submitted', 'under_review', 'approved', 'rejected').optional(),
+    paymentStatus: Joi.string().valid('pending', 'verified', 'rejected').optional(),
+    hasPaid: Joi.boolean().optional(),
+    hasApplication: Joi.boolean().optional(),
+  }).optional(),
 });
 
 export const sendTemplatedEmailSchema = Joi.object({

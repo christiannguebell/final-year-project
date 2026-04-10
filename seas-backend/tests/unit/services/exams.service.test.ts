@@ -4,6 +4,7 @@ import { examCentersRepository } from '../../../src/modules/exams/examCenter.rep
 import { examAssignmentsRepository } from '../../../src/modules/exams/examAssignment.repository';
 import { ApiError } from '../../../src/common/errors/ApiError';
 import { EXAM_MESSAGES } from '../../../src/modules/exams/exams.constants';
+import { describe, jest } from '@jest/globals';
 
 jest.mock('../../../src/modules/exams/examSession.repository');
 jest.mock('../../../src/modules/exams/examCenter.repository');
@@ -11,10 +12,16 @@ jest.mock('../../../src/modules/exams/examAssignment.repository');
 
 jest.mock('../../../src/database', () => {
   const mockFind = jest.fn().mockResolvedValue([]);
+  const mockQueryBuilder = jest.fn().mockReturnValue({
+    where: jest.fn().mockReturnThis(),
+    orderBy: jest.fn().mockReturnThis(),
+    getMany: jest.fn().mockResolvedValue([]),
+  });
   return {
     AppDataSource: {
       getRepository: jest.fn().mockReturnValue({
         find: mockFind,
+        createQueryBuilder: mockQueryBuilder,
       }),
     },
     Application: class {},
@@ -121,15 +128,21 @@ describe('ExamsService', () => {
     });
   });
 
-  describe('assignCandidates', () => {
+  describe('autoAllocateCandidates', () => {
     it('should throw error if no approved applications', async () => {
+      const mockRepo = mockAppDataSource.getRepository();
+
       (examSessionsRepository.findById as jest.Mock).mockResolvedValue({ id: '1' });
-      (examCentersRepository.findById as jest.Mock).mockResolvedValue({ id: '1', capacity: 100 });
-      
-      mockAppDataSource.getRepository().find.mockResolvedValueOnce([]);
+      (examCentersRepository.findAll as jest.Mock).mockResolvedValue([{ id: '1', capacity: 100 }]);
+
+      mockRepo.createQueryBuilder = jest.fn().mockReturnValue({
+        where: jest.fn().mockReturnThis(),
+        orderBy: jest.fn().mockReturnThis(),
+        getMany: jest.fn().mockResolvedValue([]),
+      });
 
       await expect(
-        examsService.assignCandidates({ sessionId: '1', centerId: '1' })
+        examsService.autoAllocateCandidates({ sessionId: '1' })
       ).rejects.toThrow('No approved applications to assign');
     });
 
@@ -138,17 +151,21 @@ describe('ExamsService', () => {
         { id: 'app1', userId: '1' },
         { id: 'app2', userId: '2' },
       ];
+      const mockRepo = mockAppDataSource.getRepository();
 
       (examSessionsRepository.findById as jest.Mock).mockResolvedValue({ id: '1', examDate: new Date() });
-      (examCentersRepository.findById as jest.Mock).mockResolvedValue({ id: '1', capacity: 100 });
+      (examCentersRepository.findAll as jest.Mock).mockResolvedValue([{ id: '1', capacity: 100 }]);
       (examAssignmentsRepository.findBySessionId as jest.Mock).mockResolvedValue([]);
       (examAssignmentsRepository.createMany as jest.Mock).mockResolvedValue(true);
-      
-      mockAppDataSource.getRepository().find.mockResolvedValueOnce(mockApplications);
 
-      const result = await examsService.assignCandidates({
+      mockRepo.createQueryBuilder = jest.fn().mockReturnValue({
+        where: jest.fn().mockReturnThis(),
+        orderBy: jest.fn().mockReturnThis(),
+        getMany: jest.fn().mockResolvedValue(mockApplications),
+      });
+
+      const result = await examsService.autoAllocateCandidates({
         sessionId: '1',
-        centerId: '1',
       });
 
       expect(result.assigned).toBe(2);

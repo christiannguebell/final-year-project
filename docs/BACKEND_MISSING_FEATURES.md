@@ -34,9 +34,9 @@ This document identifies backend features required by the designed user interfac
 - **[ ] Bulk Result Importer**: A CSV/Excel parser that maps candidate numbers to subject scores (`ResultScore`) for massive data entry.
 - **[ ] Results Lifecycle**: Logic to "Freeze" results and then "Publish" them globally (updating `publishedAt` and notifying candidates).
 
-## 5. Communications & Audit
-- **[ ] Smart Broadcasting**: Logic to target notifications by segment (e.g., "Send to all candidates in the Robotics program who haven't paid").
-- **[ ] Admin Audit Logs**: A system-wide middleware to log sensitive admin actions (e.g., result publication, application deletion) for accountability.
+## 5. Communications & Audit [DONE]
+- **[x] Smart Broadcasting**: Logic to target notifications by segment (e.g., "Send to all candidates in the Robotics program who haven't paid").
+- **[x] Admin Audit Logs**: A system-wide middleware to log sensitive admin actions (e.g., result publication, application deletion) for accountability.
 
 ## 6. Infrastructure Extras [DONE]
 - **[ ] System Health Check**: A public `/api/health` endpoint for uptime monitoring and CI/CD status indicators.
