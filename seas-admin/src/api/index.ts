@@ -1,0 +1,8 @@
+export { default as authApi } from './modules/auth';
+export { default as usersApi } from './modules/users';
+export { default as candidatesApi } from './modules/candidates';
+export { default as programsApi } from './modules/programs';
+export { default as applicationsApi } from './modules/applications';
+export { default as examsApi } from './modules/exams';
+export { default as analyticsApi } from './modules/analytics';
+export { default as systemApi } from './modules/system';
