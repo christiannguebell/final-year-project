@@ -50,7 +50,7 @@ export const config: AppConfig = {
     maxRequests: parseInt(getEnv('RATE_LIMIT_MAX_REQUESTS', '100')),
   },
   cors: {
-    origin: getEnv('CORS_ORIGIN', 'http://localhost:3001').split(','),
+    origin: getEnv('CORS_ORIGIN', 'http://localhost:3001, http://localhost:3000, http://localhost:5173').split(',').map(o => o.trim()),
   },
 };
 

@@ -1,5 +1,5 @@
 import apiClient from '../client';
-import type { Candidate, Gender } from '../types/entities';
+import type { Candidate, Gender } from '@/types/entities';
 
 export interface CreateCandidatePayload {
   dateOfBirth?: string;

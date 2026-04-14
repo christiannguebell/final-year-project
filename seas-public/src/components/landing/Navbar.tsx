@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Bell, Settings, Menu, X } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +44,10 @@ export const Navbar = () => {
               <Settings size={20} />
             </button>
           </div>
-          <button className="px-6 py-2 bg-primary text-white rounded-lg font-headline font-bold text-sm hover:opacity-90 transition-opacity active:scale-95">
+          <button 
+            onClick={() => navigate('/login')}
+            className="px-6 py-2 bg-primary text-white rounded-lg font-headline font-bold text-sm hover:opacity-90 transition-opacity active:scale-95"
+          >
             Login
           </button>
           <button 

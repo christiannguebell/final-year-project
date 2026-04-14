@@ -1,6 +1,6 @@
 import apiClient from '../client';
-import type { Document, DocumentType } from '../types/entities';
-import type { PaginatedParams, PaginatedResponse } from '../types/api';
+import type { Document, DocumentType } from '@/types/entities';
+import type { PaginatedParams, PaginatedResponse } from '@/types/api';
 
 export interface UploadDocumentPayload {
   type: DocumentType;

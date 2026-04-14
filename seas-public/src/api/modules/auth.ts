@@ -1,4 +1,4 @@
-import apiClient from './client';
+import apiClient from '../client';
 import type {
   LoginRequest,
   RegisterRequest,
@@ -7,8 +7,8 @@ import type {
   ResetPasswordRequest,
   LoginResponse,
   User,
-  AuthTokens,
-} from '../types/api';
+  AuthTokens
+} from '@/types/api';
 
 export const authApi = {
   async register(data: RegisterRequest) {

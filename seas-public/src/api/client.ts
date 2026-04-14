@@ -1,10 +1,11 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from 'axios';
+import type { AxiosError, AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
 import env from '../config/env';
 import { STORAGE_KEYS, API_TIMEOUT } from '../config/constants';
-import type { ApiResponse, ApiError } from '../types/api';
+import type { ApiResponse } from '../types/api';
 
 class ApiClient {
-  private client;
+  private client: AxiosInstance;
 
   constructor() {
     this.client = axios.create({

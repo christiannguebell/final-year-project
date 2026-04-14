@@ -1,6 +1,6 @@
 import apiClient from '../client';
-import type { Notification } from '../types/entities';
-import type { PaginatedParams, PaginatedResponse } from '../types/api';
+import type { Notification } from '@/types/entities';
+import type { PaginatedParams, PaginatedResponse } from '@/types/api';
 
 export interface ListNotificationsParams extends PaginatedParams {}
 

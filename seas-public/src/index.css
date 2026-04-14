@@ -96,3 +96,7 @@
 .hero-gradient {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
 }
+
+.blueprint-bg {
+  mask-image: linear-gradient(to bottom, black, transparent);
+}

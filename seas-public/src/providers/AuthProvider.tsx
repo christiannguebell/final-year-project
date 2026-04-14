@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, useEffect, type ReactNode, type Dispatch, type SetStateAction } from 'react';
+import { createContext, useContext, useState, type ReactNode, type Dispatch, type SetStateAction } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import type { User } from '../types/api';
 import { STORAGE_KEYS } from '../config/constants';
 
@@ -9,6 +10,7 @@ interface AuthContextType {
   setUser: Dispatch<SetStateAction<User | null>>;
   login: (user: User, token: string, refreshToken: string) => void;
   logout: () => void;
+  checkAuth: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -18,10 +20,25 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const queryClient = useQueryClient();
+  const [user, setUser] = useState<User | null>(() => {
+    const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
+    const userStr = localStorage.getItem(STORAGE_KEYS.USER);
+    if (token && userStr) {
+      try {
+        return JSON.parse(userStr) as User;
+      } catch {
+        localStorage.removeItem(STORAGE_KEYS.TOKEN);
+        localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
+        localStorage.removeItem(STORAGE_KEYS.USER);
+        return null;
+      }
+    }
+    return null;
+  });
+  const isLoading = false;
 
-  useEffect(() => {
+  const checkAuth = () => {
     const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
     const userStr = localStorage.getItem(STORAGE_KEYS.USER);
     if (token && userStr) {
@@ -29,17 +46,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setUser(JSON.parse(userStr) as User);
       } catch {
         localStorage.removeItem(STORAGE_KEYS.TOKEN);
+        localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
         localStorage.removeItem(STORAGE_KEYS.USER);
+        setUser(null);
       }
+    } else {
+      setUser(null);
     }
-    setIsLoading(false);
-  }, []);
+  };
 
-  const login = (user: User, token: string, refreshToken: string) => {
+  const login = (userData: User, token: string, refreshToken: string) => {
     localStorage.setItem(STORAGE_KEYS.TOKEN, token);
     localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
-    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user));
-    setUser(user);
+    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(userData));
+    setUser(userData);
   };
 
   const logout = () => {
@@ -47,6 +67,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
     localStorage.removeItem(STORAGE_KEYS.USER);
     setUser(null);
+    queryClient.clear();
   };
 
   const value: AuthContextType = {
@@ -56,6 +77,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUser,
     login,
     logout,
+    checkAuth,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
