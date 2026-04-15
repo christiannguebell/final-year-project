@@ -114,9 +114,9 @@ export default function RegisterPage() {
             </div>
 
             <form className="space-y-8" onSubmit={handleRegister}>
-              {(validationError || registerMutation.isError) && (
+              {validationError && (
                 <div className="p-3 bg-error-container text-on-error-container rounded-md text-sm font-medium">
-                  {validationError || (registerMutation.error instanceof Error ? registerMutation.error.message : 'Registration failed. Please try again.')}
+                  {validationError}
                 </div>
               )}
               <div className="space-y-2 group">

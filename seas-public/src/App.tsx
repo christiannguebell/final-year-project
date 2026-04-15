@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'sonner';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import Loading from './components/common/Loading';
 import { LandingPage } from './components/landing';
@@ -9,6 +10,7 @@ import ProtectedRoute from './components/common/ProtectedRoute';
 function App() {
   return (
     <ErrorBoundary>
+      <Toaster position="top-right" richColors closeButton />
       <BrowserRouter>
         <Suspense fallback={<Loading />}>
           <Routes>

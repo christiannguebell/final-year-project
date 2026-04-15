@@ -1,5 +1,6 @@
 import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
+import { toast } from 'sonner';
 import env from '../config/env';
 import { STORAGE_KEYS, API_TIMEOUT } from '../config/constants';
 import type { ApiResponse } from '../types/api';
@@ -32,9 +33,30 @@ class ApiClient {
     );
 
     this.client.interceptors.response.use(
-      (response: AxiosResponse<ApiResponse>) => response,
+      (response: AxiosResponse<ApiResponse>) => {
+        const { method, url } = response.config;
+        const { message, success } = response.data;
+
+        // Don't show success toast for GET or token refresh
+        if (success && message && method !== 'get' && !url?.includes('/auth/refresh-token')) {
+          toast.success(message);
+        }
+
+        return response;
+      },
       async (error: AxiosError<ApiResponse>) => {
-        if (error.response?.status === 401) {
+        let message = error.response?.data?.message || 'An unexpected error occurred';
+        
+        // If it's a validation error, try to get the first specific error message
+        const backendErrors = error.response?.data?.errors;
+        if (Array.isArray(backendErrors) && backendErrors.length > 0) {
+          message = backendErrors[0].message || message;
+        }
+
+        const originalRequest = error.config;
+        
+        // Only refresh if it's a 401 and NOT a login or refresh request
+        if (error.response?.status === 401 && !originalRequest?.url?.includes('/auth/login') && !originalRequest?.url?.includes('/auth/refresh-token')) {
           const refreshToken = localStorage.getItem(STORAGE_KEYS.REFRESH_TOKEN);
           if (refreshToken) {
             try {
@@ -42,20 +64,28 @@ class ApiClient {
               if (response.accessToken) {
                 localStorage.setItem(STORAGE_KEYS.TOKEN, response.accessToken);
                 localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, response.refreshToken);
-                if (error.config) {
-                  error.config.headers.Authorization = `Bearer ${response.accessToken}`;
-                  return this.client.request(error.config);
+                if (originalRequest) {
+                  originalRequest.headers.Authorization = `Bearer ${response.accessToken}`;
+                  return this.client.request(originalRequest);
                 }
               }
             } catch {
               this.clearAuth();
               window.location.href = '/login';
+              toast.error('Session expired. Please login again.');
             }
           } else {
             this.clearAuth();
             window.location.href = '/login';
+            toast.error('Unauthorized. Please login.');
+          }
+        } else {
+          // Suppress toast for unverified accounts as they are handled by page-level redirection
+          if (message !== 'ACCOUNT_UNVERIFIED') {
+            toast.error(message);
           }
         }
+
         return Promise.reject(error);
       }
     );

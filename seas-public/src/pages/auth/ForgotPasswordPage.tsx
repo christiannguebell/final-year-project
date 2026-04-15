@@ -57,11 +57,6 @@ export default function ForgotPasswordPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
-                {forgotPasswordMutation.isError && (
-                   <div className="p-3 bg-error-container text-on-error-container rounded-md text-sm font-medium">
-                     Failed to request password reset. Please verify your email.
-                   </div>
-                )}
                 <div className="relative">
                   <label className="block text-xs font-semibold uppercase tracking-widest text-on-surface-variant mb-2 font-label">
                     Institutional Email Address

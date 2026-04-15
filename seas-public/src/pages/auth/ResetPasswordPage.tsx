@@ -90,11 +90,6 @@ export default function ResetPasswordPage() {
           </div>
 
           <form className="space-y-6" onSubmit={handleSubmit}>
-            {resetMutation.isError && (
-               <div className="p-3 bg-error-container text-on-error-container rounded-md text-xs text-center font-medium">
-                 Failed to reset password. The token may be expired or invalid.
-               </div>
-            )}
             <div className="space-y-2">
               <label className="block font-label text-sm font-semibold text-primary px-1">
                 New Password

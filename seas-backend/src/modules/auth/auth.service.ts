@@ -109,7 +109,23 @@ export const authService = {
     }
 
     if (user.status === UserStatus.PENDING) {
-      throw ApiError.forbidden('Please verify your account via OTP first');
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+      const otpExpiry = new Date(Date.now() + 15 * 60 * 1000); // 15 mins expiry
+      const hashedOtp = await bcrypt.hash(otp, 10);
+
+      await authRepository.updateUser(user.id, {
+        otp: hashedOtp,
+        otpExpiry,
+      });
+
+      await notificationsService.sendTemplatedEmail(
+        user.id,
+        'otp-verification',
+        { name: user.firstName, otp },
+        '' // placeholder URL
+      );
+
+      throw ApiError.forbidden('ACCOUNT_UNVERIFIED');
     }
 
     const tokens = this.generateTokens(user);

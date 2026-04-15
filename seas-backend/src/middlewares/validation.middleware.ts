@@ -14,7 +14,7 @@ export const validate = (schema: Joi.ObjectSchema, property: 'body' | 'query' | 
         field: detail.path.join('.'),
         message: detail.message,
       }));
-      throw new ValidationError('Validation failed', errors);
+      throw new ValidationError(errors[0].message, errors);
     }
 
     req[property] = value;

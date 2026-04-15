@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Mail, Lock, Eye, LogIn, Accessibility, HelpCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { useLogin } from '../../hooks/useAuth';
 
 export default function LoginPage() {
@@ -16,7 +17,13 @@ export default function LoginPage() {
     e.preventDefault();
     loginMutation.mutate({ email, password }, {
       onSuccess: () => {
-        navigate(`/verify-otp?email=${encodeURIComponent(email)}`);
+        navigate('/dashboard');
+      },
+      onError: (error: AxiosError<{ message: string }>) => {
+        const message = error.response?.data?.message;
+        if (message === 'ACCOUNT_UNVERIFIED') {
+          navigate(`/verify-otp?email=${encodeURIComponent(email)}`);
+        }
       }
     });
   };
@@ -48,11 +55,6 @@ export default function LoginPage() {
             </div>
 
             <form className="space-y-6" onSubmit={handleLogin}>
-              {loginMutation.isError && (
-                <div className="p-3 bg-error-container text-on-error-container rounded-md text-sm font-medium">
-                  {loginMutation.error instanceof Error ? loginMutation.error.message : 'Invalid email or password'}
-                </div>
-              )}
               <div className="space-y-1">
                 <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1" htmlFor="email">Email Address</label>
                 <div className="relative flex items-center">

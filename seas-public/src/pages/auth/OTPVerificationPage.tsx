@@ -71,11 +71,6 @@ export default function OTPVerificationPage() {
           </div>
 
           <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
-            {verifyMutation.isError && (
-               <div className="p-3 bg-error-container text-on-error-container rounded-md text-sm text-center font-medium">
-                 Invalid or expired verification code.
-               </div>
-            )}
             <div className="flex justify-between gap-2 md:gap-4">
               {otp.map((digit, idx) => (
                 <input
