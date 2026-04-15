@@ -4,7 +4,11 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  OneToOne,
 } from 'typeorm';
+import { Application } from './Application';
+import { CandidateProfile } from './CandidateProfile';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -63,4 +67,10 @@ export class User {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt!: Date;
+
+  @OneToMany(() => Application, (app) => app.candidate)
+  applications!: Application[];
+
+  @OneToOne(() => CandidateProfile, (profile) => profile.user)
+  profile!: CandidateProfile;
 }

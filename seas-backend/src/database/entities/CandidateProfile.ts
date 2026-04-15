@@ -23,7 +23,7 @@ export class CandidateProfile {
   @Column({ name: 'user_id', unique: true })
   userId!: string;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, (user) => user.profile)
   @JoinColumn({ name: 'user_id' })
   user!: User;
 
@@ -50,6 +50,15 @@ export class CandidateProfile {
 
   @Column({ name: 'profile_photo', nullable: true })
   profilePhoto!: string;
+
+  @Column({ name: 'id_type', nullable: true })
+  idType!: string;
+
+  @Column({ name: 'id_number', nullable: true })
+  idNumber!: string;
+
+  @Column({ name: 'zip_code', nullable: true })
+  zipCode!: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;

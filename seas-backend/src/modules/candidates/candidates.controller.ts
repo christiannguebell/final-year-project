@@ -70,17 +70,19 @@ export const candidatesController = {
       if (!userId) {
         throw new Error('User not authenticated');
       }
-      const profile = await candidatesService.getByUserId(userId);
-      const { dateOfBirth, gender, nationality, address, city, country } = req.body;
-      const updated = await candidatesService.update(profile.id, {
+      const { dateOfBirth, gender, nationality, address, city, country, idType, idNumber, zipCode } = req.body;
+      const upserted = await candidatesService.upsert(userId, {
         dateOfBirth,
         gender: gender as Gender | undefined,
         nationality,
         address,
         city,
         country,
+        idType,
+        idNumber,
+        zipCode,
       });
-      res.status(200).json(successResponse(updated, 'Candidate profile updated'));
+      res.status(200).json(successResponse(upserted, 'Candidate profile saved'));
     } catch (error) {
       next(error);
     }

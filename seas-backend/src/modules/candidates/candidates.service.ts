@@ -22,6 +22,9 @@ interface UpdateCandidateData {
   city?: string;
   country?: string;
   profilePhoto?: string;
+  idType?: string;
+  idNumber?: string;
+  zipCode?: string;
 }
 
 export const candidatesService = {
@@ -59,6 +62,24 @@ export const candidatesService = {
       throw ApiError.notFound(CANDIDATE_MESSAGES.NOT_FOUND);
     }
     return profile;
+  },
+
+  /**
+   * Upsert: creates the profile if it doesn't exist, updates it if it does.
+   * This allows the Bio Data step to work on first visit without a prior POST.
+   */
+  async upsert(userId: string, data: UpdateCandidateData): Promise<CandidateProfile> {
+    const existing = await candidatesRepository.findByUserId(userId);
+    if (!existing) {
+      const candidateNumber = generateCandidateNumber();
+      return await candidatesRepository.create({
+        userId,
+        candidateNumber,
+        ...data,
+      } as any);
+    }
+    const updated = await candidatesRepository.updateById(existing.id, data);
+    return updated!;
   },
 
   async update(id: string, data: UpdateCandidateData): Promise<CandidateProfile> {

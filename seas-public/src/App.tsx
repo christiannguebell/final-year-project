@@ -6,6 +6,7 @@ import Loading from './components/common/Loading';
 import { LandingPage } from './components/landing';
 import { LoginPage, RegisterPage, OTPVerificationPage, ResetPasswordPage, ForgotPasswordPage } from './pages/auth';
 import { DashboardPage } from './pages/dashboard';
+import { ApplicationPage } from './pages/application';
 import ProtectedRoute from './components/common/ProtectedRoute';
 
 function App() {
@@ -26,6 +27,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <DashboardPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/application" 
+              element={
+                <ProtectedRoute>
+                  <ApplicationPage />
                 </ProtectedRoute>
               } 
             />

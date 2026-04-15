@@ -32,11 +32,11 @@ export class Application {
   @Column({ name: 'user_id' })
   userId!: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user) => user.applications)
   @JoinColumn({ name: 'user_id' })
-  user!: User;
+  candidate!: User;
 
-  @Column({ name: 'program_id' })
+  @Column({ name: 'program_id', nullable: true })
   programId!: string;
 
   @ManyToOne(() => Program)

@@ -28,6 +28,9 @@ export class Program {
   @Column({ type: 'enum', enum: ProgramStatus, default: ProgramStatus.ACTIVE })
   status!: ProgramStatus;
 
+  @Column({ name: 'degree_level', nullable: true })
+  degreeLevel!: string;
+
   @Column({ name: 'duration_years' })
   durationYears!: number;
 

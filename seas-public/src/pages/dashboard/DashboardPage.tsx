@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { 
   Edit3, 
   Download, 
@@ -34,10 +35,10 @@ export default function DashboardPage() {
               <p className="text-lg text-on-surface-variant mt-2">Track your engineering journey and upcoming milestones.</p>
             </div>
             <div className="flex gap-3">
-              <button className="px-5 py-2.5 rounded-lg bg-primary text-white font-semibold text-sm flex items-center gap-2 active:scale-95 transition-transform hover:bg-primary-container">
+              <Link to="/application" className="px-5 py-2.5 rounded-lg bg-primary text-white font-semibold text-sm flex items-center gap-2 active:scale-95 transition-transform hover:bg-primary-container">
                 <Edit3 className="w-4 h-4" />
                 Complete Application
-              </button>
+              </Link>
               <button className="px-5 py-2.5 rounded-lg border border-outline-variant text-primary font-semibold text-sm flex items-center gap-2 hover:bg-surface-container-low transition-colors active:scale-95 transition-transform">
                 <Download className="w-4 h-4" />
                 Admission Slip
