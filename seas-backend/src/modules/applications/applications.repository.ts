@@ -16,7 +16,7 @@ export const applicationsRepository = {
   async findById(id: string): Promise<Application | null> {
     return AppDataSource.getRepository(Application).findOne({
       where: { id } as any,
-      relations: ['candidate', 'program', 'academicRecords', 'documents', 'payments'],
+      relations: ['candidate', 'candidate.profile', 'program', 'academicRecords', 'documents', 'payments'],
     });
   },
 
