@@ -5,6 +5,7 @@ import ErrorBoundary from './components/common/ErrorBoundary';
 import Loading from './components/common/Loading';
 import { LandingPage } from './components/landing';
 import { LoginPage, RegisterPage, OTPVerificationPage, ResetPasswordPage, ForgotPasswordPage } from './pages/auth';
+import { DashboardPage } from './pages/dashboard';
 import ProtectedRoute from './components/common/ProtectedRoute';
 
 function App() {
@@ -24,10 +25,7 @@ function App() {
               path="/dashboard" 
               element={
                 <ProtectedRoute>
-                  <div className="p-8 text-center">
-                    <h1 className="text-3xl font-bold">Welcome to your Dashboard</h1>
-                    <p className="mt-4 text-on-surface-variant">Authenticated and authorized candidate!</p>
-                  </div>
+                  <DashboardPage />
                 </ProtectedRoute>
               } 
             />
