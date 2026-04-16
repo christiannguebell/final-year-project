@@ -21,7 +21,7 @@ export const DocumentCenterStep = ({ onNext, onBack, data }: { onNext: (data: Pa
       if (data.id) {
         try {
           const response = await apiClient.get<Document[]>(`/documents/application/${data.id}`);
-          setDocuments(response.data.data);
+          setDocuments(response.data?.data || []);
         } catch (error: any) {
           console.error('Failed to fetch documents');
         }
@@ -44,7 +44,9 @@ export const DocumentCenterStep = ({ onNext, onBack, data }: { onNext: (data: Pa
 
     try {
       const response = await apiClient.uploadFile<Document>('/documents/upload', formData);
-      setDocuments([...documents, response.data.data]);
+      if (response.data?.data) {
+        setDocuments([...documents, response.data.data]);
+      }
       toast.success(`${type.replace('_', ' ')} uploaded successfully`);
     } catch (error: any) {
        toast.error('Upload failed');
@@ -66,16 +68,29 @@ export const DocumentCenterStep = ({ onNext, onBack, data }: { onNext: (data: Pa
   const getDocByType = (type: string) => documents.find(d => d.type === type);
 
   const docTypes = [
-    { id: 'id_card', label: 'National ID / Passport', description: 'Upload a clear scan of your valid government-issued identification.' },
-    { id: 'transcript', label: 'Academic Transcripts', description: 'Include all semesters from your most recently completed degree.' },
-    { id: 'certificate', label: 'Degrees & Diplomas', description: 'Official degree certificates or provisional letters of completion.' }
+    { id: 'id_card', label: 'National ID / Passport', description: 'Upload a clear scan of your valid government-issued identification.', required: true },
+    { id: 'transcript', label: 'Academic Transcripts', description: 'Include all semesters from your most recently completed degree.', required: true },
+    { id: 'certificate', label: 'Degrees & Diplomas', description: 'Official degree certificates or provisional letters of completion.', required: true }
   ];
+
+  const getMissingDocuments = () => {
+    return docTypes.filter(doc => !getDocByType(doc.id));
+  };
+
+  const handleContinue = () => {
+    const missing = getMissingDocuments();
+    if (missing.length > 0) {
+      toast.error(`Please upload required documents: ${missing.map(d => d.label).join(', ')}`);
+      return;
+    }
+    onNext({});
+  };
 
   return (
     <div className="max-w-5xl mx-auto px-4">
       <header className="mb-10">
         <div className="flex items-center gap-2 text-on-surface-variant mb-2 font-bold uppercase tracking-widest text-[10px]">
-          <span>Step 4 of 5</span>
+          <span>Step 4 of 6</span>
           <span className="h-px w-8 bg-outline-variant/30"></span>
         </div>
         <h1 className="text-4xl font-headline font-extrabold text-primary tracking-tight mb-4 text-center md:text-left">Document Center</h1>
@@ -87,6 +102,7 @@ export const DocumentCenterStep = ({ onNext, onBack, data }: { onNext: (data: Pa
         <div className="flex-1 bg-secondary rounded-full"></div>
         <div className="flex-1 bg-secondary rounded-full"></div>
         <div className="flex-1 bg-primary rounded-full"></div>
+        <div className="flex-1 bg-outline-variant/30 rounded-full"></div>
         <div className="flex-1 bg-outline-variant/30 rounded-full"></div>
       </div>
 
@@ -182,7 +198,7 @@ export const DocumentCenterStep = ({ onNext, onBack, data }: { onNext: (data: Pa
 
           <div className="pt-4 flex flex-col gap-3">
             <button 
-              onClick={() => onNext({})}
+              onClick={handleContinue}
               className="w-full bg-secondary py-4 rounded-lg text-white font-headline font-extrabold flex items-center justify-center gap-2 shadow-lg shadow-secondary/20 hover:translate-y-[-2px] transition-all active:scale-95"
             >
               Confirm and Continue

@@ -33,12 +33,25 @@ export const BioDataStep = ({ onNext, data }: { onNext: (data: Partial<Applicati
 
   const onSubmit = async (formData: BioDataForm) => {
     try {
-      // Create or Update candidate profile
       await apiClient.put('/candidates', formData);
+      
+      let applicationId = data.id;
+      if (!applicationId) {
+        const response = await apiClient.post<Application>('/applications', { programId: null });
+        if (response.data?.data?.id) {
+          applicationId = response.data.data.id;
+        }
+      }
+      
+      if (!applicationId) {
+        throw new Error('Failed to create application');
+      }
+      
       toast.success('Foundational profile saved');
-      onNext({ candidate: { profile: formData } });
+      onNext({ id: applicationId, candidate: { profile: formData } });
     } catch (error: any) {
       console.error('Failed to save bio data', error);
+      toast.error('Failed to initialize application. Please try again.');
     }
   };
 
@@ -51,7 +64,7 @@ export const BioDataStep = ({ onNext, data }: { onNext: (data: Partial<Applicati
             <p className="text-on-surface-variant">Please provide your foundational information to begin your engineering journey.</p>
           </div>
           <div className="text-right">
-            <span className="text-xs font-bold text-secondary uppercase tracking-widest">Step 1 of 5</span>
+            <span className="text-xs font-bold text-secondary uppercase tracking-widest">Step 1 of 6</span>
             <div className="text-xl font-bold text-primary">Bio Data</div>
           </div>
         </div>

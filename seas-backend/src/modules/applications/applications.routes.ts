@@ -213,6 +213,33 @@ router.patch(
 
 /**
  * @openapi
+ * /api/applications/{id}/review:
+ *   patch:
+ *     tags:
+ *       - Applications
+ *     summary: Mark application under review (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Application marked for review
+ */
+router.patch(
+  '/:id/review',
+  authenticate,
+  authorize(UserRole.ADMIN),
+  validate(idParamSchema, 'params'),
+  applicationsController.markUnderReview
+);
+
+/**
+ * @openapi
  * /api/applications/{id}/reject:
  *   patch:
  *     tags:

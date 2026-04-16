@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import { PlusCircle, Info, ArrowRight, Trash2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { PlusCircle, Info, ArrowRight, Trash2, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { apiClient } from '../../../api/client';
 import type { Application, AcademicRecord } from '../../../types/application';
 
 export const AcademicRecordsStep = ({ onNext, onBack, data }: { onNext: (data: Partial<Application>) => void, onBack: () => void, data: Partial<Application> }) => {
-  const [records, setRecords] = useState<AcademicRecord[]>(data.academicRecords || []);
+  const [records, setRecords] = useState<AcademicRecord[]>([]);
   const [isAdding, setIsAdding] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [newRecord, setNewRecord] = useState<Partial<AcademicRecord>>({
     institution: '',
     degree: '',
@@ -15,32 +17,91 @@ export const AcademicRecordsStep = ({ onNext, onBack, data }: { onNext: (data: P
     fieldOfStudy: ''
   });
 
+  useEffect(() => {
+    const fetchRecords = async () => {
+      if (!data.id) {
+        setIsLoading(false);
+        return;
+      }
+      try {
+        const response = await apiClient.get<AcademicRecord[]>(`/academic-records/application/${data.id}`);
+        setRecords(response.data?.data || []);
+      } catch (error: any) {
+        console.error('Failed to fetch academic records');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchRecords();
+  }, [data.id]);
+
   const handleSaveEntry = async () => {
     if (!newRecord.institution || !newRecord.degree) {
       toast.error('Institution and Degree are required');
       return;
     }
 
-    setRecords([...records, { ...newRecord as AcademicRecord, id: Math.random().toString() }]);
+    if (!data.id) {
+      toast.error('Application not initialized. Please go back to Step 1.');
+      return;
+    }
+
+    try {
+      const response = await apiClient.post<AcademicRecord>('/academic-records', {
+        ...newRecord,
+        applicationId: data.id,
+      });
+      if (response.data?.data) {
+        setRecords([...records, response.data.data]);
+      }
+      toast.success('Academic record saved');
+    } catch (error: any) {
+      toast.error('Failed to save academic record');
+      return;
+    }
+
     setIsAdding(false);
     setNewRecord({ institution: '', degree: '', startDate: '', endDate: '', grade: '', fieldOfStudy: '' });
   };
 
-  const removeRecord = (id: string) => {
-    setRecords(records.filter(r => r.id !== id));
+  const removeRecord = async (id: string) => {
+    try {
+      await apiClient.delete(`/academic-records/${id}`);
+      setRecords(records.filter(r => r.id !== id));
+      toast.success('Record removed');
+    } catch (error: any) {
+      toast.error('Failed to delete record');
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px]">
+        <Loader2 className="w-10 h-10 text-primary animate-spin mb-4" />
+        <p className="text-on-surface-variant font-bold">Loading academic records...</p>
+      </div>
+    );
+  }
+
+  const handleContinue = () => {
+    if (records.length === 0) {
+      toast.error('Please add at least one academic record');
+      return;
+    }
+    onNext({ academicRecords: records });
   };
 
   return (
     <div className="max-w-5xl mx-auto px-4">
       <div className="mb-12 flex items-center justify-between">
         <div className="flex flex-col">
-          <span className="text-xs font-bold text-secondary uppercase tracking-widest mb-1">Step 2 of 5</span>
+          <span className="text-xs font-bold text-secondary uppercase tracking-widest mb-1">Step 2 of 6</span>
           <h1 className="text-3xl font-extrabold text-primary font-headline tracking-tight">Academic Records</h1>
         </div>
         <div className="flex gap-2">
           <div className="h-1.5 w-16 bg-secondary rounded-full"></div>
           <div className="h-1.5 w-16 bg-secondary rounded-full"></div>
-          {[...Array(3)].map((_, i) => (
+          {[...Array(4)].map((_, i) => (
             <div key={i} className="h-1.5 w-16 bg-outline-variant/30 rounded-full"></div>
           ))}
         </div>
@@ -93,8 +154,8 @@ export const AcademicRecordsStep = ({ onNext, onBack, data }: { onNext: (data: P
                         </td>
                       </tr>
                     ) : (
-                      records.map((record, i) => (
-                        <tr key={i} className="hover:bg-surface-container-low transition-colors group">
+                      records.map((record) => (
+                        <tr key={record.id} className="hover:bg-surface-container-low transition-colors group">
                           <td className="px-4 py-4">
                             <div className="font-bold text-sm text-primary">{record.institution}</div>
                             <div className="text-[10px] text-on-surface-variant uppercase tracking-wider">{record.fieldOfStudy}</div>
@@ -208,13 +269,7 @@ export const AcademicRecordsStep = ({ onNext, onBack, data }: { onNext: (data: P
               Previous Step
             </button>
             <button 
-              onClick={() => {
-                if (records.length === 0) {
-                  toast.error('Please add at least one academic record');
-                  return;
-                }
-                onNext({ academicRecords: records });
-              }}
+              onClick={handleContinue}
               className="px-12 py-4 bg-gradient-to-br from-secondary to-[#0e7144] text-white font-extrabold rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95 flex items-center gap-2"
             >
               Continue to Program

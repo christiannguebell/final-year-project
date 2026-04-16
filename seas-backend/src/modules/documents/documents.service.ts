@@ -7,11 +7,28 @@ import fs from 'fs';
 
 const UPLOAD_DIR = 'uploads/documents';
 
+const ALLOWED_MIME_TYPES = [
+  'application/pdf',
+  'image/jpeg',
+  'image/png',
+  'image/jpg',
+];
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+
 export const documentsService = {
   async upload(applicationId: string, type: DocumentType, file: Express.Multer.File): Promise<Document> {
     const application = await applicationsRepository.findById(applicationId);
     if (!application) {
       throw ApiError.notFound('Application not found');
+    }
+
+    if (!ALLOWED_MIME_TYPES.includes(file.mimetype)) {
+      throw ApiError.badRequest('Invalid file type. Allowed: PDF, JPEG, PNG');
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      throw ApiError.badRequest('File too large. Maximum size: 10MB');
     }
 
     if (!fs.existsSync(UPLOAD_DIR)) {

@@ -33,6 +33,13 @@ export const ReviewSubmitStep = ({ onBack, data }: { onBack: () => void, data: P
 
     setIsSubmitting(true);
     try {
+      const validationErrors = await validateSubmission();
+      if (validationErrors) {
+        toast.error(`Cannot submit: ${validationErrors.join(', ')}`);
+        setIsSubmitting(false);
+        return;
+      }
+
       await apiClient.post(`/applications/${data.id}/submit`);
       toast.success('Application submitted successfully!');
       navigate('/dashboard');
@@ -53,6 +60,40 @@ export const ReviewSubmitStep = ({ onBack, data }: { onBack: () => void, data: P
   }
 
   const candidateName = `${application.candidate?.firstName || ''} ${application.candidate?.lastName || ''}`.trim() || 'Candidate';
+  const currentYear = new Date().getFullYear();
+  const enrollmentYear = currentYear + 1;
+  const enrollmentSession = `${currentYear}/${enrollmentYear}`;
+
+  const validateSubmission = async () => {
+    const errors: string[] = [];
+
+    if (!application.programId) {
+      errors.push('No program selected');
+    }
+
+    if (!application.academicRecords || application.academicRecords.length === 0) {
+      errors.push('No academic records');
+    }
+
+    if (!application.documents || application.documents.length < 3) {
+      errors.push('Missing required documents');
+    }
+
+    if (!application.payments || application.payments.length === 0) {
+      errors.push('Application fee not paid');
+    }
+
+    const verifiedPayment = application.payments?.find((p: any) => p.status === 'verified');
+    if (!verifiedPayment) {
+      errors.push('Application fee not verified');
+    }
+
+    if (errors.length > 0) {
+      return errors;
+    }
+
+    return null;
+  };
 
   return (
     <div className="max-w-5xl mx-auto px-4">
@@ -121,13 +162,13 @@ export const ReviewSubmitStep = ({ onBack, data }: { onBack: () => void, data: P
               <p className="text-[10px] font-bold uppercase tracking-widest text-secondary-container mb-2">Program Code: {application.program?.code || 'WAITING'}</p>
               <p className="text-xl font-headline font-extrabold leading-tight">{application.program?.name || 'No Program Selected'}</p>
             </div>
-            <div className="flex items-start gap-3">
-               <Calendar size={18} className="text-secondary-container shrink-0" />
-               <div>
-                  <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest">Enrollment Cycle</p>
-                  <p className="text-sm font-bold">Academic Session 2024/2025</p>
-               </div>
-            </div>
+<div className="flex items-start gap-3">
+                <Calendar size={18} className="text-secondary-container shrink-0" />
+                <div>
+                   <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest">Enrollment Cycle</p>
+                   <p className="text-sm font-bold">Academic Session {enrollmentSession}</p>
+                </div>
+             </div>
           </div>
         </section>
 

@@ -34,6 +34,17 @@ export interface Program {
   entryRequirements: string;
 }
 
+export interface Payment {
+  id: string;
+  applicationId: string;
+  amount: number;
+  paymentDate: string;
+  receiptFile?: string;
+  status: 'pending' | 'verified' | 'rejected';
+  notes?: string;
+  createdAt?: string;
+}
+
 export interface Application {
   id?: string;
   userId: string;
@@ -44,6 +55,7 @@ export interface Application {
   program?: Program;
   academicRecords?: AcademicRecord[];
   documents?: any[];
+  payments?: Payment[];
   createdAt?: string;
   updatedAt?: string;
 }

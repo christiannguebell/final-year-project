@@ -115,6 +115,16 @@ export const applicationsController = {
     }
   },
 
+  async markUnderReview(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const id = getParam(req.params.id);
+      const application = await applicationsService.markUnderReview(id);
+      res.status(200).json(successResponse(application, 'Application marked for review'));
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async reject(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const id = getParam(req.params.id);

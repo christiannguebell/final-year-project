@@ -16,7 +16,7 @@ export const ProgramSelectionStep = ({ onNext, onBack, data }: { onNext: (data: 
     const fetchPrograms = async () => {
       try {
         const response = await apiClient.get<Program[]>('/programs');
-        setPrograms(response.data.data);
+        setPrograms(response.data?.data || []);
       } catch (error: any) {
         toast.error('Failed to load programs');
       } finally {
@@ -27,15 +27,17 @@ export const ProgramSelectionStep = ({ onNext, onBack, data }: { onNext: (data: 
   }, []);
 
   const handleSelectProgram = async (programId: string) => {
-    if (programId === selectedProgramId) return; // already selected
+    if (programId === selectedProgramId) return;
     setIsSaving(true);
     try {
       let applicationId = pendingApplicationId ?? data.id;
 
       if (!applicationId) {
         const response = await apiClient.post<Application>('/applications', { programId });
-        applicationId = response.data.data.id;
-        setPendingApplicationId(applicationId);
+        if (response.data?.data?.id) {
+          applicationId = response.data.data.id;
+          setPendingApplicationId(applicationId);
+        }
       } else {
         await apiClient.put(`/applications/${applicationId}`, { programId });
       }

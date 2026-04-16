@@ -4,6 +4,7 @@ import { BioDataStep } from './components/BioDataStep';
 import { AcademicRecordsStep } from './components/AcademicRecordsStep';
 import { ProgramSelectionStep } from './components/ProgramSelectionStep';
 import { DocumentCenterStep } from './components/DocumentCenterStep';
+import { PaymentStep } from './components/PaymentStep';
 import { ReviewSubmitStep } from './components/ReviewSubmitStep';
 import Sidebar from '../../components/layout/Sidebar';
 import TopNav from '../../components/layout/TopNav';
@@ -105,7 +106,8 @@ export function ApplicationPage() {
               {step === 2 && <AcademicRecordsStep onNext={handleNext} onBack={handleBack} data={applicationData} />}
               {step === 3 && <ProgramSelectionStep onNext={handleNext} onBack={handleBack} data={applicationData} />}
               {step === 4 && <DocumentCenterStep onNext={handleNext} onBack={handleBack} data={applicationData} />}
-              {step === 5 && <ReviewSubmitStep onBack={handleBack} data={applicationData} />}
+              {step === 5 && <PaymentStep onNext={handleNext} onBack={handleBack} data={applicationData} />}
+              {step === 6 && <ReviewSubmitStep onBack={handleBack} data={applicationData} />}
             </motion.div>
           </AnimatePresence>
         </div>

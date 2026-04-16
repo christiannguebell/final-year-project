@@ -1,6 +1,7 @@
 import { applicationsRepository } from './applications.repository';
 import { ApiError } from '../../common/errors/ApiError';
-import { Application, ApplicationStatus, UserRole } from '../../database';
+import { Application, ApplicationStatus, UserRole, Program } from '../../database';
+import { AppDataSource } from '../../database';
 import { APPLICATION_MESSAGES } from './applications.constants';
 
 interface CreateApplicationData {
@@ -64,7 +65,33 @@ export const applicationsService = {
     if (application.status !== ApplicationStatus.DRAFT) {
       throw ApiError.badRequest(APPLICATION_MESSAGES.CANNOT_SUBMIT);
     }
+
+    if (application.programId) {
+      const program = await AppDataSource.getRepository(Program).findOne({
+        where: { id: application.programId } as any,
+      });
+      if (program?.applicationDeadline) {
+        const now = new Date();
+        const deadline = new Date(program.applicationDeadline);
+        if (now > deadline) {
+          throw ApiError.badRequest('Application deadline has passed for this program');
+        }
+      }
+    }
+
     const updated = await applicationsRepository.updateStatus(id, ApplicationStatus.SUBMITTED);
+    return updated!;
+  },
+
+  async markUnderReview(id: string): Promise<Application> {
+    const application = await applicationsRepository.findById(id);
+    if (!application) {
+      throw ApiError.notFound(APPLICATION_MESSAGES.NOT_FOUND);
+    }
+    if (application.status !== ApplicationStatus.SUBMITTED) {
+      throw ApiError.badRequest('Can only mark submitted applications for review');
+    }
+    const updated = await applicationsRepository.updateStatus(id, ApplicationStatus.UNDER_REVIEW);
     return updated!;
   },
 

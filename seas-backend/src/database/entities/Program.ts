@@ -37,6 +37,12 @@ export class Program {
   @Column({ name: 'entry_requirements', nullable: true })
   entryRequirements!: string;
 
+  @Column({ name: 'application_deadline', nullable: true })
+  applicationDeadline!: Date;
+
+  @Column({ name: 'application_fee', type: 'decimal', precision: 10, scale: 2, default: 50 })
+  applicationFee!: number;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
 
