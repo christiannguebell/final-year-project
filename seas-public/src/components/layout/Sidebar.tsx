@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-  { icon: FileText, label: 'Application', path: '/application' },
+  { icon: FileText, label: 'Application', path: '/applications' },
   { icon: CreditCard, label: 'Payments', path: '/payments' },
   { icon: School, label: 'Exam Hub', path: '/exams' },
   { icon: BarChart3, label: 'Results', path: '/results' },
@@ -38,8 +38,8 @@ export default function Sidebar() {
               to={item.path}
               className={cn(
                 "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ease-in-out scale-100 hover:translate-x-1",
-                isActive 
-                  ? "bg-white text-secondary shadow-sm font-bold" 
+                isActive
+                  ? "bg-white text-secondary shadow-sm font-bold"
                   : "text-slate-600 hover:bg-slate-200/50 font-medium"
               )}
             >
@@ -55,7 +55,7 @@ export default function Sidebar() {
           <HelpCircle className="w-5 h-5" />
           <span className="text-sm font-medium">Support</span>
         </button>
-        <button 
+        <button
           onClick={() => logout()}
           className="w-full flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container/20 transition-all duration-200 ease-in-out scale-100 hover:translate-x-1"
         >

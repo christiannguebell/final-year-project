@@ -6,7 +6,6 @@ export function useMyApplications() {
   return useQuery({
     queryKey: ['applications', 'mine'],
     queryFn: () => applicationsApi.getMine(),
-    select: (response) => response.data?.data as { items: Application[]; pagination: any },
   });
 }
 

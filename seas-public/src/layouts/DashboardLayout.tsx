@@ -39,7 +39,7 @@ const DashboardLayout: React.FC = () => {
               <span className="material-symbols-outlined">dashboard</span>
               <span className="font-body text-sm font-medium">Dashboard</span>
             </Link>
-            <Link to="#" className="flex items-center space-x-3 p-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out rounded-lg">
+            <Link to="/applications" className="flex items-center space-x-3 p-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out rounded-lg">
               <span className="material-symbols-outlined">description</span>
               <span className="font-body text-sm font-medium">Application</span>
             </Link>

@@ -7,6 +7,7 @@ import { LandingPage } from './components/landing';
 import { LoginPage, RegisterPage, OTPVerificationPage, ResetPasswordPage, ForgotPasswordPage } from './pages/auth';
 import { DashboardPage } from './pages/dashboard';
 import { ApplicationPage } from './pages/application';
+import { MyApplicationsPage } from './pages/applications';
 import ProtectedRoute from './components/common/ProtectedRoute';
 
 function App() {
@@ -31,10 +32,34 @@ function App() {
               } 
             />
             <Route 
-              path="/application" 
+              path="/applications" 
+              element={
+                <ProtectedRoute>
+                  <MyApplicationsPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/application/new" 
               element={
                 <ProtectedRoute>
                   <ApplicationPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/application/edit/:id" 
+              element={
+                <ProtectedRoute>
+                  <ApplicationPage mode="edit" />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/applications/:id" 
+              element={
+                <ProtectedRoute>
+                  <ApplicationPage mode="view" />
                 </ProtectedRoute>
               } 
             />
