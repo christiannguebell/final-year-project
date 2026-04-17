@@ -19,6 +19,13 @@ seas concour system/
 - **PostgreSQL** 15+ (for local development)
 - **Docker** & Docker Compose (optional, for containerized setup)
 
+> **Note**: Maildev is used to capture emails locally during development. The backend sends emails to Maildev SMTP (localhost:1025), and you can view them at `http://localhost:1080`.
+>
+> If you don't have maildev installed globally:
+> ```bash
+> npm install -g maildev
+> ```
+
 ## Quick Start
 
 ### Option 1: Local Development
@@ -50,17 +57,22 @@ seas concour system/
 
 5. **Start PostgreSQL** (ensure it's running locally)
 
-6. **Run all three applications:**
+6. **Run all applications:**
    ```bash
-   # Terminal 1 - Backend (port 3000)
+   # Terminal 1 - Maildev (catches emails locally, port 1080)
+   cd seas-backend && pnpm maildev
+
+   # Terminal 2 - Backend (port 3000)
    cd seas-backend && pnpm dev
 
-   # Terminal 2 - Admin (port 3001)
+   # Terminal 3 - Admin (port 3001)
    cd seas-admin && pnpm dev
 
-   # Terminal 3 - Public (port 3002)
+   # Terminal 4 - Public (port 3002)
    cd seas-public && pnpm dev
    ```
+
+   **Maildev** catches all emails sent by the application locally. View captured emails at: `http://localhost:1080`
 
 ### Option 2: Docker (Backend + Database Only)
 
