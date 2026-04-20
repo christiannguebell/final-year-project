@@ -5,6 +5,8 @@ export interface CreatePaymentDto {
   applicationId: string;
   amount: number;
   paymentDate: Date;
+  method: 'BANK_TRANSFER' | 'MOBILE_MONEY' | 'CASH';
+  transactionId?: string;
   receiptFile?: string;
 }
 
@@ -40,9 +42,9 @@ export const paymentsRepository = {
     return this.findById(id);
   },
 
-  async updateReceipt(id: string, receiptFile: string): Promise<Payment | null> {
+  async updateReceipt(id: string, data: { receiptFile: string; transactionId?: string; amount?: number }): Promise<Payment | null> {
     await AppDataSource.getRepository(Payment).update(id, {
-      receiptFile,
+      ...data,
       status: PaymentStatus.PENDING,
     } as any);
     return this.findById(id);

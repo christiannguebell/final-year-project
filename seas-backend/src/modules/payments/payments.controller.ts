@@ -21,8 +21,9 @@ const getParam = (param: unknown): string => {
 export const paymentsController = {
   async create(req: AuthRequest, res: Response, next: NextFunction) {
     try {
-      const { applicationId, amount, paymentDate } = req.body;
-      const payment = await paymentsService.create(applicationId, amount, new Date(paymentDate));
+      const { applicationId, amount, paymentDate, method, transactionId } = req.body;
+      console.log('Creating payment:', { applicationId, amount, paymentDate, method, transactionId });
+      const payment = await paymentsService.create(applicationId, amount, new Date(paymentDate), method, transactionId);
       res.status(201).json(successResponse(payment, 'Payment recorded'));
     } catch (error) {
       next(error);
@@ -33,12 +34,18 @@ export const paymentsController = {
     try {
       const id = getParam(req.params.id);
       const file = (req as any).file;
+      const { transactionId, amount } = req.body;
       
+      console.log('Uploading receipt for payment:', id, { transactionId, amount, file: file?.filename });
+
       if (!file) {
         throw new Error('No file uploaded');
       }
       
-      const payment = await paymentsService.uploadReceipt(id, file);
+      const payment = await paymentsService.uploadReceipt(id, file, { 
+        transactionId, 
+        amount: amount ? Number(amount) : undefined 
+      });
       res.status(200).json(successResponse(payment, 'Receipt uploaded'));
     } catch (error) {
       next(error);

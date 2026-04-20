@@ -8,6 +8,8 @@ import { LoginPage, RegisterPage, OTPVerificationPage, ResetPasswordPage, Forgot
 import { DashboardPage } from './pages/dashboard';
 import { ApplicationPage } from './pages/application';
 import { MyApplicationsPage } from './pages/applications';
+import { PaymentsPage } from './pages/payments';
+import ApplicationPaymentPage from './pages/payments/ApplicationPaymentPage';
 import ProtectedRoute from './components/common/ProtectedRoute';
 
 function App() {
@@ -60,6 +62,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ApplicationPage mode="view" />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/payments" 
+              element={
+                <ProtectedRoute>
+                  <PaymentsPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/applications/:id/payment" 
+              element={
+                <ProtectedRoute>
+                  <ApplicationPaymentPage />
                 </ProtectedRoute>
               } 
             />

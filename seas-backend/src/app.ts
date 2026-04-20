@@ -45,6 +45,12 @@ app.use(sanitizeInput);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Request logging middleware
+app.use((req, _res, next) => {
+  logger.info(`${req.method} ${req.url}`);
+  next();
+});
+
 /**
  * @openapi
  * /api/health:

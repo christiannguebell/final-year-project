@@ -33,6 +33,16 @@ export class Payment {
   @Column({ name: 'payment_date' })
   paymentDate!: Date;
 
+  @Column({ name: 'transaction_id', nullable: true })
+  transactionId!: string;
+
+  @Column({
+    type: 'enum',
+    enum: ['BANK_TRANSFER', 'MOBILE_MONEY', 'CASH'],
+    default: 'BANK_TRANSFER'
+  })
+  method!: 'BANK_TRANSFER' | 'MOBILE_MONEY' | 'CASH';
+
   @Column({ name: 'receipt_file', nullable: true })
   receiptFile!: string;
 

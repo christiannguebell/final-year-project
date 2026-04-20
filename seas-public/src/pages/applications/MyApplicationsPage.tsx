@@ -19,6 +19,7 @@ import {
   CreditCard,
   HelpCircle,
   LogOut,
+  Wallet,
 } from 'lucide-react';
 import { useMyApplications } from '../../hooks/useApplications';
 import type { Application } from '../../types/entities';
@@ -287,6 +288,7 @@ function FilterButton({ icon, label }: FilterButtonProps) {
 }
 
 const ApplicationCard: React.FC<{ app: Application; index: number }> = ({ app, index }) => {
+  const navigate = useNavigate();
   const isPrimary = index === 0;
 
   const statusColors: Record<string, string> = {
@@ -311,6 +313,22 @@ const ApplicationCard: React.FC<{ app: Application; index: number }> = ({ app, i
     } catch {
       return dateString;
     }
+  };
+
+  const paymentStatus = useMemo(() => {
+    const payments = (app as any).payments || [];
+    if (payments.length === 0) return 'unpaid';
+    if (payments.some((p: any) => p.status === 'verified')) return 'paid';
+    if (payments.some((p: any) => p.status === 'pending')) return 'pending_verification';
+    if (payments.every((p: any) => p.status === 'rejected')) return 'rejected';
+    return 'unpaid';
+  }, [app]);
+
+  const paymentStatusConfig: Record<string, { label: string; class: string }> = {
+    paid: { label: 'Paid', class: 'bg-secondary/10 text-secondary border border-secondary/20' },
+    pending_verification: { label: 'Pending Verification', class: 'bg-primary-container/20 text-primary border border-primary/20' },
+    rejected: { label: 'Payment Rejected', class: 'bg-error/10 text-error border border-error/20' },
+    unpaid: { label: 'Unpaid', class: 'bg-surface-container-high text-on-surface-variant' },
   };
 
   return (
@@ -344,14 +362,23 @@ const ApplicationCard: React.FC<{ app: Application; index: number }> = ({ app, i
             ID: {app.id.slice(0, 8).toUpperCase()}
           </p>
         </div>
-        <span
-          className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-tight ${statusColors[app.status]}`}
-        >
-          {statusLabels[app.status]}
-        </span>
+        <div className="flex flex-col items-end gap-2">
+          <span
+            className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-tight ${statusColors[app.status]}`}
+          >
+            {statusLabels[app.status]}
+          </span>
+          {app.status !== 'draft' && (
+            <span
+              className={`px-3 py-1.5 rounded-full text-[10px] font-bold tracking-tight ${paymentStatusConfig[paymentStatus].class}`}
+            >
+              {paymentStatusConfig[paymentStatus].label}
+            </span>
+          )}
+        </div>
       </div>
 
-      <div className="mt-auto pt-6 border-t border-outline-variant/5 flex items-center justify-between">
+      <div className="mt-auto pt-6 border-t border-outline-variant/5 flex items-center justify-between gap-3">
         <div>
           <p className="text-[10px] text-outline font-extrabold uppercase tracking-widest mb-1">
             {app.status === 'draft' ? 'LAST SAVED' : 'SUBMITTED ON'}
@@ -362,6 +389,7 @@ const ApplicationCard: React.FC<{ app: Application; index: number }> = ({ app, i
               : formatDate(app.createdAt)}
           </p>
         </div>
+        <div className="flex items-center gap-2">
         <button
           onClick={() => {
             if (app.status === 'draft') {
@@ -385,6 +413,20 @@ const ApplicationCard: React.FC<{ app: Application; index: number }> = ({ app, i
               ? 'View Decision'
               : 'View Details'}
         </button>
+        {app.status === 'submitted' && paymentStatus !== 'paid' && (
+          <button
+            onClick={() => navigate(`/applications/${app.id}/payment`)}
+            className={`text-xs font-headline font-bold px-4 py-2 rounded-lg transition-all flex items-center gap-1 ${
+              paymentStatus === 'pending_verification'
+                ? 'bg-primary-container/10 text-primary border border-primary/20 hover:bg-primary-container/20'
+                : 'bg-secondary text-white hover:bg-secondary-container'
+            }`}
+          >
+            <Wallet size={12} />
+            {paymentStatus === 'pending_verification' ? 'Payment Pending' : 'Pay Now'}
+          </button>
+        )}
+        </div>
       </div>
     </motion.div>
   );
