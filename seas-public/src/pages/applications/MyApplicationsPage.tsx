@@ -3,9 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { format } from 'date-fns';
 import {
-  Bell,
-  Settings,
-  GraduationCap,
   Search,
   ListFilter,
   ArrowUpDown,
@@ -17,12 +14,12 @@ import {
   ArrowUpRight,
   BarChart3,
   CreditCard,
-  HelpCircle,
-  LogOut,
   Wallet,
 } from 'lucide-react';
 import { useMyApplications } from '../../hooks/useApplications';
 import type { Application } from '../../types/entities';
+import TopNav from '../../components/layout/TopNav';
+import Sidebar from '../../components/layout/Sidebar';
 
 const statusLabels: Record<string, string> = {
   under_review: 'Under Review',
@@ -58,70 +55,10 @@ export default function MyApplicationsPage() {
   );
 
   return (
-    <div className="flex min-h-screen bg-surface">
-      <aside className="w-64 bg-surface-container-low border-r border-outline-variant/10 flex flex-col fixed inset-y-0 left-0 z-50">
-        <div className="p-6 flex items-center gap-3 mb-8">
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-            <GraduationCap className="text-white w-6 h-6 fill-white" />
-          </div>
-          <div>
-            <h2 className="font-headline font-bold text-sm text-primary leading-tight">
-              Candidate Portal
-            </h2>
-            <p className="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">
-              Engineering & Sciences
-            </p>
-          </div>
-        </div>
-
-        <nav className="flex-1 px-4 space-y-1">
-          <NavItem icon={<BarChart3 size={20} />} label="Dashboard" />
-          <NavItem icon={<FileText size={20} />} label="Application" active />
-          <NavItem icon={<CreditCard size={20} />} label="Payments" />
-          <NavItem icon={<GraduationCap size={20} />} label="Exam Hub" />
-          <NavItem icon={<BarChart3 size={20} />} label="Results" />
-        </nav>
-
-        <div className="p-4 border-t border-outline-variant/10 space-y-1">
-          <NavItem icon={<HelpCircle size={20} />} label="Support" />
-          <NavItem icon={<LogOut size={20} />} label="Sign Out" />
-        </div>
-      </aside>
-
-      <div className="flex-1 ml-64">
-        <header className="h-16 px-8 flex items-center justify-between sticky top-0 bg-surface/80 backdrop-blur-md z-40 border-b border-outline-variant/10">
-          <div className="flex items-center gap-8">
-            <span className="font-headline font-extrabold text-primary tracking-tighter text-lg pr-8 border-r border-outline-variant/20">
-              SEAS Exam Management
-            </span>
-            <nav className="hidden lg:flex items-center gap-6">
-              <HeaderLink label="Admissions" />
-              <HeaderLink label="Programs" />
-              <HeaderLink label="Resources" />
-              <HeaderLink label="Help" />
-            </nav>
-          </div>
-
-          <div className="flex items-center gap-5">
-            <button className="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors relative">
-              <Bell size={20} />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
-            </button>
-            <button className="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors">
-              <Settings size={20} />
-            </button>
-            <div className="flex items-center gap-3 pl-2">
-              <img
-                src="https://picsum.photos/seed/student/100/100"
-                alt="Profile"
-                className="w-8 h-8 rounded-full object-cover border border-outline-variant/20"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-        </header>
-
-        <main className="p-10 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-surface">
+      <TopNav />
+      <Sidebar />
+      <main className="ml-64 pt-24 pb-12 px-10">
           <div className="flex justify-between items-end mb-10">
             <div>
               <motion.h1
@@ -218,58 +155,7 @@ export default function MyApplicationsPage() {
             </div>
           </section>
         </main>
-
-        <footer className="px-12 py-16 border-t border-outline-variant/10 bg-surface-container-low/30">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div>
-              <h3 className="font-headline font-bold text-primary text-lg">
-                SEAS Engineering Excellence
-              </h3>
-              <p className="text-xs text-on-surface-variant font-medium mt-1 tracking-wide">
-                © 2024 SEAS Engineering Excellence. All rights reserved.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-10">
-              <FooterLink label="Institutional Privacy" />
-              <FooterLink label="Accessibility" />
-              <FooterLink label="Technical Standards" />
-              <FooterLink label="Contact SEAS" />
-            </div>
-          </div>
-        </footer>
-      </div>
     </div>
-  );
-}
-
-interface NavItemProps {
-  icon: React.ReactNode;
-  label: string;
-  active?: boolean;
-}
-
-function NavItem({ icon, label, active = false }: NavItemProps) {
-  return (
-    <button
-      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
-        active
-          ? 'bg-white text-secondary font-bold shadow-sm shadow-black/5'
-          : 'text-on-surface-variant font-medium hover:bg-surface-container-high'
-      }`}
-    >
-      <span className={active ? 'text-secondary' : 'text-outline-variant'}>
-        {icon}
-      </span>
-      <span className="text-sm">{label}</span>
-    </button>
-  );
-}
-
-function HeaderLink({ label }: { label: string }) {
-  return (
-    <button className="text-sm font-headline font-bold text-on-surface hover:text-primary transition-colors tracking-tight">
-      {label}
-    </button>
   );
 }
 

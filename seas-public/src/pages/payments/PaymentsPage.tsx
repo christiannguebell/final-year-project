@@ -3,25 +3,21 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { format } from 'date-fns';
 import {
-  Bell,
-  Settings,
-  GraduationCap,
-  Info,
   Smartphone,
   CloudUpload,
   Clock,
-  ClipboardList,
   CheckCircle2,
   RefreshCw,
   XCircle,
   Download,
   Wallet,
   ArrowLeft,
-  Send,
   ArrowRight,
 } from 'lucide-react';
 import { usePayments, useCreatePayment, usePaymentsByApplication, useUploadPaymentReceipt } from '../../hooks/usePayments';
 import type { Payment, PaymentStatus } from '../../types/entities';
+import TopNav from '../../components/layout/TopNav';
+import Sidebar from '../../components/layout/Sidebar';
 
 export default function PaymentsPage() {
   const { id: applicationId } = useParams();
@@ -34,58 +30,15 @@ export default function PaymentsPage() {
 }
 
 function PaymentsListPage() {
+  const navigate = useNavigate();
   const { data: payments } = usePayments();
   const paymentList: Payment[] = (payments as Payment[]) || [];
-  const navigate = useNavigate();
 
   return (
-    <div className="flex min-h-screen bg-surface">
-      <aside className="w-64 bg-surface-container-low border-r border-outline-variant/10 flex flex-col fixed inset-y-0 left-0 z-50">
-        <div className="p-6 flex items-center gap-3 mb-8">
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-            <GraduationCap className="text-white w-6 h-6 fill-white" />
-          </div>
-          <div>
-            <h2 className="font-headline font-bold text-sm text-primary leading-tight">
-              Candidate Portal
-            </h2>
-            <p className="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">
-              Engineering & Sciences
-            </p>
-          </div>
-        </div>
-
-        <nav className="flex-1 px-4 space-y-1">
-          <NavItem icon={<Wallet size={20} />} label="Payments" active />
-          <NavItem icon={<GraduationCap size={20} />} label="Applications" onClick={() => navigate('/applications')} />
-          <NavItem icon={<ClipboardList size={20} />} label="Results" />
-        </nav>
-
-        <div className="p-4 border-t border-outline-variant/10 space-y-1">
-          <NavItem icon={<Info size={20} />} label="Support" />
-          <NavItem icon={<Send size={20} />} label="Sign Out" />
-        </div>
-      </aside>
-
-      <div className="flex-1 ml-64">
-        <header className="h-16 px-8 flex items-center justify-between sticky top-0 bg-surface/80 backdrop-blur-md z-40 border-b border-outline-variant/10">
-          <div className="flex items-center gap-8">
-            <span className="font-headline font-extrabold text-primary tracking-tighter text-lg">
-              SEAS Exam Management
-            </span>
-          </div>
-          <div className="flex items-center gap-5">
-            <button className="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors relative">
-              <Bell size={20} />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
-            </button>
-            <button className="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors">
-              <Settings size={20} />
-            </button>
-          </div>
-        </header>
-
-        <main className="p-10 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-surface">
+      <TopNav />
+      <Sidebar />
+      <main className="ml-64 pt-24 pb-12 px-10">
           <div className="flex justify-between items-end mb-10">
             <div>
               <motion.h1
@@ -125,18 +78,9 @@ function PaymentsListPage() {
                 ))}
               </div>
             </div>
-          )}
+)}
         </main>
-
-        <footer className="px-12 py-16 border-t border-outline-variant/10 bg-surface-container-low/30">
-          <div className="max-w-7xl mx-auto">
-            <p className="text-xs text-on-surface-variant font-medium tracking-wide">
-              © 2024 SEAS Engineering Excellence. All rights reserved.
-            </p>
-          </div>
-        </footer>
       </div>
-    </div>
   );
 }
 
@@ -239,60 +183,10 @@ function ApplicationPaymentPage({ applicationId }: { applicationId: string }) {
   };
 
   return (
-    <div className="flex min-h-screen bg-surface">
-      <aside className="w-64 bg-surface-container-low border-r border-outline-variant/10 flex flex-col fixed inset-y-0 left-0 z-50">
-        <div className="p-6 flex items-center gap-3 mb-8">
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-            <GraduationCap className="text-white w-6 h-6 fill-white" />
-          </div>
-          <div>
-            <h2 className="font-headline font-bold text-sm text-primary leading-tight">
-              Candidate Portal
-            </h2>
-            <p className="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">
-              Engineering & Sciences
-            </p>
-          </div>
-        </div>
-
-        <nav className="flex-1 px-4 space-y-1">
-          <NavItem icon={<Wallet size={20} />} label="Payments" onClick={() => navigate('/payments')} />
-          <NavItem icon={<GraduationCap size={20} />} label="Applications" onClick={() => navigate('/applications')} active />
-          <NavItem icon={<ClipboardList size={20} />} label="Results" />
-        </nav>
-
-        <div className="p-4 border-t border-outline-variant/10 space-y-1">
-          <NavItem icon={<Info size={20} />} label="Support" />
-          <NavItem icon={<Send size={20} />} label="Sign Out" />
-        </div>
-      </aside>
-
-      <div className="flex-1 ml-64">
-        <header className="h-16 px-8 flex items-center justify-between sticky top-0 bg-surface/80 backdrop-blur-md z-40 border-b border-outline-variant/10">
-          <div className="flex items-center gap-8">
-            <button
-              onClick={() => navigate('/applications')}
-              className="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors"
-            >
-              <ArrowLeft size={18} />
-              <span className="font-headline font-bold text-primary">Back</span>
-            </button>
-            <span className="font-headline font-extrabold text-primary tracking-tighter text-lg">
-              Payment Center
-            </span>
-          </div>
-          <div className="flex items-center gap-5">
-            <button className="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors relative">
-              <Bell size={20} />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
-            </button>
-            <button className="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors">
-              <Settings size={20} />
-            </button>
-          </div>
-        </header>
-
-        <main className="p-10 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-surface">
+      <TopNav />
+      <Sidebar />
+      <main className="ml-64 pt-24 pb-12 px-10">
           <div className="mb-10">
             <motion.h1
               initial={{ opacity: 0, y: 10 }}
@@ -354,15 +248,6 @@ function ApplicationPaymentPage({ applicationId }: { applicationId: string }) {
             </div>
           </div>
         </main>
-
-        <footer className="px-12 py-16 border-t border-outline-variant/10 bg-surface-container-low/30">
-          <div className="max-w-7xl mx-auto">
-            <p className="text-xs text-on-surface-variant font-medium tracking-wide">
-              © 2024 SEAS Engineering Excellence. All rights reserved.
-            </p>
-          </div>
-        </footer>
-      </div>
     </div>
   );
 }

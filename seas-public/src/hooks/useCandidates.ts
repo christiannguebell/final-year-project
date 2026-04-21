@@ -1,11 +1,16 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { candidatesApi, type CreateCandidatePayload, type UpdateCandidatePayload } from '../api/modules/candidates';
 import type { Candidate } from '../types/entities';
+import { STORAGE_KEYS } from '../config/constants';
 
 export function useCandidateProfile() {
   return useQuery({
     queryKey: ['candidate', 'me'],
-    queryFn: () => candidatesApi.getMe(),
+    queryFn: async () => {
+      const response = await candidatesApi.getMe();
+      return response.data?.data || response.data || null;
+    },
+    enabled: !!localStorage.getItem(STORAGE_KEYS.TOKEN),
   });
 }
 
