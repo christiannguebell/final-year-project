@@ -1,4 +1,4 @@
-import { LayoutDashboard, FileText, CreditCard, GraduationCap, BarChart3, HelpCircle, LogOut, School } from 'lucide-react';
+import { LayoutDashboard, FileText, CreditCard, GraduationCap, BarChart3, HelpCircle, LogOut, School, User } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useLogout } from '../../hooks/useAuth';
 import { Link, useLocation } from 'react-router-dom';
@@ -9,6 +9,7 @@ const navItems = [
   { icon: CreditCard, label: 'Payments', path: '/payments' },
   { icon: School, label: 'Exam Hub', path: '/exams' },
   { icon: BarChart3, label: 'Results', path: '/results' },
+  { icon: User, label: 'Profile', path: '/profile' },
 ];
 
 export default function Sidebar() {

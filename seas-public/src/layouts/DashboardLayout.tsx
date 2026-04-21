@@ -55,6 +55,10 @@ const DashboardLayout: React.FC = () => {
               <span className="material-symbols-outlined">analytics</span>
               <span className="font-body text-sm font-medium">Results</span>
             </Link>
+            <Link to="/profile" className="flex items-center space-x-3 p-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out rounded-lg">
+              <span className="material-symbols-outlined">person</span>
+              <span className="font-body text-sm font-medium">Profile</span>
+            </Link>
           </nav>
           
           <div className="mt-auto pt-4 space-y-1">

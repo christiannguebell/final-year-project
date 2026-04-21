@@ -6,7 +6,6 @@ export function useCandidateProfile() {
   return useQuery({
     queryKey: ['candidate', 'me'],
     queryFn: () => candidatesApi.getMe(),
-    select: (response) => response.data?.data,
   });
 }
 
