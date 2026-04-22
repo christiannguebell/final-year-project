@@ -1,4 +1,5 @@
 export * from './useAuth';
+export * from './useAdminAuth';
 export * from './useUsers';
 export * from './useCandidates';
 export * from './usePrograms';

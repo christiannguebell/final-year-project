@@ -1,23 +1,25 @@
 import { useState } from 'react';
-import { Mail, Lock, Eye, LogIn, Accessibility, HelpCircle } from 'lucide-react';
-import { motion } from 'motion/react';
-import { useNavigate } from 'react-router-dom';
-import { AxiosError } from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { GraduationCap, Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { useLogin } from '../../hooks/useAuth';
+import { AxiosError } from 'axios';
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const loginMutation = useLogin();
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
+  
+  const from = (location.state as any)?.from?.pathname || '/dashboard';
 
-  const loginMutation = useLogin();
-
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     loginMutation.mutate({ email, password }, {
       onSuccess: () => {
-        navigate('/dashboard');
+        navigate(from, { replace: true });
       },
       onError: (error: AxiosError<{ message: string }>) => {
         const message = error.response?.data?.message;
@@ -29,111 +31,108 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-surface overflow-x-hidden">
-      <main className="flex-grow flex items-center justify-center relative px-6 py-24">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <img
-            alt="engineering blueprint"
-            className="w-full h-full object-cover opacity-10 blueprint-bg"
-            referrerPolicy="no-referrer"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuYgpjER7Z3j2m6FoPjOBHhsNI2siCsktg5yKXQ2G1H_v8Ad6AGTJS-Gk7Ga-XRIDxRtVWufxsP4YVUxC3jW2vDWeShTgm6x-adVZixsbeeOr3Zp4VUkRDdsKRUg4ac4ZB-USq-rD6jsF4BjwhFFS_jRyWl5iAMrgyh8O08ZwMb4LI6iwTiG5qUqYwbWPdu08Y1qayT7mH4WmLpVsmwto9Cp701aGzVcRNOgpGrcZjuaTXtIA036YZgI5cWYStRRZy6H3Y7shAPIGH"
-          />
-          <div className="absolute inset-0 bg-gradient-to-tr from-surface via-transparent to-primary-container/5"></div>
+    <div className="min-h-screen bg-surface flex">
+      <div className="hidden lg:flex lg:w-1/2 bg-primary relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary opacity-90" />
+        <div className="relative z-10 flex flex-col justify-center px-16 text-white">
+          <div className="flex items-center gap-3 mb-8">
+            <GraduationCap className="w-10 h-10" />
+            <span className="text-2xl font-bold font-headline">SEAS Portal</span>
+          </div>
+          <h1 className="text-5xl font-extrabold font-headline mb-6">
+            Candidate Portal
+          </h1>
+          <p className="text-lg text-white/80 max-w-md">
+            Apply for engineering and applied sciences programs. Track your application status and manage your academic records.
+          </p>
         </div>
+      </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="w-full max-w-md z-10"
-        >
-          <div className="bg-surface-container-lowest rounded-xl shadow-[0px_8px_24px_rgba(25,28,30,0.06)] p-8 md:p-10">
-            <div className="mb-10 text-center">
-              <h1 className="font-headline font-extrabold text-3xl text-primary tracking-tight mb-2">Portal Access</h1>
-              <p className="text-on-surface-variant font-sans">Engineering & Applied Sciences</p>
+      <div className="flex-1 flex items-center justify-center p-8">
+        <div className="w-full max-w-md">
+          <div className="lg:hidden flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+              <GraduationCap className="w-6 h-6" />
             </div>
-
-            <form className="space-y-6" onSubmit={handleLogin}>
-              <div className="space-y-1">
-                <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1" htmlFor="email">Email Address</label>
-                <div className="relative flex items-center">
-                  <Mail className="absolute left-3 text-outline w-4 h-4" />
-                  <input
-                    className="w-full pl-10 pr-4 py-3 bg-surface-container-high rounded-md border-none border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all text-on-surface placeholder:text-outline"
-                    id="email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="engineering.student@seas.edu"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <div className="flex justify-between items-center px-1">
-                  <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant" htmlFor="password">Password</label>
-                   <button type="button" onClick={() => navigate('/forgot-password')} className="text-xs font-semibold text-secondary hover:underline transition-all">Forgot Password?</button>
-                 </div>
-                <div className="relative flex items-center">
-                  <Lock className="absolute left-3 text-outline w-4 h-4" />
-                  <input
-                    className="w-full pl-10 pr-10 py-3 bg-surface-container-high rounded-md border-none border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all text-on-surface placeholder:text-outline"
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                  />
-                  <button
-                    className="absolute right-3 text-outline hover:text-primary"
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    <Eye className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-3 px-1">
-                <input className="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" id="remember" type="checkbox" />
-                <label className="text-sm font-medium text-on-surface-variant" htmlFor="remember">Remember my session</label>
-              </div>
-
-              <button
-                disabled={loginMutation.isPending}
-                className="w-full py-4 bg-primary text-white rounded-lg font-headline font-bold text-base hover:bg-primary-container transition-all active:scale-[0.98] flex items-center justify-center space-x-2 shadow-lg shadow-primary/10 disabled:opacity-70"
-                type="submit"
-              >
-                <span>{loginMutation.isPending ? 'Authenticating...' : 'Enter Dashboard'}</span>
-                <LogIn className="w-5 h-5" />
-              </button>
-            </form>
-
-            <div className="mt-10 pt-8 border-t border-outline-variant/15 text-center">
-              <p className="text-xs text-on-surface-variant font-sans leading-relaxed">
-                By logging in, you agree to the <a className="underline hover:text-primary" href="#">Technical Standards</a> and the <a className="underline hover:text-primary" href="#">Honor Code of Conduct</a>.
-              </p>
-              <p className="mt-4 text-sm">
-                Don't have an account? <button type="button" onClick={() => navigate('/register')} className="text-primary font-bold hover:underline">Register here</button>
-              </p>
-            </div>
+            <span className="text-xl font-bold text-primary">SEAS Portal</span>
           </div>
 
-          <div className="mt-8 flex justify-center space-x-8">
-            <a className="flex items-center space-x-2 text-on-surface-variant hover:text-primary transition-colors text-xs font-semibold" href="#">
-              <Accessibility className="w-4 h-4" />
-              <span>Accessibility</span>
-            </a>
-            <a className="flex items-center space-x-2 text-on-surface-variant hover:text-primary transition-colors text-xs font-semibold" href="#">
-              <HelpCircle className="w-4 h-4" />
-              <span>Support</span>
-            </a>
-          </div>
-        </motion.div>
-      </main>
+          <h2 className="text-3xl font-bold text-primary mb-2">Welcome back</h2>
+          <p className="text-on-surface-variant mb-8">Enter your credentials to access your portal</p>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-on-surface mb-2">
+                Email Address
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-on-surface-variant" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 bg-surface-container-low border-none rounded-lg text-primary focus:ring-2 focus:ring-primary/20"
+                  placeholder="student@seas.edu"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <label className="block text-sm font-medium text-on-surface">
+                  Password
+                </label>
+                <button 
+                  type="button" 
+                  onClick={() => navigate('/forgot-password')}
+                  className="text-xs text-secondary hover:underline"
+                >
+                  Forgot Password?
+                </button>
+              </div>
+              <div className="relative">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-on-surface-variant" />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full pl-12 pr-12 py-3 bg-surface-container-low border-none rounded-lg text-primary focus:ring-2 focus:ring-primary/20"
+                  placeholder="Enter your password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loginMutation.isPending}
+              className="w-full py-3 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary-container transition-colors disabled:opacity-50"
+            >
+              {loginMutation.isPending ? 'Signing in...' : 'Sign In'}
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </form>
+
+          <p className="mt-8 text-center text-sm">
+            Don't have an account?{' '}
+            <button 
+              type="button" 
+              onClick={() => navigate('/register')}
+              className="text-primary font-bold hover:underline"
+            >
+              Register here
+            </button>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
