@@ -58,3 +58,15 @@ export function useDeleteAdmin() {
     },
   });
 }
+
+export function useAdminForgotPassword() {
+  return useMutation({
+    mutationFn: (email: string) => adminAuthApi.forgotPassword(email),
+  });
+}
+
+export function useAdminResetPassword() {
+  return useMutation({
+    mutationFn: (data: { token: string; newPassword: string }) => adminAuthApi.resetPassword(data.token, data.newPassword),
+  });
+}

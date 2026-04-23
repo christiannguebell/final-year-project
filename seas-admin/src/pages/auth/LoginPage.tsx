@@ -107,6 +107,16 @@ export default function LoginPage() {
               Sign In to Console
               <ArrowRight className="w-5 h-5" />
             </button>
+
+            <div className="text-center">
+              <button
+                type="button"
+                onClick={() => navigate('/admin/forgot-password')}
+                className="text-sm text-on-surface-variant hover:text-primary transition-colors"
+              >
+                Forgot Password?
+              </button>
+            </div>
           </form>
         </div>
       </div>

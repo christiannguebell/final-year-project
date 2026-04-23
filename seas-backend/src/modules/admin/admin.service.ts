@@ -246,6 +246,53 @@ export const adminService = {
 
     await userRepository.update(id, { status: 'inactive' as any });
   },
+
+  async forgotPassword(email: string): Promise<void> {
+    const user = await userRepository.findOne({ where: { email } });
+    if (!user) {
+      return;
+    }
+
+    if (user.role === UserRole.CANDIDATE) {
+      throw ApiError.badRequest('Invalid request');
+    }
+
+    const resetToken = generateId();
+    const resetTokenExpiry = new Date(Date.now() + 60 * 60 * 1000);
+    await userRepository.update(user.id, {
+      resetToken,
+      resetTokenExpiry,
+    });
+
+    const resetUrl = `${config.frontendUrl}/admin/reset-password?token=${resetToken}`;
+    await notificationsService.sendTemplatedEmail(
+      user.id,
+      'password-reset',
+      { name: user.firstName || user.email },
+      resetUrl
+    );
+  },
+
+  async resetPassword(token: string, newPassword: string): Promise<void> {
+    const user = await userRepository.findOne({ where: { resetToken: token } });
+
+    if (!user || !user.resetTokenExpiry || user.resetTokenExpiry < new Date()) {
+      throw ApiError.badRequest('Reset token is invalid or has expired');
+    }
+
+    if (user.role === UserRole.CANDIDATE) {
+      throw ApiError.badRequest('Invalid request');
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+
+    await userRepository.update(user.id, {
+      password: hashedPassword,
+      tokenVersion: user.tokenVersion + 1,
+      resetToken: '' as any,
+      resetTokenExpiry: null as any,
+    });
+  },
 };
 
 export default adminService;

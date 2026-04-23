@@ -101,6 +101,26 @@ export const adminController = {
       next(error);
     }
   },
+
+  async forgotPassword(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email } = req.body;
+      await adminService.forgotPassword(email);
+      res.status(200).json(successResponse(null, 'If the email exists, a reset link has been sent'));
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async resetPassword(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { token, newPassword } = req.body;
+      await adminService.resetPassword(token, newPassword);
+      res.status(200).json(successResponse(null, 'Password reset successfully'));
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 export default adminController;

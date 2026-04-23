@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
 import Loading from '@/components/common/Loading';
 import DashboardLayout from '@/layouts/DashboardLayout';
-import { LoginPage, OTPVerificationPage, SetupPasswordPage } from '@/pages/auth';
+import { LoginPage, OTPVerificationPage, SetupPasswordPage, ForgotPasswordPage, ResetPasswordPage } from '@/pages/auth';
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const token = localStorage.getItem('seas_admin_token');
@@ -22,6 +22,8 @@ function App() {
             <Route path="/admin/login" element={<LoginPage />} />
             <Route path="/admin/verify" element={<OTPVerificationPage />} />
             <Route path="/admin/setup-password" element={<SetupPasswordPage />} />
+            <Route path="/admin/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/admin/reset-password" element={<ResetPasswordPage />} />
             <Route path="/" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
               <Route
                 index

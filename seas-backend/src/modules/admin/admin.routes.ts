@@ -50,4 +50,12 @@ router.delete('/admins/:id', authenticate, authorize(UserRole.SUPER_ADMIN), (req
   adminController.deleteAdmin(req, res, next).catch(next);
 });
 
+router.post('/forgot-password', (req, res, next) => {
+  adminController.forgotPassword(req, res, next).catch(next);
+});
+
+router.post('/reset-password', (req, res, next) => {
+  adminController.resetPassword(req, res, next).catch(next);
+});
+
 export default router;
