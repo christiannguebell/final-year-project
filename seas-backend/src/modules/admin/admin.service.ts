@@ -6,6 +6,7 @@ import { ApiError } from '../../common/errors/ApiError';
 import { ADMIN_MESSAGES } from './admin.constants';
 import { generateId } from '../../common/utils';
 import { notificationsService } from '../notifications/notifications.service';
+import { EMAIL_TEMPLATES } from '../notifications';
 
 interface AdminTokenPayload {
   userId: string;
@@ -53,7 +54,7 @@ export const adminService = {
     const verifyUrl = `${config.frontendUrl}/admin/verify/${adminUser.id}?otp=${otp}`;
     await notificationsService.sendTemplatedEmail(
       adminUser.id,
-      'admin-verification',
+      EMAIL_TEMPLATES.OTP_VERIFICATION,
       { name: email, otp, verifyUrl },
       verifyUrl
     );

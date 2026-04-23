@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { adminAuthApi } from '../api/modules/adminAuth';
+import adminAuthApi from '../api/modules/adminAuth';
 import type { LoginRequest, AuthTokens } from '../types/api';
 
 export function useAdminLogin() {

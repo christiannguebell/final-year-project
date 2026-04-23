@@ -2,18 +2,26 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GraduationCap, Mail, ArrowLeft } from 'lucide-react';
 import { useAdminForgotPassword } from '../../hooks/useAdminAuth';
+import { useToast } from '../../providers';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
   const navigate = useNavigate();
   const forgotMutation = useAdminForgotPassword();
+  const { addToast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
       forgotMutation.mutate(email, {
-        onSuccess: () => setSuccessMsg('A password reset link has been sent to your email.'),
+        onSuccess: () => {
+          addToast('Password reset link sent to your email!', 'success');
+          setSuccessMsg('A password reset link has been sent to your email.');
+        },
+        onError: () => {
+          addToast('Failed to send reset link. Please try again.', 'error');
+        },
       });
     }
   };

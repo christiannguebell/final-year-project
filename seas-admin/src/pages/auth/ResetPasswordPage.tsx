@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GraduationCap, Lock, Eye, EyeOff, CheckCircle, XCircle } from 'lucide-react';
 import { useAdminResetPassword } from '../../hooks/useAdminAuth';
+import { useToast } from '../../providers';
 
 function PasswordCheck({ label, valid }: { label: string; valid: boolean }) {
   return (
@@ -20,6 +21,7 @@ export default function ResetPasswordPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const resetMutation = useAdminResetPassword();
+  const { addToast } = useToast();
 
   const token = new URLSearchParams(location.search).get('token');
 
@@ -44,7 +46,13 @@ export default function ResetPasswordPage() {
     resetMutation.mutate(
       { token, newPassword: password },
       {
-        onSuccess: () => navigate('/admin/login', { state: { message: 'Password reset! Please login with new password.' } }),
+        onSuccess: () => {
+          addToast('Password reset successfully!', 'success');
+          navigate('/admin/login', { state: { message: 'Password reset! Please login with new password.' } });
+        },
+        onError: () => {
+          addToast('Failed to reset password. The link may be expired.', 'error');
+        },
       }
     );
   };

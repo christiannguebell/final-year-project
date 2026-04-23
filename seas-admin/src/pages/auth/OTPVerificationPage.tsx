@@ -1,12 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Shield, KeyRound } from 'lucide-react';
+import { useVerifyOtp, useResendOtp } from '../../hooks/useAdminAuth';
+import { useToast } from '../../providers';
 
 export default function OTPVerificationPage() {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
+  const verifyMutation = useVerifyOtp();
+  const resendMutation = useResendOtp();
+  const { addToast } = useToast();
 
   const email = new URLSearchParams(location.search).get('email') || '';
   const userId = new URLSearchParams(location.search).get('userId') || '';
@@ -19,11 +24,11 @@ export default function OTPVerificationPage() {
 
   const handleChange = (index: number, value: string) => {
     if (!/^\d*$/.test(value)) return;
-    
+
     const newOtp = [...otp];
     newOtp[index] = value.slice(-1);
     setOtp(newOtp);
-    
+
     if (value && index < 5) {
       inputRefs.current[index + 1]?.focus();
     }
@@ -35,23 +40,34 @@ export default function OTPVerificationPage() {
     }
   };
 
-  const handleVerify = async () => {
+  const handleVerify = () => {
     const code = otp.join('');
     if (code.length !== 6) return;
 
-    try {
-      const response = await fetch('http://localhost:3000/api/admin/verify-otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId, otp: code }),
-      });
-      const data = await response.json();
-      if (data.success) {
-        navigate('/admin/setup-password', { state: { userId, email } });
+    verifyMutation.mutate(
+      { userId, otp: code },
+      {
+        onSuccess: () => {
+          addToast('Account verified successfully!', 'success');
+          navigate('/admin/setup-password', { state: { userId, email } });
+        },
+        onError: () => {
+          addToast('Invalid verification code. Please try again.', 'error');
+        },
       }
-    } catch (error) {
-      console.error('Verification failed:', error);
-    }
+    );
+  };
+
+  const handleResend = () => {
+    if (!email) return;
+    resendMutation.mutate(email, {
+      onSuccess: () => {
+        addToast('Verification code resent to your email!', 'success');
+      },
+      onError: () => {
+        addToast('Failed to resend code. Please try again.', 'error');
+      },
+    });
   };
 
   return (
@@ -83,7 +99,7 @@ export default function OTPVerificationPage() {
 
           <h2 className="text-3xl font-bold text-primary mb-2 text-center">Verify Your Account</h2>
           <p className="text-on-surface-variant mb-8 text-center">
-            Enter the 6-digit code sent to your email
+            Enter the 6-digit code sent to <span className="text-primary font-semibold">{email}</span>
           </p>
 
           <div className="flex justify-center gap-3 mb-8">
@@ -104,16 +120,21 @@ export default function OTPVerificationPage() {
 
           <button
             onClick={handleVerify}
-            disabled={otp.join('').length !== 6}
+            disabled={verifyMutation.isPending || otp.join('').length !== 6}
             className="w-full py-3 bg-primary text-white rounded-lg font-bold hover:bg-primary-container transition-colors disabled:opacity-50"
           >
-            Verify Account
+            {verifyMutation.isPending ? 'Verifying...' : 'Verify Account'}
           </button>
 
           <p className="mt-8 text-center text-sm text-on-surface-variant">
             Didn't receive the code?{' '}
-            <button type="button" className="text-primary font-bold hover:underline">
-              Resend Code
+            <button
+              type="button"
+              onClick={handleResend}
+              disabled={resendMutation.isPending}
+              className="text-primary font-bold hover:underline disabled:opacity-50"
+            >
+              {resendMutation.isPending ? 'Sending...' : 'Resend Code'}
             </button>
           </p>
         </div>
