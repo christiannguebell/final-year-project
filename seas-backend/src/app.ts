@@ -6,9 +6,8 @@ import helmet from 'helmet';
 import path from 'path';
 import fs from 'fs';
 import { errorHandler, notFoundHandler } from './middlewares';
-import { validateConnections, getCriticalConnectionFailures } from './config/connection.validator';
+import { validateConnections } from './config/connection.validator';
 import { logger } from './common/logger';
-import { AppDataSource } from './database';
 import { apiReference } from '@scalar/express-api-reference';
 import { swaggerSpec } from './config/swagger';
 import { generalLimiter } from './middlewares/security.middleware';
@@ -71,7 +70,7 @@ app.get('/api/health', async (_req: Request, res: Response) => {
   try {
     const connections = await validateConnections();
     const allConnected = connections.every((c) => c.status === 'connected');
-    
+
     res.status(allConnected ? 200 : 503).json({
       success: allConnected,
       message: allConnected ? 'All services operational' : 'Some services unavailable',
