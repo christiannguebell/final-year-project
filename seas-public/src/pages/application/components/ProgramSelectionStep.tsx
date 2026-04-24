@@ -17,9 +17,9 @@ export const ProgramSelectionStep = ({ onNext, onBack, data }: { onNext: (data: 
       try {
         const response = await apiClient.get<Program[]>('/programs');
         setPrograms(response.data?.data || []);
-      } catch (error: any) {
-        toast.error('Failed to load programs');
-      } finally {
+       } catch {
+         toast.error('Failed to load programs');
+       } finally {
         setIsLoading(false);
       }
     };

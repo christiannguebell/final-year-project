@@ -55,23 +55,23 @@ export default function ProfilePage() {
     language: 'English (United States)',
   });
 
-  useEffect(() => {
-    if (candidate) {
-      const user = (candidate as any).user || {};
-      const rawDateOfBirth = candidate.dateOfBirth || '';
-      const formattedDate = rawDateOfBirth ? rawDateOfBirth.split('T')[0] : '';
-      setFormData({
-        firstName: candidate.firstName || user.firstName || '',
-        lastName: candidate.lastName || user.lastName || '',
-        email: candidate.email || user.email || '',
-        phone: candidate.phone || user.phone || '',
-        dateOfBirth: formattedDate,
-        address: candidate.address || '',
-        city: candidate.city || '',
-        country: candidate.country || '',
-      });
-    }
-  }, [candidate]);
+   useEffect(() => {
+     if (candidate) {
+       const rawDateOfBirth = candidate.dateOfBirth || '';
+       const formattedDate = rawDateOfBirth ? rawDateOfBirth.split('T')[0] : '';
+       // eslint-disable-next-line react-hooks/set-state-in-effect
+       setFormData({
+         firstName: candidate.firstName || '',
+         lastName: candidate.lastName || '',
+         email: candidate.email || '',
+         phone: candidate.phone || '',
+         dateOfBirth: formattedDate,
+         address: candidate.address || '',
+         city: candidate.city || '',
+         country: candidate.country || '',
+       });
+     }
+   }, [candidate]);
 
   const handleSave = () => {
     updateCandidate.mutate({
@@ -91,8 +91,8 @@ export default function ProfilePage() {
   }
 
   const fullName = `${formData.firstName} ${formData.lastName}`.trim() || 'Candidate';
-  const candidateId = (candidate as any)?.candidateNumber || 'N/A';
-  const photoUrl = (candidate as any)?.profilePhoto || candidate?.photoUrl || null;
+  const candidateId = candidate?.candidateNumber || 'N/A';
+  const photoUrl = candidate?.profilePhoto || candidate?.photoUrl || null;
 
   return (
     <div className="min-h-screen bg-surface">

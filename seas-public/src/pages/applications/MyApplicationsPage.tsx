@@ -32,15 +32,8 @@ export default function MyApplicationsPage() {
   const navigate = useNavigate();
 
   const { data: response, isLoading, error } = useMyApplications();
-  
-  let applicationList: Application[] = [];
-  if (Array.isArray(response)) {
-    applicationList = response;
-  } else if (response?.data && Array.isArray(response.data)) {
-    applicationList = response.data;
-  } else if ((response as any)?.data?.data) {
-    applicationList = (response as any).data.data;
-  }
+
+  const applicationList = useMemo(() => response?.items ?? [], [response]);
 
   const filteredApplications = useMemo(
     () =>
@@ -200,11 +193,11 @@ const ApplicationCard: React.FC<{ app: Application; index: number }> = ({ app, i
   };
 
   const paymentStatus = useMemo(() => {
-    const payments = (app as any).payments || [];
+    const payments = app.payments || [];
     if (payments.length === 0) return 'unpaid';
-    if (payments.some((p: any) => p.status === 'verified')) return 'paid';
-    if (payments.some((p: any) => p.status === 'pending')) return 'pending_verification';
-    if (payments.every((p: any) => p.status === 'rejected')) return 'rejected';
+    if (payments.some(p => p.status === 'verified')) return 'paid';
+    if (payments.some(p => p.status === 'pending')) return 'pending_verification';
+    if (payments.every(p => p.status === 'rejected')) return 'rejected';
     return 'unpaid';
   }, [app]);
 
@@ -329,11 +322,3 @@ function EditorialLink({ label }: { label: string }) {
     </button>
   );
 };
-
-function FooterLink({ label }: { label: string }) {
-  return (
-    <button className="text-[11px] font-bold text-on-surface-variant hover:text-secondary transition-colors tracking-wide uppercase">
-      {label}
-    </button>
-  );
-}

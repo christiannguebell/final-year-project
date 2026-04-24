@@ -1,3 +1,5 @@
+import type { Candidate, Document } from './entities';
+
 export interface CandidateProfile {
   id?: string;
   userId: string;
@@ -51,10 +53,10 @@ export interface Application {
   programId: string;
   status: 'draft' | 'submitted' | 'under_review' | 'approved' | 'rejected';
   personalStatement?: string;
-  candidate?: any;
+  candidate?: Candidate;
   program?: Program;
   academicRecords?: AcademicRecord[];
-  documents?: any[];
+  documents?: Document[];
   payments?: Payment[];
   createdAt?: string;
   updatedAt?: string;

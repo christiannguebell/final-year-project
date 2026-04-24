@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { examsApi } from '../api/modules/exams';
 import type { ExamSession, ExamCenter, ExamAssignment } from '../types/entities';
+import type { PaginatedResponse } from '../types/api';
 
 export function useExamSessions() {
   return useQuery({
     queryKey: ['exam', 'sessions'],
     queryFn: () => examsApi.getSessions(),
-    select: (response) => response.data as { items: ExamSession[]; pagination: any },
+    select: (response) => response.data as PaginatedResponse<ExamSession>,
   });
 }
 
@@ -23,7 +24,7 @@ export function useExamCenters() {
   return useQuery({
     queryKey: ['exam', 'centers'],
     queryFn: () => examsApi.getCenters(),
-    select: (response) => response.data as { items: ExamCenter[]; pagination: any },
+    select: (response) => response.data as PaginatedResponse<ExamCenter>,
   });
 }
 

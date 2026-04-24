@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { programsApi, type ListProgramsParams } from '../api/modules/programs';
 import type { Program } from '../types/entities';
+import type { PaginatedResponse } from '../types/api';
 
 export function usePrograms(params?: ListProgramsParams) {
   return useQuery({
     queryKey: ['programs', params],
     queryFn: () => programsApi.list(params),
-    select: (response) => response.data as { items: Program[]; pagination: any },
+    select: (response) => response.data as PaginatedResponse<Program>,
   });
 }
 

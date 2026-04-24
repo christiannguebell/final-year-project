@@ -2,7 +2,7 @@ import apiClient from '../client';
 import type { Notification } from '@/types/entities';
 import type { PaginatedParams, PaginatedResponse } from '@/types/api';
 
-export interface ListNotificationsParams extends PaginatedParams {}
+export type ListNotificationsParams = PaginatedParams;
 
 export const notificationsApi = {
   async list(params?: ListNotificationsParams) {

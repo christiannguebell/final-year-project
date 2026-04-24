@@ -26,7 +26,7 @@ export const AcademicRecordsStep = ({ onNext, onBack, data }: { onNext: (data: P
       try {
         const response = await apiClient.get<AcademicRecord[]>(`/academic-records/application/${data.id}`);
         setRecords(response.data?.data || []);
-      } catch (error: any) {
+      } catch {
         console.error('Failed to fetch academic records');
       } finally {
         setIsLoading(false);
@@ -55,10 +55,10 @@ export const AcademicRecordsStep = ({ onNext, onBack, data }: { onNext: (data: P
         setRecords([...records, response.data.data]);
       }
       toast.success('Academic record saved');
-    } catch (error: any) {
-      toast.error('Failed to save academic record');
-      return;
-    }
+      } catch {
+        toast.error('Failed to save academic record');
+        return;
+      }
 
     setIsAdding(false);
     setNewRecord({ institution: '', degree: '', startDate: '', endDate: '', grade: '', fieldOfStudy: '' });
@@ -69,9 +69,9 @@ export const AcademicRecordsStep = ({ onNext, onBack, data }: { onNext: (data: P
       await apiClient.delete(`/academic-records/${id}`);
       setRecords(records.filter(r => r.id !== id));
       toast.success('Record removed');
-    } catch (error: any) {
-      toast.error('Failed to delete record');
-    }
+     } catch {
+       toast.error('Failed to delete record');
+     }
   };
 
   if (isLoading) {

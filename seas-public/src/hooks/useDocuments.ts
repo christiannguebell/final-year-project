@@ -1,12 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { documentsApi, type UploadDocumentPayload } from '../api/modules/documents';
 import type { Document } from '../types/entities';
+import type { PaginatedResponse } from '../types/api';
+import type { DocumentType } from '../types/entities';
 
 export function useDocuments(type?: string) {
   return useQuery({
     queryKey: ['documents', type],
-    queryFn: () => documentsApi.list(type ? { type: type as any } : undefined),
-    select: (response) => response.data as { items: Document[]; pagination: any },
+    queryFn: () => documentsApi.list(type ? { type: type as DocumentType } : undefined),
+    select: (response) => response.data as PaginatedResponse<Document>,
   });
 }
 

@@ -13,6 +13,7 @@ export interface Candidate {
   city?: string;
   country?: string;
   photoUrl?: string;
+  profilePhoto?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -41,6 +42,7 @@ export interface Application {
   candidate?: Candidate;
   status: ApplicationStatus;
   submittedAt?: string;
+  payments?: Payment[];
   createdAt: string;
   updatedAt: string;
 }

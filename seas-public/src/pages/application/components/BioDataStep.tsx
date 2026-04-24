@@ -49,7 +49,7 @@ export const BioDataStep = ({ onNext, data }: { onNext: (data: Partial<Applicati
       
       toast.success('Foundational profile saved');
       onNext({ id: applicationId, candidate: { profile: formData } });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to save bio data', error);
       toast.error('Failed to initialize application. Please try again.');
     }

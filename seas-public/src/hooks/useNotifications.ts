@@ -1,12 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { notificationsApi } from '../api/modules/notifications';
 import type { Notification } from '../types/entities';
+import type { PaginatedResponse } from '../types/api';
 
 export function useNotifications() {
   return useQuery({
     queryKey: ['notifications'],
     queryFn: () => notificationsApi.list(),
-    select: (response) => response.data as { items: Notification[]; pagination: any },
+    select: (response) => response.data as PaginatedResponse<Notification>,
   });
 }
 

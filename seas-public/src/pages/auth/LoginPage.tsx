@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, type Location } from 'react-router-dom';
 import { GraduationCap, Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { useLogin } from '../../hooks/useAuth';
 import { AxiosError } from 'axios';
+
+interface LocationState {
+  from?: Location;
+}
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -13,7 +17,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   
-  const from = (location.state as any)?.from?.pathname || '/dashboard';
+  const from = (location.state as LocationState)?.from?.pathname || '/dashboard';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -10,7 +10,7 @@ export interface CreateCandidatePayload {
   country?: string;
 }
 
-export interface UpdateCandidatePayload extends Partial<CreateCandidatePayload> {}
+export type UpdateCandidatePayload = Partial<CreateCandidatePayload>;
 
 export const candidatesApi = {
   async create(data: CreateCandidatePayload) {

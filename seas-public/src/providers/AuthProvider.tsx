@@ -1,19 +1,8 @@
-import { createContext, useContext, useState, type ReactNode, type Dispatch, type SetStateAction } from 'react';
+import { useState, type ReactNode } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import type { User } from '../types/api';
 import { STORAGE_KEYS } from '../config/constants';
-
-interface AuthContextType {
-  user: User | null;
-  isAuthenticated: boolean;
-  isLoading: boolean;
-  setUser: Dispatch<SetStateAction<User | null>>;
-  login: (user: User, token: string, refreshToken: string) => void;
-  logout: () => void;
-  checkAuth: () => void;
-}
-
-const AuthContext = createContext<AuthContextType | null>(null);
+import { AuthContext, type AuthContextType } from './AuthContext';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -81,14 +70,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
-
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
 }
 
 export default AuthProvider;

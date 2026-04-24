@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GraduationCap, Lock, Eye, EyeOff, CheckCircle, XCircle } from 'lucide-react';
 import { useResetPassword } from '../../hooks/useAuth';
-import type { ResetPasswordRequest, ApiResponse } from '@/types/api';
 
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState('');
