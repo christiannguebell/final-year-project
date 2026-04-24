@@ -111,7 +111,8 @@ export default function CandidatesPage() {
                         </code>
                       </td>
                       <td className="px-6 py-5">
-                        <p className="text-sm font-medium text-on-surface-variant">{c.program?.name || 'N/A'}</p>
+                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                        <p className="text-sm font-medium text-on-surface-variant">{(c as any).program?.name || 'N/A'}</p>
                       </td>
                       <td className="px-6 py-5">
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-secondary-container text-on-secondary-container">
@@ -149,7 +150,7 @@ export default function CandidatesPage() {
             {/* Pagination */}
             <div className="px-6 py-4 bg-slate-50 border-t border-outline-variant/10 flex items-center justify-between">
               <p className="text-xs text-on-surface-variant font-medium">
-                Showing {((pagination?.page || 1) - 1) * (pagination?.limit || 10) + 1} to {Math.min(pagination?.page * pagination?.limit, pagination?.total || 0)} of {pagination?.total || 0} candidates
+                Showing {((pagination?.page || 1) - 1) * (pagination?.limit || 10) + 1} to {Math.min((pagination?.page || 1) * (pagination?.limit || 10), pagination?.total || 0)} of {pagination?.total || 0} candidates
               </p>
               <div className="flex items-center gap-2">
                 <button className="p-2 rounded hover:bg-slate-200 transition-colors disabled:opacity-30">

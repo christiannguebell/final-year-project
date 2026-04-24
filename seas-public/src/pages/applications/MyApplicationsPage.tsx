@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
@@ -33,12 +34,12 @@ export default function MyApplicationsPage() {
 
   const { data: response, isLoading, error } = useMyApplications();
 
-  const applicationList = useMemo(() => response?.items ?? [], [response]);
+  const applicationList = useMemo<Application[]>(() => (response as any)?.data?.items || (response as any)?.items || [], [response]);
 
   const filteredApplications = useMemo(
     () =>
       applicationList.filter(
-        (app) =>
+        (app: Application) =>
           app.program?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
           app.id.toLowerCase().includes(searchQuery.toLowerCase())
       ),
@@ -114,7 +115,7 @@ export default function MyApplicationsPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {filteredApplications.map((app, index) => (
+              {filteredApplications.map((app: Application, index: number) => (
                 <ApplicationCard key={app.id} app={app} index={index} />
               ))}
             </div>

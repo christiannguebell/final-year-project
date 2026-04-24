@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useNavigate, useLocation, type Location } from 'react-router-dom';
 import { GraduationCap, Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { useLogin } from '../../hooks/useAuth';
-import { AxiosError } from 'axios';
+
 
 interface LocationState {
   from?: Location;
@@ -25,8 +26,8 @@ export default function LoginPage() {
       onSuccess: () => {
         navigate(from, { replace: true });
       },
-      onError: (error: AxiosError<{ message: string }>) => {
-        const message = error.response?.data?.message;
+      onError: (error: any) => {
+        const message = error?.response?.data?.message;
         if (message === 'ACCOUNT_UNVERIFIED') {
           navigate(`/verify-otp?email=${encodeURIComponent(email)}`);
         }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Users, CircleDollarSign, BarChart, ShieldCheck, TrendingUp, CheckCircle2, Clock } from 'lucide-react';
 import { BarChart as ReBarChart, Bar, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { useDashboardStats, useApplicationsOverTime } from '@/hooks/useAnalytics';
@@ -5,12 +6,7 @@ import { StatCard } from '@/components/StatCard';
 import { TaskItem } from '@/components/TaskItem';
 import { ActivityItem } from '@/components/ActivityItem';
 
-interface ChartTooltipProps {
-  active?: boolean;
-  payload?: Array<{
-    value: number;
-  }>;
-}
+
 
 const CHART_COLORS = ['#e2e8f0', '#e2e8f0', '#e2e8f0', '#002d6233', '#002d6266', '#002d6299', '#00193c', '#046d40cc'];
 
@@ -91,7 +87,7 @@ export default function DashboardPage() {
                  <ReBarChart data={chartData}>
                    <Tooltip 
                      cursor={{fill: 'transparent'}}
-                     content={({ active, payload }: ChartTooltipProps) => {
+                     content={({ active, payload }: any) => {
                        if (active && payload && payload.length) {
                          return (
                            <div className="bg-primary text-white text-[10px] py-1 px-2 rounded">

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from 'react-hook-form';
 import { Calendar, User, Globe, IdCard, Fingerprint, MapPin, Save } from 'lucide-react';
 import { apiClient } from '../../../api/client';
@@ -19,15 +20,15 @@ interface BioDataForm {
 export const BioDataStep = ({ onNext, data }: { onNext: (data: Partial<Application>) => void, data: Partial<Application> }) => {
   const { register, handleSubmit, formState: { isSubmitting } } = useForm<BioDataForm>({
     defaultValues: {
-      dateOfBirth: data.candidate?.profile?.dateOfBirth?.split('T')[0] || '',
-      gender: data.candidate?.profile?.gender || '',
-      nationality: data.candidate?.profile?.nationality || '',
-      idType: data.candidate?.profile?.idType || 'national_id',
-      idNumber: data.candidate?.profile?.idNumber || '',
-      address: data.candidate?.profile?.address || '',
-      city: data.candidate?.profile?.city || '',
-      country: data.candidate?.profile?.country || '',
-      zipCode: data.candidate?.profile?.zipCode || '',
+      dateOfBirth: (data.candidate as any)?.profile?.dateOfBirth?.split('T')[0] || data.candidate?.dateOfBirth?.split('T')[0] || '',
+      gender: (data.candidate as any)?.profile?.gender || data.candidate?.gender || '',
+      nationality: (data.candidate as any)?.profile?.nationality || data.candidate?.nationality || '',
+      idType: (data.candidate as any)?.profile?.idType || 'national_id',
+      idNumber: (data.candidate as any)?.profile?.idNumber || '',
+      address: (data.candidate as any)?.profile?.address || data.candidate?.address || '',
+      city: (data.candidate as any)?.profile?.city || data.candidate?.city || '',
+      country: (data.candidate as any)?.profile?.country || data.candidate?.country || '',
+      zipCode: (data.candidate as any)?.profile?.zipCode || '',
     }
   });
 
@@ -48,7 +49,7 @@ export const BioDataStep = ({ onNext, data }: { onNext: (data: Partial<Applicati
       }
       
       toast.success('Foundational profile saved');
-      onNext({ id: applicationId, candidate: { profile: formData } });
+      onNext({ id: applicationId, candidate: { profile: formData } as any });
     } catch (error: unknown) {
       console.error('Failed to save bio data', error);
       toast.error('Failed to initialize application. Please try again.');

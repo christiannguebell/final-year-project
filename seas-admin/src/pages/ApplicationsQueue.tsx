@@ -493,7 +493,7 @@ export default function ApplicationsQueue() {
                 {/* Pagination */}
                 <div className="px-6 py-4 bg-slate-50 border-t border-outline-variant/10 flex items-center justify-between">
                   <p className="text-xs text-on-surface-variant font-medium">
-                    Showing {((paymentPagination?.page || 1) - 1) * (paymentPagination?.limit || 10) + 1} to {Math.min(paymentPagination?.page * paymentPagination?.limit, paymentPagination?.total || 0)} of {paymentPagination?.total || 0} payments
+                    Showing {((paymentPagination?.page || 1) - 1) * (paymentPagination?.limit || 10) + 1} to {Math.min((paymentPagination?.page || 1) * (paymentPagination?.limit || 10), paymentPagination?.total || 0)} of {paymentPagination?.total || 0} payments
                   </p>
                   <div className="flex items-center gap-2">
                     <button className="p-2 rounded hover:bg-slate-200 transition-colors disabled:opacity-30">

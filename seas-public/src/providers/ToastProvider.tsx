@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react';
-import { ToastContext, type ToastContextType } from './ToastContext';
+import { ToastContext, type Toast, type ToastContextType } from './ToastContext';
 
 interface ToastProviderProps {
   children: ReactNode;

@@ -7,6 +7,8 @@ import { ProgramSelectionStep } from './components/ProgramSelectionStep';
 import { DocumentCenterStep } from './components/DocumentCenterStep';
 import { PaymentStep } from './components/PaymentStep';
 import { ReviewSubmitStep } from './components/ReviewSubmitStep';
+import TopNav from '../../components/layout/TopNav';
+import Sidebar from '../../components/layout/Sidebar';
 import type { Application } from '../../types/application';
 import { apiClient } from '../../api/client';
 import { Loader2, ArrowLeft, Edit3 } from 'lucide-react';

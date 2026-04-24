@@ -13,9 +13,12 @@ import {
   Download,
   Wallet,
   Clock,
+  Info,
 } from 'lucide-react';
 import { usePaymentsByApplication, useCreatePayment, useUploadPaymentReceipt } from '../../hooks/usePayments';
 import { PaymentStatus } from '../../types/entities';
+import { format } from 'date-fns';
+import type { Payment } from '../../types/entities';
 
 export default function ApplicationPaymentPage() {
   const { id: applicationId } = useParams();
@@ -50,9 +53,9 @@ export default function ApplicationPaymentPage() {
 
   const handlePaymentSubmit = async () => {
     if (!applicationId || !amount) return;
-    
+
     console.log('Submitting payment...', { applicationId, amount, transactionId, selectedMethod });
-    
+
     try {
       let paymentId = pendingPayment?.id;
 
@@ -111,7 +114,7 @@ export default function ApplicationPaymentPage() {
           <span className="font-bold">Back to My Applications</span>
         </motion.button>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-12"
@@ -126,7 +129,7 @@ export default function ApplicationPaymentPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column: Form & Instructions */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
@@ -151,7 +154,7 @@ export default function ApplicationPaymentPage() {
           </motion.div>
 
           {/* Right Column: Status & History */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
@@ -215,7 +218,7 @@ function PaymentSubmissionForm({
           <Clock className="mx-auto text-secondary mb-4" size={40} />
           <p className="text-on-surface font-bold mb-2 text-lg">Submission Locked</p>
           <p className="text-on-surface-variant text-sm max-w-md mx-auto leading-relaxed">
-            You have already submitted a payment proof. Please wait for the administrator to verify it. 
+            You have already submitted a payment proof. Please wait for the administrator to verify it.
             You will be notified once the status changes.
           </p>
         </div>
@@ -363,7 +366,7 @@ function StatusCard({ pendingPayment }: { pendingPayment?: Payment }) {
         <p className="text-on-primary-container text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Current Status</p>
         <h3 className="text-3xl font-extrabold mb-5 font-headline tracking-tight">
           {pendingPayment ? (
-            pendingPayment.status === PaymentStatus.PENDING ? 'Pending Verification' : 
+            pendingPayment.status === PaymentStatus.PENDING ? 'Pending Verification' :
             pendingPayment.status === PaymentStatus.VERIFIED ? 'Verified' : 'Rejected'
           ) : 'No Pending Payment'}
         </h3>
@@ -397,7 +400,7 @@ function PaymentSummary({ totalInvoiced, totalPaid, balanceDue }: { totalInvoice
           <span className="text-on-surface-variant font-semibold">Total Paid</span>
           <span className="font-bold text-secondary">${totalPaid.toFixed(2)}</span>
         </div>
-        
+
         <div className="pt-5 mt-2 border-t border-outline-variant/30 flex justify-between items-end">
           <div>
             <p className="text-[10px] font-bold text-primary uppercase tracking-widest mb-1.5">Balance Due</p>
@@ -423,8 +426,8 @@ function PaymentHistory({ paymentList }: { paymentList: Payment[] }) {
           {paymentList.map((payment) => (
             <div key={payment.id} className="relative pl-10">
               <div className={`absolute left-0 top-1 w-6 h-6 rounded-full flex items-center justify-center z-10 ${
-                  payment.status === PaymentStatus.VERIFIED ? 'bg-secondary' : 
-                  payment.status === PaymentStatus.PENDING ? 'bg-primary-container' : 
+                  payment.status === PaymentStatus.VERIFIED ? 'bg-secondary' :
+                  payment.status === PaymentStatus.PENDING ? 'bg-primary-container' :
                   'bg-error/10'
                 }`}>
                 {payment.status === PaymentStatus.VERIFIED && <CheckCircle2 size={14} className="text-on-secondary" />}
@@ -435,8 +438,8 @@ function PaymentHistory({ paymentList }: { paymentList: Payment[] }) {
                 <div className="flex justify-between items-start mb-1.5">
                   <h4 className="font-bold text-sm text-primary">Application Fee</h4>
                   <span className={`text-[10px] font-bold uppercase tracking-wider ${
-                    payment.status === PaymentStatus.VERIFIED ? 'text-secondary' : 
-                    payment.status === PaymentStatus.PENDING ? 'text-primary-container' : 
+                    payment.status === PaymentStatus.VERIFIED ? 'text-secondary' :
+                    payment.status === PaymentStatus.PENDING ? 'text-primary-container' :
                     'text-error'
                   }`}>
                     {payment.status}
