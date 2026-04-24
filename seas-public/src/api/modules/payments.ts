@@ -1,5 +1,5 @@
 import apiClient from '../client';
-import type { Payment, PaymentStatus } from '../types/entities';
+import type { Payment, PaymentStatus } from '../../types/entities';
 import type { PaginatedParams, PaginatedResponse } from '@/types/api';
 
 export interface CreatePaymentPayload {

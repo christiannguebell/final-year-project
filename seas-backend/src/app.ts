@@ -3,16 +3,18 @@ import 'dotenv/config';
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import path from 'path';
+import fs from 'fs';
 import { errorHandler, notFoundHandler } from './middlewares';
-import { validateConnections } from './config/connection.validator';
+import { validateConnections, getCriticalConnectionFailures } from './config/connection.validator';
 import { logger } from './common/logger';
-import routes from './routes';
-import config from './config';
-
+import { AppDataSource } from './database';
 import { apiReference } from '@scalar/express-api-reference';
 import { swaggerSpec } from './config/swagger';
 import { generalLimiter } from './middlewares/security.middleware';
 import { sanitizeInput } from './middlewares/sanitization.middleware';
+import routes from './routes';
+import config from './config';
 
 const app: Application = express();
 
@@ -98,6 +100,13 @@ app.use(
     },
   })
 );
+
+// Serve static files from uploads directory
+const uploadsDir = path.join(__dirname, '../uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+app.use('/uploads', express.static(uploadsDir));
 
 // Register all routes
 app.use('/api', routes);

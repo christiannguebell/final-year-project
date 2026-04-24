@@ -13,7 +13,7 @@ export function useApplicationById(id: string) {
   return useQuery({
     queryKey: ['application', id],
     queryFn: () => applicationsApi.getById(id),
-    select: (response) => response.data?.data as Application,
+    select: (response) => response.data as Application,
     enabled: !!id,
   });
 }
@@ -24,7 +24,7 @@ export function useCreateApplication() {
     mutationFn: (data: CreateApplicationPayload) => applicationsApi.create(data),
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['applications'] });
-      return response.data?.data as Application;
+      return response.data as Application;
     },
   });
 }

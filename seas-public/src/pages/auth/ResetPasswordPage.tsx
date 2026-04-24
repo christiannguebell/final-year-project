@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GraduationCap, Lock, Eye, EyeOff, CheckCircle, XCircle } from 'lucide-react';
 import { useResetPassword } from '../../hooks/useAuth';
+import type { ResetPasswordRequest, ApiResponse } from '@/types/api';
 
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState('');
@@ -33,7 +34,7 @@ export default function ResetPasswordPage() {
     if (!isValid) return;
 
     resetMutation.mutate(
-      { token: token!, password },
+      { token: token!, newPassword: password },
       { onSuccess: () => navigate('/login', { state: { message: 'Password reset! Please login with new password.' } }) }
     );
   };

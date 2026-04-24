@@ -1,6 +1,6 @@
 import { Users, CircleDollarSign, BarChart, ShieldCheck, TrendingUp, CheckCircle2, Clock } from 'lucide-react';
 import { BarChart as ReBarChart, Bar, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { useDashboardStats, useApplicationsByStatus, useApplicationsOverTime } from '@/hooks/useAnalytics';
+import { useDashboardStats, useApplicationsOverTime } from '@/hooks/useAnalytics';
 import { StatCard } from '@/components/StatCard';
 import { TaskItem } from '@/components/TaskItem';
 import { ActivityItem } from '@/components/ActivityItem';
@@ -96,7 +96,7 @@ export default function DashboardPage() {
                     }}
                   />
                   <Bar dataKey="value" radius={[2, 2, 0, 0]}>
-                    {chartData.map((entry: any, index: number) => (
+                    {chartData.map((_, index: number) => (
                       <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
                     ))}
                   </Bar>

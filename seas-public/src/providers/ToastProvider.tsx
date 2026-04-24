@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode, type Dispatch, type SetStateAction } from 'react';
+import { createContext, useContext, useState, type ReactNode } from 'react';
 
 interface Toast {
   id: string;

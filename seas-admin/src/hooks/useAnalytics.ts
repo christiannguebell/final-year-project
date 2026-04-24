@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { analyticsApi, type DashboardStats, type ApplicationsByStatus, type ApplicationsOverTime } from '../api/modules/analytics';
+import { analyticsApi } from '../api/modules/analytics';
 
 export function useDashboardStats() {
   return useQuery({

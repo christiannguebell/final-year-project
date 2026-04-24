@@ -12,8 +12,6 @@ import {
   CheckCircle2,
   XCircle,
   ArrowUpRight,
-  BarChart3,
-  CreditCard,
   Wallet,
 } from 'lucide-react';
 import { useMyApplications } from '../../hooks/useApplications';

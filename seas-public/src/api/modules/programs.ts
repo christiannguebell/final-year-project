@@ -1,6 +1,6 @@
 import apiClient from '../client';
-import type { Program } from '../types/entities';
-import type { PaginatedParams, PaginatedResponse } from '../types/api';
+import type { Program } from '../../types/entities';
+import type { PaginatedParams, PaginatedResponse } from '../../types/api';
 
 export interface ListProgramsParams extends PaginatedParams {}
 

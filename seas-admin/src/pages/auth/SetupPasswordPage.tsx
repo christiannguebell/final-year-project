@@ -9,7 +9,7 @@ export default function SetupPasswordPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const { userId, email } = (location.state as any) || {};
+  const { userId } = (location.state as any) || {};
 
   const passwordChecks = {
     length: password.length >= 8,

@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { examsApi, type ListSessionsParams, type CreateSessionPayload, type UpdateSessionPayload, type CreateCenterPayload, type UpdateCenterPayload, type AutoAllocatePayload } from '../api/modules/exams';
-import type { ExamSession, ExamCenter } from '../types/entities';
+
 
 export function useExamSessions(params?: ListSessionsParams) {
   return useQuery({

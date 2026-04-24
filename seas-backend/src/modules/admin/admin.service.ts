@@ -27,7 +27,6 @@ export const adminService = {
   async createAdmin(
     email: string,
     role: UserRole = UserRole.ADMIN,
-    createdBy: string
   ): Promise<{ message: string; email: string }> {
     const existingUser = await userRepository.findOne({ where: { email } });
     if (existingUser) {
@@ -235,7 +234,7 @@ export const adminService = {
     return admin;
   },
 
-  async deleteAdmin(id: string, deletedBy: string): Promise<void> {
+  async deleteAdmin(id: string): Promise<void> {
     const admin = await userRepository.findOne({ where: { id } });
     if (!admin) {
       throw ApiError.notFound(ADMIN_MESSAGES.ADMIN_NOT_FOUND);

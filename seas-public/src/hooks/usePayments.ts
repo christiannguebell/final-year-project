@@ -6,7 +6,7 @@ export function usePayments() {
   return useQuery({
     queryKey: ['payments'],
     queryFn: () => paymentsApi.list(),
-    select: (response) => (response.data as any)?.data as Payment[],
+    select: (response) => response.data?.items as Payment[],
   });
 }
 
@@ -14,7 +14,7 @@ export function usePaymentById(id: string) {
   return useQuery({
     queryKey: ['payment', id],
     queryFn: () => paymentsApi.getById(id),
-    select: (response) => (response.data as any)?.data as Payment,
+    select: (response) => response.data as Payment,
     enabled: !!id,
   });
 }
@@ -23,7 +23,7 @@ export function usePaymentsByApplication(applicationId: string) {
   return useQuery({
     queryKey: ['payments', 'application', applicationId],
     queryFn: () => paymentsApi.getByApplication(applicationId),
-    select: (response) => (response.data as any)?.data as Payment[],
+    select: (response) => response.data as Payment[],
     enabled: !!applicationId,
   });
 }

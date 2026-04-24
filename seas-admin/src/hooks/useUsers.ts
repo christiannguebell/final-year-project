@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { usersApi, type ListUsersParams, type UpdateUserPayload } from '../api/modules/users';
-import type { User } from '../types/api';
+
 
 export function useUsers(params?: ListUsersParams) {
   return useQuery({

@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { applicationsApi, type ListApplicationsParams, type UpdateApplicationPayload } from '../api/modules/applications';
-import type { Application } from '../types/entities';
+
 
 export function useApplications(params?: ListApplicationsParams) {
   return useQuery({

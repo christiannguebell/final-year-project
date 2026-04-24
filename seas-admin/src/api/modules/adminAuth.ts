@@ -1,5 +1,5 @@
 import apiClient from '../client';
-import type { LoginRequest, AuthTokens, User } from '../types/api';
+import type { LoginRequest, AuthTokens, User } from '../../types/api';
 
 interface AdminLoginResponse {
   user: User;
@@ -36,8 +36,7 @@ const adminAuthApi = {
     return response.data.data!;
   },
   async deleteAdmin(id: string): Promise<void> {
-    const response = await apiClient.delete(`/admin/admins/${id}`);
-    return response.data.data!;
+    await apiClient.delete(`/admin/admins/${id}`);
   },
   async forgotPassword(email: string): Promise<{ message: string }> {
     const response = await apiClient.post<{ message: string }>('/admin/forgot-password', { email });

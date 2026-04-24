@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { programsApi, type ListProgramsParams, type CreateProgramPayload, type UpdateProgramPayload } from '../api/modules/programs';
-import type { Program } from '../types/entities';
+
 
 export function usePrograms(params?: ListProgramsParams) {
   return useQuery({

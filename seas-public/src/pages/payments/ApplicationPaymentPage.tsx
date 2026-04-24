@@ -1,10 +1,9 @@
+import type { AxiosError } from 'axios';
 import { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { format } from 'date-fns';
 import {
   ArrowLeft,
-  Info,
   Smartphone,
   CloudUpload,
   ClipboardList,
@@ -16,7 +15,7 @@ import {
   Clock,
 } from 'lucide-react';
 import { usePaymentsByApplication, useCreatePayment, useUploadPaymentReceipt } from '../../hooks/usePayments';
-import { PaymentStatus, type Payment } from '../../types/entities';
+import { PaymentStatus } from '../../types/entities';
 
 export default function ApplicationPaymentPage() {
   const { id: applicationId } = useParams();
@@ -28,8 +27,7 @@ export default function ApplicationPaymentPage() {
   const [selectedMethod, setSelectedMethod] = useState<'BANK_TRANSFER' | 'MOBILE_MONEY'>('BANK_TRANSFER');
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
 
-  const { data: payments } = usePaymentsByApplication(applicationId || '');
-  const paymentList: Payment[] = (payments as Payment[]) || [];
+  const { data: paymentList = [] } = usePaymentsByApplication(applicationId || '');
   const pendingPayment = paymentList.find(p => p.status === PaymentStatus.PENDING);
   const verifiedPayments = paymentList.filter(p => p.status === PaymentStatus.VERIFIED);
 
@@ -68,7 +66,9 @@ export default function ApplicationPaymentPage() {
           transactionId: transactionId || undefined,
         });
         console.log('Payment created:', newPayment);
-        paymentId = (newPayment as any).data.id;
+        if (newPayment.data) {
+          paymentId = newPayment.data.id;
+        }
       }
 
       console.log('Payment ID to use:', paymentId);
@@ -91,8 +91,9 @@ export default function ApplicationPaymentPage() {
     } catch (error) {
       console.error('Payment submission failed:', error);
       // Log more details about the error if available
-      if ((error as any).response) {
-        console.error('Error response data:', (error as any).response.data);
+      const axiosError = error as AxiosError;
+      if (axiosError.response) {
+        console.error('Error response data:', axiosError.response.data);
       }
     }
   };
@@ -188,8 +189,8 @@ function PaymentSubmissionForm({
   selectedMethod: 'BANK_TRANSFER' | 'MOBILE_MONEY';
   setSelectedMethod: (method: 'BANK_TRANSFER' | 'MOBILE_MONEY') => void;
   receiptFile: File | null;
-  setReceiptFile: (file: File) => void;
-  fileInputRef: React.RefObject<HTMLInputElement>;
+  setReceiptFile: (file: File | null) => void;
+  fileInputRef: React.RefObject<HTMLInputElement | null>;
   onSubmit: () => void;
   isLoading: boolean;
   isUpdate: boolean;

@@ -1,0 +1,6 @@
+{
+  "name": "SEAS Admin Portal",
+  "description": "Unified administration system for SEAS Finance and Admissions, featuring payment verification queues and academic application review modules.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

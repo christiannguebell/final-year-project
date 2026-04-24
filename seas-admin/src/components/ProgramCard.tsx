@@ -1,6 +1,6 @@
 import type { Program } from '@/types/entities';
 import { cn } from '@/lib/utils';
-import { Code, LayoutGrid, Edit, TrendingUp } from 'lucide-react';
+import { Code, LayoutGrid, Edit } from 'lucide-react';
 
 interface ProgramCardProps {
   program: Program & { applicants?: number; capacity?: number; deadline?: string; department?: string };

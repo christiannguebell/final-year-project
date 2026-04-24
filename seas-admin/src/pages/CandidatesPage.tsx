@@ -188,7 +188,7 @@ export default function CandidatesPage() {
         </div>
         <StatSummaryCard 
           label="Pending Approval" 
-           value={data?.items?.filter(c => !c?.verified).length || 0}
+           value={data?.items?.filter(c => !(c as any).verified).length || 0}
           subValue="Awaiting review" 
           icon={Clock} 
           theme="low"

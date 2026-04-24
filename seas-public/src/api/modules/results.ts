@@ -1,6 +1,6 @@
 import apiClient from '../client';
-import type { Result } from '../types/entities';
-import type { PaginatedParams, PaginatedResponse } from '../types/api';
+import type { Result } from '../../types/entities';
+import type { PaginatedParams, PaginatedResponse } from '../../types/api';
 
 export interface ListResultsParams extends PaginatedParams {}
 

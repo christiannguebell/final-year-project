@@ -6,7 +6,7 @@ export function useDocuments(type?: string) {
   return useQuery({
     queryKey: ['documents', type],
     queryFn: () => documentsApi.list(type ? { type: type as any } : undefined),
-    select: (response) => response.data?.data as { items: Document[]; pagination: any },
+    select: (response) => response.data as { items: Document[]; pagination: any },
   });
 }
 
@@ -14,7 +14,7 @@ export function useDocumentById(id: string) {
   return useQuery({
     queryKey: ['document', id],
     queryFn: () => documentsApi.getById(id),
-    select: (response) => response.data?.data as Document,
+    select: (response) => response.data as Document,
     enabled: !!id,
   });
 }

@@ -1,21 +1,24 @@
+import type { AxiosError } from 'axios';
 import { useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { format } from 'date-fns';
 import {
   Smartphone,
-  CloudUpload,
   Clock,
   CheckCircle2,
   RefreshCw,
   XCircle,
   Download,
   Wallet,
-  ArrowLeft,
   ArrowRight,
+  Info,
+  ClipboardList,
+  CloudUpload,
 } from 'lucide-react';
 import { usePayments, useCreatePayment, usePaymentsByApplication, useUploadPaymentReceipt } from '../../hooks/usePayments';
-import type { Payment, PaymentStatus } from '../../types/entities';
+import { PaymentStatus } from '../../types/entities';
+import type { Payment } from '../../types/entities';
 import TopNav from '../../components/layout/TopNav';
 import Sidebar from '../../components/layout/Sidebar';
 
@@ -31,8 +34,7 @@ export default function PaymentsPage() {
 
 function PaymentsListPage() {
   const navigate = useNavigate();
-  const { data: payments } = usePayments();
-  const paymentList: Payment[] = (payments as Payment[]) || [];
+  const { data: paymentList = [] } = usePayments();
 
   return (
     <div className="min-h-screen bg-surface">
@@ -135,16 +137,13 @@ function PaymentListCard({ payment }: { payment: Payment }) {
 }
 
 function ApplicationPaymentPage({ applicationId }: { applicationId: string }) {
-  const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
-
   const [amount, setAmount] = useState('');
   const [transactionId, setTransactionId] = useState('');
   const [selectedMethod, setSelectedMethod] = useState<'BANK_TRANSFER' | 'MOBILE_MONEY'>('BANK_TRANSFER');
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
 
-  const { data: payments } = usePaymentsByApplication(applicationId);
-  const paymentList: Payment[] = (payments as Payment[]) || [];
+  const { data: paymentList = [] } = usePaymentsByApplication(applicationId);
   const pendingPayment = paymentList.find(p => p.status === PaymentStatus.PENDING);
   const verifiedPayments = paymentList.filter(p => p.status === PaymentStatus.VERIFIED);
 
@@ -162,10 +161,15 @@ function ApplicationPaymentPage({ applicationId }: { applicationId: string }) {
         applicationId,
         amount: Number(amount),
         method: selectedMethod,
+        paymentDate: new Date().toISOString(),
       });
       window.location.reload();
     } catch (error) {
-      console.error('Failed to create payment:', error);
+      console.error('Payment submission failed:', error);
+      const axiosError = error as AxiosError;
+      if (axiosError.response) {
+        console.error('Error response data:', axiosError.response.data);
+      }
     }
   };
 
@@ -233,8 +237,8 @@ function ApplicationPaymentPage({ applicationId }: { applicationId: string }) {
 
             <div className="space-y-8">
               {pendingPayment && (
-                <PaymentStatusCard 
-                  status={pendingPayment.status} 
+                <PaymentStatusCard
+                  status={pendingPayment.status}
                   transactionId={pendingPayment.transactionId}
                   amount={pendingPayment.amount}
                 />
@@ -249,24 +253,6 @@ function ApplicationPaymentPage({ applicationId }: { applicationId: string }) {
           </div>
         </main>
     </div>
-  );
-}
-
-function NavItem({ icon, label, active, onClick }: { icon: React.ReactNode; label: string; active?: boolean; onClick?: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
-        active
-          ? 'bg-white text-secondary font-bold shadow-sm shadow-black/5'
-          : 'text-on-surface-variant font-medium hover:bg-surface-container-high'
-      }`}
-    >
-      <span className={active ? 'text-secondary' : 'text-outline-variant'}>
-        {icon}
-      </span>
-      <span className="text-sm">{label}</span>
-    </button>
   );
 }
 
@@ -364,8 +350,8 @@ function PaymentProofForm({
   amount: string;
   setAmount: (value: string) => void;
   receiptFile: File | null;
-  setReceiptFile: (file: File) => void;
-  fileInputRef: React.RefObject<HTMLInputElement>;
+  setReceiptFile: (file: File | null) => void;
+  fileInputRef: React.RefObject<HTMLInputElement | null>;
   onSubmit: () => void;
   isLoading: boolean;
 }) {
@@ -475,7 +461,7 @@ function PaymentInstructions() {
   );
 }
 
-function PaymentStatusCard({ status, transactionId, amount }: { status: string; transactionId?: string; amount: number }) {
+function PaymentStatusCard({ status, transactionId, amount }: { status: PaymentStatus; transactionId?: string; amount: number }) {
   const statusLabel = status === PaymentStatus.PENDING ? 'Pending Verification' : status === PaymentStatus.VERIFIED ? 'Verified' : 'Rejected';
 
   return (

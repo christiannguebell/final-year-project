@@ -1,12 +1,10 @@
-import { Plus, Search, Terminal, Code, LayoutGrid, ArrowRight, TrendingUp } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { Plus, ArrowRight, TrendingUp } from 'lucide-react';
 import { usePrograms } from '@/hooks/usePrograms';
 import { ProgramCard } from '@/components/ProgramCard';
 
 export default function ProgramsPage() {
   const { data, isLoading } = usePrograms({ limit: 50 });
-  const programs = data?.data?.items || [];
+  const programs = data?.items || [];
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto w-full animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -33,7 +31,7 @@ export default function ProgramsPage() {
         <div className="architect-card p-6 border-b-2 border-primary transition-all hover:translate-y-[-2px]">
           <div className="text-on-surface-variant font-bold text-[10px] uppercase tracking-widest mb-2">Total Candidates</div>
           <div className="text-3xl font-headline font-extrabold text-primary">
-            {isLoading ? '...' : programs.reduce((acc, p) => acc + 0, 0)}
+            {isLoading ? '...' : programs.reduce((acc) => acc + 0, 0)}
           </div>
           <div className="flex items-center gap-1 mt-2 text-secondary font-bold text-xs">
             <TrendingUp className="w-3 h-3" />

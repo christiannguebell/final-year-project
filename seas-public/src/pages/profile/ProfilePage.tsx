@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import {
   User,
   Mail,
-  Phone,
   Shield,
   Settings2,
   Save,
@@ -361,9 +360,9 @@ export default function ProfilePage() {
           </div>
           <div className="flex flex-wrap justify-center gap-8">
             {['Institutional Privacy', 'Accessibility', 'Technical Standards', 'Contact SEAS'].map((link) => (
-              <a 
-                key={link} 
-                href="#" 
+              <a
+                key={link}
+                href="#"
                 className="text-xs tracking-wide text-on-surface-variant hover:text-secondary transition-colors duration-200"
               >
                 {link}
@@ -375,8 +374,6 @@ export default function ProfilePage() {
     </div>
   );
 }
-
-import React from 'react';
 
 function Toggle({ checked, onChange }: { checked: boolean; onChange: (checked: boolean) => void }) {
   return (
