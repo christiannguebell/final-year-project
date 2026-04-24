@@ -1,6 +1,6 @@
 import apiClient from '../client';
 import type { Program } from '../../types/entities';
-import type { PaginatedParams } from '../../types/api';
+import type { PaginatedParams, PaginatedResponse } from '../../types/api';
 
 export interface ListProgramsParams extends PaginatedParams {
   search?: string;
@@ -19,7 +19,7 @@ export interface UpdateProgramPayload {
 
 export const programsApi = {
   async list(params?: ListProgramsParams) {
-    const response = await apiClient.get<{ items: Program[]; pagination: any }>('/programs', { params: params as any });
+    const response = await apiClient.get<PaginatedResponse<Program>>('/programs', { params });
     return response.data.data;
   },
 

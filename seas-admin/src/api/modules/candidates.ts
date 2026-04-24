@@ -1,5 +1,6 @@
 import apiClient from '../client';
 import type { Candidate, Gender } from '../../types/entities';
+import type { PaginatedResponse } from '../../types/api';
 
 export interface CreateCandidatePayload {
   dateOfBirth?: string;
@@ -10,7 +11,7 @@ export interface CreateCandidatePayload {
   country?: string;
 }
 
-export interface UpdateCandidatePayload extends Partial<CreateCandidatePayload> {}
+export type UpdateCandidatePayload = Partial<CreateCandidatePayload>;
 
 export interface ListCandidatesParams {
   page?: number;
@@ -26,7 +27,7 @@ export const candidatesApi = {
   },
 
   async list(params?: ListCandidatesParams) {
-    const response = await apiClient.get<{ items: Candidate[]; pagination: any }>('/candidates', { params: params as any });
+    const response = await apiClient.get<PaginatedResponse<Candidate>>('/candidates', { params });
     return response.data.data;
   },
 

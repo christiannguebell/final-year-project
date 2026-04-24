@@ -1,6 +1,6 @@
 import apiClient from '../client';
 import type { Payment, PaymentStatus } from '../../types/entities';
-import type { PaginatedParams } from '../../types/api';
+import type { PaginatedParams, PaginatedResponse } from '../../types/api';
 
 export interface ListPaymentsParams extends PaginatedParams {
   status?: PaymentStatus;
@@ -17,7 +17,7 @@ export interface VerifyPaymentPayload {
 
 export const paymentsApi = {
   async list(params?: ListPaymentsParams) {
-    const response = await apiClient.get<{ items: Payment[]; pagination: any }>('/payments', { params: params as any });
+    const response = await apiClient.get<PaginatedResponse<Payment>>('/payments', { params });
     return response.data.data;
   },
 

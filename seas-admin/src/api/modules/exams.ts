@@ -1,5 +1,6 @@
 import apiClient from '../client';
 import type { ExamSession, ExamCenter, ExamSessionStatus } from '../../types/entities';
+import type { PaginatedResponse } from '../../types/api';
 
 export interface ListSessionsParams {
   page?: number;
@@ -45,7 +46,7 @@ export const examsApi = {
   },
 
   async listSessions(params?: ListSessionsParams) {
-    const response = await apiClient.get<{ items: ExamSession[]; pagination: any }>('/exams/sessions', { params: params as any });
+    const response = await apiClient.get<PaginatedResponse<ExamSession>>('/exams/sessions', { params });
     return response.data.data;
   },
 
@@ -70,7 +71,7 @@ export const examsApi = {
   },
 
   async listCenters(params?: ListCentersParams) {
-    const response = await apiClient.get<{ items: ExamCenter[]; pagination: any }>('/exams/centers', { params: params as any });
+    const response = await apiClient.get<PaginatedResponse<ExamCenter>>('/exams/centers', { params });
     return response.data.data;
   },
 

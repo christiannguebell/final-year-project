@@ -1,6 +1,6 @@
 import apiClient from '../client';
 import type { Application, ApplicationStatus } from '../../types/entities';
-import type { PaginatedParams } from '../../types/api';
+import type { PaginatedParams, PaginatedResponse } from '../../types/api';
 
 export interface ListApplicationsParams extends PaginatedParams {
   status?: ApplicationStatus;
@@ -14,7 +14,7 @@ export interface UpdateApplicationPayload {
 
 export const applicationsApi = {
   async list(params?: ListApplicationsParams) {
-    const response = await apiClient.get<{ items: Application[]; pagination: any }>('/applications', { params: params as any });
+    const response = await apiClient.get<PaginatedResponse<Application>>('/applications', { params });
     return response.data.data;
   },
 
