@@ -16,7 +16,7 @@ export const adminController = {
   async createAdmin(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const { email, role } = req.body;
-      const result = await adminService.createAdmin(email, role as UserRole, req.user!.userId);
+      const result = await adminService.createAdmin(email, role as UserRole);
       res.status(201).json(successResponse(result, 'Admin created successfully'));
     } catch (error) {
       next(error);
@@ -95,7 +95,7 @@ export const adminController = {
   async deleteAdmin(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const id = req.params.id as string;
-      await adminService.deleteAdmin(id, req.user!.userId);
+      await adminService.deleteAdmin(id);
       res.status(200).json(successResponse(null, 'Admin deleted successfully'));
     } catch (error) {
       next(error);
