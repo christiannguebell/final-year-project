@@ -1,7 +1,9 @@
 import { Download, UserPlus, Filter, Eye, Edit, Slash, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useCandidates } from '@/hooks/useCandidates';
 import { useNavigate } from 'react-router-dom';
+import type { Candidate } from '@/types/entities';
 
 export default function CandidatesPage() {
   const { data, isLoading } = useCandidates({ limit: 10 });
@@ -89,9 +91,9 @@ export default function CandidatesPage() {
                     <th className="px-6 py-4 font-headline font-bold text-xs text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-outline-variant/10">
-                   {candidates.map((c: any) => (
-                    <tr key={c.id} className="hover:bg-slate-50/50 transition-colors group">
+                 <tbody className="divide-y divide-outline-variant/10">
+                    {candidates.map((c: Candidate) => (
+                     <tr key={c.id} className="hover:bg-slate-50/50 transition-colors group">
                       <td className="px-6 py-5">
                         <div className="flex items-center gap-3">
                           <div className="w-9 h-9 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-xs">
@@ -188,7 +190,7 @@ export default function CandidatesPage() {
         </div>
         <StatSummaryCard 
           label="Pending Approval" 
-           value={data?.items?.filter(c => !(c as any).verified).length || 0}
+           value={data?.items?.filter(c => !c.verified).length || 0}
           subValue="Awaiting review" 
           icon={Clock} 
           theme="low"
@@ -205,7 +207,15 @@ export default function CandidatesPage() {
   );
 }
 
-function StatSummaryCard({ label, value, subValue, icon: Icon, theme = 'low' }: any) {
+interface StatSummaryCardProps {
+  label: string;
+  value: string | number;
+  subValue: string;
+  icon: LucideIcon;
+  theme?: 'low' | 'primary';
+}
+
+function StatSummaryCard({ label, value, subValue, icon: Icon, theme = 'low' }: StatSummaryCardProps) {
   return (
     <div className={cn(
       'p-6 rounded-xl relative overflow-hidden group architect-card border-none',

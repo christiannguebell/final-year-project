@@ -5,6 +5,13 @@ import { StatCard } from '@/components/StatCard';
 import { TaskItem } from '@/components/TaskItem';
 import { ActivityItem } from '@/components/ActivityItem';
 
+interface ChartTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    value: number;
+  }>;
+}
+
 const CHART_COLORS = ['#e2e8f0', '#e2e8f0', '#e2e8f0', '#002d6233', '#002d6266', '#002d6299', '#00193c', '#046d40cc'];
 
 export default function DashboardPage() {
@@ -80,21 +87,21 @@ export default function DashboardPage() {
             </div>
 
             <div className="h-64 mt-4" style={{ minHeight: '300px' }}>
-              <ResponsiveContainer width="100%" height={300}>
-                <ReBarChart data={chartData}>
-                  <Tooltip 
-                    cursor={{fill: 'transparent'}}
-                    content={({ active, payload }: any) => {
-                      if (active && payload && payload.length) {
-                        return (
-                          <div className="bg-primary text-white text-[10px] py-1 px-2 rounded">
-                            {payload[0].value}
-                          </div>
-                        );
-                      }
-                      return null;
-                    }}
-                  />
+               <ResponsiveContainer width="100%" height={300}>
+                 <ReBarChart data={chartData}>
+                   <Tooltip 
+                     cursor={{fill: 'transparent'}}
+                     content={({ active, payload }: ChartTooltipProps) => {
+                       if (active && payload && payload.length) {
+                         return (
+                           <div className="bg-primary text-white text-[10px] py-1 px-2 rounded">
+                             {payload[0].value}
+                           </div>
+                         );
+                       }
+                       return null;
+                     }}
+                   />
                   <Bar dataKey="value" radius={[2, 2, 0, 0]}>
                     {chartData.map((_, index: number) => (
                       <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
