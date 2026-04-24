@@ -6,7 +6,6 @@ export function usePrograms(params?: ListProgramsParams) {
   return useQuery({
     queryKey: ['programs', params],
     queryFn: () => programsApi.list(params),
-    select: (response) => response.data?.data as { items: Program[]; pagination: any },
   });
 }
 
@@ -14,7 +13,6 @@ export function useProgramById(id: string) {
   return useQuery({
     queryKey: ['program', id],
     queryFn: () => programsApi.getById(id),
-    select: (response) => response.data?.data as Program,
     enabled: !!id,
   });
 }

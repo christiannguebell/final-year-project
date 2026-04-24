@@ -13,11 +13,29 @@ export interface CreateCandidateDto {
   profilePhoto?: string;
 }
 
+export interface ListCandidatesOptions {
+  page?: number;
+  limit?: number;
+  search?: string;
+  status?: string;
+  programId?: string;
+}
+
+export interface PaginatedResult<T> {
+  items: T[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
+
 export const candidatesRepository = {
   async findById(id: string): Promise<CandidateProfile | null> {
     return AppDataSource.getRepository(CandidateProfile).findOne({
       where: { id } as any,
-      relations: ['user'],
+      relations: ['user', 'applications', 'applications.program'],
     });
   },
 
@@ -33,6 +51,39 @@ export const candidatesRepository = {
       where: { candidateNumber } as any,
       relations: ['user'],
     });
+  },
+
+  async findAll(options?: ListCandidatesOptions): Promise<PaginatedResult<CandidateProfile>> {
+    const page = options?.page || 1;
+    const limit = options?.limit || 10;
+    const skip = (page - 1) * limit;
+
+    const queryBuilder = AppDataSource.getRepository(CandidateProfile)
+      .createQueryBuilder('candidate')
+      .leftJoinAndSelect('candidate.user', 'user');
+
+    if (options?.search) {
+      queryBuilder.where(
+        '(user.firstName LIKE :search OR user.lastName LIKE :search OR candidate.candidateNumber LIKE :search)',
+        { search: `%${options.search}%` }
+      );
+    }
+
+    const [items, total] = await queryBuilder
+      .skip(skip)
+      .take(limit)
+      .orderBy('candidate.createdAt', 'DESC')
+      .getManyAndCount();
+
+    return {
+      items,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
   },
 
   async create(data: CreateCandidateDto): Promise<CandidateProfile> {

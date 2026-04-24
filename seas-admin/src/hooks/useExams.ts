@@ -6,7 +6,6 @@ export function useExamSessions(params?: ListSessionsParams) {
   return useQuery({
     queryKey: ['examSessions', params],
     queryFn: () => examsApi.listSessions(params),
-    select: (response) => response.data?.data as { items: ExamSession[]; pagination: any },
   });
 }
 
@@ -14,7 +13,6 @@ export function useExamSessionById(id: string) {
   return useQuery({
     queryKey: ['examSession', id],
     queryFn: () => examsApi.getSessionById(id),
-    select: (response) => response.data?.data as ExamSession,
     enabled: !!id,
   });
 }
@@ -54,7 +52,6 @@ export function useExamCenters(params?: { page?: number; limit?: number }) {
   return useQuery({
     queryKey: ['examCenters', params],
     queryFn: () => examsApi.listCenters(params),
-    select: (response) => response.data?.data as { items: ExamCenter[]; pagination: any },
   });
 }
 
@@ -62,7 +59,6 @@ export function useExamCenterById(id: string) {
   return useQuery({
     queryKey: ['examCenter', id],
     queryFn: () => examsApi.getCenterById(id),
-    select: (response) => response.data?.data as ExamCenter,
     enabled: !!id,
   });
 }

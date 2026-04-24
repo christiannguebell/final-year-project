@@ -6,7 +6,6 @@ export function useApplications(params?: ListApplicationsParams) {
   return useQuery({
     queryKey: ['applications', params],
     queryFn: () => applicationsApi.list(params),
-    select: (response) => response.data?.data as { items: Application[]; pagination: any },
   });
 }
 
@@ -14,7 +13,6 @@ export function useApplicationById(id: string) {
   return useQuery({
     queryKey: ['application', id],
     queryFn: () => applicationsApi.getById(id),
-    select: (response) => response.data?.data as Application,
     enabled: !!id,
   });
 }

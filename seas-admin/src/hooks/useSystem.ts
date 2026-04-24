@@ -5,7 +5,6 @@ export function useSystemConfig() {
   return useQuery({
     queryKey: ['system', 'config'],
     queryFn: () => systemApi.getConfig(),
-    select: (response) => response.data?.data as SystemConfig[],
   });
 }
 

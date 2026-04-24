@@ -15,32 +15,32 @@ export interface UpdateApplicationPayload {
 export const applicationsApi = {
   async list(params?: ListApplicationsParams) {
     const response = await apiClient.get<{ items: Application[]; pagination: any }>('/applications', { params: params as any });
-    return response.data;
+    return response.data.data;
   },
 
   async getById(id: string) {
     const response = await apiClient.get<Application>(`/applications/${id}`);
-    return response.data;
+    return response.data.data;
   },
 
   async update(id: string, data: UpdateApplicationPayload) {
     const response = await apiClient.put<Application>(`/applications/${id}`, data);
-    return response.data;
+    return response.data.data;
   },
 
   async approve(id: string) {
     const response = await apiClient.patch<Application>(`/applications/${id}/approve`);
-    return response.data;
+    return response.data.data;
   },
 
   async reject(id: string) {
     const response = await apiClient.patch<Application>(`/applications/${id}/reject`);
-    return response.data;
+    return response.data.data;
   },
 
   async delete(id: string) {
     const response = await apiClient.delete(`/applications/${id}`);
-    return response.data;
+    return response.data.data;
   },
 };
 

@@ -5,7 +5,6 @@ export function useDashboardStats() {
   return useQuery({
     queryKey: ['analytics', 'dashboard'],
     queryFn: () => analyticsApi.getDashboardStats(),
-    select: (response) => response.data?.data as DashboardStats,
   });
 }
 
@@ -13,7 +12,6 @@ export function useApplicationsByStatus() {
   return useQuery({
     queryKey: ['analytics', 'applications-by-status'],
     queryFn: () => analyticsApi.getApplicationsByStatus(),
-    select: (response) => response.data?.data as ApplicationsByStatus[],
   });
 }
 
@@ -21,6 +19,5 @@ export function useApplicationsOverTime() {
   return useQuery({
     queryKey: ['analytics', 'applications-over-time'],
     queryFn: () => analyticsApi.getApplicationsOverTime(),
-    select: (response) => response.data?.data as ApplicationsOverTime[],
   });
 }

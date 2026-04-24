@@ -20,37 +20,37 @@ export interface UpdateProgramPayload {
 export const programsApi = {
   async list(params?: ListProgramsParams) {
     const response = await apiClient.get<{ items: Program[]; pagination: any }>('/programs', { params: params as any });
-    return response.data;
+    return response.data.data;
   },
 
   async getById(id: string) {
     const response = await apiClient.get<Program>(`/programs/${id}`);
-    return response.data;
+    return response.data.data;
   },
 
   async create(data: CreateProgramPayload) {
     const response = await apiClient.post<Program>('/programs', data);
-    return response.data;
+    return response.data.data;
   },
 
   async update(id: string, data: UpdateProgramPayload) {
     const response = await apiClient.put<Program>(`/programs/${id}`, data);
-    return response.data;
+    return response.data.data;
   },
 
   async activate(id: string) {
     const response = await apiClient.patch<Program>(`/programs/${id}/activate`);
-    return response.data;
+    return response.data.data;
   },
 
   async deactivate(id: string) {
     const response = await apiClient.patch<Program>(`/programs/${id}/deactivate`);
-    return response.data;
+    return response.data.data;
   },
 
   async delete(id: string) {
     const response = await apiClient.delete(`/programs/${id}`);
-    return response.data;
+    return response.data.data;
   },
 };
 

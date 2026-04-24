@@ -6,7 +6,6 @@ export function useUsers(params?: ListUsersParams) {
   return useQuery({
     queryKey: ['users', params],
     queryFn: () => usersApi.list(params),
-    select: (response) => response.data?.data as { items: User[]; pagination: any },
   });
 }
 
@@ -14,7 +13,6 @@ export function useUserById(id: string) {
   return useQuery({
     queryKey: ['user', id],
     queryFn: () => usersApi.getById(id),
-    select: (response) => response.data?.data as User,
     enabled: !!id,
   });
 }
