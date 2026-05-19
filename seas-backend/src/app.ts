@@ -8,7 +8,6 @@ import fs from 'fs';
 import { errorHandler, notFoundHandler } from './middlewares';
 import { validateConnections } from './config/connection.validator';
 import { logger } from './common/logger';
-import { apiReference } from '@scalar/express-api-reference';
 import { swaggerSpec } from './config/swagger';
 import { generalLimiter } from './middlewares/security.middleware';
 import { sanitizeInput } from './middlewares/sanitization.middleware';

@@ -13,7 +13,9 @@ export interface EmailConfig {
 
 const getEnv = (key: string, fallback?: string): string => {
   const value = process.env[key];
-  if (!value && key !== 'SMTP_PASSWORD') {
+  // Skip validation for email credentials when SKIP_EMAIL is true
+  const skipEmail = process.env.SKIP_EMAIL === 'true';
+  if (!value && !skipEmail && key !== 'SMTP_PASSWORD') {
     throw new Error(`Missing required environment variable: ${key}`);
   }
   return value || fallback || '';
