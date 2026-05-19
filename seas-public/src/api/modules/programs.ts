@@ -1,8 +1,8 @@
 import apiClient from '../client';
-import type { Program } from '../types/entities';
-import type { PaginatedParams, PaginatedResponse } from '../types/api';
+import type { Program } from '../../types/entities';
+import type { PaginatedParams, PaginatedResponse } from '../../types/api';
 
-export interface ListProgramsParams extends PaginatedParams {}
+export type ListProgramsParams = PaginatedParams;
 
 export const programsApi = {
   async list(params?: ListProgramsParams) {

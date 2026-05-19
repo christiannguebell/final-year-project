@@ -8,7 +8,7 @@ import fs from 'fs';
 const UPLOAD_DIR = 'uploads/receipts';
 
 export const paymentsService = {
-  async create(applicationId: string, amount: number, paymentDate: Date, receiptFile?: string): Promise<Payment> {
+  async create(applicationId: string, amount: number, paymentDate: Date, method: 'BANK_TRANSFER' | 'MOBILE_MONEY' | 'CASH', transactionId?: string, receiptFile?: string): Promise<Payment> {
     const application = await applicationsRepository.findById(applicationId);
     if (!application) {
       throw ApiError.notFound('Application not found');
@@ -17,11 +17,13 @@ export const paymentsService = {
       applicationId,
       amount,
       paymentDate,
+      method,
+      transactionId,
       receiptFile,
     });
   },
 
-  async uploadReceipt(id: string, file: Express.Multer.File): Promise<Payment> {
+  async uploadReceipt(id: string, file: Express.Multer.File, data: { transactionId?: string; amount?: number }): Promise<Payment> {
     const payment = await paymentsRepository.findById(id);
     if (!payment) {
       throw ApiError.notFound(PAYMENT_MESSAGES.NOT_FOUND);
@@ -31,7 +33,10 @@ export const paymentsService = {
       fs.mkdirSync(UPLOAD_DIR, { recursive: true });
     }
 
-    const updated = await paymentsRepository.updateReceipt(id, file.path);
+    const updated = await paymentsRepository.updateReceipt(id, {
+      receiptFile: file.path,
+      ...data,
+    });
     return updated!;
   },
 

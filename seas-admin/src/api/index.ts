@@ -1,4 +1,5 @@
 export { default as authApi } from './modules/auth';
+export { default as adminAuthApi } from './modules/adminAuth';
 export { default as usersApi } from './modules/users';
 export { default as candidatesApi } from './modules/candidates';
 export { default as programsApi } from './modules/programs';

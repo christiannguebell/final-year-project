@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import authRoutes from '../modules/auth/auth.routes';
+import adminRoutes from '../modules/admin/admin.routes';
 import usersRoutes from '../modules/users/users.routes';
 import candidatesRoutes from '../modules/candidates/candidates.routes';
 import programsRoutes from '../modules/programs/programs.routes';
@@ -16,6 +17,7 @@ import systemRoutes from '../modules/system/system.routes';
 const router: Router = Router();
 
 router.use('/auth', authRoutes);
+router.use('/admin', adminRoutes);
 router.use('/users', usersRoutes);
 router.use('/candidates', candidatesRoutes);
 router.use('/programs', programsRoutes);

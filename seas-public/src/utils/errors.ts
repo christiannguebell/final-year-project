@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import type { ApiResponse, ApiError as ApiErrorType } from '../types/api';
+import type { ApiResponse } from '../types/api';
 
 export class ApiException extends Error {
   code?: string;

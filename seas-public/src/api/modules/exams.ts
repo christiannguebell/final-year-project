@@ -1,9 +1,10 @@
 import apiClient from '../client';
-import type { ExamSession, ExamCenter, ExamAssignment } from '../../types/entities';
+import type { ExamSession, ExamCenter, ExamAssignment } from '@/types/entities';
+import type { PaginatedResponse } from '@/types/api';
 
 export const examsApi = {
   async getSessions() {
-    const response = await apiClient.get<{ items: ExamSession[]; pagination: any }>('/exams/sessions');
+    const response = await apiClient.get<PaginatedResponse<ExamSession>>('/exams/sessions');
     return response.data;
   },
 
@@ -13,7 +14,7 @@ export const examsApi = {
   },
 
   async getCenters() {
-    const response = await apiClient.get<{ items: ExamCenter[]; pagination: any }>('/exams/centers');
+    const response = await apiClient.get<PaginatedResponse<ExamCenter>>('/exams/centers');
     return response.data;
   },
 

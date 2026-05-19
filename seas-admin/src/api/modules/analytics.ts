@@ -22,17 +22,15 @@ export interface ApplicationsOverTime {
 export const analyticsApi = {
   async getDashboardStats() {
     const response = await apiClient.get<DashboardStats>('/analytics/dashboard');
-    return response.data;
+    return response.data.data;
   },
-
   async getApplicationsByStatus() {
     const response = await apiClient.get<ApplicationsByStatus[]>('/analytics/applications-by-status');
-    return response.data;
+    return response.data.data;
   },
-
   async getApplicationsOverTime() {
     const response = await apiClient.get<ApplicationsOverTime[]>('/analytics/applications-over-time');
-    return response.data;
+    return response.data.data;
   },
 };
 

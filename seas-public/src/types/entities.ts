@@ -13,6 +13,7 @@ export interface Candidate {
   city?: string;
   country?: string;
   photoUrl?: string;
+  profilePhoto?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -41,6 +42,7 @@ export interface Application {
   candidate?: Candidate;
   status: ApplicationStatus;
   submittedAt?: string;
+  payments?: Payment[];
   createdAt: string;
   updatedAt: string;
 }
@@ -74,22 +76,22 @@ export enum DocumentType {
 
 export interface Payment {
   id: string;
-  candidateId: string;
   applicationId: string;
   amount: number;
   currency: string;
   status: PaymentStatus;
   paymentMethod?: string;
   transactionId?: string;
+  receiptFile?: string;
   paidAt?: string;
   createdAt: string;
+  updatedAt?: string;
 }
 
 export enum PaymentStatus {
   PENDING = 'pending',
-  COMPLETED = 'completed',
-  FAILED = 'failed',
-  REFUNDED = 'refunded',
+  VERIFIED = 'verified',
+  REJECTED = 'rejected',
 }
 
 export interface ExamSession {

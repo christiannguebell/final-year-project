@@ -41,6 +41,20 @@ export const candidatesController = {
     }
   },
 
+  async list(req: Request, res: Response, next: NextFunction) {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 10;
+      const search = req.query.search as string;
+      const status = req.query.status as string;
+      const programId = req.query.programId as string;
+      const result = await candidatesService.list({ page, limit, search, status, programId });
+      res.status(200).json(successResponse(result));
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async getMyProfile(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user?.userId;

@@ -7,24 +7,24 @@
   --color-secondary: #046d40;
   --color-on-secondary: #ffffff;
   --color-secondary-container: #9af2ba;
-  
+
   --color-background: #f8f9fb;
   --color-on-background: #191c1e;
-  
+
   --color-surface: #f8f9fb;
   --color-on-surface: #191c1e;
   --color-surface-variant: #e0e3e5;
   --color-on-surface-variant: #43474f;
-  
+
   --color-surface-container-lowest: #ffffff;
   --color-surface-container-low: #f2f4f6;
   --color-surface-container: #eceef0;
   --color-surface-container-high: #e6e8ea;
   --color-surface-container-highest: #e0e3e5;
-  
+
   --color-outline: #747781;
   --color-outline-variant: #c4c6d1;
-  
+
   --color-error: #ba1a1a;
   --color-on-error: #ffffff;
   --color-error-container: #ffdad6;
@@ -39,7 +39,7 @@
   body {
     @apply bg-background text-on-surface font-body antialiased;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline;
   }

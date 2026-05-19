@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { ShieldCheck, Headset } from 'lucide-react';
-import { motion } from 'motion/react';
+import { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { GraduationCap, KeyRound } from 'lucide-react';
 import { useVerifyOtp } from '../../hooks/useAuth';
 
 export default function OTPVerificationPage() {
-  const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  const inputRefs = React.useRef<(HTMLInputElement | null)[]>([]);
+  const [otp, setOtp] = useState(['', '', '', '', '', '', '']);
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
   const verifyMutation = useVerifyOtp();
@@ -20,13 +19,12 @@ export default function OTPVerificationPage() {
   }, [email, navigate]);
 
   const handleChange = (index: number, value: string) => {
-    if (value.length > 1) value = value.slice(-1);
     if (!/^\d*$/.test(value)) return;
-
+    
     const newOtp = [...otp];
-    newOtp[index] = value;
+    newOtp[index] = value.slice(-1);
     setOtp(newOtp);
-
+    
     if (value && index < 5) {
       inputRefs.current[index + 1]?.focus();
     }
@@ -43,90 +41,77 @@ export default function OTPVerificationPage() {
     if (code.length === 6) {
       verifyMutation.mutate(
         { email, otp: code },
-        {
-          onSuccess: () => navigate('/dashboard'),
-        }
+        { onSuccess: () => navigate('/dashboard') }
       );
     }
   };
 
   return (
-    <div className="min-h-screen bg-surface flex items-center justify-center p-6 bg-surface-container-low">
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="max-w-lg w-full mx-auto"
-      >
-        <div className="bg-surface-container-lowest p-10 md:p-14 rounded-xl border border-outline-variant/15 shadow-[0px_8px_24px_rgba(25,28,30,0.04)]">
-          <div className="mb-10 text-center">
-            <div className="w-16 h-16 bg-primary-container rounded-xl flex items-center justify-center mx-auto mb-6">
-              <ShieldCheck className="text-surface-container-lowest w-8 h-8" />
+    <div className="min-h-screen bg-surface flex">
+      <div className="hidden lg:flex lg:w-1/2 bg-primary relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary opacity-90" />
+        <div className="relative z-10 flex flex-col justify-center px-16 text-white">
+          <div className="flex items-center gap-3 mb-8">
+            <GraduationCap className="w-10 h-10" />
+            <span className="text-2xl font-bold font-headline">SEAS Portal</span>
+          </div>
+          <h1 className="text-5xl font-extrabold font-headline mb-6">
+            Account Verification
+          </h1>
+          <p className="text-lg text-white/80 max-w-md">
+            Enter the verification code sent to your email to activate your account and access the candidate portal.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex-1 flex items-center justify-center p-8">
+        <div className="w-full max-w-md">
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white">
+              <KeyRound className="w-6 h-6" />
             </div>
-            <h1 className="text-3xl font-extrabold text-primary tracking-tight mb-3 font-headline">
-              Verification Required
-            </h1>
-            <p className="text-on-surface-variant font-body leading-relaxed max-w-sm mx-auto">
-              For institutional security, please enter the 6-digit code sent to <span className="text-primary font-semibold">{email}</span>
-            </p>
+            <span className="text-xl font-bold text-primary">SEAS Portal</span>
           </div>
 
-          <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
-            <div className="flex justify-between gap-2 md:gap-4">
+          <h2 className="text-3xl font-bold text-primary mb-2 text-center">Verify Your Account</h2>
+          <p className="text-on-surface-variant mb-8 text-center">
+            Enter the 6-digit code sent to <span className="text-primary font-semibold">{email}</span>
+          </p>
+
+          <form onSubmit={(e) => { e.preventDefault(); handleVerify(); }} className="space-y-6">
+            <div className="flex justify-center gap-3">
               {otp.map((digit, idx) => (
                 <input
                   key={idx}
                   ref={(el) => { inputRefs.current[idx] = el; }}
                   type="text"
+                  inputMode="numeric"
                   maxLength={1}
                   value={digit}
                   onChange={(e) => handleChange(idx, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(idx, e)}
-                  placeholder="0"
-                  className="w-full h-14 md:h-16 text-center text-xl md:text-2xl font-bold bg-surface-container-high rounded-lg border-none focus:ring-0 border-b-2 border-transparent focus:border-primary transition-all text-primary"
+                  className="w-12 h-14 text-center text-xl font-bold bg-surface-container-low border-2 border-outline-variant/20 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20"
                 />
               ))}
             </div>
 
-            <div className="flex flex-col gap-4">
-              <button
-                type="button"
-                onClick={handleVerify}
-                disabled={verifyMutation.isPending || otp.join('').length !== 6}
-                className="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-surface-container-lowest font-bold rounded-lg shadow-lg shadow-primary/10 hover:opacity-90 active:scale-[0.98] transition-all font-headline disabled:opacity-50"
-              >
-                {verifyMutation.isPending ? 'Verifying...' : 'Verify Identity'}
-              </button>
-              
-              <div className="flex flex-col items-center gap-6 mt-4">
-                <p className="text-sm text-on-surface-variant font-medium">
-                  Didn't receive the code? 
-                  <button 
-                    type="button"
-                    onClick={() => {}}
-                    className="text-secondary hover:underline font-bold transition-all ml-1"
-                  >
-                    Resend Code
-                  </button>
-                </p>
-                
-                <a 
-                  href="mailto:support@seas.edu" 
-                  className="inline-flex items-center gap-2 text-on-surface-variant/80 text-xs font-semibold hover:text-primary transition-colors py-2 px-4 rounded-full border border-outline-variant/20"
-                >
-                  <Headset className="w-4 h-4" />
-                  Contact Registrar Support
-                </a>
-              </div>
-            </div>
+            <button
+              type="submit"
+              disabled={verifyMutation.isPending || otp.join('').length !== 6}
+              className="w-full py-3 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary-container transition-colors disabled:opacity-50"
+            >
+              {verifyMutation.isPending ? 'Verifying...' : 'Verify Account'}
+            </button>
           </form>
-        </div>
 
-        <div className="mt-8 flex justify-center items-center gap-4 md:gap-8 text-[10px] uppercase tracking-widest text-on-surface-variant font-bold opacity-60">
-          <span>© 2024 SEAS GLOBAL SECURITY</span>
-          <span className="w-1 h-1 bg-outline-variant rounded-full hidden md:block" />
-          <span className="hidden md:block">ENGINEERING EXCELLENCE</span>
+          <p className="mt-8 text-center text-sm text-on-surface-variant">
+            Didn't receive the code?{' '}
+            <button type="button" className="text-primary font-bold hover:underline">
+              Resend Code
+            </button>
+          </p>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -71,9 +71,11 @@ const adminUser = {
 };
 
 async function runSeed() {
+  // eslint-disable-next-line no-console
   console.log('🌱 Starting database seed...');
 
   await AppDataSource.initialize();
+  // eslint-disable-next-line no-console
   console.log('✅ Database connected');
 
   // Seed Programs
@@ -88,24 +90,29 @@ async function runSeed() {
     await programRepo.save(programRepo.create(p));
     created++;
   }
+  // eslint-disable-next-line no-console
   console.log(`📚 Programs: ${created} created, ${skipped} already existed`);
 
   // Seed Admin
   const userRepo = AppDataSource.getRepository(User);
   const existingAdmin = await userRepo.findOne({ where: { email: adminUser.email } });
   if (existingAdmin) {
+    // eslint-disable-next-line no-console
     console.log('👤 Admin user already exists, skipping');
   } else {
     const hashed = await bcrypt.hash(adminUser.password, 12);
     await userRepo.save(userRepo.create({ ...adminUser, password: hashed } as any));
+    // eslint-disable-next-line no-console
     console.log(`👤 Admin user created: ${adminUser.email} / ${adminUser.password}`);
   }
 
   await AppDataSource.destroy();
+  // eslint-disable-next-line no-console
   console.log('🎉 Seed complete!');
 }
 
 runSeed().catch((err) => {
+  // eslint-disable-next-line no-console
   console.error('❌ Seed failed:', err);
   process.exit(1);
 });

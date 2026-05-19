@@ -22,9 +22,9 @@ export const DocumentCenterStep = ({ onNext, onBack, data }: { onNext: (data: Pa
         try {
           const response = await apiClient.get<Document[]>(`/documents/application/${data.id}`);
           setDocuments(response.data?.data || []);
-        } catch (error: any) {
-          console.error('Failed to fetch documents');
-        }
+         } catch {
+           console.error('Failed to fetch documents');
+         }
       }
     };
     fetchDocs();
@@ -48,9 +48,9 @@ export const DocumentCenterStep = ({ onNext, onBack, data }: { onNext: (data: Pa
         setDocuments([...documents, response.data.data]);
       }
       toast.success(`${type.replace('_', ' ')} uploaded successfully`);
-    } catch (error: any) {
-       toast.error('Upload failed');
-    } finally {
+       } catch {
+          toast.error('Upload failed');
+       } finally {
       setIsUploading(null);
     }
   };
@@ -60,9 +60,9 @@ export const DocumentCenterStep = ({ onNext, onBack, data }: { onNext: (data: Pa
       await apiClient.delete(`/documents/${id}`);
       setDocuments(documents.filter(d => d.id !== id));
       toast.success('Document removed');
-    } catch (error: any) {
-      toast.error('Delete failed');
-    }
+     } catch {
+       toast.error('Delete failed');
+     }
   };
 
   const getDocByType = (type: string) => documents.find(d => d.type === type);

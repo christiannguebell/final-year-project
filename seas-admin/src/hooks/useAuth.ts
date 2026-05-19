@@ -8,9 +8,9 @@ const TOKEN_KEYS = STORAGE_KEYS;
 export function useLogin() {
   return useMutation({
     mutationFn: (data: LoginRequest) => authApi.login(data),
-    onSuccess: (response) => {
-      if (response.data?.data) {
-        const { tokens, user } = response.data.data;
+    onSuccess: (data) => {
+      if (data) {
+        const { tokens, user } = data;
         localStorage.setItem(TOKEN_KEYS.TOKEN, tokens.accessToken);
         localStorage.setItem(TOKEN_KEYS.REFRESH_TOKEN, tokens.refreshToken);
         localStorage.setItem(TOKEN_KEYS.USER, JSON.stringify(user));

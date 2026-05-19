@@ -26,9 +26,9 @@ export const PaymentStep = ({ onNext, onBack, data }: PaymentStepProps) => {
       try {
         const response = await apiClient.get<Payment[]>(`/payments/application/${data.id}`);
         setPayments(response.data.data || []);
-      } catch (error: any) {
-        console.error('Failed to fetch payments');
-      } finally {
+       } catch {
+         console.error('Failed to fetch payments');
+       } finally {
         setIsLoading(false);
       }
     };
@@ -51,9 +51,9 @@ export const PaymentStep = ({ onNext, onBack, data }: PaymentStepProps) => {
         setPayments([...payments, response.data.data]);
       }
       toast.success('Payment record created');
-    } catch (error: any) {
-      toast.error('Failed to create payment record');
-    }
+     } catch {
+       toast.error('Failed to create payment record');
+     }
   };
 
   const handleUploadReceipt = async (paymentId: string, file: File) => {
@@ -67,9 +67,9 @@ export const PaymentStep = ({ onNext, onBack, data }: PaymentStepProps) => {
         setPayments(payments.map(p => p.id === paymentId ? response.data.data! : p));
       }
       toast.success('Receipt uploaded successfully');
-    } catch (error: any) {
-      toast.error('Failed to upload receipt');
-    } finally {
+     } catch {
+       toast.error('Failed to upload receipt');
+     } finally {
       setIsUploading(false);
     }
   };

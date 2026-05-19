@@ -1,5 +1,5 @@
 import apiClient from '../client';
-import type { User, PaginatedParams } from '../../types/api';
+import type { User, PaginatedParams, PaginatedResponse } from '../../types/api';
 
 export interface ListUsersParams extends PaginatedParams {
   search?: string;
@@ -13,7 +13,7 @@ export interface UpdateUserPayload {
 
 export const usersApi = {
   async list(params?: ListUsersParams) {
-    const response = await apiClient.get<{ items: User[]; pagination: any }>('/users', { params: params as any });
+    const response = await apiClient.get<PaginatedResponse<User>>('/users', { params });
     return response.data;
   },
 

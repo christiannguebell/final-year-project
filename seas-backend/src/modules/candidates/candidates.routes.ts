@@ -44,6 +44,44 @@ router.post(
 
 /**
  * @openapi
+ * /api/candidates:
+ *   get:
+ *     tags:
+ *       - Candidates
+ *     summary: List all candidates (admin)
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: page
+ *         in: query
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *       - name: limit
+ *         in: query
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *       - name: search
+ *         in: query
+ *         schema:
+ *           type: string
+ *       - name: status
+ *         in: query
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Paginated candidates list
+ */
+router.get(
+  '/',
+  authenticate,
+  candidatesController.list
+);
+
+/**
+ * @openapi
  * /api/candidates/me:
  *   get:
  *     tags:

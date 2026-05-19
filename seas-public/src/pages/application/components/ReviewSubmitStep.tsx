@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from 'react';
 import { BadgeCheck, Calendar, School, Award, FileText, Info, ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
 import { apiClient } from '../../../api/client';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
-import type { Application } from '../../../types/application';
+import type { Application, AcademicRecord, Payment } from '../../../types/application';
+import type { Document } from '../../../types/entities';
 
 export const ReviewSubmitStep = ({ onBack, data }: { onBack: () => void, data: Partial<Application> }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [application, setApplication] = useState<any>(null);
+  const [application, setApplication] = useState<Application | null>(null);
   const [declared, setDeclared] = useState(false);
   const navigate = useNavigate();
 
@@ -17,9 +19,9 @@ export const ReviewSubmitStep = ({ onBack, data }: { onBack: () => void, data: P
         try {
           const response = await apiClient.get<Application>(`/applications/${data.id}`);
           setApplication(response.data.data);
-        } catch (error: any) {
-          console.error('Failed to reload application for review');
-        }
+         } catch {
+           console.error('Failed to reload application for review');
+         }
       }
     };
     fetchFullData();
@@ -43,9 +45,9 @@ export const ReviewSubmitStep = ({ onBack, data }: { onBack: () => void, data: P
       await apiClient.post(`/applications/${data.id}/submit`);
       toast.success('Application submitted successfully!');
       navigate('/dashboard');
-    } catch (error: any) {
-      toast.error('Submission failed. Please check all steps.');
-    } finally {
+     } catch {
+       toast.error('Submission failed. Please check all steps.');
+     } finally {
       setIsSubmitting(false);
     }
   };
@@ -83,7 +85,7 @@ export const ReviewSubmitStep = ({ onBack, data }: { onBack: () => void, data: P
       errors.push('Application fee not paid');
     }
 
-    const verifiedPayment = application.payments?.find((p: any) => p.status === 'verified');
+     const verifiedPayment = application.payments?.find((p: Payment) => p.status === 'verified');
     if (!verifiedPayment) {
       errors.push('Application fee not verified');
     }
@@ -132,19 +134,19 @@ export const ReviewSubmitStep = ({ onBack, data }: { onBack: () => void, data: P
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-4">
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-on-surface-variant/60 mb-1">Identity Provided</p>
-              <p className="text-sm text-on-surface font-bold capitalize">{application.candidate?.profile?.idType?.replace('_', ' ') || 'Not specified'}: {application.candidate?.profile?.idNumber || 'N/A'}</p>
+              <p className="text-sm text-on-surface font-bold capitalize">{(application.candidate as any)?.profile?.idType?.replace('_', ' ') || 'Not specified'}: {(application.candidate as any)?.profile?.idNumber || 'N/A'}</p>
             </div>
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-on-surface-variant/60 mb-1">Date of Birth</p>
-              <p className="text-sm text-on-surface font-bold">{application.candidate?.profile?.dateOfBirth ? new Date(application.candidate.profile.dateOfBirth).toLocaleDateString() : 'N/A'}</p>
+              <p className="text-sm text-on-surface font-bold">{(application.candidate as any)?.profile?.dateOfBirth ? new Date((application.candidate as any).profile.dateOfBirth).toLocaleDateString() : 'N/A'}</p>
             </div>
             <div>
                <p className="text-[10px] font-black uppercase tracking-widest text-on-surface-variant/60 mb-1">Nationality</p>
-               <p className="text-sm text-on-surface font-bold">{application.candidate?.profile?.nationality || 'N/A'}</p>
+               <p className="text-sm text-on-surface font-bold">{(application.candidate as any)?.profile?.nationality || 'N/A'}</p>
             </div>
             <div className="col-span-2">
               <p className="text-[10px] font-black uppercase tracking-widest text-on-surface-variant/60 mb-1">Residence</p>
-              <p className="text-sm text-on-surface font-bold">{application.candidate?.profile?.address}, {application.candidate?.profile?.city}, {application.candidate?.profile?.country}</p>
+              <p className="text-sm text-on-surface font-bold">{(application.candidate as any)?.profile?.address}, {(application.candidate as any)?.profile?.city}, {(application.candidate as any)?.profile?.country}</p>
             </div>
           </div>
         </section>
@@ -178,7 +180,7 @@ export const ReviewSubmitStep = ({ onBack, data }: { onBack: () => void, data: P
              Educational Credentials
           </h3>
           <div className="space-y-4">
-            {application.academicRecords?.map((record: any, i: number) => (
+            {application.academicRecords?.map((record: AcademicRecord, i: number) => (
               <div key={i} className="flex flex-col md:flex-row md:items-center justify-between p-5 bg-surface-container-low rounded-lg border border-outline-variant/5 group">
                 <div className="flex gap-4">
                   <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-primary shadow-sm">
@@ -202,7 +204,7 @@ export const ReviewSubmitStep = ({ onBack, data }: { onBack: () => void, data: P
         <section className="md:col-span-12 bg-surface-container-lowest p-8 rounded-xl shadow-ambient border border-outline-variant/5">
           <h3 className="text-lg font-headline font-extrabold text-primary mb-6">Review Documents ({application.documents?.length || 0})</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {application.documents?.map((doc: any, i: number) => (
+            {application.documents?.map((doc: Document, i: number) => (
               <div key={i} className="p-4 border border-outline-variant/20 rounded-xl bg-surface-container-low transition-colors flex items-center gap-3">
                 <FileText size={18} className="text-primary shrink-0" />
                 <div className="overflow-hidden">

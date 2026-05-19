@@ -1,11 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { systemApi, type SystemConfig } from '../api/modules/system';
+import { systemApi } from '../api/modules/system';
 
 export function useSystemConfig() {
   return useQuery({
     queryKey: ['system', 'config'],
     queryFn: () => systemApi.getConfig(),
-    select: (response) => response.data?.data as SystemConfig[],
   });
 }
 

@@ -1,12 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { usersApi, type ListUsersParams, type UpdateUserPayload } from '../api/modules/users';
-import type { User } from '../types/api';
+
 
 export function useUsers(params?: ListUsersParams) {
   return useQuery({
     queryKey: ['users', params],
     queryFn: () => usersApi.list(params),
-    select: (response) => response.data?.data as { items: User[]; pagination: any },
   });
 }
 
@@ -14,7 +13,6 @@ export function useUserById(id: string) {
   return useQuery({
     queryKey: ['user', id],
     queryFn: () => usersApi.getById(id),
-    select: (response) => response.data?.data as User,
     enabled: !!id,
   });
 }

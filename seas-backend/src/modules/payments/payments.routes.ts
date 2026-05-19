@@ -6,7 +6,7 @@ import { authorize } from '../../middlewares/role.middleware';
 import { UserRole } from '../../database';
 import { upload } from '../../middlewares/upload.middleware';
 import { uploadLimiter } from '../../middlewares/security.middleware';
-import { createPaymentSchema, verifyPaymentSchema, applicationIdParamSchema, idParamSchema } from './payments.validation';
+import { createPaymentSchema, uploadReceiptSchema, verifyPaymentSchema, applicationIdParamSchema, idParamSchema } from './payments.validation';
 import { auditMiddleware } from '../../middlewares/audit.middleware';
 import { AuditAction } from '../../common/logger/audit';
 
@@ -87,6 +87,7 @@ router.post(
   authenticate,
   uploadLimiter,
   upload.single('receipt'),
+  validate(uploadReceiptSchema),
   paymentsController.uploadReceipt
 );
 

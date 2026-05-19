@@ -3,6 +3,7 @@ import { ApiError } from '../../common/errors/ApiError';
 import { CandidateProfile, Gender } from '../../database';
 import { CANDIDATE_MESSAGES } from './candidates.constants';
 import { generateCandidateNumber } from '../../common/utils';
+import type { PaginatedResult } from './candidates.repository';
 
 interface CreateCandidateData {
   userId: string;
@@ -98,6 +99,16 @@ export const candidatesService = {
     }
     const updated = await candidatesRepository.updateById(id, { profilePhoto: photoPath });
     return updated!;
+  },
+
+  async list(params?: { page?: number; limit?: number; search?: string; status?: string; programId?: string }): Promise<PaginatedResult<CandidateProfile>> {
+    return candidatesRepository.findAll({
+      page: params?.page,
+      limit: params?.limit,
+      search: params?.search,
+      status: params?.status,
+      programId: params?.programId,
+    });
   },
 
   async delete(id: string): Promise<void> {

@@ -23,7 +23,7 @@ export const applicationsRepository = {
   async findByUserId(userId: string): Promise<Application[]> {
     return AppDataSource.getRepository(Application).find({
       where: { userId } as any,
-      relations: ['program'],
+      relations: ['program', 'payments'],
       order: { createdAt: 'DESC' },
     });
   },

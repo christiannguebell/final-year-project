@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, type AxiosRequestConfig, type AxiosResponse } from 'axios';
 import env from '../config/env';
 import { STORAGE_KEYS, API_TIMEOUT } from '../config/constants';
 import type { ApiResponse } from '../types/api';

@@ -1,12 +1,16 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { candidatesApi, type CreateCandidatePayload, type UpdateCandidatePayload } from '../api/modules/candidates';
 import type { Candidate } from '../types/entities';
+import { STORAGE_KEYS } from '../config/constants';
 
 export function useCandidateProfile() {
   return useQuery({
     queryKey: ['candidate', 'me'],
-    queryFn: () => candidatesApi.getMe(),
-    select: (response) => response.data?.data,
+    queryFn: async () => {
+      const response = await candidatesApi.getMe();
+      return response.data || null;
+    },
+    enabled: !!localStorage.getItem(STORAGE_KEYS.TOKEN),
   });
 }
 
@@ -14,7 +18,7 @@ export function useCandidateById(id: string) {
   return useQuery({
     queryKey: ['candidate', id],
     queryFn: () => candidatesApi.getById(id),
-    select: (response) => response.data?.data,
+    select: (response) => response.data,
     enabled: !!id,
   });
 }
@@ -25,7 +29,7 @@ export function useCreateCandidate() {
     mutationFn: (data: CreateCandidatePayload) => candidatesApi.create(data),
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['candidate', 'me'] });
-      return response.data?.data as Candidate;
+      return response.data as Candidate;
     },
   });
 }
@@ -36,7 +40,7 @@ export function useUpdateCandidate() {
     mutationFn: (data: UpdateCandidatePayload) => candidatesApi.update(data),
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['candidate', 'me'] });
-      return response.data?.data as Candidate;
+      return response.data as Candidate;
     },
   });
 }

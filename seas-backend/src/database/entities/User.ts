@@ -12,6 +12,7 @@ import { CandidateProfile } from './CandidateProfile';
 
 export enum UserRole {
   ADMIN = 'admin',
+  SUPER_ADMIN = 'super_admin',
   CANDIDATE = 'candidate',
 }
 
