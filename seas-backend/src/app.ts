@@ -5,6 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import path from 'path';
 import fs from 'fs';
+import { apiReference } from '@scalar/express-api-reference';
 import { errorHandler, notFoundHandler } from './middlewares';
 import { validateConnections } from './config/connection.validator';
 import { logger } from './common/logger';

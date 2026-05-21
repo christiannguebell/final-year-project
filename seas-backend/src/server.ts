@@ -14,6 +14,7 @@ const startServer = async () => {
   try {
     logger.info('Validating critical connections...');
     const results = await validateConnections();
+
     
     const failures = getCriticalConnectionFailures(results);
     if (failures.length > 0) {

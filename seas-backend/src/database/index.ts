@@ -27,10 +27,14 @@ export const AppDataSource = new DataSource({
   host: getEnv('DB_HOST', 'localhost'),
   port: parseInt(getEnv('DB_PORT', '5432')),
   username: getEnv('DB_USER', 'postgres'),
-  password: getEnv('DB_PASSWORD'),
+  password:
+    process.env.NODE_ENV === 'development'
+      ? (process.env.DB_PASSWORD || 'postgres')
+      : getEnv('DB_PASSWORD'),
+
   database: getEnv('DB_NAME', 'seas_db'),
   synchronize: process.env.NODE_ENV === 'development',
-  logging: process.env.NODE_ENV === 'development',
+  logging: ['error'],
   entities: [
     User,
     CandidateProfile,
