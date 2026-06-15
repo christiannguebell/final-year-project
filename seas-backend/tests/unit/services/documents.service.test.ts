@@ -19,7 +19,7 @@ describe('DocumentsService', () => {
     it('should throw not found if application does not exist', async () => {
       (applicationsRepository.findById as any).mockResolvedValue(null);
 
-      const mockFile = { path: '/uploads/test.pdf', originalname: 'test.pdf' } as any;
+      const mockFile = { path: '/uploads/test.pdf', originalname: 'test.pdf', mimetype: 'application/pdf' } as any;
       await expect(
         documentsService.upload('app1', DocumentType.ID_CARD, mockFile)
       ).rejects.toThrow(ApiError);
@@ -36,7 +36,7 @@ describe('DocumentsService', () => {
         filePath: '/uploads/documents/test.pdf',
       });
 
-      const mockFile = { path: '/uploads/documents/test.pdf', originalname: 'test.pdf' } as any;
+      const mockFile = { path: '/uploads/documents/test.pdf', originalname: 'test.pdf', mimetype: 'application/pdf' } as any;
       const result = await documentsService.upload('app1', DocumentType.ID_CARD, mockFile);
 
       expect(result.type).toBe(DocumentType.ID_CARD);
@@ -54,7 +54,7 @@ describe('DocumentsService', () => {
         filePath: '/uploads/new.pdf',
       });
 
-      const mockFile = { path: '/uploads/new.pdf', originalname: 'new.pdf' } as any;
+      const mockFile = { path: '/uploads/new.pdf', originalname: 'new.pdf', mimetype: 'application/pdf' } as any;
       await documentsService.upload('app1', DocumentType.ID_CARD, mockFile);
 
       expect(fs.unlinkSync).toHaveBeenCalledWith('/uploads/old.pdf');

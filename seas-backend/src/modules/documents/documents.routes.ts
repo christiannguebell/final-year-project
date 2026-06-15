@@ -55,6 +55,25 @@ router.post(
 
 /**
  * @openapi
+ * /api/documents/scanning-guide:
+ *   get:
+ *     tags:
+ *       - Documents
+ *     summary: Download document scanning guide PDF
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Document scanning guide PDF
+ */
+router.get(
+  '/scanning-guide',
+  authenticate,
+  documentsController.getScanningGuide
+);
+
+/**
+ * @openapi
  * /api/documents/application/{applicationId}:
  *   get:
  *     tags:

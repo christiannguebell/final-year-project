@@ -10,7 +10,7 @@ export const Deadlines = () => {
   ];
 
   return (
-    <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+    <section id="resources" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 md:px-12">
       <div className="flex flex-col lg:flex-row gap-16">
         <div className="lg:w-1/3">
           <h2 className="text-4xl font-headline font-extrabold text-primary mb-6">Key Dates & <br />Deadlines</h2>

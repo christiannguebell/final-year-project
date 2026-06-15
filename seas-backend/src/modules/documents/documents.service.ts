@@ -3,6 +3,7 @@ import { applicationsRepository } from '../applications/applications.repository'
 import { ApiError } from '../../common/errors/ApiError';
 import { Document, DocumentType, DocumentStatus, UserRole } from '../../database';
 import { DOCUMENT_MESSAGES } from './documents.constants';
+import { generateDocumentScanningGuidePdf } from '../exams/pdf.service';
 import fs from 'fs';
 
 const UPLOAD_DIR = 'uploads/documents';
@@ -89,6 +90,10 @@ export const documentsService = {
       fs.unlinkSync(doc.filePath);
     }
     await documentsRepository.delete(id);
+  },
+
+  async getScanningGuidePdf(): Promise<Buffer> {
+    return generateDocumentScanningGuidePdf();
   },
 };
 

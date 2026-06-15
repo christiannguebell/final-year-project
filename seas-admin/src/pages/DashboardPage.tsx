@@ -14,15 +14,12 @@ export default function DashboardPage() {
   const { data: stats, isLoading: statsLoading } = useDashboardStats();
   const { data: trendData } = useApplicationsOverTime();
 
-  const chartData = trendData?.map((item) => ({
-    name: new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-    value: item.count
-  })) || [
-    { name: 'W1', value: 420 },
-    { name: 'W2', value: 550 },
-    { name: 'W3', value: 480 },
-    { name: 'W4', value: 720 },
-  ];
+  const chartData = trendData?.length
+    ? trendData.map((item) => ({
+        name: new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        value: item.count,
+      }))
+    : [{ name: 'No data', value: 0 }];
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto w-full">

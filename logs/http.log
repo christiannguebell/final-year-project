@@ -1,0 +1,820 @@
+2026-06-09 12:52:23 [INFO]: Validating critical connections...
+2026-06-09 12:52:30 [INFO]: Database connection verified
+2026-06-09 12:52:30 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 12:52:30 [INFO]: Server running on port 3000
+2026-06-09 12:56:59 [INFO]: HEAD /api/health
+2026-06-09 12:56:59 [INFO]: Database connection verified
+2026-06-09 12:56:59 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 12:56:59 [INFO]: GET /api/health
+2026-06-09 12:56:59 [INFO]: Database connection verified
+2026-06-09 12:56:59 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 13:00:45 [INFO]: GET /api/docs
+2026-06-09 13:01:13 [INFO]: GET /favicon.ico
+2026-06-09 13:07:07 [INFO]: GET /api/health
+2026-06-09 13:07:07 [INFO]: Database connection verified
+2026-06-09 13:07:07 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 13:07:08 [INFO]: POST /api/auth/register
+2026-06-09 13:07:11 [ERROR]: API Error: Template not found
+Error: Template not found
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.sendTemplatedEmail (/app/dist/modules/notifications/notifications.service.js:167:39)
+    at Object.register (/app/dist/modules/auth/auth.service.js:37:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async register (/app/dist/modules/auth/auth.controller.js:10:28)
+2026-06-09 13:29:28 [INFO]: Validating critical connections...
+2026-06-09 13:29:35 [INFO]: Database connection verified
+2026-06-09 13:29:35 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 13:29:35 [INFO]: Server running on port 3000
+2026-06-09 13:31:51 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-09 13:34:49 [INFO]: Validating critical connections...
+2026-06-09 13:34:50 [INFO]: Database connection verified
+2026-06-09 13:34:50 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 13:34:50 [INFO]: Server running on port 3000
+2026-06-09 13:43:18 [INFO]: GET /api/health
+2026-06-09 13:43:18 [INFO]: Database connection verified
+2026-06-09 13:43:18 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 13:43:19 [INFO]: POST /api/auth/register
+2026-06-09 13:43:20 [ERROR]: API Error: Template not found
+Error: Template not found
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.sendTemplatedEmail (/app/dist/modules/notifications/notifications.service.js:167:39)
+    at Object.register (/app/dist/modules/auth/auth.service.js:37:60)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async register (/app/dist/modules/auth/auth.controller.js:10:28)
+2026-06-09 13:52:32 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-09 13:52:51 [INFO]: Email templates loaded
+2026-06-09 13:52:51 [INFO]: Validating critical connections...
+2026-06-09 13:52:52 [INFO]: Database connection verified
+2026-06-09 13:52:52 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 13:52:52 [INFO]: Server running on port 3000
+2026-06-09 13:53:15 [INFO]: GET /api/health
+2026-06-09 13:53:15 [INFO]: Database connection verified
+2026-06-09 13:53:15 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 13:53:15 [INFO]: POST /api/auth/register
+2026-06-09 13:53:16 [INFO]: POST /api/auth/login
+2026-06-09 13:53:17 [ERROR]: API Error: ACCOUNT_UNVERIFIED
+Error: ACCOUNT_UNVERIFIED
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:88:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-09 13:56:58 [INFO]: GET /api/health
+2026-06-09 13:56:58 [INFO]: Database connection verified
+2026-06-09 13:56:58 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 13:56:58 [INFO]: POST /api/auth/register
+2026-06-09 13:57:55 [INFO]: GET /api/health
+2026-06-09 13:57:55 [INFO]: Database connection verified
+2026-06-09 13:57:55 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 13:57:55 [INFO]: POST /api/auth/register
+2026-06-09 13:57:56 [INFO]: POST /api/auth/login
+2026-06-09 13:57:56 [INFO]: GET /api/auth/profile
+2026-06-09 13:57:56 [INFO]: POST /api/candidates
+2026-06-09 13:57:56 [ERROR]: API Error: Invalid token
+Error: Invalid token
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:30:38)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+2026-06-09 13:57:56 [INFO]: GET /api/candidates/me
+2026-06-09 13:57:56 [ERROR]: API Error: Invalid token
+Error: Invalid token
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:30:38)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+2026-06-09 13:57:56 [INFO]: GET /api/programs
+2026-06-09 13:57:56 [ERROR]: API Error: Invalid token
+Error: Invalid token
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:30:38)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+2026-06-09 14:00:30 [INFO]: GET /api/health
+2026-06-09 14:00:30 [INFO]: Database connection verified
+2026-06-09 14:00:30 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 14:00:30 [INFO]: POST /api/auth/register
+2026-06-09 14:00:31 [INFO]: POST /api/auth/login
+2026-06-09 14:00:32 [INFO]: GET /api/auth/me
+2026-06-09 14:00:32 [INFO]: POST /api/candidates
+2026-06-09 14:00:32 [INFO]: GET /api/candidates/me
+2026-06-09 14:00:32 [INFO]: GET /api/programs
+2026-06-09 15:03:05 [INFO]: GET /api/health
+2026-06-09 15:03:07 [INFO]: Database connection verified
+2026-06-09 15:03:07 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 15:03:15 [INFO]: POST /api/auth/login
+2026-06-09 15:03:16 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:69:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-09 15:03:22 [INFO]: GET /api/programs
+2026-06-09 15:03:22 [ERROR]: API Error: No token provided
+Error: No token provided
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:15:39)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+2026-06-09 15:03:32 [INFO]: GET /api/nonexistent
+2026-06-09 15:03:38 [INFO]: POST /api/auth/register
+2026-06-09 15:03:39 [ERROR]: API Error: "email" is not allowed to be empty
+ValidationError: "email" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+    at /app/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.cjs:958:7
+2026-06-09 15:03:46 [INFO]: GET /api/docs
+2026-06-09 15:52:31 [INFO]: GET /api/docs
+2026-06-09 16:00:44 [INFO]: GET /api/health
+2026-06-09 16:00:48 [INFO]: Database connection verified
+2026-06-09 16:00:48 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 16:00:49 [INFO]: POST /api/auth/register
+2026-06-09 16:00:51 [INFO]: HEAD /api/docs
+2026-06-09 16:00:52 [INFO]: GET /api/docs
+2026-06-09 16:01:01 [INFO]: POST /api/auth/login
+2026-06-09 16:01:04 [INFO]: GET /api/auth/me
+2026-06-09 16:01:04 [INFO]: POST /api/candidates
+2026-06-09 16:01:06 [INFO]: GET /api/candidates/me
+2026-06-09 16:01:07 [INFO]: GET /api/programs
+2026-06-09 16:34:53 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-09 16:42:26 [INFO]: Email templates loaded
+2026-06-09 16:42:26 [INFO]: Validating critical connections...
+2026-06-09 16:42:32 [INFO]: Database connection verified
+2026-06-09 16:42:32 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 16:42:32 [INFO]: Server running on port 3000
+2026-06-09 16:42:37 [INFO]: POST /api/auth/register
+2026-06-09 16:51:26 [INFO]: Email templates loaded
+2026-06-09 16:51:26 [INFO]: Validating critical connections...
+2026-06-09 16:51:30 [INFO]: Database connection verified
+2026-06-09 16:51:30 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 16:51:30 [INFO]: Server running on port 3000
+2026-06-09 16:57:28 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-09 16:57:35 [INFO]: Email templates loaded
+2026-06-09 16:57:35 [INFO]: Validating critical connections...
+2026-06-09 16:57:35 [INFO]: Database connection verified
+2026-06-09 16:57:35 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 16:57:35 [INFO]: Server running on port 3000
+2026-06-09 16:59:33 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-09 17:01:52 [INFO]: Email templates loaded
+2026-06-09 17:01:52 [INFO]: Validating critical connections...
+2026-06-09 17:01:53 [INFO]: Database connection verified
+2026-06-09 17:01:53 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-09 17:01:53 [INFO]: Server running on port 3000
+2026-06-09 17:02:31 [INFO]: POST /api/auth/register
+2026-06-09 17:02:31 [ERROR]: API Error: User already exists with this email
+Error: User already exists with this email
+    at ApiError.conflict (/app/dist/common/errors/ApiError.js:30:16)
+    at Object.register (/app/dist/modules/auth/auth.service.js:20:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async register (/app/dist/modules/auth/auth.controller.js:10:28)
+2026-06-09 17:02:55 [INFO]: POST /api/auth/register
+2026-06-09 17:04:53 [INFO]: POST /api/auth/verify-otp
+2026-06-09 17:05:29 [INFO]: GET /api/payments
+2026-06-09 17:05:30 [INFO]: GET /api/payments
+2026-06-09 17:05:32 [INFO]: GET /api/applications/mine
+2026-06-09 17:06:46 [INFO]: GET /api/applications/mine
+2026-06-09 17:06:49 [INFO]: GET /api/payments
+2026-06-09 17:06:50 [INFO]: GET /api/payments
+2026-06-09 17:06:53 [INFO]: GET /api/payments
+2026-06-09 17:06:54 [INFO]: GET /api/payments
+2026-06-09 17:06:55 [INFO]: GET /api/candidates/me
+2026-06-09 17:06:55 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-09 17:06:56 [INFO]: GET /api/candidates/me
+2026-06-09 17:06:56 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-09 17:11:00 [INFO]: POST /api/admin/login
+2026-06-09 17:11:00 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:02 [INFO]: POST /api/admin/login
+2026-06-09 17:11:02 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:09 [INFO]: POST /api/admin/login
+2026-06-09 17:11:09 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:09 [INFO]: POST /api/admin/login
+2026-06-09 17:11:09 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:09 [INFO]: POST /api/admin/login
+2026-06-09 17:11:09 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:09 [INFO]: POST /api/admin/login
+2026-06-09 17:11:09 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:10 [INFO]: POST /api/admin/login
+2026-06-09 17:11:10 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:10 [INFO]: POST /api/admin/login
+2026-06-09 17:11:10 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:13 [INFO]: POST /api/admin/login
+2026-06-09 17:11:13 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:13 [INFO]: POST /api/admin/login
+2026-06-09 17:11:13 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:13 [INFO]: POST /api/admin/login
+2026-06-09 17:11:13 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:14 [INFO]: POST /api/admin/login
+2026-06-09 17:11:14 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:14 [INFO]: POST /api/admin/login
+2026-06-09 17:11:14 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:14 [INFO]: POST /api/admin/login
+2026-06-09 17:11:14 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:14 [INFO]: POST /api/admin/login
+2026-06-09 17:11:14 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:27 [INFO]: POST /api/admin/login
+2026-06-09 17:11:27 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:28 [INFO]: POST /api/admin/login
+2026-06-09 17:11:28 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:11:28 [INFO]: POST /api/admin/login
+2026-06-09 17:11:28 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:03 [INFO]: POST /api/admin/login
+2026-06-09 17:12:03 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:04 [INFO]: POST /api/admin/login
+2026-06-09 17:12:04 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:04 [INFO]: POST /api/admin/login
+2026-06-09 17:12:04 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:04 [INFO]: POST /api/admin/login
+2026-06-09 17:12:04 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:04 [INFO]: POST /api/admin/login
+2026-06-09 17:12:04 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:05 [INFO]: POST /api/admin/login
+2026-06-09 17:12:05 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:05 [INFO]: POST /api/admin/login
+2026-06-09 17:12:05 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:06 [INFO]: POST /api/admin/login
+2026-06-09 17:12:06 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:06 [INFO]: POST /api/admin/login
+2026-06-09 17:12:06 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:06 [INFO]: POST /api/admin/login
+2026-06-09 17:12:06 [INFO]: POST /api/admin/login
+2026-06-09 17:12:06 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:06 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:07 [INFO]: POST /api/admin/login
+2026-06-09 17:12:07 [INFO]: POST /api/admin/login
+2026-06-09 17:12:07 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:07 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:09 [INFO]: POST /api/admin/login
+2026-06-09 17:12:09 [INFO]: POST /api/admin/login
+2026-06-09 17:12:09 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:09 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:12:10 [INFO]: POST /api/admin/login
+2026-06-09 17:12:10 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-09 17:44:37 [INFO]: POST /api/admin/login
+2026-06-09 17:44:38 [INFO]: GET /api/analytics/dashboard
+2026-06-09 17:44:38 [INFO]: GET /api/analytics/applications-over-time
+2026-06-09 17:44:54 [INFO]: GET /api/analytics/dashboard
+2026-06-09 17:44:55 [INFO]: GET /api/analytics/applications-over-time
+2026-06-09 17:44:56 [INFO]: GET /api/analytics/applications-over-time
+2026-06-09 17:45:33 [INFO]: GET /api/candidates?limit=10
+2026-06-09 17:45:35 [INFO]: GET /api/applications?limit=10
+2026-06-09 17:45:35 [INFO]: GET /api/payments?limit=10
+2026-06-09 17:45:36 [INFO]: GET /api/payments?limit=10
+2026-06-10 13:08:23 [INFO]: GET /api/payments?limit=10
+2026-06-10 13:08:23 [INFO]: GET /api/applications?limit=10
+2026-06-10 13:08:24 [INFO]: GET /api/payments?limit=10
+2026-06-10 13:09:58 [INFO]: GET /api/applications?limit=10
+2026-06-10 13:09:58 [INFO]: GET /api/payments?limit=10
+2026-06-10 13:21:20 [INFO]: GET /api/payments?limit=10
+2026-06-10 13:24:26 [INFO]: GET /api/candidates/me
+2026-06-10 13:24:26 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 13:24:27 [INFO]: GET /api/candidates/me
+2026-06-10 13:24:27 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 13:24:35 [INFO]: GET /api/candidates/me
+2026-06-10 13:24:35 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 13:24:36 [INFO]: GET /api/candidates/me
+2026-06-10 13:24:36 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 13:25:08 [INFO]: GET /api/candidates?limit=10
+2026-06-10 13:25:13 [INFO]: GET /api/applications?limit=10
+2026-06-10 13:25:13 [INFO]: GET /api/payments?limit=10
+2026-06-10 13:25:14 [INFO]: GET /api/payments?limit=10
+2026-06-10 13:25:47 [INFO]: GET /api/analytics/dashboard
+2026-06-10 13:25:47 [INFO]: GET /api/analytics/applications-over-time
+2026-06-10 13:25:48 [INFO]: GET /api/analytics/applications-over-time
+2026-06-10 13:25:52 [INFO]: GET /api/payments?limit=10
+2026-06-10 13:25:53 [INFO]: GET /api/payments?limit=10
+2026-06-10 13:27:07 [INFO]: GET /api/candidates?limit=10
+2026-06-10 13:29:06 [INFO]: GET /api/applications/7d2b8841-244d-4bf9-90ea-31bdfbb397cd
+2026-06-10 13:29:07 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:23:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-10 13:29:08 [INFO]: GET /api/applications/7d2b8841-244d-4bf9-90ea-31bdfbb397cd
+2026-06-10 13:29:08 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:23:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-10 14:32:42 [INFO]: GET /api/candidates?limit=10
+2026-06-10 14:32:43 [INFO]: GET /api/applications?limit=10
+2026-06-10 14:32:43 [INFO]: GET /api/payments?limit=10
+2026-06-10 14:32:45 [INFO]: GET /api/payments?limit=10
+2026-06-10 14:32:49 [INFO]: GET /api/payments?limit=10
+2026-06-10 14:32:50 [INFO]: GET /api/payments?limit=10
+2026-06-10 14:33:47 [INFO]: GET /api/payments?limit=10
+2026-06-10 14:33:48 [INFO]: GET /api/payments?limit=10
+2026-06-10 14:33:48 [INFO]: GET /api/applications?limit=10
+2026-06-10 14:33:53 [INFO]: GET /api/candidates?limit=10
+2026-06-10 14:33:54 [INFO]: GET /api/analytics/dashboard
+2026-06-10 14:33:54 [INFO]: GET /api/analytics/applications-over-time
+2026-06-10 14:33:55 [INFO]: GET /api/analytics/applications-over-time
+2026-06-10 14:35:07 [INFO]: POST /api/auth/login
+2026-06-10 14:35:08 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:69:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-10 14:35:20 [INFO]: POST /api/auth/login
+2026-06-10 14:35:20 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:69:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-10 14:36:28 [INFO]: POST /api/auth/register
+2026-06-10 14:36:48 [INFO]: POST /api/auth/verify-otp
+2026-06-10 14:37:01 [INFO]: GET /api/applications/mine
+2026-06-10 14:37:09 [INFO]: GET /api/payments
+2026-06-10 14:37:10 [INFO]: GET /api/payments
+2026-06-10 14:37:29 [INFO]: GET /api/payments
+2026-06-10 14:37:30 [INFO]: GET /api/payments
+2026-06-10 14:37:34 [INFO]: GET /api/payments
+2026-06-10 14:37:35 [INFO]: GET /api/payments
+2026-06-10 14:37:50 [INFO]: GET /api/candidates/me
+2026-06-10 14:37:50 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 14:37:51 [INFO]: GET /api/candidates/me
+2026-06-10 14:37:51 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 14:37:55 [INFO]: GET /api/candidates/me
+2026-06-10 14:37:55 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 14:37:56 [INFO]: GET /api/candidates/me
+2026-06-10 14:37:56 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 14:40:07 [INFO]: GET /api/applications/mine
+2026-06-10 14:40:08 [INFO]: GET /api/payments
+2026-06-10 14:40:10 [INFO]: GET /api/payments
+2026-06-10 15:05:26 [INFO]: GET /api/payments
+2026-06-10 15:05:27 [INFO]: GET /api/payments
+2026-06-10 15:05:28 [INFO]: GET /api/applications/mine
+2026-06-10 15:06:08 [INFO]: GET /api/candidates/me
+2026-06-10 15:06:08 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 15:06:10 [INFO]: GET /api/candidates/me
+2026-06-10 15:06:10 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 15:06:13 [INFO]: GET /api/candidates/me
+2026-06-10 15:06:14 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 15:06:15 [INFO]: GET /api/candidates/me
+2026-06-10 15:06:15 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 15:06:19 [INFO]: GET /api/candidates/me
+2026-06-10 15:06:19 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 15:06:20 [INFO]: GET /api/candidates/me
+2026-06-10 15:06:20 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 15:06:36 [INFO]: GET /api/payments
+2026-06-10 15:06:37 [INFO]: GET /api/payments
+2026-06-10 15:06:41 [INFO]: GET /api/payments
+2026-06-10 15:06:43 [INFO]: GET /api/payments
+2026-06-10 15:06:58 [INFO]: GET /api/applications/mine
+2026-06-10 15:09:49 [INFO]: GET /api/applications/mine
+2026-06-10 15:11:36 [INFO]: GET /api/applications/mine
+2026-06-10 15:36:32 [INFO]: GET /api/payments?limit=10
+2026-06-10 15:36:32 [INFO]: GET /api/applications?limit=10
+2026-06-10 15:36:33 [INFO]: GET /api/payments?limit=10
+2026-06-10 15:36:33 [INFO]: GET /api/candidates?limit=10
+2026-06-10 15:36:35 [INFO]: GET /api/analytics/applications-over-time
+2026-06-10 15:36:35 [INFO]: GET /api/analytics/dashboard
+2026-06-10 15:36:36 [INFO]: GET /api/analytics/applications-over-time
+2026-06-10 15:36:39 [INFO]: GET /api/analytics/applications-over-time
+2026-06-10 15:36:40 [INFO]: GET /api/analytics/applications-over-time
+2026-06-10 15:37:31 [INFO]: GET /api/payments?limit=10
+2026-06-10 15:37:32 [INFO]: GET /api/payments?limit=10
+2026-06-10 15:40:52 [INFO]: GET /api/applications/mine
+2026-06-10 15:53:10 [INFO]: GET /api/candidates/me
+2026-06-10 15:53:18 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 15:55:15 [INFO]: GET /api/candidates/me
+2026-06-10 15:55:15 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-10 15:57:49 [INFO]: GET /api/applications?limit=10
+2026-06-10 15:57:49 [INFO]: GET /api/payments?limit=10
+2026-06-10 15:57:50 [INFO]: GET /api/payments?limit=10
+2026-06-10 18:22:30 [INFO]: Email templates loaded
+2026-06-10 18:22:30 [INFO]: Validating critical connections...
+2026-06-10 18:22:35 [INFO]: Database connection verified
+2026-06-10 18:22:35 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-10 18:22:35 [INFO]: Server running on port 3000
+2026-06-10 19:26:11 [INFO]: POST /api/auth/login
+2026-06-10 19:26:11 [INFO]: POST /api/auth/login
+2026-06-11 00:13:29 [INFO]: POST /api/auth/login
+2026-06-11 00:13:46 [INFO]: GET /api/applications/mine
+2026-06-11 00:14:05 [INFO]: GET /api/payments
+2026-06-11 00:14:06 [INFO]: GET /api/payments
+2026-06-11 00:15:45 [INFO]: GET /api/applications/mine
+2026-06-11 00:15:51 [INFO]: GET /api/candidates/me
+2026-06-11 00:15:51 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-11 00:15:53 [INFO]: GET /api/candidates/me
+2026-06-11 00:15:53 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-11 11:13:15 [INFO]: POST /api/auth/login
+2026-06-11 11:13:58 [INFO]: GET /api/applications/mine
+2026-06-11 11:14:10 [INFO]: GET /api/payments
+2026-06-11 11:14:12 [INFO]: GET /api/payments
+2026-06-11 11:18:44 [INFO]: GET /api/applications/mine
+2026-06-11 11:18:45 [INFO]: GET /api/payments
+2026-06-11 11:18:46 [INFO]: GET /api/payments
+2026-06-11 11:19:01 [INFO]: GET /api/payments
+2026-06-11 11:19:02 [INFO]: GET /api/payments
+2026-06-11 11:19:04 [INFO]: GET /api/payments
+2026-06-11 11:19:05 [INFO]: GET /api/payments
+2026-06-11 11:59:49 [INFO]: GET /api/applications/mine
+2026-06-11 13:14:54 [INFO]: GET /api/applications/mine
+2026-06-11 13:21:02 [INFO]: GET /api/applications/mine
+2026-06-11 13:26:10 [INFO]: GET /api/programs
+2026-06-11 13:26:23 [INFO]: GET /api/programs
+2026-06-11 13:27:16 [INFO]: GET /api/applications/mine
+2026-06-11 13:27:35 [INFO]: GET /api/programs
+2026-06-11 13:27:35 [INFO]: GET /api/programs
+2026-06-11 13:27:43 [INFO]: GET /api/programs
+2026-06-11 13:27:43 [INFO]: GET /api/programs
+2026-06-11 13:27:51 [INFO]: GET /api/programs
+2026-06-11 13:27:51 [INFO]: GET /api/programs
+2026-06-11 13:27:58 [INFO]: GET /api/programs
+2026-06-11 13:27:58 [INFO]: GET /api/programs
+2026-06-11 13:28:05 [INFO]: GET /api/programs
+2026-06-11 13:28:05 [INFO]: GET /api/programs
+2026-06-11 13:44:41 [INFO]: GET /api/applications/mine
+2026-06-11 13:45:07 [INFO]: PUT /api/candidates
+2026-06-11 13:45:17 [ERROR]: API Error: "dateOfBirth" must be in ISO 8601 date format
+ValidationError: "dateOfBirth" must be in ISO 8601 date format
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-11 13:46:05 [INFO]: GET /api/candidates/me
+2026-06-11 13:46:10 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-11 13:46:12 [INFO]: GET /api/candidates/me
+2026-06-11 13:46:12 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-11 13:48:06 [INFO]: GET /api/payments
+2026-06-11 13:48:07 [INFO]: GET /api/payments
+2026-06-11 13:48:16 [INFO]: GET /api/applications/mine
+2026-06-11 13:48:38 [INFO]: GET /api/payments
+2026-06-11 13:48:40 [INFO]: GET /api/payments
+2026-06-13 13:55:03 [INFO]: Email templates loaded
+2026-06-13 13:55:03 [INFO]: Validating critical connections...
+2026-06-13 13:55:13 [INFO]: Database connection verified
+2026-06-13 13:55:13 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-13 13:55:13 [INFO]: Server running on port 3000
+2026-06-13 13:56:51 [INFO]: POST /api/admin/login
+2026-06-13 13:56:51 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-13 13:56:55 [INFO]: POST /api/admin/login
+2026-06-13 13:56:55 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-13 13:56:56 [INFO]: POST /api/admin/login
+2026-06-13 13:56:56 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-13 13:56:56 [INFO]: POST /api/admin/login
+2026-06-13 13:56:56 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-13 13:56:56 [INFO]: POST /api/admin/login
+2026-06-13 13:56:56 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-13 13:56:56 [INFO]: POST /api/admin/login
+2026-06-13 13:56:56 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-13 13:56:59 [INFO]: POST /api/admin/login
+2026-06-13 13:56:59 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-13 13:56:59 [INFO]: POST /api/admin/login
+2026-06-13 13:56:59 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-13 14:11:48 [INFO]: SIGTERM signal received: closing HTTP server

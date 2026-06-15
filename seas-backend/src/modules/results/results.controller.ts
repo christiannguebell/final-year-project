@@ -132,6 +132,21 @@ export const resultsController = {
       next(error);
     }
   },
+
+  async getMyResultReport(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const userId = req.user?.userId;
+      if (!userId) {
+        throw new Error('User not authenticated');
+      }
+      const pdfBuffer = await resultsService.getMyResultReportPdf(userId);
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=result-report.pdf');
+      res.status(200).send(pdfBuffer);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 export default resultsController;

@@ -5,5 +5,6 @@ export * from './useApplications';
 export * from './useDocuments';
 export * from './usePayments';
 export * from './useExams';
+export * from './useDownloads';
 export * from './useResults';
 export * from './useNotifications';

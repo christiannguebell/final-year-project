@@ -10,8 +10,10 @@ export interface ListSessionsParams {
 
 export interface CreateSessionPayload {
   name: string;
-  startDate: string;
-  endDate: string;
+  examDate: string;
+  registrationStart?: string;
+  registrationEnd?: string;
+  description?: string;
 }
 
 export interface UpdateSessionPayload {
@@ -25,7 +27,8 @@ export interface ListCentersParams {
 
 export interface CreateCenterPayload {
   name: string;
-  location: string;
+  address: string;
+  city: string;
   capacity: number;
 }
 
@@ -46,8 +49,15 @@ export const examsApi = {
   },
 
   async listSessions(params?: ListSessionsParams) {
-    const response = await apiClient.get<PaginatedResponse<ExamSession>>('/exams/sessions', { params });
-    return response.data.data;
+    const response = await apiClient.get<ExamSession[] | PaginatedResponse<ExamSession>>('/exams/sessions', { params });
+    const data = response.data.data;
+    if (Array.isArray(data)) {
+      return {
+        items: data,
+        pagination: { page: 1, limit: data.length, total: data.length, totalPages: 1, hasNext: false, hasPrev: false },
+      };
+    }
+    return data!;
   },
 
   async getSessionById(id: string) {
@@ -71,8 +81,15 @@ export const examsApi = {
   },
 
   async listCenters(params?: ListCentersParams) {
-    const response = await apiClient.get<PaginatedResponse<ExamCenter>>('/exams/centers', { params });
-    return response.data.data;
+    const response = await apiClient.get<ExamCenter[] | PaginatedResponse<ExamCenter>>('/exams/centers', { params });
+    const data = response.data.data;
+    if (Array.isArray(data)) {
+      return {
+        items: data,
+        pagination: { page: 1, limit: data.length, total: data.length, totalPages: 1, hasNext: false, hasPrev: false },
+      };
+    }
+    return data!;
   },
 
   async getCenterById(id: string) {

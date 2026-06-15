@@ -16,6 +16,7 @@ import {
   Info,
 } from 'lucide-react';
 import { usePaymentsByApplication, useCreatePayment, useUploadPaymentReceipt } from '../../hooks/usePayments';
+import { useDownloadPaymentSummary } from '../../hooks/useDownloads';
 import { PaymentStatus } from '../../types/entities';
 import { format } from 'date-fns';
 import type { Payment } from '../../types/entities';
@@ -161,7 +162,12 @@ export default function ApplicationPaymentPage() {
             className="lg:col-span-5 space-y-8"
           >
             <StatusCard pendingPayment={pendingPayment} />
-            <PaymentSummary totalInvoiced={totalInvoiced} totalPaid={totalPaid} balanceDue={balanceDue} />
+            <PaymentSummary
+              applicationId={applicationId}
+              totalInvoiced={totalInvoiced}
+              totalPaid={totalPaid}
+              balanceDue={balanceDue}
+            />
             <PaymentHistory paymentList={paymentList} />
           </motion.div>
         </div>
@@ -388,7 +394,19 @@ function StatusCard({ pendingPayment }: { pendingPayment?: Payment }) {
   );
 }
 
-function PaymentSummary({ totalInvoiced, totalPaid, balanceDue }: { totalInvoiced: number; totalPaid: number; balanceDue: number }) {
+function PaymentSummary({
+  applicationId,
+  totalInvoiced,
+  totalPaid,
+  balanceDue,
+}: {
+  applicationId?: string;
+  totalInvoiced: number;
+  totalPaid: number;
+  balanceDue: number;
+}) {
+  const downloadSummary = useDownloadPaymentSummary(applicationId);
+
   return (
     <section className="bg-surface-container-low rounded-xl p-7">
       <div className="space-y-4">
@@ -406,8 +424,13 @@ function PaymentSummary({ totalInvoiced, totalPaid, balanceDue }: { totalInvoice
             <p className="text-[10px] font-bold text-primary uppercase tracking-widest mb-1.5">Balance Due</p>
             <p className="text-3xl font-black text-primary tracking-tighter">${balanceDue.toFixed(2)}</p>
           </div>
-          <button className="bg-surface-container-lowest p-2.5 rounded-lg text-primary hover:bg-white transition-all shadow-sm border border-outline-variant/10 group">
-            <Download size={20} className="group-hover:scale-110 transition-transform" />
+          <button
+            type="button"
+            onClick={() => downloadSummary.mutate()}
+            disabled={!applicationId || downloadSummary.isPending}
+            className="group rounded-lg border border-outline-variant/10 bg-surface-container-lowest p-2.5 text-primary shadow-sm transition-all hover:bg-white disabled:opacity-50"
+          >
+            <Download size={20} className="transition-transform group-hover:scale-110" />
           </button>
         </div>
       </div>

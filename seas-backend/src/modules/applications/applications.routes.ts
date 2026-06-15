@@ -4,7 +4,7 @@ import { validate } from '../../middlewares/validation.middleware';
 import { authenticate } from '../../middlewares/auth.middleware';
 import { authorize } from '../../middlewares/role.middleware';
 import { UserRole } from '../../database';
-import { idParamSchema, createApplicationSchema, updateApplicationSchema, listApplicationsSchema } from './applications.validation';
+import { idParamSchema, createApplicationSchema, updateApplicationSchema, listApplicationsSchema, counsellingRequestSchema } from './applications.validation';
 import { auditMiddleware } from '../../middlewares/audit.middleware';
 import { AuditAction } from '../../common/logger/audit';
 
@@ -93,6 +93,46 @@ router.get(
   authorize(UserRole.ADMIN),
   validate(listApplicationsSchema, 'query'),
   applicationsController.getAll
+);
+
+/**
+ * @openapi
+ * /api/applications/counselling-request:
+ *   post:
+ *     tags:
+ *       - Applications
+ *     summary: Request an admissions counselling call
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       201:
+ *         description: Counselling request submitted
+ */
+router.post(
+  '/counselling-request',
+  authenticate,
+  validate(counsellingRequestSchema),
+  applicationsController.requestCounselling
+);
+
+/**
+ * @openapi
+ * /api/applications/{id}/admission-letter:
+ *   get:
+ *     tags:
+ *       - Applications
+ *     summary: Download admission letter PDF for approved application
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Admission letter PDF
+ */
+router.get(
+  '/:id/admission-letter',
+  authenticate,
+  validate(idParamSchema, 'params'),
+  applicationsController.getAdmissionLetter
 );
 
 /**

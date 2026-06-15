@@ -92,6 +92,25 @@ router.get(
 
 /**
  * @openapi
+ * /api/results/my-result/report:
+ *   get:
+ *     tags:
+ *       - Results
+ *     summary: Download current candidate result report PDF
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Result report PDF
+ */
+router.get(
+  '/my-result/report',
+  authenticate,
+  resultsController.getMyResultReport
+);
+
+/**
+ * @openapi
  * /api/results/application/{applicationId}:
  *   get:
  *     tags:

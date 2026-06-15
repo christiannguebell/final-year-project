@@ -1,6 +1,12 @@
 import { AppDataSource } from '../../database';
 import { Payment, PaymentStatus } from '../../database';
 
+export interface ListPaymentsOptions {
+  page?: number;
+  limit?: number;
+  status?: PaymentStatus;
+}
+
 export interface CreatePaymentDto {
   applicationId: string;
   amount: number;
@@ -25,6 +31,35 @@ export const paymentsRepository = {
     });
   },
 
+  async findAll(options?: ListPaymentsOptions) {
+    const page = options?.page || 1;
+    const limit = options?.limit || 10;
+    const skip = (page - 1) * limit;
+
+    const queryBuilder = AppDataSource.getRepository(Payment)
+      .createQueryBuilder('payment')
+      .leftJoinAndSelect('payment.application', 'application')
+      .orderBy('payment.createdAt', 'DESC');
+
+    if (options?.status) {
+      queryBuilder.andWhere('payment.status = :status', { status: options.status });
+    }
+
+    const [items, total] = await queryBuilder.skip(skip).take(limit).getManyAndCount();
+
+    return {
+      items,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+        hasNext: page * limit < total,
+        hasPrev: page > 1,
+      },
+    };
+  },
+
   async create(data: CreatePaymentDto): Promise<Payment> {
     const repo = AppDataSource.getRepository(Payment);
     const payment = repo.create({
@@ -39,6 +74,11 @@ export const paymentsRepository = {
       status,
       notes,
     } as any);
+    return this.findById(id);
+  },
+
+  async updateNotes(id: string, notes: string): Promise<Payment | null> {
+    await AppDataSource.getRepository(Payment).update(id, { notes } as any);
     return this.findById(id);
   },
 

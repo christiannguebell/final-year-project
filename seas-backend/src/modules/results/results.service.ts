@@ -1,9 +1,10 @@
 import { resultsRepository } from './results.repository';
 import { resultScoresRepository } from './resultScore.repository';
 import { ApiError } from '../../common/errors/ApiError';
-import { Result, ResultStatus, ExamAssignment } from '../../database';
+import { Result, ResultStatus, ExamAssignment, Application, User } from '../../database';
 import { AppDataSource } from '../../database';
 import { RESULT_MESSAGES } from './results.constants';
+import { generateResultReportPdf } from '../exams/pdf.service';
 
 interface CreateResultData {
   applicationId: string;
@@ -136,6 +137,31 @@ export const resultsService = {
     }
 
     return myResult;
+  },
+
+  async getMyResultReportPdf(userId: string): Promise<Buffer> {
+    const result = await this.getMyResult(userId);
+    const fullResult = await resultsRepository.findById(result.id);
+    if (!fullResult) {
+      throw ApiError.notFound(RESULT_MESSAGES.NOT_FOUND);
+    }
+
+    const application = await AppDataSource.getRepository(Application).findOne({
+      where: { id: fullResult.applicationId } as any,
+      relations: ['program', 'candidate'],
+    });
+
+    if (!application) {
+      throw ApiError.notFound('Application not found for result');
+    }
+
+    const user =
+      application.candidate ||
+      (await AppDataSource.getRepository(User).findOne({
+        where: { id: userId } as any,
+      }));
+
+    return generateResultReportPdf(fullResult, user, application.program);
   },
 };
 

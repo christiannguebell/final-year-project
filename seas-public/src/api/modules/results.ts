@@ -1,17 +1,19 @@
 import apiClient from '../client';
 import type { Result } from '../../types/entities';
-import type { PaginatedParams, PaginatedResponse } from '../../types/api';
-
-export type ListResultsParams = PaginatedParams;
 
 export const resultsApi = {
-  async getMy(params?: ListResultsParams) {
-    const response = await apiClient.get<PaginatedResponse<Result>>('/results/mine', { params });
+  async getMyResult() {
+    const response = await apiClient.get<Result>('/results/my-result');
     return response.data;
   },
 
-  async getBySession(sessionId: string, params?: ListResultsParams) {
-    const response = await apiClient.get<PaginatedResponse<Result>>(`/results/session/${sessionId}`, { params });
+  async getMyResultReport() {
+    const response = await apiClient.download('/results/my-result/report');
+    return response.data;
+  },
+
+  async getBySession(sessionId: string) {
+    const response = await apiClient.get<Result[]>(`/results/session/${sessionId}`);
     return response.data;
   },
 

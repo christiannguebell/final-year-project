@@ -1,0 +1,6 @@
+allowBuilds:
+  bcrypt: true
+  better-sqlite3: true
+  puppeteer: true
+  sqlite3: true
+  unrs-resolver: true

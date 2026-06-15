@@ -11,6 +11,7 @@ import CandidatesPage from '@/pages/CandidatesPage';
 import ProgramsPage from '@/pages/ProgramsPage';
 import ApplicationsQueue from '@/pages/ApplicationsQueue';
 import VerificationDetail from '@/pages/VerificationDetail';
+import { BroadcastCenter, ExamCenters, ExamSessions, ResultsPublication, ScoreEntry, AssignmentManager } from '@/pages';
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const token = localStorage.getItem('seas_admin_token');
@@ -39,6 +40,12 @@ function App() {
               <Route path="programs" element={<ProgramsPage />} />
               <Route path="applications" element={<ApplicationsQueue />} />
               <Route path="applications/:id" element={<VerificationDetail />} />
+              <Route path="broadcasts" element={<BroadcastCenter />} />
+              <Route path="exam-centers" element={<ExamCenters />} />
+              <Route path="exam-sessions" element={<ExamSessions />} />
+              <Route path="results-publication" element={<ResultsPublication />} />
+              <Route path="score-entry" element={<ScoreEntry />} />
+              <Route path="assignment-manager" element={<AssignmentManager />} />
             </Route>
           </Routes>
         </Suspense>

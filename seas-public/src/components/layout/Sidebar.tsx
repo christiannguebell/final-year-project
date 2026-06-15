@@ -2,6 +2,7 @@ import { LayoutDashboard, FileText, CreditCard, GraduationCap, BarChart3, HelpCi
 import { cn } from '../../lib/utils';
 import { useLogout } from '../../hooks/useAuth';
 import { Link, useLocation } from 'react-router-dom';
+import { openSupportEmail } from '../../config/navigation';
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
@@ -12,7 +13,11 @@ const navItems = [
   { icon: User, label: 'Profile', path: '/profile' },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  activeSection?: 'payments';
+}
+
+export default function Sidebar({ activeSection }: SidebarProps) {
   const { mutate: logout } = useLogout();
   const location = useLocation();
 
@@ -32,7 +37,12 @@ export default function Sidebar() {
 
       <nav className="flex-1 space-y-1">
         {navItems.map((item) => {
-          const isActive = location.pathname === item.path;
+          const isActive =
+            location.pathname === item.path ||
+            (activeSection === 'payments' && item.path === '/payments') ||
+            (item.path === '/applications' &&
+              (location.pathname.startsWith('/application') || location.pathname.startsWith('/applications'))) ||
+            (item.path === '/programs' && location.pathname.startsWith('/programs'));
           return (
             <Link
               key={item.label}
@@ -52,8 +62,12 @@ export default function Sidebar() {
       </nav>
 
       <div className="mt-auto pt-4 border-t border-outline-variant/15 space-y-1">
-        <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 ease-in-out scale-100 hover:translate-x-1">
-          <HelpCircle className="w-5 h-5" />
+        <button
+          type="button"
+          onClick={() => openSupportEmail()}
+          className="flex w-full scale-100 items-center gap-3 px-4 py-3 text-slate-600 transition-all duration-200 ease-in-out hover:translate-x-1 hover:bg-slate-200/50"
+        >
+          <HelpCircle className="h-5 w-5" />
           <span className="text-sm font-medium">Support</span>
         </button>
         <button

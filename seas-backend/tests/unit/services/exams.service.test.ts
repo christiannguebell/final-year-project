@@ -11,17 +11,15 @@ jest.mock('../../../src/modules/exams/examCenter.repository');
 jest.mock('../../../src/modules/exams/examAssignment.repository');
 
 jest.mock('../../../src/database', () => {
-  const mockFind = jest.fn().mockResolvedValue([]);
-  const mockQueryBuilder = jest.fn().mockReturnValue({
-    where: jest.fn().mockReturnThis(),
-    orderBy: jest.fn().mockReturnThis(),
-    getMany: jest.fn().mockResolvedValue([]),
-  });
   return {
     AppDataSource: {
       getRepository: jest.fn().mockReturnValue({
-        find: mockFind,
-        createQueryBuilder: mockQueryBuilder,
+        find: jest.fn().mockImplementation(() => Promise.resolve([])),
+        createQueryBuilder: jest.fn().mockReturnValue({
+          where: jest.fn().mockReturnThis(),
+          orderBy: jest.fn().mockReturnThis(),
+          getMany: jest.fn().mockImplementation(() => Promise.resolve([])),
+        }),
       }),
     },
     Application: class {},
@@ -41,7 +39,7 @@ describe('ExamsService', () => {
 
   describe('createSession', () => {
     it('should throw conflict if session name exists', async () => {
-      (examSessionsRepository.findByName as jest.Mock).mockResolvedValue({ id: '1' });
+      (examSessionsRepository.findByName as any).mockResolvedValue({ id: '1' });
 
       await expect(
         examsService.createSession({ name: 'Session 2024', examDate: new Date() })
@@ -49,8 +47,8 @@ describe('ExamsService', () => {
     });
 
     it('should create session successfully', async () => {
-      (examSessionsRepository.findByName as jest.Mock).mockResolvedValue(null);
-      (examSessionsRepository.create as jest.Mock).mockResolvedValue({
+      (examSessionsRepository.findByName as any).mockResolvedValue(null);
+      (examSessionsRepository.create as any).mockResolvedValue({
         id: '1',
         name: 'Session 2024',
       });
@@ -66,7 +64,7 @@ describe('ExamsService', () => {
 
   describe('getSessions', () => {
     it('should return all sessions', async () => {
-      (examSessionsRepository.findAll as jest.Mock).mockResolvedValue([
+      (examSessionsRepository.findAll as any).mockResolvedValue([
         { id: '1', name: 'Session 1' },
       ]);
 
@@ -78,7 +76,7 @@ describe('ExamsService', () => {
 
   describe('getSessionById', () => {
     it('should return session by id', async () => {
-      (examSessionsRepository.findById as jest.Mock).mockResolvedValue({
+      (examSessionsRepository.findById as any).mockResolvedValue({
         id: '1',
         name: 'Test Session',
       });
@@ -89,7 +87,7 @@ describe('ExamsService', () => {
     });
 
     it('should throw not found error', async () => {
-      (examSessionsRepository.findById as jest.Mock).mockResolvedValue(null);
+      (examSessionsRepository.findById as any).mockResolvedValue(null);
 
       await expect(examsService.getSessionById('999')).rejects.toThrow(
         EXAM_MESSAGES.SESSION_NOT_FOUND
@@ -99,8 +97,8 @@ describe('ExamsService', () => {
 
   describe('createCenter', () => {
     it('should create center successfully', async () => {
-      (examCentersRepository.findByName as jest.Mock).mockResolvedValue(null);
-      (examCentersRepository.create as jest.Mock).mockResolvedValue({
+      (examCentersRepository.findByName as any).mockResolvedValue(null);
+      (examCentersRepository.create as any).mockResolvedValue({
         id: '1',
         name: 'Test Center',
       });
@@ -118,7 +116,7 @@ describe('ExamsService', () => {
 
   describe('getCenters', () => {
     it('should return active centers', async () => {
-      (examCentersRepository.findAll as jest.Mock).mockResolvedValue([
+      (examCentersRepository.findAll as any).mockResolvedValue([
         { id: '1', name: 'Center 1' },
       ]);
 
@@ -132,13 +130,13 @@ describe('ExamsService', () => {
     it('should throw error if no approved applications', async () => {
       const mockRepo = mockAppDataSource.getRepository();
 
-      (examSessionsRepository.findById as jest.Mock).mockResolvedValue({ id: '1' });
-      (examCentersRepository.findAll as jest.Mock).mockResolvedValue([{ id: '1', capacity: 100 }]);
+      (examSessionsRepository.findById as any).mockResolvedValue({ id: '1' });
+      (examCentersRepository.findAll as any).mockResolvedValue([{ id: '1', capacity: 100 }]);
 
       mockRepo.createQueryBuilder = jest.fn().mockReturnValue({
         where: jest.fn().mockReturnThis(),
         orderBy: jest.fn().mockReturnThis(),
-        getMany: jest.fn().mockResolvedValue([]),
+        getMany: jest.fn().mockImplementation(() => Promise.resolve([])),
       });
 
       await expect(
@@ -153,15 +151,15 @@ describe('ExamsService', () => {
       ];
       const mockRepo = mockAppDataSource.getRepository();
 
-      (examSessionsRepository.findById as jest.Mock).mockResolvedValue({ id: '1', examDate: new Date() });
-      (examCentersRepository.findAll as jest.Mock).mockResolvedValue([{ id: '1', capacity: 100 }]);
-      (examAssignmentsRepository.findBySessionId as jest.Mock).mockResolvedValue([]);
-      (examAssignmentsRepository.createMany as jest.Mock).mockResolvedValue(true);
+      (examSessionsRepository.findById as any).mockResolvedValue({ id: '1', examDate: new Date() });
+      (examCentersRepository.findAll as any).mockResolvedValue([{ id: '1', capacity: 100 }]);
+      (examAssignmentsRepository.findBySessionId as any).mockResolvedValue([]);
+      (examAssignmentsRepository.createMany as any).mockResolvedValue(true);
 
       mockRepo.createQueryBuilder = jest.fn().mockReturnValue({
         where: jest.fn().mockReturnThis(),
         orderBy: jest.fn().mockReturnThis(),
-        getMany: jest.fn().mockResolvedValue(mockApplications),
+        getMany: jest.fn().mockImplementation(() => Promise.resolve(mockApplications)),
       });
 
       const result = await examsService.autoAllocateCandidates({
@@ -178,7 +176,7 @@ describe('ExamsService', () => {
       const mockAssignment = { id: '1', applicationId: 'app1', seatNumber: 'S001' };
 
       mockAppDataSource.getRepository().find.mockResolvedValueOnce(mockApplications);
-      (examAssignmentsRepository.findByApplicationId as jest.Mock).mockResolvedValue(mockAssignment);
+      (examAssignmentsRepository.findByApplicationId as any).mockResolvedValue(mockAssignment);
 
       const result = await examsService.getMyAssignment('1');
 

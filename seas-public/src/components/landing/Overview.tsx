@@ -1,9 +1,10 @@
 import { motion } from "motion/react";
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import { scrollToSection } from "../../config/navigation";
 
 export const Overview = () => {
   return (
-    <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+    <section id="admissions" className="py-24 px-6 md:px-12 max-w-7xl mx-auto scroll-mt-24">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
@@ -46,8 +47,12 @@ export const Overview = () => {
             </p>
           </div>
           
-          <button className="mt-12 group flex items-center gap-2 text-secondary-fixed font-headline font-bold text-lg hover:gap-4 transition-all">
-            Learn More <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+          <button
+            type="button"
+            onClick={() => scrollToSection('programs')}
+            className="group mt-12 flex items-center gap-2 font-headline text-lg font-bold text-secondary-fixed transition-all hover:gap-4"
+          >
+            Learn More <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </button>
         </motion.div>
       </div>

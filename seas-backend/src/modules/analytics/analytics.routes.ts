@@ -37,4 +37,8 @@ router.get('/dashboard', analyticsController.getDashboardStats);
  */
 router.get('/programs', analyticsController.getProgramDistribution);
 
+router.get('/applications-by-status', analyticsController.getApplicationsByStatus);
+
+router.get('/applications-over-time', analyticsController.getApplicationsOverTime);
+
 export default router;

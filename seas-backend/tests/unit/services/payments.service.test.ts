@@ -19,7 +19,7 @@ describe('PaymentsService', () => {
       (applicationsRepository.findById as jest.Mock).mockResolvedValue(null);
 
       await expect(
-        paymentsService.create('app1', 100, new Date())
+        paymentsService.create('app1', 100, new Date(), 'BANK_TRANSFER')
       ).rejects.toThrow(ApiError);
     });
 
@@ -32,7 +32,7 @@ describe('PaymentsService', () => {
         status: PaymentStatus.PENDING,
       });
 
-      const result = await paymentsService.create('app1', 100, new Date());
+      const result = await paymentsService.create('app1', 100, new Date(), 'BANK_TRANSFER');
 
       expect(result.amount).toBe(100);
     });
@@ -48,7 +48,7 @@ describe('PaymentsService', () => {
       });
 
       const mockFile = { path: '/uploads/receipts/test.jpg' } as Express.Multer.File;
-      const result = await paymentsService.uploadReceipt('1', mockFile);
+      const result = await paymentsService.uploadReceipt('1', mockFile, { transactionId: 'txn1', amount: 100 });
 
       expect(result.receiptFile).toBe('/uploads/receipts/test.jpg');
     });

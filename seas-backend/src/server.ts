@@ -5,6 +5,7 @@ import config from './config';
 import { validateConnections, getCriticalConnectionFailures } from './config/connection.validator';
 import logger from './common/logger';
 import { AppDataSource } from './database';
+import { emailTemplateService } from './services/email-template.service';
 
 const PORT = config.port;
 
@@ -12,6 +13,10 @@ let server: any;
 
 const startServer = async () => {
   try {
+    // Always load email templates from disk (no SMTP needed)
+    await emailTemplateService.initialize();
+    logger.info('Email templates loaded');
+
     logger.info('Validating critical connections...');
     const results = await validateConnections();
 

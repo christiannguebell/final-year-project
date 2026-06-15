@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { Calendar, User, Globe, IdCard, Fingerprint, MapPin, Save } from 'lucide-react';
 import { apiClient } from '../../../api/client';
 import { toast } from 'sonner';
@@ -18,6 +19,7 @@ interface BioDataForm {
 }
 
 export const BioDataStep = ({ onNext, data }: { onNext: (data: Partial<Application>) => void, data: Partial<Application> }) => {
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { isSubmitting } } = useForm<BioDataForm>({
     defaultValues: {
       dateOfBirth: (data.candidate as any)?.profile?.dateOfBirth?.split('T')[0] || data.candidate?.dateOfBirth?.split('T')[0] || '',
@@ -206,7 +208,11 @@ export const BioDataStep = ({ onNext, data }: { onNext: (data: Partial<Applicati
         </div>
 
         <div className="md:col-span-12 flex justify-between items-center mt-4 pt-8 border-t border-outline-variant/15">
-          <button type="button" className="text-primary font-headline font-bold hover:underline transition-all">
+          <button
+            type="button"
+            onClick={() => navigate('/applications')}
+            className="font-headline font-bold text-primary transition-all hover:underline"
+          >
             Cancel Application
           </button>
           <div className="flex gap-4">

@@ -7,3 +7,5 @@ export * from './useApplications';
 export * from './useExams';
 export * from './useAnalytics';
 export * from './useSystem';
+export * from './useNotifications';
+export * from './useResults';

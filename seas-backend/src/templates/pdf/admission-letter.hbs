@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admission Letter - {{user.firstName}} {{user.lastName}}</title>
+  <style>
+    body { font-family: Helvetica, Arial, sans-serif; margin: 0; padding: 48px; color: #333; line-height: 1.6; }
+    .header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #046d40; padding-bottom: 20px; }
+    .header h1 { margin: 0; color: #00193c; font-size: 28px; }
+    .badge { display: inline-block; background: #046d40; color: white; padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: bold; letter-spacing: 1px; margin-bottom: 16px; }
+    .body-text { font-size: 15px; margin-bottom: 16px; }
+    .signature { margin-top: 48px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge">OFFICIAL ADMISSION</div>
+    <h1>Letter of Admission</h1>
+    <p>SEAS Faculty of Engineering &amp; Sciences</p>
+  </div>
+
+  <p class="body-text">Dear {{user.firstName}} {{user.lastName}},</p>
+
+  <p class="body-text">
+    Congratulations. Based on your examination performance and application review, you have been
+    granted admission to <strong>{{program.name}}</strong> (Application Ref: {{applicationId}}).
+  </p>
+
+  <p class="body-text">
+    Please complete fee payment and document verification through the candidate portal to secure your seat.
+    Our admissions team will contact you with orientation details.
+  </p>
+
+  <div class="signature">
+    <p><strong>Office of Admissions</strong><br>SEAS Examination Management System<br>Date: {{approvedAt}}</p>
+  </div>
+</body>
+</html>

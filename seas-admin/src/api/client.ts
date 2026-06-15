@@ -48,11 +48,11 @@ class ApiClient {
               }
             } catch {
               this.clearAuth();
-              window.location.href = '/login';
+              window.location.href = '/admin/login';
             }
           } else {
             this.clearAuth();
-            window.location.href = '/login';
+            window.location.href = '/admin/login';
           }
         }
         return Promise.reject(error);
@@ -67,7 +67,7 @@ class ApiClient {
   }
 
   private async refreshToken(refreshToken: string) {
-    const response = await this.client.post('/auth/refresh-token', { refreshToken });
+    const response = await this.client.post('/admin/refresh-token', { refreshToken });
     return response.data.data;
   }
 

@@ -14,8 +14,22 @@ export interface UpdateApplicationPayload {
 
 export const applicationsApi = {
   async list(params?: ListApplicationsParams) {
-    const response = await apiClient.get<PaginatedResponse<Application>>('/applications', { params });
-    return response.data.data;
+    const response = await apiClient.get<Application[] | PaginatedResponse<Application>>('/applications', { params });
+    const data = response.data.data;
+    if (Array.isArray(data)) {
+      return {
+        items: data,
+        pagination: {
+          page: params?.page ?? 1,
+          limit: params?.limit ?? data.length,
+          total: data.length,
+          totalPages: 1,
+          hasNext: false,
+          hasPrev: false,
+        },
+      };
+    }
+    return data!;
   },
 
   async getById(id: string) {

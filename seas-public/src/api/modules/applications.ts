@@ -49,6 +49,16 @@ export const applicationsApi = {
     const response = await apiClient.delete(`/applications/${id}`);
     return response.data;
   },
+
+  async requestCounselling(data: { preferredDate: string; preferredTime: string; topic?: string }) {
+    const response = await apiClient.post('/applications/counselling-request', data);
+    return response.data;
+  },
+
+  async getAdmissionLetter(applicationId: string) {
+    const response = await apiClient.download(`/applications/${applicationId}/admission-letter`);
+    return response.data;
+  },
 };
 
 export default applicationsApi;

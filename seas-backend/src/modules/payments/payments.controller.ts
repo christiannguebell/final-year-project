@@ -63,6 +63,41 @@ export const paymentsController = {
     }
   },
 
+  async getAll(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const page = req.query.page ? parseInt(String(req.query.page), 10) : undefined;
+      const limit = req.query.limit ? parseInt(String(req.query.limit), 10) : undefined;
+      const status = getParam(req.query.status) as PaymentStatus | undefined;
+      const result = await paymentsService.getAll({ page, limit, status });
+      res.status(200).json(successResponse(result));
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async getById(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const id = getParam(req.params.id);
+      const userId = req.user?.userId;
+      const role = req.user?.role;
+      const payment = await paymentsService.getById(id, userId, role);
+      res.status(200).json(successResponse(payment));
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async flag(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const id = getParam(req.params.id);
+      const { notes } = req.body;
+      const payment = await paymentsService.flag(id, notes);
+      res.status(200).json(successResponse(payment, 'Payment flagged for review'));
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async verify(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const id = getParam(req.params.id);
@@ -83,6 +118,20 @@ export const paymentsController = {
 
       await paymentsService.delete(id, userId, role);
       res.status(200).json(successResponse(null, 'Payment deleted'));
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async getApplicationSummary(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const applicationId = getParam(req.params.applicationId);
+      const userId = req.user?.userId;
+      const role = req.user?.role;
+      const pdfBuffer = await paymentsService.getApplicationSummaryPdf(applicationId, userId, role);
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=payment-summary.pdf');
+      res.status(200).send(pdfBuffer);
     } catch (error) {
       next(error);
     }

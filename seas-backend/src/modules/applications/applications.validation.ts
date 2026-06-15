@@ -18,9 +18,16 @@ export const listApplicationsSchema = Joi.object({
   status: Joi.string().valid('draft', 'submitted', 'under_review', 'approved', 'rejected').optional(),
 });
 
+export const counsellingRequestSchema = Joi.object({
+  preferredDate: Joi.string().max(50).required(),
+  preferredTime: Joi.string().max(50).required(),
+  topic: Joi.string().max(500).optional(),
+});
+
 export default {
   idParamSchema,
   createApplicationSchema,
   updateApplicationSchema,
   listApplicationsSchema,
+  counsellingRequestSchema,
 };

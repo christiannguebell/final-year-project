@@ -69,7 +69,7 @@ app.use((req, _res, next) => {
 app.get('/api/health', async (_req: Request, res: Response) => {
   try {
     const connections = await validateConnections();
-    const allConnected = connections.every((c) => c.status === 'connected');
+    const allConnected = connections.every((c) => c.status === 'connected' || c.status === 'skipped');
 
     res.status(allConnected ? 200 : 503).json({
       success: allConnected,

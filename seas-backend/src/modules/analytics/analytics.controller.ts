@@ -19,7 +19,25 @@ export const analyticsController = {
     } catch (error) {
       next(error);
     }
-  }
+  },
+
+  async getApplicationsByStatus(_req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = await analyticsService.getApplicationsByStatus();
+      res.status(200).json(successResponse(data));
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async getApplicationsOverTime(_req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = await analyticsService.getApplicationsOverTime();
+      res.status(200).json(successResponse(data));
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 export default analyticsController;

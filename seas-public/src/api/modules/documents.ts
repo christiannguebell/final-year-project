@@ -1,27 +1,24 @@
 import apiClient from '../client';
 import type { Document, DocumentType } from '@/types/entities';
-import type { PaginatedParams, PaginatedResponse } from '@/types/api';
 
 export interface UploadDocumentPayload {
+  applicationId: string;
   type: DocumentType;
   file: File;
-}
-
-export interface ListDocumentsParams extends PaginatedParams {
-  type?: DocumentType;
 }
 
 export const documentsApi = {
   async upload(data: UploadDocumentPayload) {
     const formData = new FormData();
+    formData.append('document', data.file);
+    formData.append('applicationId', data.applicationId);
     formData.append('type', data.type);
-    formData.append('file', data.file);
-    const response = await apiClient.uploadFile<Document>('/documents', formData);
+    const response = await apiClient.uploadFile<Document>('/documents/upload', formData);
     return response.data;
   },
 
-  async list(params?: ListDocumentsParams) {
-    const response = await apiClient.get<PaginatedResponse<Document>>('/documents', { params });
+  async list(applicationId: string) {
+    const response = await apiClient.get<Document[]>(`/documents/application/${applicationId}`);
     return response.data;
   },
 
@@ -30,13 +27,13 @@ export const documentsApi = {
     return response.data;
   },
 
-  async download(id: string) {
-    const response = await apiClient.download(`/documents/${id}/download`);
+  async delete(id: string) {
+    const response = await apiClient.delete(`/documents/${id}`);
     return response.data;
   },
 
-  async delete(id: string) {
-    const response = await apiClient.delete(`/documents/${id}`);
+  async getScanningGuide() {
+    const response = await apiClient.download('/documents/scanning-guide');
     return response.data;
   },
 };

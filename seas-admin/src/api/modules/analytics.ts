@@ -32,6 +32,11 @@ export const analyticsApi = {
     const response = await apiClient.get<ApplicationsOverTime[]>('/analytics/applications-over-time');
     return response.data.data;
   },
+
+  async getProgramDistribution() {
+    const response = await apiClient.get<Array<{ programId: string; programName: string; count: number }>>('/analytics/programs');
+    return response.data.data;
+  },
 };
 
 export default analyticsApi;

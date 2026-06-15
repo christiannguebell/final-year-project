@@ -59,6 +59,11 @@ export const paymentsApi = {
     const response = await apiClient.get<Payment>(`/payments/${id}`);
     return response.data;
   },
+
+  async getApplicationSummary(applicationId: string) {
+    const response = await apiClient.download(`/payments/application/${applicationId}/summary`);
+    return response.data;
+  },
 };
 
 export default paymentsApi;

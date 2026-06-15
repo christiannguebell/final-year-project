@@ -30,21 +30,28 @@ const statusLabels: Record<string, string> = {
 
 export default function MyApplicationsPage() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [sortAsc, setSortAsc] = useState(true);
+  const [statusFilter, setStatusFilter] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const { data: response, isLoading, error } = useMyApplications();
 
   const applicationList = useMemo<Application[]>(() => (response as any)?.data?.items || (response as any)?.items || [], [response]);
 
-  const filteredApplications = useMemo(
-    () =>
-      applicationList.filter(
-        (app: Application) =>
-          app.program?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          app.id.toLowerCase().includes(searchQuery.toLowerCase())
-      ),
-    [applicationList, searchQuery]
-  );
+  const filteredApplications = useMemo(() => {
+    const filtered = applicationList.filter((app: Application) => {
+      const matchesSearch =
+        app.program?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        app.id.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesStatus = !statusFilter || app.status === statusFilter;
+      return matchesSearch && matchesStatus;
+    });
+    return [...filtered].sort((a, b) => {
+      const dateA = new Date(a.updatedAt || a.createdAt).getTime();
+      const dateB = new Date(b.updatedAt || b.createdAt).getTime();
+      return sortAsc ? dateA - dateB : dateB - dateA;
+    });
+  }, [applicationList, searchQuery, statusFilter, sortAsc]);
 
   return (
     <div className="min-h-screen bg-surface">
@@ -96,8 +103,20 @@ export default function MyApplicationsPage() {
               />
             </div>
             <div className="flex gap-3">
-              <FilterButton icon={<ListFilter size={18} />} label="Filter" />
-              <FilterButton icon={<ArrowUpDown size={18} />} label="Sort" />
+              <FilterButton
+                icon={<ListFilter size={18} />}
+                label={statusFilter ? `Filter: ${statusLabels[statusFilter]}` : 'Filter'}
+                onClick={() => {
+                  const statuses = [null, 'draft', 'submitted', 'under_review', 'approved', 'rejected'];
+                  const idx = statuses.indexOf(statusFilter);
+                  setStatusFilter(statuses[(idx + 1) % statuses.length]);
+                }}
+              />
+              <FilterButton
+                icon={<ArrowUpDown size={18} />}
+                label={sortAsc ? 'Sort: Oldest' : 'Sort: Newest'}
+                onClick={() => setSortAsc((prev) => !prev)}
+              />
             </div>
           </div>
 
@@ -154,11 +173,16 @@ export default function MyApplicationsPage() {
 interface FilterButtonProps {
   icon: React.ReactNode;
   label: string;
+  onClick?: () => void;
 }
 
-function FilterButton({ icon, label }: FilterButtonProps) {
+function FilterButton({ icon, label, onClick }: FilterButtonProps) {
   return (
-    <button className="flex items-center gap-2 px-6 py-3 bg-surface-container-low text-on-surface rounded-2xl text-sm font-bold hover:bg-surface-container-high transition-all border border-transparent hover:border-outline-variant/20">
+    <button
+      type="button"
+      onClick={onClick}
+      className="flex items-center gap-2 rounded-2xl border border-transparent bg-surface-container-low px-6 py-3 text-sm font-bold text-on-surface transition-all hover:border-outline-variant/20 hover:bg-surface-container-high"
+    >
       {icon}
       {label}
     </button>
@@ -274,7 +298,7 @@ const ApplicationCard: React.FC<{ app: Application; index: number }> = ({ app, i
               sessionStorage.setItem('seas_application_draft', JSON.stringify(app));
               navigate(`/application/edit/${app.id}`);
             } else if (app.status === 'approved') {
-              navigate(`/applications/${app.id}/decision`);
+              navigate('/results');
             } else {
               navigate(`/applications/${app.id}`);
             }
@@ -311,8 +335,13 @@ const ApplicationCard: React.FC<{ app: Application; index: number }> = ({ app, i
 };
 
 function EditorialLink({ label }: { label: string }) {
+  const navigate = useNavigate();
   return (
-    <button className="flex items-center gap-2 text-white font-headline font-bold text-sm group">
+    <button
+      type="button"
+      onClick={() => navigate('/exams')}
+      className="group flex items-center gap-2 font-headline text-sm font-bold text-white"
+    >
       <span className="border-b-2 border-secondary pb-1 group-hover:border-white transition-all">
         {label}
       </span>

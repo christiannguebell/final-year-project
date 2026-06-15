@@ -35,7 +35,7 @@ export const authService = {
 
     const hashedPassword = await bcrypt.hash(password, 12);
     
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otp = process.env.SKIP_EMAIL === 'true' ? '000000' : Math.floor(100000 + Math.random() * 900000).toString();
     const otpExpiry = new Date(Date.now() + 15 * 60 * 1000); // 15 mins expiry
     const hashedOtp = await bcrypt.hash(otp, 10);
     
@@ -109,7 +109,7 @@ export const authService = {
     }
 
     if (user.status === UserStatus.PENDING) {
-      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+      const otp = process.env.SKIP_EMAIL === 'true' ? '000000' : Math.floor(100000 + Math.random() * 900000).toString();
       const otpExpiry = new Date(Date.now() + 15 * 60 * 1000); // 15 mins expiry
       const hashedOtp = await bcrypt.hash(otp, 10);
 

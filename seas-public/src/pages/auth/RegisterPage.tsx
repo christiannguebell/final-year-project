@@ -41,7 +41,10 @@ export default function RegisterPage() {
       phone
     }, {
       onSuccess: () => {
-        // Assume email verification is required
+        sessionStorage.setItem(
+          'seas_pending_verification',
+          JSON.stringify({ email, password })
+        );
         navigate(`/verify-otp?email=${encodeURIComponent(email)}`);
       }
     });
@@ -204,7 +207,15 @@ export default function RegisterPage() {
                   onChange={(e) => setTermsAccepted(e.target.checked)}
                 />
                 <label className="text-xs text-on-surface-variant leading-relaxed" htmlFor="terms">
-                  I agree to the <a className="text-primary font-bold hover:underline" href="#">Technical Standards</a> and <a className="text-primary font-bold hover:underline" href="#">Institutional Privacy</a> policy of SEAS.
+                  I agree to the{' '}
+                  <a className="font-bold text-primary hover:underline" href="mailto:support@seas.cm?subject=Technical%20Standards">
+                    Technical Standards
+                  </a>{' '}
+                  and{' '}
+                  <a className="font-bold text-primary hover:underline" href="mailto:support@seas.cm?subject=Institutional%20Privacy">
+                    Institutional Privacy
+                  </a>{' '}
+                  policy of SEAS.
                 </label>
               </div>
 

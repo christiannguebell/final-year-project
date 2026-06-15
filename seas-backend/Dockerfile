@@ -27,6 +27,8 @@ RUN npm install -g pnpm && pnpm install --prod
 
 # Copy built files
 COPY --from=build /app/dist ./dist
+# Copy templates
+COPY --from=build /app/src/templates ./src/templates
 
 # Create uploads directory
 RUN mkdir -p uploads

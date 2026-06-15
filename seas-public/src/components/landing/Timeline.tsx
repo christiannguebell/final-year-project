@@ -41,7 +41,7 @@ export const Timeline = () => {
   ];
 
   return (
-    <section className="bg-surface-container-low py-24 px-6 md:px-12">
+    <section id="programs" className="scroll-mt-24 bg-surface-container-low py-24 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-headline font-extrabold text-primary mb-4">Your Path to Enrollment</h2>

@@ -1,52 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { examsApi } from '../api/modules/exams';
-import type { ExamSession, ExamCenter, ExamAssignment } from '../types/entities';
-import type { PaginatedResponse } from '../types/api';
-
-export function useExamSessions() {
-  return useQuery({
-    queryKey: ['exam', 'sessions'],
-    queryFn: () => examsApi.getSessions(),
-    select: (response) => response.data as PaginatedResponse<ExamSession>,
-  });
-}
-
-export function useExamSessionById(id: string) {
-  return useQuery({
-    queryKey: ['exam', 'session', id],
-    queryFn: () => examsApi.getSessionById(id),
-    select: (response) => response.data as ExamSession,
-    enabled: !!id,
-  });
-}
-
-export function useExamCenters() {
-  return useQuery({
-    queryKey: ['exam', 'centers'],
-    queryFn: () => examsApi.getCenters(),
-    select: (response) => response.data as PaginatedResponse<ExamCenter>,
-  });
-}
-
-export function useExamCenterById(id: string) {
-  return useQuery({
-    queryKey: ['exam', 'center', id],
-    queryFn: () => examsApi.getCenterById(id),
-    select: (response) => response.data as ExamCenter,
-    enabled: !!id,
-  });
-}
+import type { ExamAssignment } from '../types/entities';
 
 export function useMyExamAssignment() {
   return useQuery({
-    queryKey: ['exam', 'my-assignment'],
+    queryKey: ['exam-assignment'],
     queryFn: () => examsApi.getMyAssignment(),
     select: (response) => response.data as ExamAssignment,
+    retry: false,
   });
-}
-
-export function useAdmissionSlip() {
-  return {
-    queryFn: () => examsApi.getAdmissionSlip(),
-  };
 }

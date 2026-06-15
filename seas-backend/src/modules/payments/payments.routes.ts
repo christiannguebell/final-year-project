@@ -117,6 +117,40 @@ router.get(
   paymentsController.getByApplication
 );
 
+router.get(
+  '/',
+  authenticate,
+  authorize(UserRole.ADMIN),
+  paymentsController.getAll
+);
+
+router.get(
+  '/:id',
+  authenticate,
+  validate(idParamSchema, 'params'),
+  paymentsController.getById
+);
+
+/**
+ * @openapi
+ * /api/payments/application/{applicationId}/summary:
+ *   get:
+ *     tags:
+ *       - Payments
+ *     summary: Download payment summary PDF for an application
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Payment summary PDF
+ */
+router.get(
+  '/application/:applicationId/summary',
+  authenticate,
+  validate(applicationIdParamSchema, 'params'),
+  paymentsController.getApplicationSummary
+);
+
 /**
  * @openapi
  * /api/payments/{id}/verify:
@@ -158,6 +192,14 @@ router.patch(
   validate(idParamSchema, 'params'),
   validate(verifyPaymentSchema),
   paymentsController.verify
+);
+
+router.patch(
+  '/:id/flag',
+  authenticate,
+  authorize(UserRole.ADMIN),
+  validate(idParamSchema, 'params'),
+  paymentsController.flag
 );
 
 /**

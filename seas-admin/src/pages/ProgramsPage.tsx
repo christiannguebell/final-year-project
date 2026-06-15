@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { Plus, ArrowRight, TrendingUp } from 'lucide-react';
 import { usePrograms } from '@/hooks/usePrograms';
 import { ProgramCard } from '@/components/ProgramCard';
+import CreateProgramModal from '@/components/programs/CreateProgramModal';
 
 export default function ProgramsPage() {
   const { data, isLoading } = usePrograms({ limit: 50 });
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const programs = data?.items || [];
 
   return (
@@ -71,7 +74,10 @@ export default function ProgramsPage() {
               </div>
             ))}
           
-            <button className="bg-surface-container-low/50 p-6 rounded-xl border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-center group cursor-pointer hover:bg-white hover:border-primary-container transition-all min-h-[240px]">
+            <button 
+              onClick={() => setIsCreateModalOpen(true)}
+              className="bg-surface-container-low/50 p-6 rounded-xl border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-center group cursor-pointer hover:bg-white hover:border-primary-container transition-all min-h-[240px]"
+            >
               <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center mb-3 shadow-sm group-hover:scale-110 transition-transform">
                 <Plus className="w-6 h-6 text-primary-container" />
               </div>
@@ -81,6 +87,8 @@ export default function ProgramsPage() {
           </div>
         )}
       </section>
+
+      <CreateProgramModal isOpen={isCreateModalOpen} onClose={() => setIsCreateModalOpen(false)} />
     </div>
   );
 }

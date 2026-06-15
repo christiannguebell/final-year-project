@@ -148,6 +148,38 @@ export const applicationsController = {
       next(error);
     }
   },
+
+  async getAdmissionLetter(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const id = getParam(req.params.id);
+      const userId = req.user?.userId;
+      const role = req.user?.role || '';
+      const pdfBuffer = await applicationsService.getAdmissionLetterPdf(id, userId, role);
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=admission-letter.pdf');
+      res.status(200).send(pdfBuffer);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async requestCounselling(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const userId = req.user?.userId;
+      if (!userId) {
+        throw new Error('User not authenticated');
+      }
+      const { preferredDate, preferredTime, topic } = req.body;
+      const booking = await applicationsService.requestCounselling(userId, {
+        preferredDate,
+        preferredTime,
+        topic,
+      });
+      res.status(201).json(successResponse(booking, 'Counselling request submitted'));
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 export default applicationsController;

@@ -10,7 +10,13 @@ import { ApplicationPage } from './pages/application';
 import { MyApplicationsPage } from './pages/applications';
 import { ProfilePage } from './pages/profile';
 import { PaymentsPage } from './pages/payments';
+import { ExamHubPage } from './pages/exam-hub';
+import { ResultPortalPage } from './pages/result-portal';
+import { NotificationCenterPage } from './pages/notification-center';
+import { ProgramSelectionPage } from './pages/program-selection';
 import ApplicationPaymentPage from './pages/payments/ApplicationPaymentPage';
+import ApplicationSuccessPage from './pages/application/ApplicationSuccessPage';
+import NotFoundPage from './pages/NotFoundPage';
 import ProtectedRoute from './components/common/ProtectedRoute';
 
 function App() {
@@ -90,6 +96,47 @@ function App() {
                 </ProtectedRoute>
               } 
             />
+            <Route 
+              path="/exams" 
+              element={
+                <ProtectedRoute>
+                  <ExamHubPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/results" 
+              element={
+                <ProtectedRoute>
+                  <ResultPortalPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/programs" 
+              element={
+                <ProtectedRoute>
+                  <ProgramSelectionPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/notifications" 
+              element={
+                <ProtectedRoute>
+                  <NotificationCenterPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/application/success" 
+              element={
+                <ProtectedRoute>
+                  <ApplicationSuccessPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

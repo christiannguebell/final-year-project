@@ -208,6 +208,20 @@ export const notificationsService = {
       throw ApiError.badRequest('Invalid template ID');
     }
 
+    // Skip email entirely if SKIP_EMAIL is set
+    if (process.env.SKIP_EMAIL === 'true') {
+      return await notificationsRepository.create({
+        userId,
+        type: NotificationType.SYSTEM,
+        channel: NotificationChannel.IN_APP,
+        title: EMAIL_SUBJECTS[templateId as keyof typeof EMAIL_SUBJECTS] || 'SEAS Notification',
+        message: `[Email skipped] Template: ${templateId}`,
+        templateId,
+        templateData,
+        link,
+      });
+    }
+
     if (!emailTemplateService.hasTemplate(templateId)) {
       throw ApiError.badRequest('Template not found');
     }

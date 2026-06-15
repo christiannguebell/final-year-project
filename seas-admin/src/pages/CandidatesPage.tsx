@@ -3,10 +3,11 @@ import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useCandidates } from '@/hooks/useCandidates';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import type { Candidate } from '@/types/entities';
 
 export default function CandidatesPage() {
-  const { data, isLoading } = useCandidates({ limit: 10 });
+  const { data, isLoading } = useCandidates({ limit: 100 });
   const navigate = useNavigate();
 
   const candidates = data?.items || [];
@@ -14,6 +15,27 @@ export default function CandidatesPage() {
 
   const getInitials = (name: string) => {
     return name.split(' ').map(n => n[0]).join('').toUpperCase();
+  };
+
+  const handleExportCsv = () => {
+    const header = 'Name,Email,Candidate Number,Created';
+    const rows = candidates.map((c) => {
+      const name = `${c.firstName ?? ''} ${c.lastName ?? ''}`.trim();
+      return `"${name}","${c.email ?? ''}","${c.candidateNumber ?? ''}","${c.createdAt ?? ''}"`;
+    });
+    const blob = new Blob([[header, ...rows].join('\n')], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'candidates-export.csv';
+    link.click();
+    URL.revokeObjectURL(url);
+    toast.success('Candidate list exported');
+  };
+
+  const handleInviteCandidate = () => {
+    navigate('/programs');
+    toast.info('Share program registration link with candidates from the Programs page.');
   };
 
   return (
@@ -25,11 +47,17 @@ export default function CandidatesPage() {
           <p className="text-on-surface-variant mt-1">Review and manage candidate applications for academic programs.</p>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest text-primary border border-outline-variant/30 rounded-lg hover:bg-surface-container-low transition-all text-sm font-semibold shadow-sm">
+          <button
+            onClick={handleExportCsv}
+            className="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest text-primary border border-outline-variant/30 rounded-lg hover:bg-surface-container-low transition-all text-sm font-semibold shadow-sm"
+          >
             <Download className="w-4 h-4" />
             Export CSV
           </button>
-          <button className="flex items-center gap-2 px-5 py-2 bg-secondary text-white rounded-lg hover:opacity-90 transition-all text-sm font-bold shadow-sm">
+          <button
+            onClick={handleInviteCandidate}
+            className="flex items-center gap-2 px-5 py-2 bg-secondary text-white rounded-lg hover:opacity-90 transition-all text-sm font-bold shadow-sm"
+          >
             <UserPlus className="w-4 h-4" />
             Invite Candidate
           </button>

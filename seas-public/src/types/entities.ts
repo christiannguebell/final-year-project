@@ -122,8 +122,11 @@ export interface ExamCenter {
 export interface ExamAssignment {
   id: string;
   candidateId: string;
+  applicationId?: string;
   sessionId: string;
   centerId: string;
+  seatNumber?: string;
+  examTime?: string;
   center?: ExamCenter;
   session?: ExamSession;
   createdAt: string;
@@ -132,8 +135,13 @@ export interface ExamAssignment {
 export interface Result {
   id: string;
   candidateId: string;
+  applicationId?: string;
   sessionId: string;
   score: number;
+  totalScore?: number;
+  rank?: number;
+  status?: string;
+  scores?: Array<{ subject: string; score?: number; maxScore?: number }>;
   percentile?: number;
   createdAt: string;
 }
@@ -144,5 +152,7 @@ export interface Notification {
   title: string;
   message: string;
   isRead: boolean;
+  type?: string;
+  link?: string;
   createdAt: string;
 }

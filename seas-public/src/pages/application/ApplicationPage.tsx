@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BioDataStep } from './components/BioDataStep';
 import { AcademicRecordsStep } from './components/AcademicRecordsStep';
@@ -9,6 +9,7 @@ import { PaymentStep } from './components/PaymentStep';
 import { ReviewSubmitStep } from './components/ReviewSubmitStep';
 import TopNav from '../../components/layout/TopNav';
 import Sidebar from '../../components/layout/Sidebar';
+import { ProgramSelectionFooter } from '../../components/program-selection';
 import type { Application } from '../../types/application';
 import { apiClient } from '../../api/client';
 import { Loader2, ArrowLeft, Edit3 } from 'lucide-react';
@@ -42,6 +43,7 @@ function saveSession(step: number, data: Partial<Application>) {
 export function ApplicationPage({ mode = 'new' }: Props) {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const savedSession = loadSession();
   const [step, setStep] = useState(1);
   const [applicationData, setApplicationData] = useState<Partial<Application>>({});
@@ -70,6 +72,11 @@ export function ApplicationPage({ mode = 'new' }: Props) {
           if (draftStr) {
             const draft = JSON.parse(draftStr);
             setApplicationData(draft);
+          }
+          const navState = location.state as { step?: number; programId?: string } | null;
+          if (navState?.step) setStep(navState.step);
+          if (navState?.programId) {
+            setApplicationData((prev) => ({ ...prev, programId: navState.programId }));
           }
         }
       } catch (error) {
@@ -162,12 +169,12 @@ export function ApplicationPage({ mode = 'new' }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-surface">
-      <TopNav />
+    <div className="flex min-h-screen flex-col bg-surface">
+      <TopNav activeNav="Admissions" />
       <Sidebar />
 
-      <main className="ml-64 pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-6 h-full">
+      <main className="ml-64 flex-1 pt-24 pb-12">
+        <div className="mx-auto h-full max-w-6xl px-6">
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
@@ -186,6 +193,12 @@ export function ApplicationPage({ mode = 'new' }: Props) {
           </AnimatePresence>
         </div>
       </main>
+
+      {step >= 2 && (
+        <div className="ml-64">
+          <ProgramSelectionFooter />
+        </div>
+      )}
     </div>
   );
 }

@@ -1,46 +1,87 @@
 import { Bell, Settings } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../providers';
+import { cn } from '../../lib/utils';
+import { openSupportEmail } from '../../config/navigation';
 
-export default function TopNav() {
+const NAV_ITEMS = [
+  { label: 'Admissions', path: '/applications' },
+  { label: 'Programs', path: '/programs' },
+  { label: 'Resources', path: '/exams' },
+  { label: 'Help', action: 'help' as const },
+] as const;
+
+interface TopNavProps {
+  activeNav?: (typeof NAV_ITEMS)[number]['label'];
+}
+
+export default function TopNav({ activeNav }: TopNavProps) {
   const { user } = useAuth();
-  
+
   return (
-    <nav className="fixed top-0 w-full z-50 glass h-16 flex justify-between items-center px-8 border-b border-outline-variant/10">
+    <nav className="glass fixed top-0 z-50 flex h-16 w-full items-center justify-between border-b border-outline-variant/10 px-8">
       <div className="flex items-center gap-8">
-        <span className="text-lg font-bold text-primary tracking-tighter font-headline">SEAS Exam Management</span>
-        <div className="hidden md:flex gap-6">
-          {['Admissions', 'Programs', 'Resources', 'Help'].map((item) => (
-            <a 
-              key={item} 
-              href="#" 
-              className="text-on-surface-variant hover:text-primary font-semibold font-headline transition-colors duration-300 text-sm"
-            >
-              {item}
-            </a>
-          ))}
+        <Link to="/dashboard" className="font-headline text-lg font-bold tracking-tighter text-primary">
+          SEAS Exam Management
+        </Link>
+        <div className="hidden gap-6 md:flex">
+          {NAV_ITEMS.map((item) => {
+            const isActive = activeNav === item.label;
+            const className = cn(
+              'font-headline text-sm font-semibold transition-colors duration-300',
+              isActive
+                ? 'border-b-2 border-secondary pb-0.5 text-secondary'
+                : 'text-on-surface-variant hover:text-primary'
+            );
+
+            if ('action' in item) {
+              return (
+                <button key={item.label} type="button" onClick={() => openSupportEmail()} className={className}>
+                  {item.label}
+                </button>
+              );
+            }
+
+            return (
+              <Link key={item.label} to={item.path} className={className}>
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
       </div>
 
       <div className="flex items-center gap-4">
-        <button className="p-2 text-primary hover:bg-surface-container-low rounded-full transition-all duration-300 active:scale-95">
-          <Bell className="w-5 h-5" />
-        </button>
-        <button className="p-2 text-primary hover:bg-surface-container-low rounded-full transition-all duration-300 active:scale-95">
-          <Settings className="w-5 h-5" />
-        </button>
-        
-        <div className="flex items-center gap-3 pl-4 border-l border-outline-variant/30">
-          <div className="text-right hidden sm:block">
-            <p className="text-sm font-bold text-primary leading-none">
+        <Link
+          to="/notifications"
+          className="rounded-full p-2 text-primary transition-all duration-300 hover:bg-surface-container-low active:scale-95"
+        >
+          <Bell className="h-5 w-5" />
+        </Link>
+        <Link
+          to="/profile"
+          className="rounded-full p-2 text-primary transition-all duration-300 hover:bg-surface-container-low active:scale-95"
+          aria-label="Settings"
+        >
+          <Settings className="h-5 w-5" />
+        </Link>
+
+        <div className="flex items-center gap-3 border-l border-outline-variant/30 pl-4">
+          <div className="hidden text-right sm:block">
+            <p className="text-sm leading-none font-bold text-primary">
               {user ? `${user.firstName} ${user.lastName}` : 'Guest Candidate'}
             </p>
-            <p className="text-xs text-on-surface-variant mt-1">
+            <p className="mt-1 text-xs text-on-surface-variant">
               {user?.role === 'candidate' ? 'ID: Verified Candidate' : 'Candidate Portal'}
             </p>
           </div>
-          <div className="w-8 h-8 rounded-full border border-outline-variant/20 bg-primary/10 flex items-center justify-center text-primary font-bold text-xs uppercase">
-            {user?.firstName?.[0]}{user?.lastName?.[0]}
-          </div>
+          <Link
+            to="/profile"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-outline-variant/20 bg-primary/10 text-xs font-bold text-primary uppercase"
+          >
+            {user?.firstName?.[0]}
+            {user?.lastName?.[0]}
+          </Link>
         </div>
       </div>
     </nav>

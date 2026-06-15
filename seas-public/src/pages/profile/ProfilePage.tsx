@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   User,
@@ -11,10 +12,12 @@ import {
   ChevronRight,
   LogOut,
 } from 'lucide-react';
-import { useCandidateProfile, useUpdateCandidate } from '../../hooks/useCandidates';
+import { useCandidateProfile, useUpdateCandidate, useUploadCandidatePhoto } from '../../hooks/useCandidates';
 import { useLogout } from '../../hooks/useAuth';
+import { toast } from 'sonner';
 import TopNav from '../../components/layout/TopNav';
 import Sidebar from '../../components/layout/Sidebar';
+import PortalFooter from '../../components/layout/PortalFooter';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -32,9 +35,12 @@ const itemVariants = {
 };
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
   const { data: candidate, isLoading } = useCandidateProfile();
   const updateCandidate = useUpdateCandidate();
+  const uploadPhoto = useUploadCandidatePhoto();
   const logout = useLogout();
+  const photoInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -80,6 +86,17 @@ export default function ProfilePage() {
       city: formData.city,
       country: formData.country,
     });
+  };
+
+  const handlePhotoSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    uploadPhoto.mutate(file, {
+      onSuccess: () => toast.success('Profile photo updated'),
+      onError: () => toast.error('Failed to upload photo'),
+    });
+    event.target.value = '';
   };
 
   if (isLoading) {
@@ -144,7 +161,20 @@ export default function ProfilePage() {
                       </span>
                     </div>
                   )}
-                  <button className="absolute bottom-0 right-0 bg-primary text-surface-container-lowest p-2 rounded-full shadow-lg hover:scale-110 transition-transform active:scale-95">
+                  <input
+                    ref={photoInputRef}
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handlePhotoSelect}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => photoInputRef.current?.click()}
+                    disabled={uploadPhoto.isPending}
+                    className="absolute bottom-0 right-0 rounded-full bg-primary p-2 text-surface-container-lowest shadow-lg transition-transform hover:scale-110 active:scale-95 disabled:opacity-60"
+                    aria-label="Change profile photo"
+                  >
                     <Camera size={16} />
                   </button>
                 </div>
@@ -248,7 +278,11 @@ export default function ProfilePage() {
             </div>
 
             <div className="space-y-6">
-              <button className="w-full flex items-center justify-between p-4 rounded-lg bg-surface-container-low hover:bg-surface-container-high transition-colors group">
+              <button
+                type="button"
+                onClick={() => navigate('/forgot-password')}
+                className="group flex w-full items-center justify-between rounded-lg bg-surface-container-low p-4 transition-colors hover:bg-surface-container-high"
+              >
                 <div className="text-left">
                   <div className="text-sm font-bold text-primary">Change Password</div>
                   <div className="text-[10px] text-on-surface-variant uppercase tracking-wide">
@@ -352,25 +386,7 @@ export default function ProfilePage() {
         </div>
       </main>
 
-      <footer className="w-full py-12 mt-auto bg-surface border-t border-outline-variant/15 ml-64">
-        <div className="flex flex-col md:flex-row justify-between items-center px-12 max-w-7xl mx-auto gap-8">
-          <div className="flex flex-col items-center md:items-start gap-2">
-            <span className="text-sm font-bold text-primary">SEAS Engineering Excellence</span>
-            <p className="text-xs tracking-wide text-on-surface-variant">© 2024 SEAS Engineering Excellence. All rights reserved.</p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-8">
-            {['Institutional Privacy', 'Accessibility', 'Technical Standards', 'Contact SEAS'].map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="text-xs tracking-wide text-on-surface-variant hover:text-secondary transition-colors duration-200"
-              >
-                {link}
-              </a>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <PortalFooter className="ml-64" />
     </div>
   );
 }

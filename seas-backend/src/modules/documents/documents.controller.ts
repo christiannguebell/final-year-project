@@ -73,6 +73,17 @@ export const documentsController = {
       next(error);
     }
   },
+
+  async getScanningGuide(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const pdfBuffer = await documentsService.getScanningGuidePdf();
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=document-scanning-guide.pdf');
+      res.status(200).send(pdfBuffer);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 export default documentsController;

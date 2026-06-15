@@ -207,6 +207,22 @@ router.post('/reset-password', validate(resetPasswordSchema), authController.res
  *         description: Password changed successfully
  */
 router.put('/change-password', authenticate, validate(changePasswordSchema), authController.changePassword);
+/**
+ * @openapi
+ * /api/auth/profile:
+ *   get:
+ *     tags:
+ *       - Auth
+ *     summary: Get current user profile
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User profile retrieved
+ */
+router.get('/profile', authenticate, authController.getProfile);
 
+// For backwards compatibility with the live API test script
+router.get('/me', authenticate, authController.getProfile);
 
 export default router;

@@ -1,30 +1,32 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield, Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react';
+import { toast } from 'sonner';
+import adminAuthApi from '@/api/modules/adminAuth';
+import { STORAGE_KEYS } from '@/config/constants';
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:3000/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-      if (data.success) {
-        localStorage.setItem('seas_admin_token', data.data.tokens.accessToken);
-        localStorage.setItem('seas_admin_refresh', data.data.tokens.refreshToken);
-        localStorage.setItem('seas_admin_user', JSON.stringify(data.data.user));
-        navigate('/');
-      }
+      const data = await adminAuthApi.login({ email, password });
+      localStorage.setItem(STORAGE_KEYS.TOKEN, data.tokens.accessToken);
+      localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, data.tokens.refreshToken);
+      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(data.user));
+      toast.success('Logged in successfully!');
+      navigate('/');
     } catch (error) {
       console.error('Login failed:', error);
+      toast.error('Invalid admin credentials or network error.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -102,9 +104,10 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full py-3 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary-container transition-colors"
+              disabled={isLoading}
+              className="w-full py-3 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary-container transition-colors disabled:opacity-60"
             >
-              Sign In to Console
+              {isLoading ? 'Signing in...' : 'Sign In to Console'}
               <ArrowRight className="w-5 h-5" />
             </button>
 
