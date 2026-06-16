@@ -133,6 +133,20 @@ export const resultsController = {
     }
   },
 
+  async bulkUploadScores(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      if (!req.file) {
+        res.status(400).json({ success: false, message: 'CSV file is required', data: null });
+        return;
+      }
+      const sessionId = getParam(req.query.sessionId) || undefined;
+      const result = await resultsService.bulkUploadScoresFromCsv(req.file.path, sessionId);
+      res.status(200).json(successResponse(result, 'Bulk score upload processed'));
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async getMyResultReport(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const userId = req.user?.userId;

@@ -7,9 +7,6 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
-  transformIgnorePatterns: [
-    '/node_modules/(?!(uuid)/)',
-  ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },

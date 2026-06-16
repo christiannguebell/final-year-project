@@ -3,12 +3,24 @@ import * as handlebars from 'handlebars';
 import * as fs from 'fs';
 import * as path from 'path';
 
+function resolveTemplatePath(templateName: string): string {
+  const candidates = [
+    path.join(__dirname, '../../src/templates/pdf', `${templateName}.hbs`),
+    path.join(__dirname, '../templates/pdf', `${templateName}.hbs`),
+    path.join(process.cwd(), 'src/templates/pdf', `${templateName}.hbs`),
+  ];
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  return candidates[0];
+}
+
 export async function generatePdfFromTemplate(
   templateName: string,
   data: Record<string, unknown>
 ): Promise<Buffer> {
   try {
-    const templatePath = path.join(__dirname, '../../templates/pdf', `${templateName}.hbs`);
+    const templatePath = resolveTemplatePath(templateName);
     const templateSource = fs.readFileSync(templatePath, 'utf8');
     const template = handlebars.compile(templateSource);
     const htmlContent = template(data);
@@ -18,22 +30,25 @@ export async function generatePdfFromTemplate(
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
-    const page = await browser.newPage();
-    await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+    try {
+      const page = await browser.newPage();
+      await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
 
-    const pdfBuffer = await page.pdf({
-      format: 'A4',
-      printBackground: true,
-      margin: {
-        top: '20mm',
-        right: '20mm',
-        bottom: '20mm',
-        left: '20mm',
-      },
-    });
+      const pdfBuffer = await page.pdf({
+        format: 'A4',
+        printBackground: true,
+        margin: {
+          top: '20mm',
+          right: '20mm',
+          bottom: '20mm',
+          left: '20mm',
+        },
+      });
 
-    await browser.close();
-    return Buffer.from(pdfBuffer);
+      return Buffer.from(pdfBuffer);
+    } finally {
+      await browser.close();
+    }
   } catch (error) {
     throw new Error(
       `Failed to generate PDF (${templateName}): ${error instanceof Error ? error.message : String(error)}`

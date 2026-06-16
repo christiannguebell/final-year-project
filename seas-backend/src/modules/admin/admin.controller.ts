@@ -112,6 +112,16 @@ export const adminController = {
     }
   },
 
+  async createMissingResults(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const sessionId = req.query.sessionId as string | undefined;
+      const result = await adminService.createMissingResults(sessionId);
+      res.status(201).json(successResponse(result, 'Missing result records created'));
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async resetPassword(req: Request, res: Response, next: NextFunction) {
     try {
       const { token, newPassword } = req.body;

@@ -92,7 +92,11 @@ export const notificationsRepository = {
     }
 
     if (filters.hasPaid || filters.paymentStatus) {
-      query.innerJoin('user.payments', 'payment');
+      const hasAppJoin = query.expressionMap.joinAttributes.some(j => j.alias.name === 'app');
+      if (!hasAppJoin) {
+        query.innerJoin('user.applications', 'app');
+      }
+      query.innerJoin('app.payments', 'payment');
     }
 
     if (filters.programId) {

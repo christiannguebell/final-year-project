@@ -4,6 +4,7 @@ import { validate } from '../../middlewares/validation.middleware';
 import { authenticate } from '../../middlewares/auth.middleware';
 import { authorize } from '../../middlewares/role.middleware';
 import { UserRole } from '../../database';
+import { uploadCsv } from '../../middlewares/upload.middleware';
 import {
   idParamSchema,
   applicationIdParamSchema,
@@ -266,6 +267,40 @@ router.post(
   auditMiddleware(AuditAction.UPDATE),
   validate(enterScoresSchema),
   resultsController.enterScores
+);
+
+/**
+ * @openapi
+ * /api/results/bulk-upload:
+ *   post:
+ *     tags:
+ *       - Results
+ *     summary: Bulk upload scores from CSV (Admin only)
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - file
+ *             properties:
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Bulk upload processed
+ */
+router.post(
+  '/bulk-upload',
+  authenticate,
+  authorize(UserRole.ADMIN),
+  auditMiddleware(AuditAction.CREATE),
+  uploadCsv,
+  resultsController.bulkUploadScores
 );
 
 /**

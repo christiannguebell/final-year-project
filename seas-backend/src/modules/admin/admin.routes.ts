@@ -41,6 +41,10 @@ router.delete('/admins/:id', authenticate, authorize(UserRole.SUPER_ADMIN), (req
   adminController.deleteAdmin(req, res, next).catch(next);
 });
 
+router.post('/create-missing-results', authenticate, authorize(UserRole.ADMIN), (req, res, next) => {
+  adminController.createMissingResults(req, res, next).catch(next);
+});
+
 router.post('/forgot-password', (req, res, next) => {
   adminController.forgotPassword(req, res, next).catch(next);
 });

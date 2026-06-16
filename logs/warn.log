@@ -505,3 +505,246 @@ Error: Invalid email or password
     at Object.login (/app/dist/modules/admin/admin.service.js:80:39)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
     at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-16 15:55:02 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:90:39)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-16 15:55:12 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:90:39)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-16 15:55:23 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:90:39)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-16 15:55:28 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:90:39)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-16 16:23:30 [ERROR]: Database connection failed: getaddrinfo EAI_AGAIN db
+Error: getaddrinfo EAI_AGAIN db
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-06-16 16:28:30 [ERROR]: API Error: User already exists with this email
+Error: User already exists with this email
+    at ApiError.conflict (/app/dist/common/errors/ApiError.js:30:16)
+    at Object.register (/app/dist/modules/auth/auth.service.js:20:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async register (/app/dist/modules/auth/auth.controller.js:10:28)
+2026-06-16 16:29:44 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:83:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-16 16:37:53 [ERROR]: API Error: "password" length must be at least 8 characters long
+ValidationError: "password" length must be at least 8 characters long
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+    at /app/node_modules/.pnpm/express-rate-limit@8.3.2_express@5.2.1/node_modules/express-rate-limit/dist/index.cjs:958:7
+2026-06-16 16:44:18 [ERROR]: API Error: "programId" must be a string
+ValidationError: "programId" must be a string
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-16 16:45:13 [ERROR]: Unexpected Error: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2319:23
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1803:22)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:623:14)
+    at Repository.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:276:29)
+    at Object.findById (/app/dist/modules/candidates/candidates.repository.js:8:84)
+    at Object.updateById (/app/dist/modules/candidates/candidates.repository.js:57:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-16 16:48:33 [ERROR]: Unexpected Error: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2319:23
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1803:22)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:623:14)
+    at Repository.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:276:29)
+    at Object.findById (/app/dist/modules/candidates/candidates.repository.js:8:84)
+    at Object.updateById (/app/dist/modules/candidates/candidates.repository.js:57:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-16 16:55:03 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:134:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-16 16:55:17 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:134:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-16 16:55:26 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getAdmissionSlip (/app/dist/modules/exams/exams.service.js:149:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getAdmissionSlip (/app/dist/modules/exams/exams.controller.js:158:31)
+2026-06-16 16:55:39 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:134:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-16 16:55:42 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:96:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-16 16:55:48 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:96:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-16 16:55:53 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:96:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-16 16:56:02 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:96:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-16 16:56:54 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:96:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-16 16:56:59 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:96:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-16 16:57:03 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:134:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-16 16:58:44 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-16 16:58:45 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-16 16:59:24 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-16 16:59:25 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-16 17:04:35 [ERROR]: API Error: "type" is required
+ValidationError: "type" is required
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-16 17:04:53 [ERROR]: API Error: "type" is required
+ValidationError: "type" is required
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-16 17:22:33 [ERROR]: API Error: "programId" must be a string
+ValidationError: "programId" must be a string
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-16 17:23:16 [ERROR]: Unexpected Error: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2319:23
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1803:22)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:623:14)
+    at Repository.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:276:29)
+    at Object.findById (/app/dist/modules/candidates/candidates.repository.js:8:84)
+    at Object.updateById (/app/dist/modules/candidates/candidates.repository.js:57:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-16 17:30:17 [ERROR]: Unexpected Error: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2319:23
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1803:22)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:623:14)
+    at Repository.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:276:29)
+    at Object.findById (/app/dist/modules/candidates/candidates.repository.js:8:84)
+    at Object.updateById (/app/dist/modules/candidates/candidates.repository.js:57:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-16 17:38:25 [ERROR]: Unexpected Error: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2319:23
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1803:22)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:623:14)
+    at Repository.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:276:29)
+    at Object.findById (/app/dist/modules/candidates/candidates.repository.js:8:84)
+    at Object.updateById (/app/dist/modules/candidates/candidates.repository.js:57:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-16 17:38:35 [ERROR]: Unexpected Error: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "applications" was not found in "CandidateProfile". Make sure your query is correct.
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2319:23
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1803:22)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:623:14)
+    at Repository.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:276:29)
+    at Object.findById (/app/dist/modules/candidates/candidates.repository.js:8:84)
+    at Object.updateById (/app/dist/modules/candidates/candidates.repository.js:57:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

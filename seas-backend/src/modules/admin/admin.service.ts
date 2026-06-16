@@ -97,7 +97,11 @@ export const adminService = {
       throw ApiError.notFound(ADMIN_MESSAGES.ADMIN_NOT_FOUND);
     }
 
-    if (!user.password) {
+    if (user.password) {
+      throw ApiError.badRequest('Password has already been set up');
+    }
+
+    if (user.otp) {
       throw ApiError.badRequest('Please verify your email first');
     }
 
@@ -271,6 +275,43 @@ export const adminService = {
       { name: user.firstName || user.email },
       resetUrl
     );
+  },
+
+  async createMissingResults(sessionId?: string): Promise<{ created: number; skipped: number }> {
+    const { Result, ExamAssignment, Application, ResultStatus } = await import('../../database');
+    const resultRepo = AppDataSource.getRepository(Result);
+    const assignmentRepo = AppDataSource.getRepository(ExamAssignment);
+
+    const whereClause = sessionId ? { sessionId } as any : {};
+    const assignments = await assignmentRepo.find({
+      where: whereClause,
+      relations: ['application'],
+    });
+
+    let created = 0;
+    let skipped = 0;
+    const processed = new Set<string>();
+
+    for (const assignment of assignments) {
+      if (!assignment.application || processed.has(assignment.applicationId)) continue;
+      processed.add(assignment.applicationId);
+
+      const existing = await resultRepo.findOne({
+        where: { applicationId: assignment.applicationId } as any,
+      });
+      if (existing) {
+        skipped++;
+        continue;
+      }
+
+      await resultRepo.save(resultRepo.create({
+        applicationId: assignment.applicationId,
+        status: ResultStatus.PENDING,
+      } as any));
+      created++;
+    }
+
+    return { created, skipped };
   },
 
   async resetPassword(token: string, newPassword: string): Promise<void> {

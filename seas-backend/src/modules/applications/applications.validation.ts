@@ -5,7 +5,7 @@ export const idParamSchema = Joi.object({
 });
 
 export const createApplicationSchema = Joi.object({
-  programId: Joi.string().uuid().required(),
+  programId: Joi.string().uuid().optional(),
   personalStatement: Joi.string().max(5000).optional(),
 });
 

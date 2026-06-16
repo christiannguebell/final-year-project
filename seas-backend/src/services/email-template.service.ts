@@ -2,7 +2,17 @@ import Handlebars from 'handlebars';
 import fs from 'fs';
 import path from 'path';
 
-const TEMPLATES_DIR = path.join(__dirname, '../../src/templates/emails');
+function resolveTemplatesDir(): string {
+  const devPath = path.join(__dirname, '../../src/templates/emails');
+  if (fs.existsSync(devPath)) return devPath;
+  const prodPath = path.join(__dirname, '../templates/emails');
+  if (fs.existsSync(prodPath)) return prodPath;
+  const cwdPath = path.join(process.cwd(), 'src/templates/emails');
+  if (fs.existsSync(cwdPath)) return cwdPath;
+  return devPath;
+}
+
+const TEMPLATES_DIR = resolveTemplatesDir();
 
 interface TemplateData {
   [key: string]: any;
@@ -28,8 +38,8 @@ class EmailTemplateService {
       }
 
       // templates loaded
-    } catch {
-      // Failed to initialize
+    } catch (error) {
+      console.error('Failed to initialize email templates:', error);
     }
   }
 

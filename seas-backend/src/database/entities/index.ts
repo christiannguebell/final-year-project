@@ -11,3 +11,4 @@ export * from './ExamAssignment';
 export * from './Result';
 export * from './ResultScore';
 export * from './Notification';
+export * from './BroadcastHistory';

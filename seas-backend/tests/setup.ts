@@ -1,23 +1,34 @@
 import 'dotenv/config';
 import { jest } from '@jest/globals';
 
-// Declare global process for IDE if needed, but it should be covered by @types/node
 declare const process: any;
 
-// Mocking the email services
+const mockFn = (): any => (jest.fn as any)();
+
+jest.mock('puppeteer', () => ({
+  launch: mockFn().mockResolvedValue({
+    newPage: mockFn().mockResolvedValue({
+      setContent: mockFn().mockResolvedValue(undefined),
+      pdf: mockFn().mockResolvedValue(Buffer.from('mock-pdf')),
+      close: mockFn().mockResolvedValue(undefined),
+    }),
+    close: mockFn().mockResolvedValue(undefined),
+  }),
+}));
+
 jest.mock('../src/services/email.service', () => ({
   emailService: {
-    initialize: (jest.fn() as any).mockResolvedValue(undefined),
-    sendVerificationEmail: (jest.fn() as any).mockResolvedValue(undefined),
-    sendPasswordResetEmail: (jest.fn() as any).mockResolvedValue(undefined),
-    sendEmail: (jest.fn() as any).mockResolvedValue(undefined),
+    initialize: mockFn().mockResolvedValue(undefined),
+    sendVerificationEmail: mockFn().mockResolvedValue(undefined),
+    sendPasswordResetEmail: mockFn().mockResolvedValue(undefined),
+    sendEmail: mockFn().mockResolvedValue(undefined),
   },
 }));
 
 jest.mock('../src/services/email-template.service', () => ({
   emailTemplateService: {
-    initialize: (jest.fn() as any).mockResolvedValue(undefined),
-    getTemplate: (jest.fn() as any).mockResolvedValue({}),
+    initialize: mockFn().mockResolvedValue(undefined),
+    getTemplate: mockFn().mockResolvedValue({}),
   },
 }));
 

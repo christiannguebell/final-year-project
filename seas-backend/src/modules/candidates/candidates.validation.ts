@@ -20,6 +20,9 @@ export const updateCandidateSchema = Joi.object({
   address: Joi.string().max(500).optional(),
   city: Joi.string().max(100).optional(),
   country: Joi.string().max(100).optional(),
+  idType: Joi.string().max(50).optional(),
+  idNumber: Joi.string().max(100).optional(),
+  zipCode: Joi.string().max(20).optional(),
 });
 
 export default {

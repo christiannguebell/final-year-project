@@ -51,7 +51,7 @@ export const systemController = {
       const { totalCapacity } = await centerRepository
         .createQueryBuilder('center')
         .select('SUM(center.capacity)', 'totalCapacity')
-        .where('center.is_active = :isActive', { isActive: true })
+        .where('center.isActive = :isActive', { isActive: true })
         .getRawOne() || { totalCapacity: 0 };
 
       const activeApplications = await appRepository.count({

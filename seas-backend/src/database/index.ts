@@ -12,6 +12,7 @@ import { ExamAssignment } from './entities/ExamAssignment';
 import { Result } from './entities/Result';
 import { ResultScore } from './entities/ResultScore';
 import { Notification } from './entities/Notification';
+import { BroadcastHistory } from './entities/BroadcastHistory';
 import { CandidateProfile } from './entities/CandidateProfile';
 
 const getEnv = (key: string, fallback?: string): string => {
@@ -49,6 +50,7 @@ export const AppDataSource = new DataSource({
     Result,
     ResultScore,
     Notification,
+    BroadcastHistory,
   ],
   migrations: [],
   subscribers: [],
@@ -81,3 +83,4 @@ export * from './entities/ExamAssignment';
 export * from './entities/Result';
 export * from './entities/ResultScore';
 export * from './entities/Notification';
+export * from './entities/BroadcastHistory';

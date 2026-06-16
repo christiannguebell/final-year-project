@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { GraduationCap, KeyRound } from 'lucide-react';
 import { toast } from 'sonner';
 import { useVerifyOtp } from '../../hooks/useAuth';
+import { useAuth } from '../../providers';
 import { authApi } from '../../api/modules/auth';
 
 export default function OTPVerificationPage() {
@@ -10,6 +11,7 @@ export default function OTPVerificationPage() {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
+  const { login } = useAuth();
   const verifyMutation = useVerifyOtp();
 
   const email = new URLSearchParams(location.search).get('email') || '';
@@ -38,18 +40,20 @@ export default function OTPVerificationPage() {
     }
   };
 
-  const handleVerify = () => {
+  const handleVerify = async () => {
     const code = otp.join('');
     if (code.length === 6) {
-      verifyMutation.mutate(
-        { email, otp: code },
-        {
-          onSuccess: () => {
-            sessionStorage.removeItem('seas_pending_verification');
-            navigate('/dashboard');
-          },
+      try {
+        const response = await verifyMutation.mutateAsync({ email, otp: code });
+        if (response.data) {
+          const { tokens, user } = response.data;
+          login(user, tokens.accessToken, tokens.refreshToken);
         }
-      );
+        sessionStorage.removeItem('seas_pending_verification');
+        navigate('/dashboard');
+      } catch {
+        // Error toast handled by API client interceptor
+      }
     }
   };
 

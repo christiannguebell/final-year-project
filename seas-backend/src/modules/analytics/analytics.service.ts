@@ -86,9 +86,9 @@ export const analyticsService = {
 
     const rows = await applicationRepository
       .createQueryBuilder('application')
-      .select("TO_CHAR(application.created_at, 'YYYY-MM-DD')", 'date')
+      .select("TO_CHAR(application.createdAt, 'YYYY-MM-DD')", 'date')
       .addSelect('COUNT(application.id)', 'count')
-      .where('application.created_at >= :start', { start: thirtyDaysAgo })
+      .where('application.createdAt >= :start', { start: thirtyDaysAgo })
       .groupBy("TO_CHAR(application.created_at, 'YYYY-MM-DD')")
       .orderBy('date', 'ASC')
       .getRawMany();

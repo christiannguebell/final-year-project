@@ -32,11 +32,21 @@ describe('AnalyticsService', () => {
         count: jest.fn(),
       };
 
+      const mockApplicationRepository = {
+        count: jest.fn().mockResolvedValue(0),
+      };
+
+      const mockProgramRepository = {
+        count: jest.fn().mockResolvedValue(0),
+      };
+
       // Set up the getRepository mock implementation based on the queried entity
       (AppDataSource.getRepository as jest.Mock).mockImplementation((entity) => {
         if (entity.name === 'User') return mockUserRepository;
         if (entity.name === 'Payment') return mockPaymentRepository;
         if (entity.name === 'Document') return mockDocumentRepository;
+        if (entity.name === 'Application') return mockApplicationRepository;
+        if (entity.name === 'Program') return mockProgramRepository;
         return {};
       });
 

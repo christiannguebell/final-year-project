@@ -110,19 +110,26 @@ export const examsService = {
       throw ApiError.notFound(EXAM_MESSAGES.SESSION_NOT_FOUND);
     }
 
-    const centers = await examCentersRepository.findAll(true); // active only
+    if (session.status === ExamSessionStatus.CANCELLED) {
+      throw ApiError.badRequest('Cannot allocate candidates to a cancelled exam session.');
+    }
+    if (session.status === ExamSessionStatus.COMPLETED) {
+      throw ApiError.badRequest('Cannot allocate candidates to a completed exam session.');
+    }
+
+    const centers = await examCentersRepository.findAll(true);
     if (centers.length === 0) {
-      throw ApiError.badRequest('No active exam centers available for allocation.');
+      throw ApiError.badRequest(EXAM_MESSAGES.CENTER_NOT_FOUND);
     }
 
     const approvedApplications = await AppDataSource.getRepository(Application)
       .createQueryBuilder('application')
       .where('application.status = :status', { status: ApplicationStatus.APPROVED })
-      .orderBy('application.created_at', 'ASC')
+      .orderBy('application.createdAt', 'ASC')
       .getMany();
 
     if (approvedApplications.length === 0) {
-      throw ApiError.badRequest('No approved applications to assign');
+      throw ApiError.badRequest(EXAM_MESSAGES.NO_ASSIGNMENT);
     }
 
     const existingAssignments = await examAssignmentsRepository.findBySessionId(data.sessionId);
@@ -132,12 +139,18 @@ export const examsService = {
     let totalAssigned = 0;
     const assignmentsToSave: any[] = [];
 
+    if (candidatesToAssign.length === 0) {
+      return { assigned: 0, message: 'All approved candidates already have exam assignments for this session.' };
+    }
+
     for (const center of centers) {
       if (candidatesToAssign.length === 0) break;
-      
+
       const assignmentsInCenter = existingAssignments.filter(a => a.centerId === center.id).length;
-      let centerAvailableCapacity = center.capacity - assignmentsInCenter;
-      
+      let centerAvailableCapacity = (center.capacity || 0) - assignmentsInCenter;
+
+      if (centerAvailableCapacity <= 0) continue;
+
       let nextSeatIndex = assignmentsInCenter + 1;
 
       while (centerAvailableCapacity > 0 && candidatesToAssign.length > 0) {
@@ -157,11 +170,14 @@ export const examsService = {
 
     if (assignmentsToSave.length > 0) {
       await examAssignmentsRepository.createMany(assignmentsToSave);
-    } else if (candidatesToAssign.length > 0) {
-       return { assigned: totalAssigned, missed: candidatesToAssign.length, message: 'Centers are completely full, could not allocate everyone.' };
     }
 
-    return { assigned: totalAssigned, message: 'Candidates allocated successfully.' };
+    const missed = candidatesToAssign.length;
+    if (missed > 0) {
+      return { assigned: totalAssigned, missed, message: `Allocated ${totalAssigned} candidate(s). ${missed} could not be assigned due to capacity limits.` };
+    }
+
+    return { assigned: totalAssigned, message: `${totalAssigned} candidate(s) allocated successfully.` };
   },
 
   async getMyAssignment(userId: string): Promise<any> {

@@ -1,7 +1,7 @@
-import { v4 as uuidv4, validate as uuidValidate } from 'uuid';
+import crypto from 'crypto';
 
 export const generateId = (): string => {
-  return uuidv4();
+  return crypto.randomUUID();
 };
 
 export const generateCandidateNumber = (): string => {
@@ -10,8 +10,10 @@ export const generateCandidateNumber = (): string => {
   return `CAND-${timestamp}-${random}`;
 };
 
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
 export const isValidUuid = (id: string): boolean => {
-  return uuidValidate(id);
+  return UUID_REGEX.test(id);
 };
 
 export default { generateId, generateCandidateNumber, isValidUuid };

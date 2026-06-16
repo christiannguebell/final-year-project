@@ -11,6 +11,9 @@ export interface CreateCandidateDto {
   city?: string;
   country?: string;
   profilePhoto?: string;
+  idType?: string;
+  idNumber?: string;
+  zipCode?: string;
 }
 
 export interface ListCandidatesOptions {
@@ -35,7 +38,7 @@ export const candidatesRepository = {
   async findById(id: string): Promise<CandidateProfile | null> {
     return AppDataSource.getRepository(CandidateProfile).findOne({
       where: { id } as any,
-      relations: ['user', 'applications', 'applications.program'],
+      relations: ['user'],
     });
   },
 

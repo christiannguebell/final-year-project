@@ -23,12 +23,15 @@ const fileFilter = (_req: Request, file: Express.Multer.File, cb: multer.FileFil
     'application/pdf',
     'application/msword',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'text/csv',
+    'text/plain',
+    'application/vnd.ms-excel',
   ];
 
   if (allowedMimes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new ApiError(400, 'Invalid file type. Allowed: JPEG, PNG, GIF, PDF, DOC, DOCX'));
+    cb(new ApiError(400, 'Invalid file type. Allowed: JPEG, PNG, GIF, PDF, DOC, DOCX, CSV'));
   }
 };
 
@@ -43,5 +46,6 @@ export const upload = multer({
 export const uploadDocument = upload.single.bind(upload);
 export const uploadReceipt = upload.single.bind(upload);
 export const uploadProfilePhoto = upload.single.bind(upload);
+export const uploadCsv = upload.single('file');
 
 export default upload;

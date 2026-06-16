@@ -1,7 +1,7 @@
 import { resultsRepository } from './results.repository';
 import { resultScoresRepository } from './resultScore.repository';
 import { ApiError } from '../../common/errors/ApiError';
-import { Result, ResultStatus, ExamAssignment, Application, User } from '../../database';
+import { Result, ResultStatus, ExamAssignment, Application, User, ExamSession } from '../../database';
 import { AppDataSource } from '../../database';
 import { RESULT_MESSAGES } from './results.constants';
 import { generateResultReportPdf } from '../exams/pdf.service';
@@ -55,9 +55,16 @@ export const resultsService = {
   },
 
   async enterScores(data: EnterScoresData): Promise<Result> {
-    const result = await resultsRepository.findByApplicationId(data.applicationId);
+    let result = await resultsRepository.findByApplicationId(data.applicationId);
+
     if (!result) {
-      throw ApiError.notFound(RESULT_MESSAGES.NOT_FOUND);
+      const app = await AppDataSource.getRepository(Application).findOne({
+        where: { id: data.applicationId } as any,
+      });
+      if (!app) {
+        throw ApiError.notFound('Application not found. Cannot enter scores without a valid application.');
+      }
+      result = await resultsRepository.create({ applicationId: data.applicationId });
     }
 
     await resultScoresRepository.deleteByResultId(result.id);
@@ -74,12 +81,95 @@ export const resultsService = {
     const scores = await resultScoresRepository.findByResultId(result.id);
     const totalScore = scores.reduce((sum, s) => sum + (s.score || 0), 0);
 
-
     const updated = await resultsRepository.update(result.id, {
       totalScore,
     } as any);
 
     return updated!;
+  },
+
+  async bulkUploadScoresFromCsv(filePath: string, sessionId?: string): Promise<{ created: number; updated: number; errors: string[] }> {
+    const fs = await import('fs');
+    const { parse } = await import('csv-parse/sync');
+    const content = fs.readFileSync(filePath, 'utf-8');
+    const records: any[] = parse(content, {
+      columns: true,
+      skip_empty_lines: true,
+      trim: true,
+    });
+
+    let created = 0;
+    let updated = 0;
+    const errors: string[] = [];
+
+    for (let i = 0; i < records.length; i++) {
+      const row = records[i];
+      const rowNum = i + 2;
+      try {
+        const applicationId = row.application_id || row.applicationId || row.ApplicationID || row.applicationid;
+        if (!applicationId) {
+          errors.push(`Row ${rowNum}: Missing application identifier`);
+          continue;
+        }
+
+        let result = await resultsRepository.findByApplicationId(applicationId);
+
+        if (!result) {
+          const app = await AppDataSource.getRepository(Application).findOne({
+            where: { id: applicationId } as any,
+          });
+          if (!app) {
+            errors.push(`Row ${rowNum}: Application ${applicationId} not found`);
+            continue;
+          }
+          result = await resultsRepository.create({ applicationId });
+          created++;
+        } else {
+          updated++;
+        }
+
+        const subjects = this.extractSubjectScores(row);
+        if (subjects.length > 0) {
+          await resultScoresRepository.deleteByResultId(result.id);
+          const scoreData = subjects.map((s) => ({
+            resultId: result.id,
+            subject: s.subject,
+            score: s.score,
+            maxScore: s.maxScore,
+          }));
+          await resultScoresRepository.createMany(scoreData);
+
+          const scores = await resultScoresRepository.findByResultId(result.id);
+          const totalScore = scores.reduce((sum, s) => sum + (s.score || 0), 0);
+          await resultsRepository.update(result.id, { totalScore } as any);
+        } else {
+          errors.push(`Row ${rowNum}: No subject scores found in row`);
+        }
+      } catch (err: any) {
+        errors.push(`Row ${rowNum}: ${err.message}`);
+      }
+    }
+
+    return { created, updated, errors };
+  },
+
+  extractSubjectScores(row: Record<string, string>): { subject: string; score?: number; maxScore?: number }[] {
+    const scores: { subject: string; score?: number; maxScore?: number }[] = [];
+    for (const [key, value] of Object.entries(row)) {
+      const lowerKey = key.toLowerCase().trim();
+      if (['application_id', 'applicationid', 'application', 'candidate', 'candidatenumber', 'candidate_number', 'session', 'sessionid', 'session_id'].includes(lowerKey)) {
+        continue;
+      }
+      const numVal = parseFloat(value);
+      if (!isNaN(numVal) && value.trim().length > 0) {
+        scores.push({
+          subject: key.trim(),
+          score: numVal,
+          maxScore: 100,
+        });
+      }
+    }
+    return scores;
   },
 
   async updateResult(id: string, data: Partial<Result>): Promise<Result> {

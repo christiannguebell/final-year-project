@@ -26,6 +26,12 @@ jest.mock('../../../src/database', () => {
     ApplicationStatus: {
       APPROVED: 'approved',
     },
+    ExamSessionStatus: {
+      SCHEDULED: 'scheduled',
+      ONGOING: 'ongoing',
+      COMPLETED: 'completed',
+      CANCELLED: 'cancelled',
+    },
   };
 });
 
@@ -141,7 +147,7 @@ describe('ExamsService', () => {
 
       await expect(
         examsService.autoAllocateCandidates({ sessionId: '1' })
-      ).rejects.toThrow('No approved applications to assign');
+      ).rejects.toThrow(EXAM_MESSAGES.NO_ASSIGNMENT);
     });
 
     it('should assign candidates successfully', async () => {

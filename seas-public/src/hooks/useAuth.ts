@@ -2,21 +2,14 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { authApi } from '../api';
 import type { LoginRequest, RegisterRequest, ChangePasswordRequest } from '../types/api';
 import { STORAGE_KEYS } from '../config/constants';
-import type { User, ApiResponse, LoginResponse } from '../types/api';
+import type { User } from '../types/api';
 import { useAuth } from '../providers';
 
 const TOKEN_KEYS = STORAGE_KEYS;
 
 export function useLogin() {
-  const { login } = useAuth();
   return useMutation({
     mutationFn: (data: LoginRequest) => authApi.login(data),
-    onSuccess: (response: ApiResponse<LoginResponse>) => {
-      if (response.data) {
-        const { tokens, user } = response.data;
-        login(user, tokens.accessToken, tokens.refreshToken);
-      }
-    },
   });
 }
 
@@ -27,24 +20,18 @@ export function useRegister() {
 }
 
 export function useVerifyOtp() {
-  const { login } = useAuth();
   return useMutation({
     mutationFn: ({ email, otp }: { email: string; otp: string }) => authApi.verifyOtp(email, otp),
-    onSuccess: (response: ApiResponse<LoginResponse>) => {
-      if (response.data) {
-        const { tokens, user } = response.data;
-        login(user, tokens.accessToken, tokens.refreshToken);
-      }
-    },
   });
 }
 
 export function useChangePassword() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: ChangePasswordRequest) => authApi.changePassword(data),
-    onSuccess: () => {
+    mutationFn: async (data: ChangePasswordRequest) => {
+      const result = await authApi.changePassword(data);
       queryClient.invalidateQueries({ queryKey: ['profile'] });
+      return result;
     },
   });
 }

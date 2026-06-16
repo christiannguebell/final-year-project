@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation, type Location } from 'react-router-dom';
 import { GraduationCap, Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { useLogin } from '../../hooks/useAuth';
+import { useAuth } from '../../providers';
 
 
 interface LocationState {
@@ -12,6 +13,7 @@ interface LocationState {
 export default function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { login } = useAuth();
   const loginMutation = useLogin();
   
   const [email, setEmail] = useState('');
@@ -22,17 +24,19 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    loginMutation.mutate({ email, password }, {
-      onSuccess: () => {
-        navigate(from, { replace: true });
-      },
-      onError: (error: any) => {
-        const message = error?.response?.data?.message;
-        if (message === 'ACCOUNT_UNVERIFIED') {
-          navigate(`/verify-otp?email=${encodeURIComponent(email)}`);
-        }
+    try {
+      const response = await loginMutation.mutateAsync({ email, password });
+      if (response.data) {
+        const { tokens, user } = response.data;
+        login(user, tokens.accessToken, tokens.refreshToken);
       }
-    });
+      navigate(from, { replace: true });
+    } catch (error: any) {
+      const message = error?.response?.data?.message;
+      if (message === 'ACCOUNT_UNVERIFIED') {
+        navigate(`/verify-otp?email=${encodeURIComponent(email)}`);
+      }
+    }
   };
 
   return (
