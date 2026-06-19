@@ -38,7 +38,7 @@ export const AcademicRecordsStep = ({
       }
       try {
         const response = await apiClient.get<AcademicRecord[]>(`/academic-records/application/${data.id}`);
-        setRecords(response.data?.data || []);
+        setRecords(response.data || []);
       } catch {
         console.error('Failed to fetch academic records');
       } finally {
@@ -68,8 +68,12 @@ export const AcademicRecordsStep = ({
         institution: newRecord.institution,
         degree: newRecord.degree,
         fieldOfStudy: newRecord.fieldOfStudy,
-        startDate: newRecord.startDate,
-        endDate: newRecord.endDate,
+        startDate: newRecord.startDate
+        ? new Date(newRecord.startDate).toISOString()
+        : null,
+        endDate: newRecord.endDate
+        ? new Date(newRecord.endDate).toISOString()
+        : null,
         grade,
         applicationId: data.id,
       });
@@ -79,6 +83,7 @@ export const AcademicRecordsStep = ({
       toast.success('Academic record saved');
     } catch {
       toast.error('Failed to save academic record');
+      console.log(`Start Date: ${newRecord.startDate}`)
       return;
     }
 

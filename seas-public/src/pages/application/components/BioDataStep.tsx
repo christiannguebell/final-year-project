@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Calendar, User, Globe, IdCard, Fingerprint, MapPin, Save } from 'lucide-react';
 import { apiClient } from '../../../api/client';
 import { toast } from 'sonner';
@@ -34,20 +35,24 @@ export const BioDataStep = ({ onNext, data }: { onNext: (data: Partial<Applicati
     }
   });
 
+  const location = useLocation();
+  const programId = (location.state as any)?.programId;
+
   const onSubmit = async (formData: BioDataForm) => {
     try {
       await apiClient.put('/candidates', formData);
       
-      let applicationId = data.id;
+      let applicationId = data?.id;
+
       if (!applicationId) {
-        const response = await apiClient.post<Application>('/applications', { programId: null });
-        if (response.data?.data?.id) {
-          applicationId = response.data.data.id;
+        
+        if (!programId) {
+          throw new Error('Program not selected');
         }
-      }
-      
-      if (!applicationId) {
-        throw new Error('Failed to create application');
+        
+        const response = await apiClient.post<Application>('/applications', {programId});
+        
+        applicationId = response.data?.data?.id;
       }
       
       toast.success('Foundational profile saved');
@@ -105,7 +110,6 @@ export const BioDataStep = ({ onNext, data }: { onNext: (data: Partial<Applicati
                   <option value="">Select Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
-                  <option value="other">Other</option>
                 </select>
               </div>
             </div>

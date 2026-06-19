@@ -9,6 +9,7 @@ import type { Candidate } from '@/types/entities';
 export default function CandidatesPage() {
   const { data, isLoading } = useCandidates({ limit: 100 });
   const navigate = useNavigate();
+  console.log(data)
 
   const candidates = data?.items || [];
   const pagination = data?.pagination;

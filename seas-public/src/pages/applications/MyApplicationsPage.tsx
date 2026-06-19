@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { data, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { format } from 'date-fns';
 import {
@@ -35,8 +35,17 @@ export default function MyApplicationsPage() {
   const navigate = useNavigate();
 
   const { data: response, isLoading, error } = useMyApplications();
+  console.log("RESPONSE:", response);
+  console.log("IS ARRAY:", Array.isArray(response));
 
-  const applicationList = useMemo<Application[]>(() => (response as any)?.data?.items || (response as any)?.items || [], [response]);
+  // const applicationList = useMemo<Application[]>(() => (response as any)?.data?.items || (response as any)?.items || [], [response]);
+  const applicationList = useMemo<Application[]>(() => {
+    if (Array.isArray((response as any)?.data)) {
+      return (response as any).data;
+    }
+  
+    return (response as any)?.data?.items || [];
+  }, [response]);
 
   const filteredApplications = useMemo(() => {
     const filtered = applicationList.filter((app: Application) => {

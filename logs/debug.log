@@ -1251,3 +1251,1052 @@ EntityPropertyNotFoundError: Property "applications" was not found in "Candidate
     at Object.updateById (/app/dist/modules/candidates/candidates.repository.js:57:21)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 2026-06-16 17:47:00 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-17 07:44:47 [INFO]: Email templates loaded
+2026-06-17 07:44:47 [INFO]: Validating critical connections...
+2026-06-17 07:44:48 [INFO]: Database connection verified
+2026-06-17 07:44:48 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-17 07:44:48 [INFO]: Server running on port 3000
+2026-06-17 07:46:35 [INFO]: GET /
+2026-06-17 07:46:35 [INFO]: GET /favicon.ico
+2026-06-17 07:58:02 [INFO]: POST /api/auth/register
+2026-06-17 08:01:40 [INFO]: POST /api/auth/login
+2026-06-17 08:01:40 [ERROR]: API Error: ACCOUNT_UNVERIFIED
+Error: ACCOUNT_UNVERIFIED
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:88:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-17 08:10:27 [INFO]: POST /api/auth/login
+2026-06-17 08:10:28 [ERROR]: API Error: ACCOUNT_UNVERIFIED
+Error: ACCOUNT_UNVERIFIED
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:88:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-17 08:45:25 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-17 08:58:51 [INFO]: Email templates loaded
+2026-06-17 08:58:51 [INFO]: Validating critical connections...
+2026-06-17 08:58:51 [INFO]: Database connection verified
+2026-06-17 08:58:54 [INFO]: Email service connected to smtp-relay.brevo.com:587
+2026-06-17 08:58:54 [INFO]: Email service connection verified
+2026-06-17 08:58:54 [INFO]: Server running on port 3000
+2026-06-17 08:59:13 [INFO]: POST /api/auth/login
+2026-06-17 08:59:17 [INFO]: Email sent to pahotchaptchet4@gmail.com
+2026-06-17 08:59:17 [ERROR]: API Error: ACCOUNT_UNVERIFIED
+Error: ACCOUNT_UNVERIFIED
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:88:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-17 09:00:56 [INFO]: POST /api/auth/login
+2026-06-17 09:01:00 [INFO]: Email sent to pahotchaptchet4@gmail.com
+2026-06-17 09:01:00 [ERROR]: API Error: ACCOUNT_UNVERIFIED
+Error: ACCOUNT_UNVERIFIED
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:88:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-17 09:02:53 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-17 09:02:57 [INFO]: Email templates loaded
+2026-06-17 09:02:57 [INFO]: Validating critical connections...
+2026-06-17 09:02:58 [INFO]: Database connection verified
+2026-06-17 09:03:00 [INFO]: Email service connected to smtp-relay.brevo.com:587
+2026-06-17 09:03:00 [INFO]: Email service connection verified
+2026-06-17 09:03:00 [INFO]: Server running on port 3000
+2026-06-17 09:03:08 [INFO]: POST /api/auth/login
+2026-06-17 09:03:12 [INFO]: Email sent to pahotchaptchet4@gmail.com
+2026-06-17 09:03:12 [ERROR]: API Error: ACCOUNT_UNVERIFIED
+Error: ACCOUNT_UNVERIFIED
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:88:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-17 09:08:40 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-17 09:08:43 [INFO]: Email templates loaded
+2026-06-17 09:08:43 [INFO]: Validating critical connections...
+2026-06-17 09:08:43 [INFO]: Database connection verified
+2026-06-17 09:08:46 [INFO]: Email service connected to smtp-relay.brevo.com:587
+2026-06-17 09:08:46 [INFO]: Email service connection verified
+2026-06-17 09:08:46 [INFO]: Server running on port 3000
+2026-06-17 09:09:04 [INFO]: POST /api/auth/login
+2026-06-17 09:09:07 [INFO]: Email sent to pahotchaptchet4@gmail.com
+2026-06-17 09:09:07 [ERROR]: API Error: ACCOUNT_UNVERIFIED
+Error: ACCOUNT_UNVERIFIED
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:88:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-17 09:10:24 [INFO]: POST /api/auth/verify-otp
+2026-06-17 09:10:24 [ERROR]: API Error: Invalid OTP
+Error: Invalid OTP
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.verifyOtp (/app/dist/modules/auth/auth.service.js:54:39)
+    at async verifyOtp (/app/dist/modules/auth/auth.controller.js:20:28)
+2026-06-17 09:10:36 [INFO]: POST /api/auth/verify-otp
+2026-06-17 09:10:36 [ERROR]: API Error: Invalid OTP
+Error: Invalid OTP
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.verifyOtp (/app/dist/modules/auth/auth.service.js:54:39)
+    at async verifyOtp (/app/dist/modules/auth/auth.controller.js:20:28)
+2026-06-17 09:10:59 [INFO]: POST /api/auth/verify-otp
+2026-06-17 09:11:00 [ERROR]: API Error: Invalid OTP
+Error: Invalid OTP
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.verifyOtp (/app/dist/modules/auth/auth.service.js:54:39)
+    at async verifyOtp (/app/dist/modules/auth/auth.controller.js:20:28)
+2026-06-17 09:11:11 [INFO]: POST /api/auth/verify-otp
+2026-06-17 09:11:11 [INFO]: GET /api/notifications/unread
+2026-06-17 09:12:38 [INFO]: POST /api/admin/login
+2026-06-17 09:12:38 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:116:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-17 09:18:36 [INFO]: POST /admin/create
+2026-06-17 09:18:57 [INFO]: POST /admins/create
+2026-06-17 09:19:56 [INFO]: POST /api/admin/create
+2026-06-17 09:19:56 [ERROR]: API Error: No token provided
+Error: No token provided
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:15:39)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+2026-06-17 09:20:56 [INFO]: POST /api/admin/create
+2026-06-17 09:20:56 [ERROR]: API Error: Invalid token
+Error: Invalid token
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:30:38)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+2026-06-17 09:34:15 [INFO]: Email templates loaded
+2026-06-17 09:34:15 [INFO]: Validating critical connections...
+2026-06-17 09:34:16 [INFO]: Database connection verified
+2026-06-17 09:34:18 [INFO]: Email service connected to smtp-relay.brevo.com:587
+2026-06-17 09:34:18 [INFO]: Email service connection verified
+2026-06-17 09:34:18 [INFO]: Server running on port 3000
+2026-06-17 09:36:44 [INFO]: GET /api/notifications/unread
+2026-06-17 09:42:02 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-17 09:42:06 [INFO]: Email templates loaded
+2026-06-17 09:42:06 [INFO]: Validating critical connections...
+2026-06-17 09:42:06 [INFO]: Database connection verified
+2026-06-17 09:42:08 [INFO]: Email service connected to smtp-relay.brevo.com:587
+2026-06-17 09:42:08 [INFO]: Email service connection verified
+2026-06-17 09:42:08 [INFO]: Server running on port 3000
+2026-06-17 09:56:39 [INFO]: POST /api/admin/create
+2026-06-17 09:56:39 [ERROR]: API Error: User not authenticated
+Error: User not authenticated
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at /app/dist/middlewares/role.middleware.js:10:39
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+2026-06-17 09:58:14 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-17 09:58:18 [INFO]: Email templates loaded
+2026-06-17 09:58:18 [INFO]: Validating critical connections...
+2026-06-17 09:58:18 [INFO]: Database connection verified
+2026-06-17 09:58:21 [INFO]: Email service connected to smtp-relay.brevo.com:587
+2026-06-17 09:58:21 [INFO]: Email service connection verified
+2026-06-17 09:58:21 [INFO]: Server running on port 3000
+2026-06-17 09:59:16 [INFO]: POST /api/admin/create
+2026-06-17 09:59:18 [INFO]: Email sent to pahotchaptchet@gmail.com
+2026-06-17 10:01:45 [INFO]: POST /api/admin/verify/9d4c951e-ab30-444a-8557-ffdb2dc4c653?otp=241291
+2026-06-17 10:01:50 [INFO]: PUT /api/admin/verify/9d4c951e-ab30-444a-8557-ffdb2dc4c653?otp=241291
+2026-06-17 10:02:10 [INFO]: POST /api/admin/login
+2026-06-17 10:02:10 [ERROR]: API Error: Please setup your password first
+Error: Please setup your password first
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:122:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-17 10:04:20 [INFO]: POST /api/admin/verify-otp
+2026-06-17 10:04:20 [ERROR]: API Error: Invalid OTP
+Error: Invalid OTP
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.verifyOtp (/app/dist/modules/admin/admin.service.js:87:39)
+    at async Object.verifyOtp (/app/dist/modules/admin/admin.controller.js:20:28)
+2026-06-17 10:04:41 [INFO]: POST /api/admin/verify-otp
+2026-06-17 10:05:14 [INFO]: POST /api/admin/setup-password
+2026-06-17 10:05:26 [INFO]: POST /api/admin/login
+2026-06-17 10:05:26 [INFO]: GET /api/analytics/dashboard
+2026-06-17 10:05:26 [INFO]: GET /api/analytics/applications-over-time
+2026-06-17 10:06:20 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-17 10:06:25 [INFO]: Email templates loaded
+2026-06-17 10:06:25 [INFO]: Validating critical connections...
+2026-06-17 10:06:25 [INFO]: Database connection verified
+2026-06-17 10:06:30 [INFO]: Email service connected to smtp-relay.brevo.com:587
+2026-06-17 10:06:30 [INFO]: Email service connection verified
+2026-06-17 10:06:30 [INFO]: Server running on port 3000
+2026-06-17 10:06:43 [INFO]: GET /api/applications/mine
+2026-06-17 10:10:24 [INFO]: PUT /api/candidates
+2026-06-17 10:10:24 [INFO]: POST /api/applications
+2026-06-17 10:10:24 [ERROR]: API Error: "programId" must be a string
+ValidationError: "programId" must be a string
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-17 10:48:49 [INFO]: GET /api/notifications/unread
+2026-06-17 10:48:56 [INFO]: GET /api/applications/mine
+2026-06-17 10:49:57 [INFO]: GET /api/candidates/me
+2026-06-17 10:49:57 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-17 10:49:58 [INFO]: GET /api/candidates/me
+2026-06-17 10:49:58 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-17 10:50:19 [INFO]: GET /api/applications/mine
+2026-06-17 10:50:19 [INFO]: GET /api/results/my-result
+2026-06-17 10:50:20 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-17 10:50:25 [INFO]: GET /api/candidates/me
+2026-06-17 10:50:25 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-17 10:50:26 [INFO]: GET /api/candidates/me
+2026-06-17 10:50:26 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-17 10:50:39 [INFO]: POST /api/auth/login
+2026-06-17 10:50:39 [INFO]: GET /api/notifications/unread
+2026-06-17 10:50:45 [INFO]: GET /api/candidates/me
+2026-06-17 10:50:45 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-17 10:50:46 [INFO]: GET /api/candidates/me
+2026-06-17 10:50:46 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-17 10:55:48 [INFO]: POST /api/auth/login
+2026-06-17 10:55:48 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:69:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-17 10:56:14 [INFO]: POST /api/auth/register
+2026-06-17 10:56:16 [INFO]: Email sent to pahotchaptchet4@gmail.com
+2026-06-17 10:56:49 [INFO]: POST /api/auth/verify-otp
+2026-06-17 10:56:49 [INFO]: GET /api/notifications/unread
+2026-06-17 10:56:55 [INFO]: GET /api/candidates/me
+2026-06-17 10:56:55 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-17 10:56:56 [INFO]: GET /api/candidates/me
+2026-06-17 10:56:56 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-17 11:01:24 [INFO]: GET /api/applications/mine
+2026-06-17 11:01:44 [INFO]: GET /api/programs
+2026-06-17 11:01:44 [INFO]: GET /api/programs
+2026-06-17 11:02:19 [INFO]: GET /api/exams/my-assignment
+2026-06-17 11:02:19 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-17 11:02:25 [INFO]: GET /api/applications/mine
+2026-06-17 11:34:40 [INFO]: GET /api/applications/mine
+2026-06-17 11:34:41 [INFO]: GET /api/applications/mine
+2026-06-17 11:34:44 [INFO]: GET /api/programs
+2026-06-17 11:34:44 [INFO]: GET /api/programs
+2026-06-17 11:34:55 [INFO]: GET /api/exams/my-assignment
+2026-06-17 11:34:55 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-17 11:35:02 [INFO]: GET /api/programs
+2026-06-17 11:35:02 [INFO]: GET /api/programs
+2026-06-17 11:35:57 [INFO]: GET /api/applications/mine
+2026-06-17 11:37:46 [INFO]: GET /api/programs
+2026-06-17 11:37:46 [INFO]: GET /api/programs
+2026-06-17 11:37:59 [INFO]: GET /api/applications/mine
+2026-06-17 11:38:00 [INFO]: GET /api/programs
+2026-06-17 11:38:00 [INFO]: GET /api/programs
+2026-06-17 11:45:56 [INFO]: PUT /api/candidates
+2026-06-17 11:45:57 [INFO]: POST /api/applications
+2026-06-17 11:45:57 [ERROR]: API Error: "programId" must be a string
+ValidationError: "programId" must be a string
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-17 11:54:53 [INFO]: GET /api/programs
+2026-06-17 11:54:53 [INFO]: GET /api/programs
+2026-06-17 11:55:26 [INFO]: PUT /api/candidates
+2026-06-17 11:55:26 [INFO]: POST /api/applications
+2026-06-17 11:55:27 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 11:55:27 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 11:56:32 [INFO]: POST /api/academic-records
+2026-06-17 11:56:32 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-17 11:56:46 [INFO]: POST /api/academic-records
+2026-06-17 11:56:46 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-17 11:59:55 [INFO]: POST /api/academic-records
+2026-06-17 11:59:55 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-17 12:03:36 [INFO]: POST /api/academic-records
+2026-06-17 12:03:37 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-17 12:05:06 [INFO]: POST /api/academic-records
+2026-06-17 12:05:06 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-17 12:05:21 [INFO]: POST /api/academic-records
+2026-06-17 12:05:22 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-17 12:06:13 [INFO]: POST /api/academic-records
+2026-06-17 12:06:13 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-17 12:29:19 [INFO]: POST /api/academic-records
+2026-06-17 12:29:19 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-17 12:37:37 [INFO]: POST /api/academic-records
+2026-06-17 12:38:04 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 12:38:04 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 12:40:53 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 12:40:53 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 12:41:45 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 12:41:45 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 12:42:13 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 12:42:14 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 12:42:52 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 12:42:52 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:07:56 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-17 13:08:00 [INFO]: Email templates loaded
+2026-06-17 13:08:00 [INFO]: Validating critical connections...
+2026-06-17 13:08:01 [INFO]: Database connection verified
+2026-06-17 13:08:04 [INFO]: Email service connected to smtp-relay.brevo.com:587
+2026-06-17 13:08:04 [INFO]: Email service connection verified
+2026-06-17 13:08:04 [INFO]: Server running on port 3000
+2026-06-17 13:08:18 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:08:18 [ERROR]: Unexpected Error: Success
+2026-06-17 13:08:18 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:08:18 [ERROR]: Unexpected Error: Success
+2026-06-17 13:09:54 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-17 13:09:59 [INFO]: Email templates loaded
+2026-06-17 13:09:59 [INFO]: Validating critical connections...
+2026-06-17 13:10:00 [INFO]: Database connection verified
+2026-06-17 13:10:21 [ERROR]: Failed to initialize email service: connect ECONNREFUSED 1.179.115.1:587
+Error: connect ECONNREFUSED 1.179.115.1:587
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2026-06-17 13:10:21 [ERROR]: Email service connection failed: connect ECONNREFUSED 1.179.115.1:587
+Error: connect ECONNREFUSED 1.179.115.1:587
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)
+2026-06-17 13:10:21 [WARN]: 1 connection(s) failed but app will continue
+2026-06-17 13:10:21 [INFO]: Server running on port 3000
+2026-06-17 13:10:31 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:10:31 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:13:04 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:13:05 [INFO]: GET /api/academic-records/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:13:09 [INFO]: GET /api/programs
+2026-06-17 13:13:09 [INFO]: GET /api/programs
+2026-06-17 13:13:24 [INFO]: PUT /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:13:29 [INFO]: GET /api/documents/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:13:29 [INFO]: GET /api/documents/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:13:41 [INFO]: POST /api/documents/upload
+2026-06-17 13:13:45 [INFO]: POST /api/documents/upload
+2026-06-17 13:13:49 [INFO]: POST /api/documents/upload
+2026-06-17 13:13:54 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:13:54 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:14:03 [INFO]: POST /api/payments
+2026-06-17 13:14:14 [INFO]: POST /api/payments/6adcfdaf-d9b0-42a5-951e-90a6b926045a/receipt
+2026-06-17 13:14:38 [INFO]: POST /api/payments/6adcfdaf-d9b0-42a5-951e-90a6b926045a/receipt
+2026-06-17 13:14:51 [INFO]: GET /api/candidates?limit=100
+2026-06-17 13:15:00 [INFO]: GET /api/programs?limit=50
+2026-06-17 13:15:02 [INFO]: GET /api/analytics/dashboard
+2026-06-17 13:15:02 [INFO]: GET /api/analytics/applications-over-time
+2026-06-17 13:15:13 [INFO]: GET /api/exams/sessions
+2026-06-17 13:15:16 [INFO]: GET /api/exams/centers
+2026-06-17 13:16:13 [INFO]: GET /api/applications?limit=10
+2026-06-17 13:16:13 [INFO]: GET /api/payments?limit=10
+2026-06-17 13:16:17 [INFO]: GET /api/programs?limit=50
+2026-06-17 13:16:18 [INFO]: GET /api/analytics/dashboard
+2026-06-17 13:16:18 [INFO]: GET /api/analytics/applications-over-time
+2026-06-17 13:16:21 [INFO]: GET /api/results
+2026-06-17 13:16:21 [INFO]: GET /api/analytics/programs
+2026-06-17 13:16:21 [INFO]: GET /api/exams/sessions
+2026-06-17 13:17:09 [INFO]: GET /api/notifications/unread
+2026-06-17 13:17:10 [INFO]: GET /api/applications/mine
+2026-06-17 13:17:34 [INFO]: GET /api/applications/mine
+2026-06-17 13:17:48 [INFO]: GET /api/applications/mine
+2026-06-17 13:17:48 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:18:15 [INFO]: POST /api/payments/6adcfdaf-d9b0-42a5-951e-90a6b926045a/receipt
+2026-06-17 13:18:15 [INFO]: GET /api/applications/mine
+2026-06-17 13:18:16 [INFO]: GET /api/applications/mine
+2026-06-17 13:18:16 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:18:24 [INFO]: GET /api/exams/my-assignment
+2026-06-17 13:18:24 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-17 13:18:30 [INFO]: GET /api/applications/mine
+2026-06-17 13:18:30 [INFO]: GET /api/results/my-result
+2026-06-17 13:18:30 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-17 13:19:42 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9/summary
+2026-06-17 13:19:42 [ERROR]: Unexpected Error: Failed to generate PDF (payment-summary): Could not find Chrome (ver. 146.0.7680.153). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /root/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+Error: Failed to generate PDF (payment-summary): Could not find Chrome (ver. 146.0.7680.153). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /root/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+    at generatePdfFromTemplate (/app/dist/modules/exams/pdf.service.js:87:15)
+    at async getApplicationSummary (/app/dist/modules/payments/payments.controller.js:117:31)
+2026-06-17 13:20:46 [INFO]: GET /api/applications?limit=10
+2026-06-17 13:20:46 [INFO]: GET /api/payments?limit=10
+2026-06-17 13:20:57 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:21:00 [INFO]: PATCH /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/approve
+2026-06-17 13:21:00 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:21:05 [INFO]: GET /api/applications/mine
+2026-06-17 13:21:06 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:21:09 [INFO]: GET /api/applications/mine
+2026-06-17 13:21:24 [INFO]: PATCH /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/approve
+2026-06-17 13:21:24 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-17 13:21:47 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:21:47 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:21:55 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:21:55 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:22:07 [INFO]: PATCH /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/approve
+2026-06-17 13:22:07 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-17 13:22:18 [INFO]: GET /api/applications?limit=10
+2026-06-17 13:22:18 [INFO]: GET /api/payments?limit=10
+2026-06-17 13:45:28 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:45:28 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:46:04 [INFO]: POST /api/payments/6adcfdaf-d9b0-42a5-951e-90a6b926045a/receipt
+2026-06-17 13:46:16 [INFO]: GET /api/candidates?limit=100
+2026-06-17 13:46:18 [INFO]: GET /api/applications?limit=10
+2026-06-17 13:46:18 [INFO]: GET /api/payments?limit=10
+2026-06-17 13:46:23 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:46:25 [INFO]: PATCH /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/approve
+2026-06-17 13:46:25 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-17 13:46:32 [INFO]: GET /uploads/document-1781702029984-328425415.png
+2026-06-17 13:46:36 [INFO]: GET /uploads/document-1781702029984-328425415.png
+2026-06-17 13:46:37 [INFO]: GET /favicon.ico
+2026-06-17 13:46:42 [INFO]: GET /uploads/document-1781702025598-938255521.png
+2026-06-17 13:46:45 [INFO]: GET /uploads/document-1781702021466-671660570.png
+2026-06-17 13:46:55 [INFO]: PATCH /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/approve
+2026-06-17 13:46:55 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-17 13:46:56 [INFO]: PATCH /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/approve
+2026-06-17 13:46:56 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-17 13:47:08 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:47:08 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:47:31 [INFO]: POST /api/payments/6adcfdaf-d9b0-42a5-951e-90a6b926045a/receipt
+2026-06-17 13:54:05 [INFO]: GET /api/applications?limit=10
+2026-06-17 13:54:05 [INFO]: GET /api/payments?limit=10
+2026-06-17 13:54:13 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:54:15 [INFO]: PATCH /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/approve
+2026-06-17 13:54:15 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-17 13:54:28 [INFO]: PATCH /api/payments/6adcfdaf-d9b0-42a5-951e-90a6b926045a/verify
+2026-06-17 13:54:28 [INFO]: GET /api/payments?limit=10
+2026-06-17 13:54:43 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:54:43 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:54:47 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:54:47 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:54:55 [INFO]: POST /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/submit
+2026-06-17 13:54:55 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-17 13:55:27 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 13:55:39 [INFO]: GET /api/payments?limit=10
+2026-06-17 13:55:39 [INFO]: GET /api/applications?limit=10
+2026-06-17 13:55:55 [INFO]: PATCH /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/approve
+2026-06-17 13:55:55 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-17 13:55:58 [INFO]: GET /api/programs?limit=50
+2026-06-17 13:56:26 [INFO]: GET /api/candidates?limit=100
+2026-06-17 13:56:30 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-17 13:56:30 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-17 13:56:31 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-17 13:56:31 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-17 13:57:06 [INFO]: POST /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/submit
+2026-06-17 13:57:06 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-17 14:02:27 [INFO]: POST /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/submit
+2026-06-17 14:02:27 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-17 14:02:33 [INFO]: GET /api/applications/mine
+2026-06-17 14:02:33 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 14:02:38 [INFO]: GET /api/applications/mine
+2026-06-17 14:02:41 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 14:02:41 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 14:02:46 [INFO]: POST /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/submit
+2026-06-17 14:02:47 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-17 14:05:35 [INFO]: POST /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/submit
+2026-06-17 14:05:35 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-17 14:15:53 [INFO]: POST /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/submit
+2026-06-17 14:15:53 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-17 14:18:02 [INFO]: POST /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/submit
+2026-06-17 14:18:02 [INFO]: GET /api/notifications/unread
+2026-06-17 14:18:12 [INFO]: GET /api/applications/mine
+2026-06-17 14:18:15 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 14:18:15 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 14:18:21 [INFO]: POST /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/submit
+2026-06-17 14:18:21 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-17 14:18:43 [INFO]: GET /api/applications/mine
+2026-06-17 14:20:15 [INFO]: GET /api/applications/mine
+2026-06-17 14:44:42 [INFO]: GET /api/candidates/me
+2026-06-17 14:44:47 [INFO]: GET /api/applications/mine
+2026-06-17 14:52:12 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-17 14:52:16 [INFO]: Email templates loaded
+2026-06-17 14:52:16 [INFO]: Validating critical connections...
+2026-06-17 14:52:16 [INFO]: Database connection verified
+2026-06-17 14:52:18 [INFO]: Email service connected to smtp-relay.brevo.com:587
+2026-06-17 14:52:18 [INFO]: Email service connection verified
+2026-06-17 14:52:18 [INFO]: Server running on port 3000
+2026-06-17 14:52:21 [INFO]: GET /api/applications/mine
+2026-06-17 14:52:21 [ERROR]: Unexpected Error: Property "user_id" was not found in "Application". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "user_id" was not found in "Application". Make sure your query is correct.
+    at SelectQueryBuilder.buildWhere (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2513:27)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1818:40)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.find (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:553:14)
+    at Repository.find (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:234:29)
+    at Object.findByUserId (/app/dist/modules/applications/applications.repository.js:14:79)
+    at Object.getMyApplications (/app/dist/modules/applications/applications.service.js:22:71)
+    at getMyApplications (/app/dist/modules/applications/applications.controller.js:38:83)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+2026-06-17 14:52:22 [INFO]: GET /api/applications/mine
+2026-06-17 14:52:22 [ERROR]: Unexpected Error: Property "user_id" was not found in "Application". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "user_id" was not found in "Application". Make sure your query is correct.
+    at SelectQueryBuilder.buildWhere (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2513:27)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1818:40)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.find (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:553:14)
+    at Repository.find (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:234:29)
+    at Object.findByUserId (/app/dist/modules/applications/applications.repository.js:14:79)
+    at Object.getMyApplications (/app/dist/modules/applications/applications.service.js:22:71)
+    at getMyApplications (/app/dist/modules/applications/applications.controller.js:38:83)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+2026-06-17 14:57:56 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-17 14:58:00 [INFO]: Email templates loaded
+2026-06-17 14:58:00 [INFO]: Validating critical connections...
+2026-06-17 14:58:00 [INFO]: Database connection verified
+2026-06-17 14:58:04 [INFO]: Email service connected to smtp-relay.brevo.com:587
+2026-06-17 14:58:04 [INFO]: Email service connection verified
+2026-06-17 14:58:04 [INFO]: Server running on port 3000
+2026-06-17 14:58:19 [INFO]: GET /api/applications/mine
+2026-06-17 15:02:56 [INFO]: GET /api/applications/mine
+2026-06-17 15:03:11 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 15:03:11 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-17 15:03:31 [INFO]: POST /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/submit
+2026-06-17 15:03:31 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:84:33)
+2026-06-17 15:03:34 [INFO]: GET /api/exams/my-assignment
+2026-06-17 15:03:34 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-17 15:03:38 [INFO]: GET /api/programs
+2026-06-17 15:03:38 [INFO]: GET /api/programs
+2026-06-17 15:03:50 [INFO]: GET /api/candidates/me
+2026-06-17 15:04:00 [INFO]: POST /api/candidates/photo
+2026-06-17 15:04:00 [INFO]: GET /api/candidates/me
+2026-06-17 15:04:11 [INFO]: POST /api/candidates/photo
+2026-06-17 15:04:11 [ERROR]: API Error: Invalid file type. Allowed: JPEG, PNG, GIF, PDF, DOC, DOCX, CSV
+Error: Invalid file type. Allowed: JPEG, PNG, GIF, PDF, DOC, DOCX, CSV
+    at fileFilter (/app/dist/middlewares/upload.middleware.js:37:12)
+    at wrappedFileFilter (/app/node_modules/.pnpm/multer@2.1.1/node_modules/multer/index.js:45:7)
+    at Multipart.<anonymous> (/app/node_modules/.pnpm/multer@2.1.1/node_modules/multer/lib/make-middleware.js:183:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/app/node_modules/.pnpm/busboy@1.6.0/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/app/node_modules/.pnpm/busboy@1.6.0/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/app/node_modules/.pnpm/busboy@1.6.0/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/app/node_modules/.pnpm/streamsearch@1.1.0/node_modules/streamsearch/lib/sbmh.js:219:14)
+    at SBMH.push (/app/node_modules/.pnpm/streamsearch@1.1.0/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/app/node_modules/.pnpm/busboy@1.6.0/node_modules/busboy/lib/types/multipart.js:567:19)
+2026-06-18 01:08:28 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-19 08:51:00 [INFO]: Email templates loaded
+2026-06-19 08:51:00 [INFO]: Validating critical connections...
+2026-06-19 08:51:01 [INFO]: Database connection verified
+2026-06-19 08:51:03 [INFO]: Email service connected to smtp-relay.brevo.com:587
+2026-06-19 08:51:03 [INFO]: Email service connection verified
+2026-06-19 08:51:03 [INFO]: Server running on port 3000
+2026-06-19 08:54:12 [INFO]: GET /api/analytics/applications-over-time
+2026-06-19 08:54:12 [INFO]: GET /api/analytics/dashboard
+2026-06-19 08:55:28 [INFO]: GET /api/candidates?limit=100
+2026-06-19 08:55:50 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-19 08:55:50 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:51:33)
+2026-06-19 08:55:51 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-19 08:55:51 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:51:33)
+2026-06-19 08:56:40 [INFO]: GET /api/candidates?limit=100
+2026-06-19 08:56:52 [INFO]: GET /api/programs?limit=50
+2026-06-19 08:57:26 [INFO]: GET /api/applications?limit=10
+2026-06-19 08:57:26 [INFO]: GET /api/payments?limit=10
+2026-06-19 08:57:48 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-19 08:57:48 [INFO]: GET /uploads/photo-1781708640438-932843252.png
+2026-06-19 08:57:52 [INFO]: PATCH /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/approve
+2026-06-19 08:57:52 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-19 08:58:03 [INFO]: GET /api/applications?limit=10
+2026-06-19 08:58:20 [INFO]: GET /api/applications/mine
+2026-06-19 08:59:39 [INFO]: GET /api/applications/mine
+2026-06-19 09:00:00 [INFO]: GET /api/applications/mine
+2026-06-19 09:00:00 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-19 09:00:06 [INFO]: GET /api/exams/my-assignment
+2026-06-19 09:00:06 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-19 09:00:10 [INFO]: GET /api/results/my-result
+2026-06-19 09:00:11 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-19 09:00:27 [INFO]: GET /api/candidates/me
+2026-06-19 09:00:45 [INFO]: GET /api/applications/mine
+2026-06-19 09:13:18 [INFO]: GET /api/applications/mine
+2026-06-19 09:13:23 [INFO]: GET /api/applications/mine
+2026-06-19 09:13:57 [INFO]: GET /api/applications/mine
+2026-06-19 09:15:00 [INFO]: GET /api/applications/mine
+2026-06-19 09:15:24 [INFO]: GET /api/applications/mine
+2026-06-19 09:16:19 [INFO]: GET /api/applications/mine
+2026-06-19 09:17:37 [INFO]: GET /api/applications/mine
+2026-06-19 09:17:43 [INFO]: GET /api/applications/mine
+2026-06-19 09:17:54 [INFO]: GET /api/applications/mine
+2026-06-19 09:17:54 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-19 09:17:58 [INFO]: GET /api/applications/mine
+2026-06-19 09:17:58 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-19 09:18:00 [INFO]: GET /api/applications/mine
+2026-06-19 09:20:03 [INFO]: GET /api/applications/mine
+2026-06-19 09:20:10 [INFO]: GET /api/applications/mine
+2026-06-19 09:20:14 [INFO]: GET /api/results/my-result
+2026-06-19 09:20:14 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-19 09:20:21 [INFO]: GET /api/applications/fcc80411-19bb-4e50-9b11-458f3d80b1d9/admission-letter
+2026-06-19 09:20:21 [ERROR]: Unexpected Error: Failed to generate PDF (admission-letter): Could not find Chrome (ver. 146.0.7680.153). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /root/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+Error: Failed to generate PDF (admission-letter): Could not find Chrome (ver. 146.0.7680.153). This can occur if either
+ 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or
+ 2. your cache path is incorrectly configured (which is: /root/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+    at generatePdfFromTemplate (/app/dist/modules/exams/pdf.service.js:87:15)
+    at async getAdmissionLetter (/app/dist/modules/applications/applications.controller.js:150:31)
+2026-06-19 09:20:26 [INFO]: GET /api/applications/mine
+2026-06-19 09:20:26 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-19 09:20:30 [INFO]: GET /api/notifications/unread
+2026-06-19 09:21:01 [INFO]: GET /api/results/my-result
+2026-06-19 09:21:01 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-19 09:21:24 [INFO]: GET /api/applications/mine
+2026-06-19 09:21:24 [INFO]: GET /api/results/my-result
+2026-06-19 09:21:24 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-19 09:21:27 [INFO]: GET /api/results/my-result
+2026-06-19 09:21:27 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-19 09:21:34 [INFO]: GET /api/results/my-result
+2026-06-19 09:21:34 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-19 09:21:46 [INFO]: GET /api/analytics/dashboard
+2026-06-19 09:21:56 [INFO]: GET /api/analytics/applications-over-time
+2026-06-19 09:21:59 [INFO]: GET /api/results
+2026-06-19 09:21:59 [INFO]: GET /api/analytics/programs
+2026-06-19 09:21:59 [INFO]: GET /api/exams/sessions
+2026-06-19 09:22:33 [INFO]: GET /api/applications?limit=10
+2026-06-19 09:22:33 [INFO]: GET /api/payments?limit=10
+2026-06-19 09:22:39 [INFO]: GET /api/programs?limit=50
+2026-06-19 09:23:10 [INFO]: POST /api/exams/sessions
+2026-06-19 09:23:10 [INFO]: GET /api/exams/sessions
+2026-06-19 09:23:23 [INFO]: GET /api/exams/centers
+2026-06-19 09:23:44 [INFO]: POST /api/exams/centers
+2026-06-19 09:23:44 [INFO]: GET /api/exams/centers
+2026-06-19 09:24:03 [INFO]: POST /api/exams/auto-allocate
+2026-06-19 09:24:03 [INFO]: GET /api/exams/sessions
+2026-06-19 09:24:30 [INFO]: GET /api/analytics/dashboard
+2026-06-19 09:24:30 [INFO]: GET /api/analytics/applications-over-time
+2026-06-19 09:24:38 [INFO]: GET /api/applications/mine
+2026-06-19 09:24:38 [INFO]: GET /api/results/my-result
+2026-06-19 09:24:38 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-19 09:24:40 [INFO]: GET /api/results/my-result
+2026-06-19 09:24:40 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-19 09:24:51 [INFO]: GET /api/exams/my-assignment
+2026-06-19 09:24:59 [INFO]: GET /api/exams/my-assignment/slip
+2026-06-19 09:24:59 [ERROR]: Unexpected Error: Property "user" was not found in "Application". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "user" was not found in "Application". Make sure your query is correct.
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2319:23
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2354:26
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1803:22)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:623:14)
+    at Repository.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:276:29)
+2026-06-19 09:25:19 [INFO]: GET /api/applications/mine
+2026-06-19 09:25:20 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-19 09:25:31 [INFO]: GET /api/results/my-result
+2026-06-19 09:25:31 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-19 09:25:39 [INFO]: GET /api/candidates/me
+2026-06-19 09:25:58 [INFO]: GET /api/exams/sessions
+2026-06-19 09:26:29 [INFO]: POST /api/exams/sessions
+2026-06-19 09:26:29 [INFO]: GET /api/exams/sessions
+2026-06-19 09:26:43 [INFO]: GET /api/exams/centers
+2026-06-19 09:26:51 [INFO]: POST /api/exams/auto-allocate
+2026-06-19 09:26:51 [INFO]: GET /api/exams/sessions
+2026-06-19 09:27:18 [INFO]: GET /api/analytics/dashboard
+2026-06-19 09:27:18 [INFO]: GET /api/analytics/applications-over-time
+2026-06-19 09:27:22 [INFO]: GET /api/applications/mine
+2026-06-19 09:27:22 [INFO]: GET /api/payments/application/fcc80411-19bb-4e50-9b11-458f3d80b1d9
+2026-06-19 09:27:23 [INFO]: GET /api/exams/my-assignment
+2026-06-19 09:27:29 [INFO]: GET /api/exams/my-assignment/slip
+2026-06-19 09:27:29 [ERROR]: Unexpected Error: Property "user" was not found in "Application". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "user" was not found in "Application". Make sure your query is correct.
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2319:23
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2354:26
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1803:22)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:623:14)
+    at Repository.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:276:29)
+2026-06-19 09:27:51 [INFO]: GET /api/exams/sessions
+2026-06-19 09:28:25 [INFO]: GET /api/notifications/unread
+2026-06-19 09:28:38 [INFO]: GET /api/exams/my-assignment/slip
+2026-06-19 09:28:38 [ERROR]: Unexpected Error: Property "user" was not found in "Application". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "user" was not found in "Application". Make sure your query is correct.
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2319:23
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2354:26
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1803:22)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:623:14)
+    at Repository.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:276:29)
+2026-06-19 09:28:52 [INFO]: GET /api/exams/my-assignment
+2026-06-19 09:28:53 [INFO]: GET /api/applications/mine
+2026-06-19 09:28:53 [INFO]: GET /api/results/my-result
+2026-06-19 09:28:53 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-19 09:29:01 [INFO]: GET /api/analytics/dashboard
+2026-06-19 09:29:01 [INFO]: GET /api/analytics/applications-over-time
+2026-06-19 09:29:03 [INFO]: GET /api/analytics/programs
+2026-06-19 09:29:03 [INFO]: GET /api/results
+2026-06-19 09:29:03 [INFO]: GET /api/exams/sessions
+2026-06-19 09:29:18 [INFO]: POST /api/results/session/f46ae2e8-c91d-4136-999d-f513b7ab2dd9/publish
+2026-06-19 09:29:18 [ERROR]: API Error: No results found for this session
+Error: No results found for this session
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.publishSessionResults (/app/dist/modules/results/results.service.js:193:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async publishSessionResults (/app/dist/modules/results/results.controller.js:98:28)
+2026-06-19 09:29:27 [INFO]: POST /api/results/session/f46ae2e8-c91d-4136-999d-f513b7ab2dd9/publish
+2026-06-19 09:29:27 [ERROR]: API Error: No results found for this session
+Error: No results found for this session
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.publishSessionResults (/app/dist/modules/results/results.service.js:193:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async publishSessionResults (/app/dist/modules/results/results.controller.js:98:28)
+2026-06-19 09:29:52 [INFO]: GET /api/candidates/me
+2026-06-19 09:30:05 [INFO]: GET /api/analytics/programs
+2026-06-19 09:30:05 [INFO]: GET /api/results
+2026-06-19 09:30:05 [INFO]: GET /api/exams/sessions
+2026-06-19 09:31:12 [INFO]: GET /api/results
+2026-06-19 09:31:33 [INFO]: GET /api/analytics/applications-over-time
+2026-06-19 09:31:33 [INFO]: GET /api/analytics/dashboard
+2026-06-19 09:31:35 [INFO]: GET /api/candidates?limit=100
+2026-06-19 09:31:52 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-19 09:31:52 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:51:33)
+2026-06-19 09:31:53 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-19 09:31:53 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:51:33)
+2026-06-19 09:33:31 [INFO]: GET /api/candidates?limit=100
+2026-06-19 09:33:41 [INFO]: GET /api/candidates?limit=100
+2026-06-19 09:35:22 [INFO]: GET /api/programs?limit=50
+2026-06-19 09:35:28 [INFO]: GET /api/candidates?limit=100
+2026-06-19 09:37:20 [INFO]: GET /api/candidates?limit=100
+2026-06-19 09:37:40 [INFO]: GET /api/candidates?limit=100
+2026-06-19 09:44:18 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-19 09:44:18 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:51:33)
+2026-06-19 09:44:19 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-19 09:44:19 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:51:33)
+2026-06-19 09:46:17 [INFO]: GET /api/candidates?limit=100
+2026-06-19 09:46:23 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-19 09:46:23 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:51:33)
+2026-06-19 09:46:24 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-19 09:46:24 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:51:33)
+2026-06-19 09:51:35 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-19 09:51:35 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:51:33)
+2026-06-19 09:51:36 [INFO]: GET /api/applications/b91bc419-9b82-4a79-99db-07f810d70c85
+2026-06-19 09:51:36 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:51:33)
+2026-06-19 11:01:52 [INFO]: SIGTERM signal received: closing HTTP server

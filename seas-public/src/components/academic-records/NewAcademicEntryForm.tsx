@@ -53,6 +53,20 @@ export default function NewAcademicEntryForm({ value, onChange, onSave, onCancel
           </div>
 
           <div>
+            <label className="mb-2 block text-xs font-bold text-on-surface-variant uppercase">
+              Start Date
+            </label>
+            <input
+              type="date"
+              value={value.startDate ?? ''}
+              onChange={(e) =>
+                onChange({ ...value, startDate: e.target.value })
+              }
+              className="w-full rounded-t-lg border-b-2 border-primary bg-surface-container-lowest p-3 text-sm shadow-sm focus:ring-0 focus:outline-none"
+            />
+          </div>
+
+          <div>
             <label className="mb-2 block text-xs font-bold text-on-surface-variant uppercase">Graduation Date</label>
             <input
               type="date"
