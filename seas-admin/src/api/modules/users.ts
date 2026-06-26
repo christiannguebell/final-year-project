@@ -14,32 +14,32 @@ export interface UpdateUserPayload {
 export const usersApi = {
   async list(params?: ListUsersParams) {
     const response = await apiClient.get<PaginatedResponse<User>>('/users', { params });
-    return response.data;
+    return response.data.data!;
   },
 
   async getById(id: string) {
     const response = await apiClient.get<User>(`/users/${id}`);
-    return response.data;
+    return response.data.data!;
   },
 
   async update(id: string, data: UpdateUserPayload) {
     const response = await apiClient.put<User>(`/users/${id}`, data);
-    return response.data;
+    return response.data.data!;
   },
 
   async activate(id: string) {
     const response = await apiClient.patch<User>(`/users/${id}/activate`);
-    return response.data;
+    return response.data.data!;
   },
 
   async deactivate(id: string) {
     const response = await apiClient.patch<User>(`/users/${id}/deactivate`);
-    return response.data;
+    return response.data.data!;
   },
 
   async delete(id: string) {
     const response = await apiClient.delete(`/users/${id}`);
-    return response.data;
+    return response.data.data!;
   },
 };
 

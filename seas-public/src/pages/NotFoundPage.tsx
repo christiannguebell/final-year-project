@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Compass, LayoutDashboard, LifeBuoy, FileText, Users, AlertCircle } from 'lucide-react';
 
 export default function NotFoundPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -33,10 +35,10 @@ export default function NotFoundPage() {
               ERROR PROTOCOL ACTIVATED
             </div>
             <h1 className="text-5xl font-extrabold font-headline text-primary mb-6 leading-tight">
-              Resource<br/>Not Found
+              {t('errors.notFound')}
             </h1>
             <p className="text-lg text-on-surface-variant leading-relaxed mb-8">
-              The requested academic document or directory could not be located within the SEAS portal architecture. This may be due to a decommissioned link or a typographical error in the URL structure.
+              {t('errors.notFoundMsg')}
             </p>
           </div>
 
@@ -46,13 +48,13 @@ export default function NotFoundPage() {
               className="flex-1 bg-primary text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary-container transition-colors"
             >
               <LayoutDashboard className="w-5 h-5" />
-              Return to Dashboard
+              {t('errors.backHome')}
             </button>
             <button
               className="flex-1 bg-surface-container-low text-primary py-3 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors"
             >
               <LifeBuoy className="w-5 h-5" />
-              Support
+              {t('nav.help')}
             </button>
           </div>
 

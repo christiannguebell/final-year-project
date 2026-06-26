@@ -1,4 +1,6 @@
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import {
   Edit3,
   Download,
@@ -10,35 +12,81 @@ import {
   Library,
   Mail,
   ExternalLink,
+  FileText,
+  BookOpen,
 } from 'lucide-react';
 import TopNav from '../../components/layout/TopNav';
 import Sidebar from '../../components/layout/Sidebar';
 import PortalFooter from '../../components/layout/PortalFooter';
 import { cn } from '../../lib/utils';
 import { useAuth } from '../../providers';
+import { useMyApplications } from '../../hooks/useApplications';
+import { useCandidateProfile } from '../../hooks/useCandidates';
 import { useDownloadAdmissionSlip } from '../../hooks/useDownloads';
 import { useUnreadNotificationCount } from '../../hooks/useNotifications';
+import { examsApi } from '../../api/modules/exams';
 import { toast } from 'sonner';
 
 export default function DashboardPage() {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const navigate = useNavigate();
   const downloadSlip = useDownloadAdmissionSlip();
   const { data: unreadCount = 0 } = useUnreadNotificationCount();
+  const { data: appsResponse } = useMyApplications();
+  const { data: profile } = useCandidateProfile();
+
+  const apps = (appsResponse as any)?.data?.items ?? (appsResponse as any)?.items ?? [];
+  const latestApp = apps[0] as { id?: string; status?: string; program?: { name?: string; code?: string } } | undefined;
+
+  const { data: sessionsData } = useQuery({
+    queryKey: ['exam-sessions'],
+    queryFn: () => examsApi.getSessions(),
+    staleTime: 60000,
+  });
+  const sessions = (sessionsData as any)?.data?.items ?? [];
+
+  const activeSession = sessions.find((s: any) => s.status === 'active' || s.status === 'upcoming');
+  const upcomingDeadlines = sessions.slice(0, 3).map((s: any) => ({
+    date: s.startDate ? new Date(s.startDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : null,
+    title: s.name || 'Exam Event',
+    active: s.status === 'active',
+  }));
+  if (upcomingDeadlines.length === 0) {
+    upcomingDeadlines.push(
+      { date: 'TBD', title: 'Application Review', active: true },
+      { date: 'TBD', title: 'Entrance Exam', active: false },
+      { date: 'TBD', title: 'Results Publication', active: false },
+    );
+  }
+
+  const hasApp = !!latestApp?.id;
+  const appStatus = latestApp?.status || 'none';
+  const statusLabel = appStatus === 'draft' ? 'In Progress' : appStatus === 'submitted' ? 'Under Review' : appStatus === 'approved' ? 'Approved' : appStatus === 'rejected' ? 'Not Approved' : 'Not Started';
+  const progressSteps = ['Bio Data', 'Program', 'Academics', 'Documents', 'Payment', 'Submit'];
+  const completedSteps = appStatus === 'draft' ? progressSteps.slice(0, progressSteps.indexOf('Submit')) : appStatus === 'submitted' ? progressSteps.length : 0;
+  const progressPct = hasApp ? Math.round((completedSteps / progressSteps.length) * 100) : 0;
+  const remainingTasks = progressSteps.length - completedSteps;
+  const programName = latestApp?.program?.name || (hasApp ? 'Application Created' : 'No Application Yet');
 
   const quickActions = [
-    { icon: CreditCard, title: 'Payment History', desc: 'View receipts and pending dues.', path: '/payments' },
-    { icon: Library, title: 'Prep Resources', desc: 'Access sample papers and syllabus.', path: '/exams' },
-    { icon: Mail, title: 'Messages', desc: `${unreadCount} unread notification${unreadCount === 1 ? '' : 's'}.`, path: '/notifications' },
+    { icon: CreditCard, title: t('nav.payments'), desc: hasApp ? 'Manage fees and receipts.' : 'Application fee required.', path: '/payments' },
+    { icon: BookOpen, title: t('nav.exams'), desc: activeSession ? `${activeSession.name} assigned` : 'No exam scheduled yet.', path: '/exams' },
+    { icon: Mail, title: t('nav.notifications'), desc: `${unreadCount} unread notification${unreadCount === 1 ? '' : 's'}.`, path: '/notifications' },
   ];
 
   const handleSyncCalendar = () => {
+    if (!activeSession) {
+      toast.error('No upcoming events to sync.');
+      return;
+    }
+    const dateStr = activeSession.startDate ? new Date(activeSession.startDate).toISOString().replace(/[-:]/g, '').split('.')[0] : '20260101T000000';
     const ics = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
       'BEGIN:VEVENT',
-      'SUMMARY:SEAS Application Deadline',
-      'DTSTART:20241031',
+      `SUMMARY:${activeSession.name || 'SEAS Exam'}`,
+      `DTSTART:${dateStr}`,
       'END:VEVENT',
       'END:VCALENDAR',
     ].join('\n');
@@ -46,7 +94,7 @@ export default function DashboardPage() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'seas-deadlines.ics';
+    link.download = 'seas-events.ics';
     link.click();
     URL.revokeObjectURL(url);
     toast.success('Calendar file downloaded');
@@ -62,7 +110,7 @@ export default function DashboardPage() {
           <header className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <h1 className="text-4xl font-extrabold tracking-tight text-primary">
-                Welcome back, {user?.firstName || 'Candidate'}.
+                {t('dashboard.subtitle', { name: user?.firstName || 'Candidate' })}
               </h1>
               <p className="mt-2 text-lg text-on-surface-variant">
                 Track your engineering journey and upcoming milestones.
@@ -70,11 +118,11 @@ export default function DashboardPage() {
             </div>
             <div className="flex gap-3">
               <Link
-                to="/application/new"
+                to={latestApp?.id && appStatus === 'draft' ? `/application/edit/${latestApp.id}` : '/application/new'}
                 className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:bg-primary-container active:scale-95"
               >
                 <Edit3 className="h-4 w-4" />
-                Complete Application
+                {latestApp?.id && appStatus === 'draft' ? 'Continue Application' : t('dashboard.completeApplication')}
               </Link>
               <button
                 type="button"
@@ -83,7 +131,7 @@ export default function DashboardPage() {
                 className="flex items-center gap-2 rounded-lg border border-outline-variant px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-surface-container-low active:scale-95 disabled:opacity-60"
               >
                 <Download className="h-4 w-4" />
-                {downloadSlip.isPending ? 'Downloading...' : 'Admission Slip'}
+                {downloadSlip.isPending ? t('common.loading') : t('exams.admissionSlip')}
               </button>
             </div>
           </header>
@@ -93,42 +141,40 @@ export default function DashboardPage() {
               <div className="absolute top-0 right-0 p-6">
                 <div className="flex items-center gap-2 rounded-full bg-secondary/10 px-4 py-1.5 text-secondary">
                   <span className="h-2 w-2 animate-pulse rounded-full bg-secondary" />
-                  <span className="text-xs font-bold tracking-wider uppercase">Status: In Review</span>
+                  <span className="text-xs font-bold tracking-wider uppercase">Status: {appStatus !== 'none' ? statusLabel : 'No Application'}</span>
                 </div>
               </div>
 
-              <h3 className="mb-6 text-xl font-bold text-primary">M.S. Structural Engineering</h3>
+              <h3 className="mb-6 text-xl font-bold text-primary">{programName}</h3>
 
               <div className="space-y-8">
                 <div className="flex items-end justify-between">
                   <div>
                     <p className="mb-1 text-sm text-on-surface-variant">Completion Progress</p>
-                    <p className="text-3xl font-bold text-primary">85%</p>
+                    <p className="text-3xl font-bold text-primary">{hasApp ? `${progressPct}%` : '—'}</p>
                   </div>
-                  <p className="text-sm font-medium text-on-surface-variant">2 tasks remaining</p>
+                  <p className="text-sm font-medium text-on-surface-variant">{hasApp ? `${remainingTasks} task${remainingTasks === 1 ? '' : 's'} remaining` : 'Start a new application'}</p>
                 </div>
 
                 <div className="flex h-3 gap-1.5">
-                  <div className="flex-1 rounded-full bg-secondary" />
-                  <div className="flex-1 rounded-full bg-secondary" />
-                  <div className="flex-1 rounded-full bg-secondary" />
-                  <div className="flex-1 rounded-full bg-primary" />
-                  <div className="flex-1 rounded-full bg-outline-variant/30" />
+                  {progressSteps.map((step, i) => (
+                    <div key={step} className={`flex-1 rounded-full ${i < completedSteps ? 'bg-secondary' : i === completedSteps && hasApp ? 'bg-primary' : 'bg-outline-variant/30'}`} />
+                  ))}
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2">
                   <div className="flex items-center gap-3 rounded-lg border border-transparent bg-surface-container-low p-4 transition-colors hover:border-secondary/20">
-                    <CheckCircle2 className="h-5 w-5 text-secondary" />
+                    <CheckCircle2 className="h-5 w-5 text-on-surface-variant" />
                     <div>
-                      <p className="text-xs font-bold text-primary">Academic Transcripts</p>
-                      <p className="text-[11px] text-on-surface-variant">Verified on Oct 12</p>
+                      <p className="text-xs font-bold text-primary">{hasApp ? `${completedSteps} of ${progressSteps.length} steps complete` : 'Not started'}</p>
+                      <p className="text-[11px] text-on-surface-variant">{hasApp ? `Status: ${statusLabel}` : 'Create an application to get started'}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 rounded-lg border border-transparent bg-surface-container-low p-4 transition-colors hover:border-primary/20">
-                    <Clock className="h-5 w-5 text-on-surface-variant" />
+                    <FileText className="h-5 w-5 text-on-surface-variant" />
                     <div>
-                      <p className="text-xs font-bold text-primary">Reference Letters</p>
-                      <p className="text-[11px] text-on-surface-variant">1 of 2 Received</p>
+                      <p className="text-xs font-bold text-primary">{profile?.candidateNumber || 'Candidate'}</p>
+                      <p className="text-[11px] text-on-surface-variant">{user?.email || ''}</p>
                     </div>
                   </div>
                 </div>
@@ -138,20 +184,16 @@ export default function DashboardPage() {
             <div className="flex flex-col justify-between rounded-xl bg-primary p-8 text-white shadow-lg md:col-span-4">
               <div>
                 <div className="mb-8 flex items-center justify-between">
-                  <h3 className="text-lg font-bold">Deadlines</h3>
+                  <h3 className="text-lg font-bold">Exam Schedule</h3>
                   <Calendar className="h-5 w-5 opacity-50" />
                 </div>
                 <div className="space-y-6">
-                  {[
-                    { date: 'October 31, 2024', title: 'Final Submission Window Closes', active: true },
-                    { date: 'November 15, 2024', title: 'Entrance Exam (Phase I)' },
-                    { date: 'December 05, 2024', title: 'Interview Shortlist Announcement' },
-                  ].map((deadline, i) => (
+                  {upcomingDeadlines.map((deadline, i) => (
                     <div
                       key={i}
                       className={cn('border-l-2 pl-4', deadline.active ? 'border-secondary' : 'border-outline-variant/30')}
                     >
-                      <p className="text-xs font-medium text-white/70">{deadline.date}</p>
+                      <p className="text-xs font-medium text-white/70">{deadline.date || 'TBD'}</p>
                       <p className="mt-1 text-sm font-bold">{deadline.title}</p>
                     </div>
                   ))}

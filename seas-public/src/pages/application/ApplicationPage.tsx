@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { BioDataStep } from './components/BioDataStep';
 import { AcademicRecordsStep } from './components/AcademicRecordsStep';
 import { ProgramSelectionStep } from './components/ProgramSelectionStep';
@@ -9,7 +9,7 @@ import { PaymentStep } from './components/PaymentStep';
 import { ReviewSubmitStep } from './components/ReviewSubmitStep';
 import TopNav from '../../components/layout/TopNav';
 import Sidebar from '../../components/layout/Sidebar';
-import { ProgramSelectionFooter } from '../../components/program-selection';
+import PortalFooter from '../../components/layout/PortalFooter';
 import type { Application } from '../../types/application';
 import { apiClient } from '../../api/client';
 import { Loader2, ArrowLeft, Edit3 } from 'lucide-react';
@@ -65,8 +65,13 @@ export function ApplicationPage({ mode = 'new' }: Props) {
           const app = response.data.data as Application;
           setApplicationData(app);
         } else if (savedSession && !id) {
-          setStep(savedSession.step);
-          setApplicationData(savedSession.data);
+          if (mode === 'new') {
+            sessionStorage.removeItem(SESSION_KEY);
+            sessionStorage.removeItem(DRAFT_KEY);
+          } else {
+            setStep(savedSession.step);
+            setApplicationData(savedSession.data);
+          }
         } else if (!id) {
           const draftStr = sessionStorage.getItem(DRAFT_KEY);
           if (draftStr) {
@@ -184,8 +189,8 @@ export function ApplicationPage({ mode = 'new' }: Props) {
               transition={{ duration: 0.3 }}
             >
               {step === 1 && <BioDataStep onNext={handleNext} data={applicationData} />}
-              {step === 2 && <AcademicRecordsStep onNext={handleNext} onBack={handleBack} data={applicationData} />}
-              {step === 3 && <ProgramSelectionStep onNext={handleNext} onBack={handleBack} data={applicationData} />}
+              {step === 2 && <ProgramSelectionStep onNext={handleNext} onBack={handleBack} data={applicationData} />}
+              {step === 3 && <AcademicRecordsStep onNext={handleNext} onBack={handleBack} data={applicationData} />}
               {step === 4 && <DocumentCenterStep onNext={handleNext} onBack={handleBack} data={applicationData} />}
               {step === 5 && <PaymentStep onNext={handleNext} onBack={handleBack} data={applicationData} />}
               {step === 6 && <ReviewSubmitStep onBack={handleBack} data={applicationData} />}
@@ -194,11 +199,9 @@ export function ApplicationPage({ mode = 'new' }: Props) {
         </div>
       </main>
 
-      {step >= 2 && (
-        <div className="ml-64">
-          <ProgramSelectionFooter />
-        </div>
-      )}
+      <div className="ml-64">
+        <PortalFooter />
+      </div>
     </div>
   );
 }

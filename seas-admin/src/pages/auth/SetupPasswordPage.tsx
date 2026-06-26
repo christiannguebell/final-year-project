@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Shield, Lock, Eye, EyeOff, CheckCircle, XCircle } from 'lucide-react';
+import { useSetupPassword } from '../../hooks/useAdminAuth';
+import { toast } from 'sonner';
 
 export default function SetupPasswordPage() {
   const navigate = useNavigate();
@@ -8,6 +10,7 @@ export default function SetupPasswordPage() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const setupMutation = useSetupPassword();
 
   type LocationState = {
     userId?: string;
@@ -22,23 +25,21 @@ export default function SetupPasswordPage() {
 
   const isValid = Object.values(passwordChecks).every(Boolean) && password === confirmPassword;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!isValid || !userId) return;
 
-    try {
-      const response = await fetch('http://localhost:3000/api/admin/setup-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId, password }),
-      });
-      const data = await response.json();
-      if (data.success) {
-        navigate('/admin/login', { state: { message: 'Password set! Please login.' } });
+    setupMutation.mutate(
+      { userId, password },
+      {
+        onSuccess: () => {
+          navigate('/admin/login', { state: { message: 'Password set! Please login.' } });
+        },
+        onError: (error) => {
+          toast.error('Failed to set password. Please try again.');
+        },
       }
-    } catch (error) {
-      console.error('Setup failed:', error);
-    }
+    );
   };
 
   if (!userId) {
@@ -133,10 +134,10 @@ export default function SetupPasswordPage() {
 
             <button
               type="submit"
-              disabled={!isValid}
+              disabled={!isValid || setupMutation.isPending}
               className="w-full py-3 bg-primary text-white rounded-lg font-bold hover:bg-primary-container transition-colors disabled:opacity-50"
             >
-              Set Password
+              {setupMutation.isPending ? 'Setting Password...' : 'Set Password'}
             </button>
           </form>
         </div>

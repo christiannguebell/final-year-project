@@ -43,7 +43,7 @@ export default function SubmitPaymentProofCard({
           </div>
           <div className="space-y-2">
             <label className="text-[10px] font-bold tracking-widest text-on-surface-variant uppercase">
-              Amount Paid (USD)
+              Amount Paid (FCFA)
             </label>
             <input
               type="number"

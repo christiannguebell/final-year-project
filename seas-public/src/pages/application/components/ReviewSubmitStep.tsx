@@ -4,6 +4,7 @@ import { Loader2 } from 'lucide-react';
 import { apiClient } from '../../../api/client';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { useApplicationById } from '../../../hooks/useApplications';
 import type { Application, Payment } from '../../../types/application';
 import type { Document } from '../../../types/entities';
 import { ApplicationReviewContent } from '../../../components/application-review';
@@ -11,22 +12,17 @@ import type { PersonalInfo, SelectedProgramInfo, ReviewDocument } from '../../..
 
 export const ReviewSubmitStep = ({ data }: { onBack: () => void; data: Partial<Application> }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [application, setApplication] = useState<Application | null>(null);
   const [declared, setDeclared] = useState(false);
   const navigate = useNavigate();
 
+  const { data: application, isLoading, isError, error } = useApplicationById(data.id || '');
+
   useEffect(() => {
-    const fetchFullData = async () => {
-      if (!data.id) return;
-      try {
-        const response = await apiClient.get<Application>(`/applications/${data.id}`);
-        setApplication(response.data.data);
-      } catch {
-        console.error('Failed to reload application for review');
-      }
-    };
-    fetchFullData();
-  }, [data.id]);
+    if (isError) {
+      const msg = (error as any)?.response?.data?.message || (error as any)?.message || 'Failed to load application';
+      toast.error(msg);
+    }
+  }, [isError, error]);
 
   const validateSubmission = (app: Application) => {
     const errors: string[] = [];
@@ -47,6 +43,11 @@ export const ReviewSubmitStep = ({ data }: { onBack: () => void; data: Partial<A
 
     if (!application) return;
 
+    if (application.status !== 'draft') {
+      toast.error(`Cannot submit: application is already ${application.status.replace('_', ' ')}.`);
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const validationErrors = validateSubmission(application);
@@ -58,19 +59,35 @@ export const ReviewSubmitStep = ({ data }: { onBack: () => void; data: Partial<A
 
       await apiClient.post(`/applications/${data.id}/submit`);
       toast.success('Application submitted successfully!');
-      navigate('/dashboard');
-    } catch {
-      toast.error('Submission failed. Please check all steps.');
+      navigate('/application/success', { state: { id: data.id } });
+    } catch (error: any) {
+      const message = error?.response?.data?.message || 'Submission failed. Please check all steps.';
+      toast.error(message);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (!application) {
+  if (isLoading) {
     return (
       <div className="flex min-h-[400px] flex-col items-center justify-center">
         <Loader2 className="mb-4 h-10 w-10 animate-spin text-primary" />
         <p className="font-bold text-on-surface-variant">Compiling your portfolio...</p>
+      </div>
+    );
+  }
+
+  if (isError || !application) {
+    return (
+      <div className="flex min-h-[400px] flex-col items-center justify-center space-y-4">
+        <p className="text-on-surface-variant font-bold">Could not load application for review.</p>
+        <p className="text-xs text-on-surface-variant">It may belong to a different account, or your session may have expired.</p>
+        <button
+          onClick={() => navigate('/applications')}
+          className="px-5 py-2.5 bg-primary text-white rounded-lg font-bold text-sm"
+        >
+          Go to My Applications
+        </button>
       </div>
     );
   }

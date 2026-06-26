@@ -54,7 +54,7 @@ export default function ProgramSelectionContent({
 
   return (
     <div className="mx-auto max-w-6xl px-4">
-      {showStepper && <ApplicationStepper currentStep={3} />}
+      {showStepper && <ApplicationStepper currentStep={2} />}
 
       <ProgramSelectionHeader />
 

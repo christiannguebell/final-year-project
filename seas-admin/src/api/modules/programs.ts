@@ -10,11 +10,13 @@ export interface CreateProgramPayload {
   name: string;
   code: string;
   description?: string;
+  durationYears: number;
 }
 
 export interface UpdateProgramPayload {
   name?: string;
   description?: string;
+  durationYears?: number;
 }
 
 export const programsApi = {

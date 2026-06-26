@@ -15,6 +15,7 @@ export default function CreateProgramModal({ isOpen, onClose }: CreateProgramMod
   const [level, setLevel] = useState<'Graduate' | 'Undergrad'>('Graduate');
   const [capacity, setCapacity] = useState('100');
   const [deadline, setDeadline] = useState('');
+  const [durationYears, setDurationYears] = useState('4');
   const [description, setDescription] = useState('');
 
   if (!isOpen) return null;
@@ -44,6 +45,7 @@ export default function CreateProgramModal({ isOpen, onClose }: CreateProgramMod
       {
         name: title,
         code,
+        durationYears: parseInt(durationYears, 10),
         description: `${description || 'No description provided.'} | Dept: ${department} | Level: ${level} | Cap: ${capacity} | Deadline: ${deadline}`,
       },
       {
@@ -162,6 +164,26 @@ export default function CreateProgramModal({ isOpen, onClose }: CreateProgramMod
                 />
                 <span className="absolute right-4 text-xs font-bold text-on-surface-variant/50">Seats</span>
               </div>
+            </div>
+
+            {/* Duration Years */}
+            <div>
+              <label className="block text-[10px] font-black text-on-surface-variant uppercase tracking-wider mb-2">
+                Duration (Years)
+              </label>
+              <select
+                value={durationYears}
+                onChange={(e) => setDurationYears(e.target.value)}
+                className="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm text-primary focus:ring-2 focus:ring-primary/20 outline-none cursor-pointer"
+                required
+              >
+                <option value="1">1 Year</option>
+                <option value="2">2 Years</option>
+                <option value="3">3 Years</option>
+                <option value="4">4 Years</option>
+                <option value="5">5 Years</option>
+                <option value="6">6 Years</option>
+              </select>
             </div>
 
             {/* Application Deadline */}

@@ -274,7 +274,7 @@ function PaymentSubmissionForm({
               />
             </div>
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Amount Paid (USD)</label>
+              <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Amount Paid (FCFA)</label>
               <input
                 type="number"
                 value={amount}
@@ -412,17 +412,17 @@ function PaymentSummary({
       <div className="space-y-4">
         <div className="flex justify-between text-sm font-medium">
           <span className="text-on-surface-variant font-semibold">Total Invoiced</span>
-          <span className="font-bold text-primary">${totalInvoiced.toFixed(2)}</span>
+          <span className="font-bold text-primary">FCFA {totalInvoiced.toFixed(2)}</span>
         </div>
         <div className="flex justify-between text-sm font-medium">
           <span className="text-on-surface-variant font-semibold">Total Paid</span>
-          <span className="font-bold text-secondary">${totalPaid.toFixed(2)}</span>
+          <span className="font-bold text-secondary">FCFA {totalPaid.toFixed(2)}</span>
         </div>
 
         <div className="pt-5 mt-2 border-t border-outline-variant/30 flex justify-between items-end">
           <div>
             <p className="text-[10px] font-bold text-primary uppercase tracking-widest mb-1.5">Balance Due</p>
-            <p className="text-3xl font-black text-primary tracking-tighter">${balanceDue.toFixed(2)}</p>
+            <p className="text-3xl font-black text-primary tracking-tighter">FCFA {balanceDue.toFixed(2)}</p>
           </div>
           <button
             type="button"
@@ -471,7 +471,7 @@ function PaymentHistory({ paymentList }: { paymentList: Payment[] }) {
                 <p className="text-[11px] text-on-surface-variant font-medium">
                   {payment.createdAt ? format(new Date(payment.createdAt), 'MMM dd, yyyy') : 'N/A'} • {payment.transactionId || 'N/A'}
                 </p>
-                <p className="text-sm font-bold mt-2 text-primary">${payment.amount.toFixed(2)}</p>
+                <p className="text-sm font-bold mt-2 text-primary">FCFA {payment.amount.toFixed(2)}</p>
               </div>
             </div>
           ))}

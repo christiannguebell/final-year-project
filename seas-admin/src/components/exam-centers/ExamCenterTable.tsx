@@ -94,7 +94,8 @@ export default function ExamCenterTable() {
                     <td className="px-6 py-4.5 text-right">
                       <button
                         onClick={() => handleDelete(center)}
-                        className="p-1.5 text-on-surface-variant hover:text-error hover:bg-red-50 rounded-lg transition-colors"
+                        disabled={deleteCenter.isPending}
+                        className="p-1.5 text-on-surface-variant hover:text-error hover:bg-red-50 rounded-lg transition-colors disabled:opacity-40"
                         title="Delete center"
                       >
                         <Trash2 className="w-4 h-4" />

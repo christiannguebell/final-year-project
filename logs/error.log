@@ -1352,3 +1352,1685 @@ Error: Application not found
     at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
     at async getById (/app/dist/modules/applications/applications.controller.js:51:33)
+2026-06-22 21:31:51 [ERROR]: Database connection failed: password authentication failed for user "openpg"
+error: password authentication failed for user "openpg"
+    at parseErrorMessage (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/parser.js:305:11)
+    at Parser.handlePacket (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/parser.js:143:27)
+    at Parser.parse (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/parser.js:37:38)
+    at Socket.<anonymous> (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/index.js:11:42)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:191:23)
+2026-06-22 21:40:25 [ERROR]: Database connection failed: password authentication failed for user "openpg"
+error: password authentication failed for user "openpg"
+    at parseErrorMessage (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/parser.js:305:11)
+    at Parser.handlePacket (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/parser.js:143:27)
+    at Parser.parse (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/parser.js:37:38)
+    at Socket.<anonymous> (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/index.js:11:42)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:191:23)
+2026-06-22 21:56:28 [ERROR]: Database connection failed: password authentication failed for user "openpg"
+error: password authentication failed for user "openpg"
+    at parseErrorMessage (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/parser.js:305:11)
+    at Parser.handlePacket (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/parser.js:143:27)
+    at Parser.parse (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/parser.js:37:38)
+    at Socket.<anonymous> (/app/node_modules/.pnpm/pg-protocol@1.13.0/node_modules/pg-protocol/dist/index.js:11:42)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:191:23)
+2026-06-22 22:53:29 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:116:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-23 08:09:26 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 08:09:27 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 08:09:31 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 08:09:38 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 08:09:43 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 08:09:44 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 08:09:57 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 08:10:19 [ERROR]: API Error: Invalid token
+Error: Invalid token
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:30:38)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+2026-06-23 08:10:25 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/admin/admin.service.js:116:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.login (/app/dist/modules/admin/admin.controller.js:40:28)
+2026-06-23 08:11:32 [ERROR]: API Error: "durationYears" is required
+ValidationError: "durationYears" is required
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/audit.middleware.js:23:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+2026-06-23 08:13:31 [ERROR]: API Error: "durationYears" is required
+ValidationError: "durationYears" is required
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/audit.middleware.js:23:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+2026-06-23 08:14:10 [ERROR]: API Error: "durationYears" is required
+ValidationError: "durationYears" is required
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/audit.middleware.js:23:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+2026-06-23 08:22:12 [ERROR]: API Error: "address" is not allowed to be empty
+ValidationError: "address" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-23 08:31:15 [ERROR]: API Error: Invalid token
+Error: Invalid token
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:30:38)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+2026-06-23 08:37:32 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-23 08:37:33 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-23 08:38:50 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-23 08:38:51 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-23 08:39:56 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 08:40:11 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 09:34:01 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-23 09:34:10 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-23 09:34:11 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-23 09:38:41 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 09:43:33 [ERROR]: API Error: Exam center not found
+Error: Exam center not found
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.autoAllocateCandidates (/app/dist/modules/exams/exams.service.js:93:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async autoAllocateCandidates (/app/dist/modules/exams/exams.controller.js:132:28)
+2026-06-23 09:44:21 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 09:45:41 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-23 09:45:42 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-23 09:46:16 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-23 09:46:17 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-23 09:58:14 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 09:58:39 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 10:00:16 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 10:01:50 [ERROR]: API Error: Exam center not found
+Error: Exam center not found
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.autoAllocateCandidates (/app/dist/modules/exams/exams.service.js:93:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async autoAllocateCandidates (/app/dist/modules/exams/exams.controller.js:132:28)
+2026-06-23 14:23:09 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-23 14:26:19 [ERROR]: Unexpected Error: getaddrinfo EAI_AGAIN db
+Error: getaddrinfo EAI_AGAIN db
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-06-23 14:33:21 [ERROR]: API Error: Exam center not found
+Error: Exam center not found
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.autoAllocateCandidates (/app/dist/modules/exams/exams.service.js:93:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async autoAllocateCandidates (/app/dist/modules/exams/exams.controller.js:132:28)
+2026-06-23 14:47:48 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-23 14:47:50 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-23 15:06:52 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 15:07:13 [ERROR]: API Error: Exam center not found
+Error: Exam center not found
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.autoAllocateCandidates (/app/dist/modules/exams/exams.service.js:93:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async autoAllocateCandidates (/app/dist/modules/exams/exams.controller.js:132:28)
+2026-06-23 15:08:24 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 15:09:25 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 15:09:38 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 15:10:05 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:10:48 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:11:12 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 15:11:27 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 15:11:37 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 15:11:48 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:11:56 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:25:42 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:25:50 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:25:55 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:38:08 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:38:15 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:38:38 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:39:15 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:39:47 [ERROR]: API Error: Cannot submit application in current status
+Error: Cannot submit application in current status
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.submit (/app/dist/modules/applications/applications.service.js:57:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async submit (/app/dist/modules/applications/applications.controller.js:83:33)
+2026-06-23 15:47:50 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 16:00:24 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 16:02:35 [ERROR]: API Error: "type" is required
+ValidationError: "type" is required
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-23 16:03:08 [ERROR]: API Error: "type" is required
+ValidationError: "type" is required
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-23 16:04:57 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-23 16:10:03 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 16:10:24 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 16:10:42 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 16:10:56 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 16:10:57 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 16:11:02 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-23 16:14:32 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-23 16:14:48 [ERROR]: API Error: Exam center not found
+Error: Exam center not found
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.autoAllocateCandidates (/app/dist/modules/exams/exams.service.js:93:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async autoAllocateCandidates (/app/dist/modules/exams/exams.controller.js:132:28)
+2026-06-23 16:19:01 [ERROR]: Unexpected Error: Property "user" was not found in "Application". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "user" was not found in "Application". Make sure your query is correct.
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2319:23
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2354:26
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1803:22)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:623:14)
+    at Repository.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:276:29)
+2026-06-23 16:19:07 [ERROR]: Unexpected Error: Property "user" was not found in "Application". Make sure your query is correct.
+EntityPropertyNotFoundError: Property "user" was not found in "Application". Make sure your query is correct.
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2319:23
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at /app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2354:26
+    at Array.forEach (<anonymous>)
+    at SelectQueryBuilder.buildRelations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:2311:32)
+    at SelectQueryBuilder.applyFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:1803:22)
+    at SelectQueryBuilder.setFindOptions (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/SelectQueryBuilder.js:71:14)
+    at EntityManager.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/entity-manager/EntityManager.js:623:14)
+    at Repository.findOne (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/repository/Repository.js:276:29)
+2026-06-24 11:11:56 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-24 11:20:44 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-24 11:40:23 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-24 13:25:40 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-24 13:26:40 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-24 13:26:41 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-24 13:27:05 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-24 13:32:20 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-24 13:32:21 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-24 13:39:26 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-24 13:39:27 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-24 14:49:47 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 14:49:56 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 14:50:18 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 14:50:51 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 14:52:05 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 14:52:46 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 14:52:55 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 14:53:37 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 19:08:35 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:73:39)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-24 19:12:54 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 19:13:10 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 19:14:05 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 19:14:57 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 19:15:09 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 19:15:26 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 20:08:06 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 20:14:35 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 20:16:13 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 20:29:05 [ERROR]: API Error: "country" is not allowed to be empty
+ValidationError: "country" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 20:32:55 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-24 21:55:45 [ERROR]: API Error: Application for this program already exists
+Error: Application for this program already exists
+    at ApiError.conflict (/app/dist/common/errors/ApiError.js:30:16)
+    at Object.create (/app/dist/modules/applications/applications.service.js:17:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async create (/app/dist/modules/applications/applications.controller.js:21:33)
+2026-06-24 21:55:48 [ERROR]: API Error: Application for this program already exists
+Error: Application for this program already exists
+    at ApiError.conflict (/app/dist/common/errors/ApiError.js:30:16)
+    at Object.create (/app/dist/modules/applications/applications.service.js:17:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async create (/app/dist/modules/applications/applications.controller.js:21:33)
+2026-06-24 21:57:22 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 21:57:32 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 21:57:55 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 21:58:00 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 21:59:47 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 22:00:15 [ERROR]: API Error: "startDate" must be a valid date
+ValidationError: "startDate" must be a valid date
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-24 22:04:51 [ERROR]: Unexpected Error: null value in column "start_date" of relation "academic_records" violates not-null constraint
+QueryFailedError: null value in column "start_date" of relation "academic_records" violates not-null constraint
+    at PostgresQueryRunner.query (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/driver/postgres/PostgresQueryRunner.js:216:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async InsertQueryBuilder.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/InsertQueryBuilder.js:106:33)
+    at async SubjectExecutor.executeInsertOperations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:260:42)
+    at async SubjectExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:92:9)
+    at async EntityPersistExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/EntityPersistExecutor.js:140:21)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.repository.js:10:16)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.service.js:18:16)
+    at async create (/app/dist/modules/academic-records/academic-records.controller.js:8:28)
+2026-06-24 22:05:16 [ERROR]: Unexpected Error: null value in column "start_date" of relation "academic_records" violates not-null constraint
+QueryFailedError: null value in column "start_date" of relation "academic_records" violates not-null constraint
+    at PostgresQueryRunner.query (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/driver/postgres/PostgresQueryRunner.js:216:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async InsertQueryBuilder.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/InsertQueryBuilder.js:106:33)
+    at async SubjectExecutor.executeInsertOperations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:260:42)
+    at async SubjectExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:92:9)
+    at async EntityPersistExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/EntityPersistExecutor.js:140:21)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.repository.js:10:16)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.service.js:18:16)
+    at async create (/app/dist/modules/academic-records/academic-records.controller.js:8:28)
+2026-06-24 22:06:31 [ERROR]: Unexpected Error: null value in column "start_date" of relation "academic_records" violates not-null constraint
+QueryFailedError: null value in column "start_date" of relation "academic_records" violates not-null constraint
+    at PostgresQueryRunner.query (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/driver/postgres/PostgresQueryRunner.js:216:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async InsertQueryBuilder.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/InsertQueryBuilder.js:106:33)
+    at async SubjectExecutor.executeInsertOperations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:260:42)
+    at async SubjectExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:92:9)
+    at async EntityPersistExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/EntityPersistExecutor.js:140:21)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.repository.js:10:16)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.service.js:18:16)
+    at async create (/app/dist/modules/academic-records/academic-records.controller.js:8:28)
+2026-06-24 22:06:34 [ERROR]: Unexpected Error: null value in column "start_date" of relation "academic_records" violates not-null constraint
+QueryFailedError: null value in column "start_date" of relation "academic_records" violates not-null constraint
+    at PostgresQueryRunner.query (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/driver/postgres/PostgresQueryRunner.js:216:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async InsertQueryBuilder.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/InsertQueryBuilder.js:106:33)
+    at async SubjectExecutor.executeInsertOperations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:260:42)
+    at async SubjectExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:92:9)
+    at async EntityPersistExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/EntityPersistExecutor.js:140:21)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.repository.js:10:16)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.service.js:18:16)
+    at async create (/app/dist/modules/academic-records/academic-records.controller.js:8:28)
+2026-06-24 22:06:35 [ERROR]: Unexpected Error: null value in column "start_date" of relation "academic_records" violates not-null constraint
+QueryFailedError: null value in column "start_date" of relation "academic_records" violates not-null constraint
+    at PostgresQueryRunner.query (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/driver/postgres/PostgresQueryRunner.js:216:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async InsertQueryBuilder.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/InsertQueryBuilder.js:106:33)
+    at async SubjectExecutor.executeInsertOperations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:260:42)
+    at async SubjectExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:92:9)
+    at async EntityPersistExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/EntityPersistExecutor.js:140:21)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.repository.js:10:16)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.service.js:18:16)
+    at async create (/app/dist/modules/academic-records/academic-records.controller.js:8:28)
+2026-06-24 22:07:05 [ERROR]: Unexpected Error: null value in column "start_date" of relation "academic_records" violates not-null constraint
+QueryFailedError: null value in column "start_date" of relation "academic_records" violates not-null constraint
+    at PostgresQueryRunner.query (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/driver/postgres/PostgresQueryRunner.js:216:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async InsertQueryBuilder.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/query-builder/InsertQueryBuilder.js:106:33)
+    at async SubjectExecutor.executeInsertOperations (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:260:42)
+    at async SubjectExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/SubjectExecutor.js:92:9)
+    at async EntityPersistExecutor.execute (/app/node_modules/.pnpm/typeorm@0.3.28_better-sqlite3@12.8.0_pg@8.20.0_sqlite3@5.1.7_ts-node@10.9.2_@types+node@25.5.2_typescript@6.0.2_/node_modules/typeorm/persistence/EntityPersistExecutor.js:140:21)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.repository.js:10:16)
+    at async Object.create (/app/dist/modules/academic-records/academic-records.service.js:18:16)
+    at async create (/app/dist/modules/academic-records/academic-records.controller.js:8:28)
+2026-06-24 22:19:46 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:19:47 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:20:32 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:20:34 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:22:28 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-24 22:27:38 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-24 22:27:44 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-24 22:27:49 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-24 22:27:51 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-24 22:30:15 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:30:16 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:33:23 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:33:24 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:33:41 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:33:42 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:34:33 [ERROR]: API Error: Application already approved
+Error: Application already approved
+    at ApiError.badRequest (/app/dist/common/errors/ApiError.js:18:16)
+    at Object.approve (/app/dist/modules/applications/applications.service.js:91:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async approve (/app/dist/modules/applications/applications.controller.js:103:33)
+2026-06-24 22:34:52 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:34:53 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:35:08 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:35:09 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:35:58 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 22:35:59 [ERROR]: API Error: Application not found
+Error: Application not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:27:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-24 23:16:15 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 00:03:00 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 00:03:22 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 00:12:42 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 00:17:17 [ERROR]: API Error: "applicationId" is not allowed to be empty
+ValidationError: "applicationId" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/audit.middleware.js:23:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+2026-06-25 00:17:25 [ERROR]: API Error: "applicationId" is not allowed to be empty
+ValidationError: "applicationId" is not allowed to be empty
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/audit.middleware.js:23:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+2026-06-25 14:16:07 [ERROR]: API Error: No results found for this session
+Error: No results found for this session
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.publishSessionResults (/app/dist/modules/results/results.service.js:193:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async publishSessionResults (/app/dist/modules/results/results.controller.js:98:28)
+2026-06-25 14:16:08 [ERROR]: API Error: No results found for this session
+Error: No results found for this session
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.publishSessionResults (/app/dist/modules/results/results.service.js:193:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async publishSessionResults (/app/dist/modules/results/results.controller.js:98:28)
+2026-06-25 14:16:22 [ERROR]: API Error: No results found for this session
+Error: No results found for this session
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.publishSessionResults (/app/dist/modules/results/results.service.js:193:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async publishSessionResults (/app/dist/modules/results/results.controller.js:98:28)
+2026-06-25 14:16:33 [ERROR]: API Error: No results found for this session
+Error: No results found for this session
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.publishSessionResults (/app/dist/modules/results/results.service.js:193:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async publishSessionResults (/app/dist/modules/results/results.controller.js:98:28)
+2026-06-25 14:16:35 [ERROR]: API Error: No results found for this session
+Error: No results found for this session
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.publishSessionResults (/app/dist/modules/results/results.service.js:193:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async publishSessionResults (/app/dist/modules/results/results.controller.js:98:28)
+2026-06-25 15:07:20 [ERROR]: API Error: No token provided
+Error: No token provided
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:15:39)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:291:5)
+2026-06-25 17:24:44 [ERROR]: API Error: No results found for this session
+Error: No results found for this session
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.publishSessionResults (/app/dist/modules/results/results.service.js:193:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async publishSessionResults (/app/dist/modules/results/results.controller.js:98:28)
+2026-06-25 17:24:47 [ERROR]: API Error: No results found for this session
+Error: No results found for this session
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.publishSessionResults (/app/dist/modules/results/results.service.js:193:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async publishSessionResults (/app/dist/modules/results/results.controller.js:98:28)
+2026-06-25 17:44:24 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 17:47:57 [ERROR]: API Error: No results found for this session
+Error: No results found for this session
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.publishSessionResults (/app/dist/modules/results/results.service.js:193:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async publishSessionResults (/app/dist/modules/results/results.controller.js:98:28)
+2026-06-25 17:52:30 [ERROR]: API Error: No results found for this session
+Error: No results found for this session
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.publishSessionResults (/app/dist/modules/results/results.service.js:193:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async publishSessionResults (/app/dist/modules/results/results.controller.js:98:28)
+2026-06-25 17:54:36 [ERROR]: API Error: "applicationId" must be a valid GUID
+ValidationError: "applicationId" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/audit.middleware.js:23:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+2026-06-25 17:54:50 [ERROR]: API Error: "applicationId" must be a valid GUID
+ValidationError: "applicationId" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/audit.middleware.js:23:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+2026-06-25 17:54:52 [ERROR]: API Error: "applicationId" must be a valid GUID
+ValidationError: "applicationId" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/audit.middleware.js:23:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+2026-06-25 17:54:53 [ERROR]: API Error: "applicationId" must be a valid GUID
+ValidationError: "applicationId" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/audit.middleware.js:23:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at /app/dist/middlewares/role.middleware.js:15:9
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+2026-06-25 17:59:49 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 17:59:50 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 17:59:52 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 17:59:55 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 18:00:15 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 18:00:32 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 20:24:29 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-25 20:24:30 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-25 20:24:48 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-25 20:24:49 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-25 20:24:56 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-25 20:24:57 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-25 20:25:35 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-25 20:25:37 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-25 20:25:39 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 20:25:46 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 20:25:48 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 20:46:23 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 20:46:26 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-25 20:46:33 [ERROR]: API Error: You can only access payments from your applications
+Error: You can only access payments from your applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getByApplicationId (/app/dist/modules/payments/payments.service.js:50:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getByApplication (/app/dist/modules/payments/payments.controller.js:47:30)
+2026-06-25 20:46:34 [ERROR]: API Error: You can only access payments from your applications
+Error: You can only access payments from your applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getByApplicationId (/app/dist/modules/payments/payments.service.js:50:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getByApplication (/app/dist/modules/payments/payments.controller.js:47:30)
+2026-06-25 20:47:03 [ERROR]: API Error: You can only access payments from your applications
+Error: You can only access payments from your applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getByApplicationId (/app/dist/modules/payments/payments.service.js:50:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getByApplication (/app/dist/modules/payments/payments.controller.js:47:30)
+2026-06-25 20:47:03 [ERROR]: API Error: You can only access payments from your applications
+Error: You can only access payments from your applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getByApplicationId (/app/dist/modules/payments/payments.service.js:50:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getByApplication (/app/dist/modules/payments/payments.controller.js:47:30)
+2026-06-25 20:48:08 [ERROR]: API Error: You can only access payments from your applications
+Error: You can only access payments from your applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getApplicationSummaryPdf (/app/dist/modules/payments/payments.service.js:117:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getApplicationSummary (/app/dist/modules/payments/payments.controller.js:117:31)
+2026-06-25 20:48:20 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:48:20 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:49:06 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:49:06 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:50:24 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:50:24 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:50:40 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-25 20:50:41 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-25 20:50:53 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:50:53 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:51:10 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 20:51:11 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 20:51:34 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:51:34 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:51:36 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 20:51:37 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 20:54:02 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:54:02 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:55:09 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:147:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-25 20:55:13 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:55:13 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:55:21 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 20:55:22 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 20:55:35 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 20:55:35 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 21:00:22 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 21:02:21 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 21:02:49 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 21:02:50 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 21:03:05 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 21:03:06 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 21:03:12 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:03:13 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:04:11 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 21:04:12 [ERROR]: API Error: You can only access your own applications
+Error: You can only access your own applications
+    at ApiError.forbidden (/app/dist/common/errors/ApiError.js:24:16)
+    at Object.getById (/app/dist/modules/applications/applications.service.js:30:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getById (/app/dist/modules/applications/applications.controller.js:50:33)
+2026-06-25 21:08:30 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:08:31 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:09:25 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-25 21:09:26 [ERROR]: API Error: Candidate profile not found
+Error: Candidate profile not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getByUserId (/app/dist/modules/candidates/candidates.service.js:37:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyProfile (/app/dist/modules/candidates/candidates.controller.js:56:29)
+2026-06-25 21:12:59 [ERROR]: API Error: Application for this program already exists
+Error: Application for this program already exists
+    at ApiError.conflict (/app/dist/common/errors/ApiError.js:30:16)
+    at Object.create (/app/dist/modules/applications/applications.service.js:17:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async create (/app/dist/modules/applications/applications.controller.js:21:33)
+2026-06-25 21:13:01 [ERROR]: API Error: Application for this program already exists
+Error: Application for this program already exists
+    at ApiError.conflict (/app/dist/common/errors/ApiError.js:30:16)
+    at Object.create (/app/dist/modules/applications/applications.service.js:17:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async create (/app/dist/modules/applications/applications.controller.js:21:33)
+2026-06-25 21:14:08 [ERROR]: API Error: Invalid token
+Error: Invalid token
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:30:38)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:295:15
+    at param (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:600:14)
+    at param (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/index.js:610:14)
+2026-06-25 21:17:49 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 21:18:02 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 21:18:45 [ERROR]: API Error: Invalid email or password
+Error: Invalid email or password
+    at ApiError.unauthorized (/app/dist/common/errors/ApiError.js:21:16)
+    at Object.login (/app/dist/modules/auth/auth.service.js:69:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async login (/app/dist/modules/auth/auth.controller.js:30:28)
+2026-06-25 21:18:50 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 21:18:52 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:18:53 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:19:09 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 21:19:10 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:19:11 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:19:24 [ERROR]: API Error: No exam assignment found for this user
+Error: No exam assignment found for this user
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyAssignment (/app/dist/modules/exams/exams.service.js:155:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyAssignment (/app/dist/modules/exams/exams.controller.js:145:32)
+2026-06-25 21:19:28 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 21:19:39 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:19:40 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:20:45 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:213:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 21:21:39 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-25 21:21:52 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:21:53 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-25 21:22:12 [ERROR]: API Error: Result not found
+Error: Result not found
+    at ApiError.notFound (/app/dist/common/errors/ApiError.js:27:16)
+    at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)

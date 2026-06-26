@@ -14,23 +14,37 @@ export default function ScoreEntry() {
   const enterScores = useEnterScores();
 
   const handleCommitChanges = () => {
-    if (pendingScores.length === 0) {
-      toast.error('No validated scores to commit. Enter scores in the table first.');
+    const committable = pendingScores.filter((s) => s.applicationId !== '');
+    const skipped = pendingScores.length - committable.length;
+    if (committable.length === 0) {
+      toast.error(skipped > 0 ? 'Manually added rows have no application linked. Use the Excel template upload instead, or ensure candidates have existing results.' : 'No validated scores to commit. Enter scores in the table first.');
       return;
+    }
+    if (skipped > 0) {
+      toast.warning(`${skipped} manually added row(s) skipped — no application linked. ${committable.length} row(s) will be committed.`);
     }
     setIsModalOpen(true);
   };
 
   const handleConfirmSubmission = async () => {
-    try {
-      for (const entry of pendingScores) {
+    const toCommit = pendingScores.filter((s) => s.applicationId !== '');
+    let successCount = 0;
+    const errors: string[] = [];
+    for (const entry of toCommit) {
+      try {
         await enterScores.mutateAsync(entry);
+        successCount++;
+      } catch (err: any) {
+        errors.push(`${entry.applicationId.slice(0, 8)}: ${err?.response?.data?.message || err?.message || 'Unknown error'}`);
       }
-      setIsModalOpen(false);
-      setPendingScores([]);
-      toast.success('Successfully saved all validated scores!');
-    } catch {
-      toast.error('Failed to commit changes.');
+    }
+    setIsModalOpen(false);
+    setPendingScores([]);
+    if (successCount > 0) {
+      toast.success(`Successfully saved ${successCount} score entr${successCount === 1 ? 'y' : 'ies'}!`);
+    }
+    if (errors.length > 0) {
+      toast.error(`Failed to commit ${errors.length} row(s): ${errors.join('; ')}`);
     }
   };
 
@@ -53,7 +67,7 @@ export default function ScoreEntry() {
             className="px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs tracking-wider flex items-center gap-2 rounded-lg shadow transition-all uppercase disabled:opacity-60"
           >
             <Save className="w-4 h-4" />
-            Commit Changes
+            {enterScores.isPending ? 'Saving...' : 'Commit Changes'}
           </button>
         </div>
       </div>
@@ -74,6 +88,8 @@ export default function ScoreEntry() {
         onClose={() => setIsModalOpen(false)}
         onConfirm={handleConfirmSubmission}
         isLoading={enterScores.isPending}
+        entryCount={pendingScores.filter(s => s.applicationId !== '').length}
+        subjectList={[...new Set(pendingScores.flatMap(s => s.scores.map(sc => sc.subject)))]}
       />
     </div>
   );

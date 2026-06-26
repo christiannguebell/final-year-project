@@ -57,10 +57,6 @@ const DashboardLayout: React.FC = () => {
               <span className="material-symbols-outlined text-[20px]">groups</span>
               <span className="font-body">Targeting</span>
             </Link>
-            <Link to="/" className={getLinkClass('/')}>
-              <span className="material-symbols-outlined text-[20px]">settings</span>
-              <span className="font-body">Dashboard Settings</span>
-            </Link>
           </>
         );
       case 'logistics':
@@ -94,14 +90,6 @@ const DashboardLayout: React.FC = () => {
             <Link to="/score-entry" className={getLinkClass('/score-entry')}>
               <span className="material-symbols-outlined text-[20px]">edit</span>
               <span className="font-body">Score Entry</span>
-            </Link>
-            <Link to="/score-entry" className={getLinkClass('/score-entry')}>
-              <span className="material-symbols-outlined text-[20px]">cloud_upload</span>
-              <span className="font-body">Bulk Upload</span>
-            </Link>
-            <Link to="/results-publication" className={getLinkClass('/results-publication')}>
-              <span className="material-symbols-outlined text-[20px]">draw</span>
-              <span className="font-body">Final Approval</span>
             </Link>
             <Link to="/results-publication" className={getLinkClass('/results-publication')}>
               <span className="material-symbols-outlined text-[20px]">publish</span>

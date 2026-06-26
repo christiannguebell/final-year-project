@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiClient } from '../../../api/client';
 import { toast } from 'sonner';
@@ -7,6 +7,7 @@ import { DocumentCenterContent } from '../../../components/document-center';
 import type { DocumentFile } from '../../../components/document-center/DocumentUploadCard';
 import type { DocumentTypeId } from '../../../components/document-center/documentTypes';
 import { DOCUMENT_TYPES } from '../../../components/document-center/documentTypes';
+import type { AxiosRequestConfig } from 'axios';
 
 interface ApiDocument {
   id: string;
@@ -49,7 +50,6 @@ export const DocumentCenterStep = ({
     name: string;
     progress: number;
   } | null>(null);
-  const progressTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -65,26 +65,16 @@ export const DocumentCenterStep = ({
     fetchDocs();
   }, [data.id]);
 
-  useEffect(() => {
-    return () => {
-      if (progressTimer.current) clearInterval(progressTimer.current);
-    };
-  }, []);
-
   const documentsByType = DOCUMENT_TYPES.reduce<Record<string, DocumentFile | undefined>>((acc, docType) => {
     const match = documents.find((d) => d.type === docType.id);
     if (match) acc[docType.id] = mapDocument(match);
     return acc;
   }, {});
 
-  const clearProgress = () => {
-    if (progressTimer.current) {
-      clearInterval(progressTimer.current);
-      progressTimer.current = null;
-    }
+  const clearProgress = useCallback(() => {
     setUploadingState(null);
     setUploadingType(null);
-  };
+  }, []);
 
   const handleUpload = async (type: DocumentTypeId, file: File) => {
     if (!data.id) {
@@ -93,23 +83,24 @@ export const DocumentCenterStep = ({
     }
 
     setUploadingType(type);
-    setUploadingState({ type, name: file.name, progress: 12 });
-
-    progressTimer.current = setInterval(() => {
-      setUploadingState((prev) => {
-        if (!prev) return prev;
-        const next = Math.min(prev.progress + 18, 92);
-        return { ...prev, progress: next };
-      });
-    }, 200);
+    setUploadingState({ type, name: file.name, progress: 0 });
 
     const formData = new FormData();
     formData.append('document', file);
     formData.append('applicationId', data.id);
     formData.append('type', type);
 
+    const config: AxiosRequestConfig = {
+      onUploadProgress: (progressEvent) => {
+        if (progressEvent.total) {
+          const pct = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+          setUploadingState((prev) => (prev ? { ...prev, progress: pct } : prev));
+        }
+      },
+    };
+
     try {
-      const response = await apiClient.uploadFile<ApiDocument>('/documents/upload', formData);
+      const response = await apiClient.uploadFile<ApiDocument>('/documents/upload', formData, config);
       if (response.data?.data) {
         setDocuments((prev) => [...prev.filter((d) => d.type !== type), response.data.data!]);
       }
@@ -118,7 +109,7 @@ export const DocumentCenterStep = ({
     } catch {
       toast.error('Upload failed');
     } finally {
-      clearProgress();
+      setTimeout(clearProgress, 800);
     }
   };
 

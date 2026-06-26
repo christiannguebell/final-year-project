@@ -128,9 +128,10 @@ export default function OTPVerificationPage() {
         {/* Submit button */}
         <button 
           onClick={handleVerify}
-          className="w-full py-4 bg-slate-950 hover:bg-slate-900 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 font-headline uppercase tracking-widest"
+          disabled={verifyMutation.isPending}
+          className="w-full py-4 bg-slate-950 hover:bg-slate-900 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 font-headline uppercase tracking-widest disabled:opacity-60"
         >
-          Go to Portal
+          {verifyMutation.isPending ? 'Verifying...' : 'Go to Portal'}
           <ExternalLink className="w-4 h-4 text-white" />
         </button>
 

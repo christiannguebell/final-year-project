@@ -5,9 +5,11 @@ interface ConfirmSubmissionModalProps {
   onClose: () => void;
   onConfirm: () => void;
   isLoading?: boolean;
+  entryCount?: number;
+  subjectList?: string[];
 }
 
-export default function ConfirmSubmissionModal({ isOpen, onClose, onConfirm, isLoading = false }: ConfirmSubmissionModalProps) {
+export default function ConfirmSubmissionModal({ isOpen, onClose, onConfirm, isLoading = false, entryCount = 0, subjectList = [] }: ConfirmSubmissionModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -44,7 +46,7 @@ export default function ConfirmSubmissionModal({ isOpen, onClose, onConfirm, isL
             </h3>
             
             <p className="text-on-surface-variant text-xs leading-relaxed max-w-sm">
-              You are about to finalize the submission for <strong className="text-primary font-bold">Advanced Thermodynamics (ME-305)</strong>. This action will lock all grades and notify the faculty of completion.
+              You are about to finalize the submission for <strong className="text-primary font-bold">{subjectList.length > 0 ? subjectList.join(', ') : 'selected subjects'}</strong>. This action will save the scores and make them available for publication.
             </p>
           </div>
 
@@ -52,7 +54,7 @@ export default function ConfirmSubmissionModal({ isOpen, onClose, onConfirm, isL
           <div className="bg-slate-50 border border-outline-variant/10 rounded-lg p-5 space-y-3 font-medium text-xs">
             <div className="flex items-center justify-between text-on-surface-variant border-b border-outline-variant/10 pb-2.5">
               <span>Candidate Count:</span>
-              <span className="font-extrabold text-primary">114 Students</span>
+              <span className="font-extrabold text-primary">{entryCount} Student{entryCount === 1 ? '' : 's'}</span>
             </div>
             <div className="flex items-center justify-between text-on-surface-variant border-b border-outline-variant/10 pb-2.5">
               <span>Validation Status:</span>

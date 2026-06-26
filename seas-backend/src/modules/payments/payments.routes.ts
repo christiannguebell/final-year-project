@@ -118,6 +118,12 @@ router.get(
 );
 
 router.get(
+  '/my',
+  authenticate,
+  paymentsController.getMyPayments
+);
+
+router.get(
   '/',
   authenticate,
   authorize(UserRole.ADMIN),

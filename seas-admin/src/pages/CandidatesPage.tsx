@@ -21,8 +21,8 @@ export default function CandidatesPage() {
   const handleExportCsv = () => {
     const header = 'Name,Email,Candidate Number,Created';
     const rows = candidates.map((c) => {
-      const name = `${c.firstName ?? ''} ${c.lastName ?? ''}`.trim();
-      return `"${name}","${c.email ?? ''}","${c.candidateNumber ?? ''}","${c.createdAt ?? ''}"`;
+      const name = `${c.user?.firstName ?? ''} ${c.user?.lastName ?? ''}`.trim();
+      return `"${name}","${c.user?.email ?? ''}","${c.candidateNumber ?? ''}","${c.createdAt ?? ''}"`;
     });
     const blob = new Blob([[header, ...rows].join('\n')], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
@@ -114,7 +114,6 @@ export default function CandidatesPage() {
                   <tr className="bg-surface-container-low border-b ghost-border">
                     <th className="px-6 py-4 font-headline font-bold text-xs text-on-surface-variant uppercase tracking-wider">Candidate Name</th>
                     <th className="px-6 py-4 font-headline font-bold text-xs text-on-surface-variant uppercase tracking-wider">ID Number</th>
-                    <th className="px-6 py-4 font-headline font-bold text-xs text-on-surface-variant uppercase tracking-wider">Program</th>
                     <th className="px-6 py-4 font-headline font-bold text-xs text-on-surface-variant uppercase tracking-wider">Status</th>
                     <th className="px-6 py-4 font-headline font-bold text-xs text-on-surface-variant uppercase tracking-wider">Reg. Date</th>
                     <th className="px-6 py-4 font-headline font-bold text-xs text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
@@ -126,11 +125,11 @@ export default function CandidatesPage() {
                       <td className="px-6 py-5">
                         <div className="flex items-center gap-3">
                           <div className="w-9 h-9 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-xs">
-                            {getInitials(c.firstName + ' ' + c.lastName)}
+                            {getInitials(((c.user?.firstName || '') + ' ' + (c.user?.lastName || '')).trim())}
                           </div>
                           <div>
-                            <p className="font-bold text-primary text-sm">{c.firstName} {c.lastName}</p>
-                            <p className="text-xs text-on-surface-variant">{c.email}</p>
+                            <p className="font-bold text-primary text-sm">{c.user?.firstName} {c.user?.lastName}</p>
+                            <p className="text-xs text-on-surface-variant">{c.user?.email}</p>
                           </div>
                         </div>
                       </td>
@@ -138,10 +137,6 @@ export default function CandidatesPage() {
                         <code className="text-xs font-mono bg-slate-100 px-2 py-1 rounded text-on-surface-variant/70 border border-outline-variant/10">
                           {c.candidateNumber}
                         </code>
-                      </td>
-                      <td className="px-6 py-5">
-                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                        <p className="text-sm font-medium text-on-surface-variant">{(c as any).program?.name || 'N/A'}</p>
                       </td>
                       <td className="px-6 py-5">
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-secondary-container text-on-secondary-container">
@@ -157,7 +152,7 @@ export default function CandidatesPage() {
                       <td className="px-6 py-5 text-right">
                         <div className="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                           <button 
-                            onClick={() => navigate(`/candidates/${c.id}`)}
+                            onClick={() => navigate('/applications')}
                             className="p-2 text-on-surface-variant hover:text-primary hover:bg-slate-100 rounded-lg transition-all"
                           >
                             <Eye className="w-4 h-4" />

@@ -2,11 +2,18 @@ export interface Candidate {
   id: string;
   userId: string;
   candidateNumber: string;
-  firstName: string;
-  lastName: string;
-  email: string;
+  user?: {
+    id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    phone?: string;
+    role: string;
+    status: string;
+    createdAt: string;
+    updatedAt: string;
+  };
   verified?: boolean;
-  phone?: string;
   dateOfBirth?: string;
   gender?: Gender;
   nationality?: string;
@@ -82,7 +89,15 @@ export interface Document {
   filePath: string;
   fileSize: number;
   mimeType: string;
+  status: DocumentStatus;
+  notes?: string;
   createdAt: string;
+}
+
+export enum DocumentStatus {
+  PENDING = 'pending',
+  VERIFIED = 'verified',
+  REJECTED = 'rejected',
 }
 
 export enum DocumentType {

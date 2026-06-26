@@ -18,8 +18,8 @@ export function formatDate(date: string | Date, format: 'short' | 'long' | 'time
   return d.toLocaleString('en-US', optionsMap[format]);
 }
 
-export function formatCurrency(amount: number, currency = 'USD'): string {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
+export function formatCurrency(amount: number, currency = 'XAF'): string {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(amount);
 }
 
 export function truncate(str: string, length: number): string {

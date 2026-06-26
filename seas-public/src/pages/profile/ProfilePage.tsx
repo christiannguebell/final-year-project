@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { motion } from 'motion/react';
 import {
   User,
   Mail,
@@ -36,6 +37,7 @@ const itemVariants = {
 
 export default function ProfilePage() {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   const { data: candidate, isLoading } = useCandidateProfile();
   const updateCandidate = useUpdateCandidate();
   const uploadPhoto = useUploadCandidatePhoto();
@@ -58,7 +60,6 @@ export default function ProfilePage() {
     examReminders: true,
     newsletter: false,
     twoFactorEnabled: true,
-    language: 'English (United States)',
   });
 
    useEffect(() => {
@@ -67,10 +68,10 @@ export default function ProfilePage() {
        const formattedDate = rawDateOfBirth ? rawDateOfBirth.split('T')[0] : '';
        // eslint-disable-next-line react-hooks/set-state-in-effect
        setFormData({
-         firstName: candidate.firstName || '',
-         lastName: candidate.lastName || '',
-         email: candidate.email || '',
-         phone: candidate.phone || '',
+        firstName: candidate.user?.firstName || candidate.firstName || '',
+          lastName: candidate.user?.lastName || candidate.lastName || '',
+          email: candidate.user?.email || candidate.email || '',
+          phone: candidate.user?.phone || candidate.phone || '',
          dateOfBirth: formattedDate,
          address: candidate.address || '',
          city: candidate.city || '',
@@ -119,10 +120,10 @@ export default function ProfilePage() {
         <div className="max-w-6xl mx-auto">
           <header className="mb-10">
             <h1 className="font-headline text-3xl font-extrabold text-primary tracking-tight mb-2">
-              Profile Settings
+              {t('profile.title')}
             </h1>
             <p className="text-on-surface-variant font-body">
-              Manage your academic identity, security preferences, and portal notifications.
+              {t('profile.subtitle')}
             </p>
           </header>
 
@@ -140,7 +141,7 @@ export default function ProfilePage() {
             <div className="flex items-center gap-3 mb-8">
               <User className="text-primary" size={24} />
               <h2 className="font-headline text-xl font-bold text-primary">
-                Personal Information
+                {t('profile.personalInfo')}
               </h2>
             </div>
 
@@ -179,14 +180,14 @@ export default function ProfilePage() {
                   </button>
                 </div>
                 <span className="text-[10px] font-label text-on-surface-variant uppercase tracking-widest font-bold">
-                  Candidate Avatar
+                  {t('profile.candidateAvatar')}
                 </span>
               </div>
 
               <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-1">
                   <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-wider">
-                    Full Name
+                    {t('profile.fullName')}
                   </label>
                   <div className="bg-surface-container-high p-3 rounded-t-lg border-b-2 border-primary-container text-primary font-medium">
                     {fullName}
@@ -194,7 +195,7 @@ export default function ProfilePage() {
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-wider">
-                    Candidate ID
+                    {t('profile.candidateId')}
                   </label>
                   <div className="bg-surface-container-high p-3 rounded-t-lg border-b-2 border-outline-variant text-on-surface-variant font-medium">
                     {candidateId}
@@ -202,7 +203,7 @@ export default function ProfilePage() {
                 </div>
                 <div className="flex flex-col gap-1 md:col-span-2">
                   <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-wider">
-                    Date of Birth
+                    {t('profile.dateOfBirth')}
                   </label>
                   <input
                     type="date"
@@ -221,14 +222,14 @@ export default function ProfilePage() {
           >
             <div className="flex items-center gap-3 mb-8">
               <Mail className="text-primary" size={24} />
-              <h2 className="font-headline text-xl font-bold text-primary">Contact Details</h2>
+              <h2 className="font-headline text-xl font-bold text-primary">{t('profile.contactDetails')}</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-wider">
-                  Primary Email
-                </label>
+                  <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-wider">
+                    {t('profile.primaryEmail')}
+                  </label>
                 <div className="relative">
                   <input
                     type="email"
@@ -240,9 +241,9 @@ export default function ProfilePage() {
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-wider">
-                  Phone Number
-                </label>
+                  <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-wider">
+                    {t('profile.phoneNumber')}
+                  </label>
                 <input
                   type="tel"
                   value={formData.phone}
@@ -252,9 +253,9 @@ export default function ProfilePage() {
                 />
               </div>
               <div className="flex flex-col gap-1 md:col-span-2">
-                <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-wider">
-                  Residential Address
-                </label>
+                  <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-wider">
+                    {t('profile.address')}
+                  </label>
                 <textarea
                   className="bg-surface-container-high p-3 rounded-t-lg border-b-2 border-transparent focus:border-primary transition-colors text-primary font-medium w-full resize-none focus:outline-none"
                   rows={3}
@@ -274,7 +275,7 @@ export default function ProfilePage() {
           >
             <div className="flex items-center gap-3 mb-6">
               <Shield className="text-primary" size={24} />
-              <h2 className="font-headline text-lg font-bold text-primary">Account Security</h2>
+              <h2 className="font-headline text-lg font-bold text-primary">{t('profile.accountSecurity')}</h2>
             </div>
 
             <div className="space-y-6">
@@ -284,9 +285,9 @@ export default function ProfilePage() {
                 className="group flex w-full items-center justify-between rounded-lg bg-surface-container-low p-4 transition-colors hover:bg-surface-container-high"
               >
                 <div className="text-left">
-                  <div className="text-sm font-bold text-primary">Change Password</div>
+                  <div className="text-sm font-bold text-primary">{t('profile.changePassword')}</div>
                   <div className="text-[10px] text-on-surface-variant uppercase tracking-wide">
-                    Update your password
+                    {t('profile.updatePassword')}
                   </div>
                 </div>
                 <ChevronRight
@@ -297,9 +298,9 @@ export default function ProfilePage() {
 
               <div className="flex items-center justify-between p-4 rounded-lg bg-surface-container-low">
                 <div>
-                  <div className="text-sm font-bold text-primary">2FA Authentication</div>
+                  <div className="text-sm font-bold text-primary">{t('profile.twoFactorAuth')}</div>
                   <div className="text-[10px] text-on-surface-variant uppercase tracking-wide">
-                    SMS & Authenticator App
+                    {t('profile.twoFactorDesc')}
                   </div>
                 </div>
                 <Toggle
@@ -318,43 +319,42 @@ export default function ProfilePage() {
           >
             <div className="flex items-center gap-3 mb-6">
               <Settings2 className="text-primary" size={24} />
-              <h2 className="font-headline text-lg font-bold text-primary">Preferences</h2>
+              <h2 className="font-headline text-lg font-bold text-primary">{t('profile.preferences')}</h2>
             </div>
 
             <div className="space-y-6">
               <div className="flex flex-col gap-2">
                 <label className="text-[10px] font-label font-bold text-on-surface-variant uppercase tracking-wider">
-                  Portal Language
+                  {t('profile.portalLanguage')}
                 </label>
                 <select
-                  value={preferences.language}
-                  onChange={(e) => setPreferences({ ...preferences, language: e.target.value })}
+                  value={i18n.language}
+                  onChange={(e) => i18n.changeLanguage(e.target.value)}
                   className="bg-surface-container-low p-3 rounded-lg border-none text-primary font-medium w-full focus:ring-2 focus:ring-primary focus:outline-none"
                 >
-                  <option>English (United States)</option>
-                  <option>English (United Kingdom)</option>
-                  <option>German (Deutsch)</option>
-                  <option>French (Français)</option>
+                  <option value="en">English</option>
+                  <option value="fr">Français</option>
+                  <option value="de">Deutsch</option>
                 </select>
               </div>
 
               <div className="space-y-4 pt-2">
                 <PreferenceItem
-                  label="Application Updates"
+                  label={t('profile.applicationUpdates')}
                   checked={preferences.applicationUpdates}
                   onChange={(checked) =>
                     setPreferences({ ...preferences, applicationUpdates: checked })
                   }
                 />
                 <PreferenceItem
-                  label="Exam Reminders"
+                  label={t('profile.examReminders')}
                   checked={preferences.examReminders}
                   onChange={(checked) =>
                     setPreferences({ ...preferences, examReminders: checked })
                   }
                 />
                 <PreferenceItem
-                  label="Newsletter & Research"
+                  label={t('profile.newsletter')}
                   checked={preferences.newsletter}
                   onChange={(checked) =>
                     setPreferences({ ...preferences, newsletter: checked })
@@ -371,14 +371,14 @@ export default function ProfilePage() {
               className="bg-primary text-surface-container-lowest py-4 rounded-md font-bold text-sm tracking-wide shadow-lg hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50"
             >
               <Save size={18} />
-              {updateCandidate.isPending ? 'Saving...' : 'Save All Changes'}
+              {updateCandidate.isPending ? t('common.saving') : t('profile.saveAll')}
             </button>
             <button
               onClick={() => logout.mutate()}
               className="bg-surface-container-high text-error py-4 rounded-md font-bold text-sm tracking-wide hover:bg-error-container transition-all active:scale-95 flex items-center justify-center gap-2"
             >
               <LogOut size={18} />
-              Sign Out
+              {t('common.signOut')}
             </button>
           </div>
         </aside>

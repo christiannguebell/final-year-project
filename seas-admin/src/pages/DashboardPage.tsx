@@ -8,7 +8,7 @@ import { ActivityItem } from '@/components/ActivityItem';
 
 
 
-const CHART_COLORS = ['#e2e8f0', '#e2e8f0', '#e2e8f0', '#002d6233', '#002d6266', '#002d6299', '#00193c', '#046d40cc'];
+const CHART_COLORS = ['#4f46e5', '#6366f1', '#818cf8', '#a5b4fc', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe'];
 
 export default function DashboardPage() {
   const { data: stats, isLoading: statsLoading } = useDashboardStats();

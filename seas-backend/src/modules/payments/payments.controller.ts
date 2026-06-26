@@ -110,6 +110,17 @@ export const paymentsController = {
     }
   },
 
+  async getMyPayments(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const userId = req.user?.userId;
+      if (!userId) throw new Error('User not authenticated');
+      const payments = await paymentsService.getMyPayments(userId);
+      res.status(200).json(successResponse(payments));
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async delete(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const id = getParam(req.params.id);

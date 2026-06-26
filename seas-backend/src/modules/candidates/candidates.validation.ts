@@ -5,24 +5,24 @@ export const idParamSchema = Joi.object({
 });
 
 export const createCandidateSchema = Joi.object({
-  dateOfBirth: Joi.date().iso().optional(),
-  gender: Joi.string().valid('male', 'female', 'other').optional(),
-  nationality: Joi.string().max(100).optional(),
-  address: Joi.string().max(500).optional(),
-  city: Joi.string().max(100).optional(),
-  country: Joi.string().max(100).optional(),
+  dateOfBirth: Joi.date().iso().optional().allow(''),
+  gender: Joi.string().valid('male', 'female', 'other', '').optional(),
+  nationality: Joi.string().max(100).optional().allow(''),
+  address: Joi.string().max(500).optional().allow(''),
+  city: Joi.string().max(100).optional().allow(''),
+  country: Joi.string().max(100).optional().allow(''),
 });
 
 export const updateCandidateSchema = Joi.object({
-  dateOfBirth: Joi.date().iso().optional(),
-  gender: Joi.string().valid('male', 'female', 'other').optional(),
-  nationality: Joi.string().max(100).optional(),
-  address: Joi.string().max(500).optional(),
-  city: Joi.string().max(100).optional(),
-  country: Joi.string().max(100).optional(),
-  idType: Joi.string().max(50).optional(),
-  idNumber: Joi.string().max(100).optional(),
-  zipCode: Joi.string().max(20).optional(),
+  dateOfBirth: Joi.date().iso().optional().allow(''),
+  gender: Joi.string().valid('male', 'female', 'other', '').optional(),
+  nationality: Joi.string().max(100).optional().allow(''),
+  address: Joi.string().max(500).optional().allow(''),
+  city: Joi.string().max(100).optional().allow(''),
+  country: Joi.string().max(100).optional().allow(''),
+  idType: Joi.string().max(50).optional().allow(''),
+  idNumber: Joi.string().max(100).optional().allow(''),
+  zipCode: Joi.string().max(20).optional().allow(''),
 });
 
 export default {

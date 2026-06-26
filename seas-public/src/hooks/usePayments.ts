@@ -1,23 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { paymentsApi, type CreatePaymentPayload, type VerifyPaymentPayload } from '../api/modules/payments';
-import { applicationsApi } from '../api/modules/applications';
-import type { Payment, Application } from '../types/entities';
+import type { Payment } from '../types/entities';
 
 async function fetchAllMyPayments(): Promise<Payment[]> {
-  const appsResponse = await applicationsApi.getMine();
-  const payload = appsResponse.data;
-  const applications: Application[] = Array.isArray(payload)
-    ? payload
-    : (payload as { items?: Application[] } | null)?.items ?? [];
-
-  const paymentGroups = await Promise.all(
-    applications.map(async (app) => {
-      const response = await paymentsApi.getByApplication(app.id);
-      return (response.data ?? []) as Payment[];
-    })
-  );
-
-  return paymentGroups.flat();
+  const response = await paymentsApi.getMyPayments();
+  return (response.data ?? []) as Payment[];
 }
 
 export function usePayments() {

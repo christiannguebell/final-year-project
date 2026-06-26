@@ -9,17 +9,17 @@ export interface SystemConfig {
 export const systemApi = {
   async getConfig() {
     const response = await apiClient.get<SystemConfig[]>('/system/config');
-    return response.data;
+    return response.data.data!;
   },
 
   async updateConfig(key: string, value: string) {
     const response = await apiClient.put<SystemConfig>(`/system/config/${key}`, { value });
-    return response.data;
+    return response.data.data!;
   },
 
   async getHealth() {
     const response = await apiClient.get<{ status: string }>('/system/health');
-    return response.data;
+    return response.data.data!;
   },
 };
 

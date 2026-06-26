@@ -9,7 +9,7 @@ export interface BroadcastPayload {
 export const notificationsApi = {
   async broadcast(data: BroadcastPayload) {
     const response = await apiClient.post('/notifications/broadcast', data);
-    return response.data;
+    return response.data.data!;
   },
 };
 

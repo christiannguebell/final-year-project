@@ -1,4 +1,4 @@
-import { Mail, MessageSquare, Globe, AlertTriangle } from 'lucide-react';
+import { Mail, MessageSquare, Globe } from 'lucide-react';
 
 export default function NotificationStatusCard() {
   return (
@@ -57,18 +57,7 @@ export default function NotificationStatusCard() {
         </div>
       </div>
 
-      {/* Warning Box */}
-      <div className="bg-error-container border border-error/20 p-4 rounded-lg flex items-start gap-3 mt-4">
-        <AlertTriangle className="w-5 h-5 text-error shrink-0 mt-0.5" />
-        <div className="space-y-0.5">
-          <h4 className="text-[10px] font-black text-on-error-container uppercase tracking-wider">
-            Critical Warning
-          </h4>
-          <p className="text-xs text-on-error-container/90 leading-normal font-medium">
-            SMS Gateway requires manual token refresh before global release can proceed.
-          </p>
-        </div>
-      </div>
+
 
     </div>
   );

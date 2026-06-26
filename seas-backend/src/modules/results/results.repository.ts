@@ -15,7 +15,7 @@ export const resultsRepository = {
   async findById(id: string): Promise<Result | null> {
     return AppDataSource.getRepository(Result).findOne({
       where: { id } as any,
-      relations: ['application', 'scores'],
+      relations: ['application', 'application.candidate', 'scores'],
     });
   },
 
@@ -27,18 +27,22 @@ export const resultsRepository = {
   },
 
   async findBySessionId(sessionId: string): Promise<Result[]> {
-    return AppDataSource.getRepository(Result).find({
-      where: { application: { examAssignments: { sessionId } } } as any,
-      relations: ['application', 'scores'],
-      order: { totalScore: 'DESC' },
-    });
+    return AppDataSource.getRepository(Result)
+      .createQueryBuilder('result')
+      .leftJoinAndSelect('result.application', 'application')
+      .leftJoinAndSelect('application.candidate', 'candidate')
+      .leftJoinAndSelect('result.scores', 'scores')
+      .leftJoin('exam_assignments', 'ea', 'ea.application_id = application.id')
+      .where('ea.session_id = :sessionId', { sessionId })
+      .orderBy('result.totalScore', 'DESC')
+      .getMany();
   },
 
   async findAll(status?: ResultStatus): Promise<Result[]> {
     const where = status ? { status } : {};
     return AppDataSource.getRepository(Result).find({
       where: where as any,
-      relations: ['application', 'scores'],
+      relations: ['application', 'application.candidate', 'scores'],
       order: { totalScore: 'DESC' },
     });
   },
@@ -68,16 +72,19 @@ export const resultsRepository = {
 
   async publishResults(sessionId: string): Promise<number> {
     const results = await this.findBySessionId(sessionId);
+    const total = results.length;
     let rank = 1;
     for (const result of results) {
+      const percentile = total > 1 ? Math.round(((total - rank) / (total - 1)) * 100) : 100;
       await AppDataSource.getRepository(Result).update(result.id, {
         status: ResultStatus.PUBLISHED,
         rank,
+        percentile,
         publishedAt: new Date(),
       } as any);
       rank++;
     }
-    return results.length;
+    return total;
   },
 
   async delete(id: string): Promise<boolean> {

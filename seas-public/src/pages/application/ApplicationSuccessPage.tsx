@@ -1,8 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { CheckCircle2, Download, Copy, CreditCard } from 'lucide-react';
+import { toast } from 'sonner';
 
 export default function ApplicationSuccessPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const appId = (location.state as { id?: string })?.id || '';
 
   return (
     <div className="min-h-screen bg-surface flex flex-col items-center justify-center p-8">
@@ -42,8 +45,8 @@ export default function ApplicationSuccessPage() {
             <div className="flex-1 bg-surface-container-low rounded-xl p-6 border-l-4 border-primary">
               <p className="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">APPLICATION ID</p>
               <div className="flex items-center justify-between">
-                <p className="text-xl font-bold text-primary">SEAS-2024-9982-X</p>
-                <button className="text-on-surface-variant hover:text-primary transition-colors">
+                <p className="text-xl font-bold text-primary font-mono">{appId ? appId.slice(0, 8).toUpperCase() : 'N/A'}</p>
+                <button onClick={() => { navigator.clipboard.writeText(appId); toast.success('Application ID copied!'); }} className="text-on-surface-variant hover:text-primary transition-colors">
                   <Copy className="w-4 h-4" />
                 </button>
               </div>

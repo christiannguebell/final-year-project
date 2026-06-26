@@ -40,8 +40,9 @@ export default function ApplicationsQueue() {
   };
 
   const getInitials = (app: Application) => {
-    const first = app?.candidate?.firstName?.[0] || '?';
-    const last = app?.candidate?.lastName?.[0] || '?';
+    const c = app?.candidate;
+    const first = c?.user?.firstName?.[0] || c?.firstName?.[0] || '?';
+    const last = c?.user?.lastName?.[0] || c?.lastName?.[0] || '?';
     return (first + last).toUpperCase();
   };
 
@@ -254,9 +255,9 @@ export default function ApplicationsQueue() {
                             </div>
                             <div>
                               <p className="font-bold text-primary text-sm">
-                                {app.candidate?.firstName} {app.candidate?.lastName}
+                                {app.candidate?.user?.firstName || app.candidate?.firstName} {app.candidate?.user?.lastName || app.candidate?.lastName}
                               </p>
-                              <p className="text-xs text-on-surface-variant">{app.candidate?.email}</p>
+                              <p className="text-xs text-on-surface-variant">{app.candidate?.user?.email || app.candidate?.email}</p>
                             </div>
                           </div>
                         </td>
@@ -354,7 +355,7 @@ export default function ApplicationsQueue() {
                  <span className="text-[10px] font-black uppercase tracking-widest">Total Revenue</span>
                </div>
                <div className="text-4xl font-headline font-black text-primary">
-                 {(totalRevenue / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                  {(totalRevenue / 100).toLocaleString('en-US', { style: 'currency', currency: 'XAF', minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                </div>
                <p className="text-xs text-secondary font-bold">Verified payments</p>
              </div>
@@ -421,14 +422,14 @@ export default function ApplicationsQueue() {
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-xs">
                               {payment.candidate ?
-                                `${payment.candidate.firstName?.[0] || ''}${payment.candidate.lastName?.[0] || '?'}`.toUpperCase()
+                                `${(payment.candidate.user?.firstName || payment.candidate.firstName)?.[0] || ''}${(payment.candidate.user?.lastName || payment.candidate.lastName)?.[0] || '?'}`.toUpperCase()
                                 : '??'}
                             </div>
                             <div>
                               <p className="font-bold text-primary text-sm">
-                                {payment.candidate ? `${payment.candidate.firstName || ''} ${payment.candidate.lastName || ''}`.trim() : `Candidate ${payment.candidateId?.slice(0,8)}`}
+                                {payment.candidate ? `${payment.candidate.user?.firstName || payment.candidate.firstName || ''} ${payment.candidate.user?.lastName || payment.candidate.lastName || ''}`.trim() : `Candidate ${payment.candidateId?.slice(0,8)}`}
                               </p>
-                              <p className="text-xs text-on-surface-variant">{payment.candidate?.email || payment.candidateId?.slice(0,8) + '@...'}</p>
+                              <p className="text-xs text-on-surface-variant">{payment.candidate?.user?.email || payment.candidate?.email || payment.candidateId?.slice(0,8) + '@...'}</p>
                             </div>
                           </div>
                         </td>
@@ -440,7 +441,7 @@ export default function ApplicationsQueue() {
                           </div>
                         </td>
                         <td className="px-6 py-5 text-sm font-bold text-primary">
-                          {(payment.currency === 'XAF' ? 'FCFA ' : '$')}{(payment.amount / 100).toFixed(2)}
+                          FCFA {(payment.amount / 100).toFixed(0)}
                         </td>
                         <td className="px-6 py-5 text-sm font-mono text-on-surface-variant uppercase tracking-tighter">
                           {payment.transactionId || 'N/A'}

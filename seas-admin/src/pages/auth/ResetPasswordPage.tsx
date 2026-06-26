@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Eye, EyeOff, CheckCircle2, ArrowRight, RotateCcw } from 'lucide-react';
 import { toast } from 'sonner';
+import { useAdminResetPassword } from '../../hooks/useAdminAuth';
 
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState('');
@@ -9,6 +10,10 @@ export default function ResetPasswordPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const resetMutation = useAdminResetPassword();
+
+  const token = searchParams.get('token') || '';
 
   const checks = {
     length: password.length >= 12,
@@ -40,11 +45,23 @@ export default function ResetPasswordPage() {
       toast.error('Please fulfill all security requirements before updating your password.');
       return;
     }
+    if (!token) {
+      toast.error('Invalid reset link. No token found.');
+      return;
+    }
 
-    toast.success('Password updated successfully! Redirecting to login...');
-    setTimeout(() => {
-      navigate('/admin/login');
-    }, 1500);
+    resetMutation.mutate(
+      { token, newPassword: password },
+      {
+        onSuccess: () => {
+          toast.success('Password updated successfully! Redirecting to login...');
+          setTimeout(() => navigate('/admin/login'), 1500);
+        },
+        onError: () => {
+          toast.error('Failed to reset password. The link may have expired.');
+        },
+      }
+    );
   };
 
   return (
@@ -171,10 +188,10 @@ export default function ResetPasswordPage() {
           {/* Update Password Submit Button */}
           <button 
             type="submit"
-            disabled={!isValid}
+            disabled={!isValid || resetMutation.isPending}
             className="w-full py-4 bg-slate-900 hover:bg-slate-800 disabled:opacity-50 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 font-headline uppercase tracking-widest mt-8"
           >
-            Update Password
+            {resetMutation.isPending ? 'Resetting...' : 'Update Password'}
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>

@@ -134,7 +134,8 @@ export default function ScheduledSessionsTable() {
                     <td className="px-6 py-4.5">
                       <button
                         onClick={() => handleDelete(session.id, session.name)}
-                        className="p-1.5 text-on-surface-variant hover:text-error hover:bg-red-50 rounded-lg"
+                        disabled={deleteSession.isPending}
+                        className="p-1.5 text-on-surface-variant hover:text-error hover:bg-red-50 rounded-lg disabled:opacity-40"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>

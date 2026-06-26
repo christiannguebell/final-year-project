@@ -27,7 +27,7 @@ export class AcademicRecord {
   @Column()
   degree!: string;
 
-  @Column({ name: 'start_date' })
+  @Column({ name: 'start_date', nullable: true })
   startDate!: Date;
 
   @Column({ name: 'end_date', nullable: true })

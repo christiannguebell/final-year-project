@@ -64,7 +64,7 @@ export default function PaymentHistoryList({ payments }: PaymentHistoryListProps
                   {payment.date}
                   {payment.transactionId ? ` • #${payment.transactionId}` : ''}
                 </p>
-                <p className="mt-2 text-sm font-bold text-primary">${payment.amount.toFixed(2)}</p>
+                <p className="mt-2 text-sm font-bold text-primary">FCFA {payment.amount.toFixed(2)}</p>
               </div>
             </div>
           ))}

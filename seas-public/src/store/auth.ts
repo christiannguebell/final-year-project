@@ -24,6 +24,8 @@ export const useAuthStore = create<AuthState>()(
         localStorage.setItem(STORAGE_KEYS.TOKEN, token);
         localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
         localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user));
+        sessionStorage.removeItem('seas_application_state');
+        sessionStorage.removeItem('seas_application_draft');
         set({ user, token, refreshToken, isAuthenticated: true });
       },
       updateUser: (updates) =>
@@ -36,6 +38,8 @@ export const useAuthStore = create<AuthState>()(
         localStorage.removeItem(STORAGE_KEYS.TOKEN);
         localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
         localStorage.removeItem(STORAGE_KEYS.USER);
+        sessionStorage.removeItem('seas_application_state');
+        sessionStorage.removeItem('seas_application_draft');
         set({ user: null, token: null, refreshToken: null, isAuthenticated: false });
       },
     }),

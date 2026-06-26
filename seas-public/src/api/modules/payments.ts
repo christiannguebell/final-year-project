@@ -60,6 +60,11 @@ export const paymentsApi = {
     return response.data;
   },
 
+  async getMyPayments() {
+    const response = await apiClient.get<Payment[]>('/payments/my');
+    return response.data;
+  },
+
   async getApplicationSummary(applicationId: string) {
     const response = await apiClient.download(`/payments/application/${applicationId}/summary`);
     return response.data;

@@ -1,22 +1,24 @@
+import { useTranslation } from 'react-i18next';
 import { Bell, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../providers';
 import { cn } from '../../lib/utils';
 import { openSupportEmail } from '../../config/navigation';
 
-const NAV_ITEMS = [
-  { label: 'Admissions', path: '/applications' },
-  { label: 'Programs', path: '/programs' },
-  { label: 'Resources', path: '/exams' },
-  { label: 'Help', action: 'help' as const },
-] as const;
-
 interface TopNavProps {
-  activeNav?: (typeof NAV_ITEMS)[number]['label'];
+  activeNav?: string;
 }
 
 export default function TopNav({ activeNav }: TopNavProps) {
+  const { t } = useTranslation();
   const { user } = useAuth();
+
+  const NAV_ITEMS = [
+    { label: t('nav.applications'), path: '/applications' },
+    { label: t('nav.programs'), path: '/programs' },
+    { label: t('nav.exams'), path: '/exams' },
+    { label: t('nav.help'), action: 'help' as const },
+  ] as const;
 
   return (
     <nav className="glass fixed top-0 z-50 flex h-16 w-full items-center justify-between border-b border-outline-variant/10 px-8">

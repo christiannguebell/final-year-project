@@ -7,111 +7,109 @@ interface NewAcademicEntryFormProps {
   onCancel: () => void;
 }
 
+const inputClass =
+  'w-full rounded-lg border border-outline-variant/30 bg-white px-3 py-2.5 text-sm text-on-surface focus:outline-none focus:border-primary transition-colors placeholder:text-on-surface-variant/50';
+
+const labelClass = 'block text-[11px] font-bold text-on-surface-variant uppercase tracking-wider mb-1.5';
+
 export default function NewAcademicEntryForm({ value, onChange, onSave, onCancel }: NewAcademicEntryFormProps) {
   return (
-    <div className="rounded-xl border border-primary/10 bg-surface-container-low p-8 shadow-sm">
-      <h3 className="mb-6 font-headline text-lg font-bold text-primary">New Academic Entry</h3>
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="md:col-span-2">
-            <label className="mb-2 block text-xs font-bold text-on-surface-variant uppercase">Institution Name</label>
-            <input
-              type="text"
-              value={value.institution ?? ''}
-              onChange={(e) => onChange({ ...value, institution: e.target.value })}
-              placeholder="e.g., Stanford University"
-              className="w-full rounded-t-lg border-b-2 border-primary bg-surface-container-lowest p-3 text-sm shadow-sm focus:ring-0 focus:outline-none"
-            />
-          </div>
+    <div className="bg-white rounded-2xl border border-outline-variant/10 shadow-sm p-6">
+      <h3 className="font-headline text-lg font-bold text-on-surface mb-6">New Academic Entry</h3>
 
+      <div className="space-y-5">
+        {/* Institution Name — full width */}
+        <div>
+          <label className={labelClass}>Institution Name</label>
+          <input
+            type="text"
+            value={value.institution ?? ''}
+            onChange={(e) => onChange({ ...value, institution: e.target.value })}
+            placeholder="e.g., Stanford University"
+            className={inputClass}
+          />
+        </div>
+
+        {/* Degree Type + Major/Field of Study */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="mb-2 block text-xs font-bold text-on-surface-variant uppercase">Degree Type</label>
+            <label className={labelClass}>Degree Type</label>
             <select
               value={value.degree ?? ''}
               onChange={(e) => onChange({ ...value, degree: e.target.value })}
-              className="w-full appearance-none rounded-t-lg border-b-2 border-primary bg-surface-container-lowest p-3 text-sm shadow-sm focus:ring-0 focus:outline-none"
+              className={`${inputClass} appearance-none`}
             >
               <option value="">Select Degree</option>
               <option value="Bachelors Degree">Bachelors Degree</option>
               <option value="Masters Degree">Masters Degree</option>
               <option value="PhD / Doctorate">PhD / Doctorate</option>
               <option value="Secondary School">Secondary School</option>
+              <option value="International Baccalaureate">International Baccalaureate</option>
+              <option value="Associate Degree">Associate Degree</option>
+              <option value="Diploma">Diploma / Certificate</option>
             </select>
           </div>
 
           <div>
-            <label className="mb-2 block text-xs font-bold text-on-surface-variant uppercase">
-              Major / Field of Study
-            </label>
+            <label className={labelClass}>Major / Field of Study</label>
             <input
               type="text"
               value={value.fieldOfStudy ?? ''}
               onChange={(e) => onChange({ ...value, fieldOfStudy: e.target.value })}
               placeholder="e.g., Civil Engineering"
-              className="w-full rounded-t-lg border-b-2 border-primary bg-surface-container-lowest p-3 text-sm shadow-sm focus:ring-0 focus:outline-none"
+              className={inputClass}
             />
           </div>
+        </div>
 
-          <div>
-            <label className="mb-2 block text-xs font-bold text-on-surface-variant uppercase">
-              Start Date
-            </label>
-            <input
-              type="date"
-              value={value.startDate ?? ''}
-              onChange={(e) =>
-                onChange({ ...value, startDate: e.target.value })
-              }
-              className="w-full rounded-t-lg border-b-2 border-primary bg-surface-container-lowest p-3 text-sm shadow-sm focus:ring-0 focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="mb-2 block text-xs font-bold text-on-surface-variant uppercase">Graduation Date</label>
+        {/* Graduation Date + GPA + Scale */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="md:col-span-1">
+            <label className={labelClass}>Graduation Date</label>
             <input
               type="date"
               value={value.endDate ?? ''}
               onChange={(e) => onChange({ ...value, endDate: e.target.value })}
-              className="w-full rounded-t-lg border-b-2 border-primary bg-surface-container-lowest p-3 text-sm shadow-sm focus:ring-0 focus:outline-none"
+              className={inputClass}
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="mb-2 block text-xs font-bold text-on-surface-variant uppercase">GPA</label>
-              <input
-                type="text"
-                value={value.gpa ?? ''}
-                onChange={(e) => onChange({ ...value, gpa: e.target.value })}
-                placeholder="3.8"
-                className="w-full rounded-t-lg border-b-2 border-primary bg-surface-container-lowest p-3 text-sm shadow-sm focus:ring-0 focus:outline-none"
-              />
-            </div>
-            <div>
-              <label className="mb-2 block text-xs font-bold text-on-surface-variant uppercase">Scale</label>
-              <input
-                type="text"
-                value={value.scale ?? '4.0'}
-                onChange={(e) => onChange({ ...value, scale: e.target.value })}
-                placeholder="4.0"
-                className="w-full rounded-t-lg border-b-2 border-primary bg-surface-container-lowest p-3 text-sm shadow-sm focus:ring-0 focus:outline-none"
-              />
-            </div>
+          <div>
+            <label className={labelClass}>GPA</label>
+            <input
+              type="text"
+              value={value.gpa ?? ''}
+              onChange={(e) => onChange({ ...value, gpa: e.target.value })}
+              placeholder="3.8"
+              className={inputClass}
+            />
+          </div>
+
+          <div>
+            <label className={labelClass}>Scale</label>
+            <input
+              type="text"
+              value={value.scale ?? '4.0'}
+              onChange={(e) => onChange({ ...value, scale: e.target.value })}
+              placeholder="4.0"
+              className={inputClass}
+            />
           </div>
         </div>
 
-        <div className="flex justify-end pt-4">
+        {/* Actions */}
+        <div className="flex justify-end gap-3 pt-2">
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-lg px-6 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-surface-container-high"
+            className="px-5 py-2.5 rounded-lg text-sm font-bold text-on-surface-variant hover:bg-surface-container-low transition-colors"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={onSave}
-            className="ml-4 rounded-lg bg-primary px-8 py-2.5 text-sm font-bold text-white shadow-md transition-all hover:opacity-90 active:scale-95"
+            className="px-8 py-2.5 rounded-lg bg-primary text-white text-sm font-bold shadow-md hover:opacity-90 active:scale-95 transition-all"
           >
             Save Entry
           </button>

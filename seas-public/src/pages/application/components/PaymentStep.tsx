@@ -103,7 +103,7 @@ export const PaymentStep = ({ onNext, onBack, data }: PaymentStepProps) => {
         <div className="rounded-xl border border-outline-variant/10 bg-surface-container-lowest p-8 text-center">
           <p className="mb-2 font-headline text-2xl font-bold text-primary">Application Fee</p>
           <p className="mb-6 text-on-surface-variant">
-            A non-refundable application fee of ${APPLICATION_FEE.toFixed(2)} is required.
+            A non-refundable application fee of FCFA {APPLICATION_FEE.toFixed(2)} is required.
           </p>
           <button
             type="button"
@@ -165,7 +165,7 @@ export const PaymentStep = ({ onNext, onBack, data }: PaymentStepProps) => {
         <button
           type="button"
           onClick={() => onNext({})}
-          disabled={!verified}
+          disabled={payments.length === 0}
           className={`flex items-center gap-2 rounded-lg px-8 py-4 font-extrabold text-white ${
             verified ? 'bg-secondary' : 'cursor-not-allowed bg-outline-variant opacity-50'
           }`}

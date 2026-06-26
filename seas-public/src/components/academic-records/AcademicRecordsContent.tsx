@@ -1,6 +1,5 @@
 import type { AcademicRecord } from '../../types/application';
 import AcademicRecordsHeader from './AcademicRecordsHeader';
-import AcademicStepProgress from './AcademicStepProgress';
 import SubmissionGuidelines from './SubmissionGuidelines';
 import EducationalHistoryTable from './EducationalHistoryTable';
 import NewAcademicEntryForm from './NewAcademicEntryForm';
@@ -32,16 +31,19 @@ export default function AcademicRecordsContent({
   onContinue,
 }: AcademicRecordsContentProps) {
   return (
-    <div className="mx-auto max-w-5xl px-4">
-      <AcademicRecordsHeader />
-      <AcademicStepProgress currentStep={2} totalSteps={6} />
+    <div className="mx-auto max-w-5xl">
+      {/* Page header with step indicator and inline progress bars */}
+      <AcademicRecordsHeader currentStep={3} totalSteps={6} />
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+      {/* Main two-column layout */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        {/* Left: Submission guidelines sidebar */}
         <div className="lg:col-span-1">
           <SubmissionGuidelines />
         </div>
 
-        <div className="space-y-8 lg:col-span-2">
+        {/* Right: Educational history table + new entry form + actions */}
+        <div className="space-y-6 lg:col-span-2">
           <EducationalHistoryTable
             records={records}
             onAddAnother={onAddAnother}

@@ -2,13 +2,10 @@ import { ArrowLeft, CheckCircle, XCircle, Download, ZoomIn, ZoomOut, FileText, M
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useApplicationById, useApproveApplication, useRejectApplication } from '@/hooks/useApplications';
+import { useVerifyDocument } from '@/hooks/useDocuments';
 import type { Document } from '@/types/entities';
 import { cn } from '@/lib/utils';
 import env from '@/config/env';
-
-interface DocumentWithStatus extends Document {
-  status?: string;
-}
 
 export default function VerificationDetail() {
   const { id } = useParams();
@@ -20,6 +17,7 @@ export default function VerificationDetail() {
   
   const approveMutation = useApproveApplication();
   const rejectMutation = useRejectApplication();
+  const verifyDocumentMutation = useVerifyDocument();
 
   const application = appData;
 
@@ -161,59 +159,61 @@ export default function VerificationDetail() {
                   </div>
                 </div>
               )}
-               {application?.documents && application.documents.map((doc: DocumentWithStatus) => (
-                 <div key={doc.id} className="flex items-center justify-between p-4 border border-outline-variant/10 rounded-lg hover:bg-slate-50 transition-colors">
-                   <div className="flex items-center gap-3">
-                     <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center">
-                       <FileText className="w-5 h-5 text-primary" />
-                     </div>
-                     <div>
-                       <p className="text-sm font-semibold text-primary">{getDocumentTypeLabel(doc.type)}</p>
-                       <p className="text-xs text-on-surface-variant">{doc.fileName}</p>
-                       <span className={cn(
-                         "inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold",
-                         doc.status === 'approved' ? 'bg-secondary-container text-secondary' :
-                         doc.status === 'rejected' ? 'bg-error-container text-error' :
-                         'bg-yellow-100 text-yellow-700'
-                       )}>
-                         {doc.status}
-                       </span>
-                     </div>
-                   </div>
-                   <div className="flex items-center gap-2">
-                     <button
-                       onClick={() => setViewingDocument({ url: getDocumentUrl(doc.filePath), name: getDocumentTypeLabel(doc.type) })}
-                       className="p-2 hover:bg-slate-200 rounded-lg transition-colors text-primary"
-                       title="View"
-                     >
-                       <Eye className="w-4 h-4" />
-                     </button>
-                     <a
-                       href={getDocumentUrl(doc.filePath)}
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       className="p-2 hover:bg-slate-200 rounded-lg transition-colors"
-                       title="Download"
-                     >
-                       <Download className="w-4 h-4" />
-                     </a>
-                     <button
-                       onClick={() => console.log('Approve document:', doc.id)}
-                       className="p-2 hover:bg-secondary-container/20 rounded-lg transition-colors text-secondary"
-                       title="Approve"
-                     >
-                       <CheckCircle className="w-4 h-4" />
-                     </button>
-                     <button
-                       onClick={() => console.log('Reject document:', doc.id)}
-                       className="p-2 hover:bg-error-container/20 rounded-lg transition-colors text-error"
-                       title="Reject"
-                     >
-                       <XCircle className="w-4 h-4" />
-                     </button>
-                   </div>
-                 </div>
-               ))}
+               {application?.documents && application.documents.map((doc: Document) => (
+                  <div key={doc.id} className="flex items-center justify-between p-4 border border-outline-variant/10 rounded-lg hover:bg-slate-50 transition-colors">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center">
+                        <FileText className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-primary">{getDocumentTypeLabel(doc.type)}</p>
+                        <p className="text-xs text-on-surface-variant">{doc.fileName}</p>
+                        <span className={cn(
+                          "inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold",
+                          doc.status === 'verified' ? 'bg-secondary-container text-secondary' :
+                          doc.status === 'rejected' ? 'bg-error-container text-error' :
+                          'bg-yellow-100 text-yellow-700'
+                        )}>
+                          {doc.status}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => setViewingDocument({ url: getDocumentUrl(doc.filePath), name: getDocumentTypeLabel(doc.type) })}
+                        className="p-2 hover:bg-slate-200 rounded-lg transition-colors text-primary"
+                        title="View"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </button>
+                      <a
+                        href={getDocumentUrl(doc.filePath)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 hover:bg-slate-200 rounded-lg transition-colors"
+                        title="Download"
+                      >
+                        <Download className="w-4 h-4" />
+                      </a>
+                      <button
+                        onClick={() => verifyDocumentMutation.mutate({ id: doc.id, status: 'verified' })}
+                        disabled={verifyDocumentMutation.isPending}
+                        className="p-2 hover:bg-secondary-container/20 rounded-lg transition-colors text-secondary disabled:opacity-40"
+                        title="Approve"
+                      >
+                        <CheckCircle className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => verifyDocumentMutation.mutate({ id: doc.id, status: 'rejected' })}
+                        disabled={verifyDocumentMutation.isPending}
+                        className="p-2 hover:bg-error-container/20 rounded-lg transition-colors text-error disabled:opacity-40"
+                        title="Reject"
+                      >
+                        <XCircle className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
              </div>
           </div>
         </div>

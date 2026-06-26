@@ -2,7 +2,7 @@ import { RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { analyticsApi } from '@/api/modules/analytics';
-import { useResults } from '@/hooks/useResults';
+import { useResults, useResultsBySession } from '@/hooks/useResults';
 
 interface CohortRow {
   id: string;
@@ -12,13 +12,19 @@ interface CohortRow {
   status: 'Ready' | 'Pending' | 'Missing Scores';
 }
 
-export default function CohortReleaseTable() {
+interface CohortReleaseTableProps {
+  sessionId?: string;
+}
+
+export default function CohortReleaseTable({ sessionId }: CohortReleaseTableProps) {
   const queryClient = useQueryClient();
   const { data: programs = [], isLoading } = useQuery({
     queryKey: ['analytics', 'programs'],
     queryFn: () => analyticsApi.getProgramDistribution(),
   });
-  const { data: results = [] } = useResults();
+  const { data: allResults = [] } = useResults();
+  const { data: sessionResults = [] } = useResultsBySession(sessionId ?? '');
+  const results = sessionId ? sessionResults : allResults;
 
   const cohorts: CohortRow[] = (programs as Array<{ programId: string; programName: string; count: number }>).map((program) => {
     const programResults = (results as Array<{ application?: { programId?: string }; totalScore?: number; status?: string }>).filter(
@@ -53,6 +59,7 @@ export default function CohortReleaseTable() {
   const handleRefresh = () => {
     queryClient.invalidateQueries({ queryKey: ['analytics', 'programs'] });
     queryClient.invalidateQueries({ queryKey: ['results'] });
+    queryClient.invalidateQueries({ queryKey: ['results', 'session', sessionId] });
     toast.success('Cohort release statuses refreshed.');
   };
 

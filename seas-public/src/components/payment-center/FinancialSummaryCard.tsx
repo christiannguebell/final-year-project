@@ -44,7 +44,7 @@ export default function FinancialSummaryCard({
 
           <span className="text-on-surface-variant">Total Invoiced</span>
 
-          <span className="font-bold text-primary">${totalInvoiced.toFixed(2)}</span>
+          <span className="font-bold text-primary">FCFA {totalInvoiced.toFixed(2)}</span>
 
         </div>
 
@@ -52,7 +52,7 @@ export default function FinancialSummaryCard({
 
           <span className="text-on-surface-variant">Total Paid</span>
 
-          <span className="font-bold text-secondary">${totalPaid.toFixed(2)}</span>
+          <span className="font-bold text-secondary">FCFA {totalPaid.toFixed(2)}</span>
 
         </div>
 
@@ -64,7 +64,7 @@ export default function FinancialSummaryCard({
 
             <p className="mb-1.5 text-[10px] font-bold tracking-widest text-primary uppercase">Balance Due</p>
 
-            <p className="text-3xl font-black tracking-tighter text-primary">${balanceDue.toFixed(2)}</p>
+            <p className="text-3xl font-black tracking-tighter text-primary">FCFA {balanceDue.toFixed(2)}</p>
 
           </div>
 

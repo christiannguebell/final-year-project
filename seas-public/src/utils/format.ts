@@ -1,8 +1,15 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import i18n from '../i18n';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+function getLocale(): string {
+  const lang = i18n.language;
+  const map: Record<string, string> = { en: 'en-US', fr: 'fr-FR', de: 'de-DE' };
+  return map[lang] || 'en-US';
 }
 
 export function formatDate(date: string | Date, format: 'short' | 'long' | 'time' = 'short'): string {
@@ -15,11 +22,11 @@ export function formatDate(date: string | Date, format: 'short' | 'long' | 'time
     time: { hour: '2-digit', minute: '2-digit' },
   };
 
-  return d.toLocaleString('en-US', optionsMap[format]);
+  return d.toLocaleString(getLocale(), optionsMap[format]);
 }
 
-export function formatCurrency(amount: number, currency = 'USD'): string {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
+export function formatCurrency(amount: number, currency = 'XAF'): string {
+  return new Intl.NumberFormat(getLocale(), { style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(amount);
 }
 
 export function truncate(str: string, length: number): string {
