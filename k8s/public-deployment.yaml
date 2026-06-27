@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: public
+  namespace: seas
+  labels:
+    app: public
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: public
+  template:
+    metadata:
+      labels:
+        app: public
+    spec:
+      containers:
+        - name: public
+          # Replace YOUR_GCP_PROJECT_ID with your actual Google Cloud project ID
+          image: gcr.io/YOUR_GCP_PROJECT_ID/seas-public:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"

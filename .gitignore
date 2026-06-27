@@ -12,3 +12,6 @@ coverage
 *.swo
 uploads/
 logs/
+
+# Kubernetes secrets — never commit real credentials to Git
+k8s/secrets.yaml

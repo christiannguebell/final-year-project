@@ -1,0 +1,107 @@
+name: Build and Deploy to GKE
+
+on:
+  push:
+    branches:
+      - main   # Triggers on every push to main branch
+
+env:
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  GKE_CLUSTER: seas-cluster
+  GKE_ZONE: us-central1-a          # Change to your preferred GCP zone
+  GCR_HOSTNAME: gcr.io
+
+jobs:
+  build-and-deploy:
+    name: Build, Push & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Authenticate to Google Cloud using the service account key
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      # 3. Set up the gcloud CLI
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      # 4. Configure Docker to use gcloud credentials for GCR
+      - name: Configure Docker for GCR
+        run: gcloud auth configure-docker
+
+      # 5. Build and push seas-backend image
+      - name: Build & Push Backend
+        run: |
+          docker build -t $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-backend:latest \
+                       -t $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-backend:${{ github.sha }} \
+                       ./seas-backend
+          docker push $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-backend:latest
+          docker push $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-backend:${{ github.sha }}
+
+      # 6. Build and push seas-admin image
+      - name: Build & Push Admin
+        run: |
+          docker build --build-arg VITE_API_BASE_URL=/api \
+                       -t $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-admin:latest \
+                       -t $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-admin:${{ github.sha }} \
+                       ./seas-admin
+          docker push $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-admin:latest
+          docker push $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-admin:${{ github.sha }}
+
+      # 7. Build and push seas-public image
+      - name: Build & Push Public
+        run: |
+          docker build --build-arg VITE_API_BASE_URL=/api \
+                       -t $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-public:latest \
+                       -t $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-public:${{ github.sha }} \
+                       ./seas-public
+          docker push $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-public:latest
+          docker push $GCR_HOSTNAME/$GCP_PROJECT_ID/seas-public:${{ github.sha }}
+
+      # 8. Get GKE credentials so kubectl works
+      - name: Get GKE Credentials
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: ${{ env.GKE_CLUSTER }}
+          location: ${{ env.GKE_ZONE }}
+
+      # 9. Apply all Kubernetes manifests
+      - name: Apply Kubernetes Manifests
+        run: |
+          kubectl apply -f k8s/namespace.yaml
+          kubectl apply -f k8s/configmap.yaml
+          kubectl apply -f k8s/secrets.yaml
+          kubectl apply -f k8s/postgres-pvc.yaml
+          kubectl apply -f k8s/postgres-deployment.yaml
+          kubectl apply -f k8s/postgres-service.yaml
+          kubectl apply -f k8s/backend-deployment.yaml
+          kubectl apply -f k8s/backend-service.yaml
+          kubectl apply -f k8s/admin-deployment.yaml
+          kubectl apply -f k8s/admin-service.yaml
+          kubectl apply -f k8s/public-deployment.yaml
+          kubectl apply -f k8s/public-service.yaml
+          kubectl apply -f k8s/ingress.yaml
+
+      # 10. Force the pods to pull the new :latest images
+      - name: Rollout restart deployments
+        run: |
+          kubectl rollout restart deployment/backend -n seas
+          kubectl rollout restart deployment/admin -n seas
+          kubectl rollout restart deployment/public -n seas
+
+      # 11. Wait for rollout to complete
+      - name: Wait for rollout
+        run: |
+          kubectl rollout status deployment/backend -n seas --timeout=120s
+          kubectl rollout status deployment/admin -n seas --timeout=120s
+          kubectl rollout status deployment/public -n seas --timeout=120s
+
+      # 12. Show what is running
+      - name: Show pod status
+        run: kubectl get pods -n seas

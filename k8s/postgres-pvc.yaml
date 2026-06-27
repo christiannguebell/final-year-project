@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: seas
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  # GKE will automatically provision a Google Persistent Disk
+  # storageClassName defaults to "standard" on GKE (pd-standard, which is free tier eligible)

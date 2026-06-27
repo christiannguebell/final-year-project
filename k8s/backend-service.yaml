@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: seas
+  labels:
+    app: backend
+spec:
+  type: ClusterIP  # Internal — the nginx frontends proxy to this, and Ingress routes /api here
+  selector:
+    app: backend
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
