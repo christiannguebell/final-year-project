@@ -37,6 +37,32 @@ services:
     networks:
       - seas-network
 
+  admin:
+    build:
+      context: ./seas-admin
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=/api
+    ports:
+      - "5180:80"
+    depends_on:
+      - app
+    networks:
+      - seas-network
+
+  public:
+    build:
+      context: ./seas-public
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=/api
+    ports:
+      - "5181:80"
+    depends_on:
+      - app
+    networks:
+      - seas-network
+
 networks:
   seas-network:
     driver: bridge

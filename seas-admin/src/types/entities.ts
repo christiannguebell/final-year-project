@@ -2,6 +2,10 @@ export interface Candidate {
   id: string;
   userId: string;
   candidateNumber: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
   user?: {
     id: string;
     email: string;

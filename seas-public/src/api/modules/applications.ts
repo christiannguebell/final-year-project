@@ -1,5 +1,6 @@
 import apiClient from '../client';
-import type { Application, ApplicationStatus } from '../../types/entities';
+import type { ApplicationStatus } from '../../types/entities';
+import type { Application } from '../../types/application';
 import type { PaginatedParams, PaginatedResponse } from '../../types/api';
 
 export interface CreateApplicationPayload {

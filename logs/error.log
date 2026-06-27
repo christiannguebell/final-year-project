@@ -3034,3 +3034,24 @@ Error: Result not found
     at Object.getMyResult (/app/dist/modules/results/results.service.js:219:39)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
     at async getMyResult (/app/dist/modules/results/results.controller.js:121:28)
+2026-06-26 23:40:04 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-26 23:40:10 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-26 23:40:59 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

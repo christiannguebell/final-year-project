@@ -38,7 +38,7 @@ export const AcademicRecordsStep = ({
       }
       try {
         const response = await apiClient.get<AcademicRecord[]>(`/academic-records/application/${data.id}`);
-        setRecords(response.data || []);
+        setRecords(response.data?.data || []);
       } catch {
         console.error('Failed to fetch academic records');
       } finally {

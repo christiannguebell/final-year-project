@@ -5,11 +5,9 @@ import {
   Edit3,
   Download,
   CheckCircle2,
-  Clock,
   Calendar,
   ArrowRight,
   CreditCard,
-  Library,
   Mail,
   ExternalLink,
   FileText,
@@ -64,7 +62,7 @@ export default function DashboardPage() {
   const appStatus = latestApp?.status || 'none';
   const statusLabel = appStatus === 'draft' ? 'In Progress' : appStatus === 'submitted' ? 'Under Review' : appStatus === 'approved' ? 'Approved' : appStatus === 'rejected' ? 'Not Approved' : 'Not Started';
   const progressSteps = ['Bio Data', 'Program', 'Academics', 'Documents', 'Payment', 'Submit'];
-  const completedSteps = appStatus === 'draft' ? progressSteps.slice(0, progressSteps.indexOf('Submit')) : appStatus === 'submitted' ? progressSteps.length : 0;
+  const completedSteps = appStatus === 'draft' ? progressSteps.slice(0, progressSteps.indexOf('Submit')).length : appStatus === 'submitted' ? progressSteps.length : 0;
   const progressPct = hasApp ? Math.round((completedSteps / progressSteps.length) * 100) : 0;
   const remainingTasks = progressSteps.length - completedSteps;
   const programName = latestApp?.program?.name || (hasApp ? 'Application Created' : 'No Application Yet');
@@ -188,7 +186,7 @@ export default function DashboardPage() {
                   <Calendar className="h-5 w-5 opacity-50" />
                 </div>
                 <div className="space-y-6">
-                  {upcomingDeadlines.map((deadline, i) => (
+                  {upcomingDeadlines.map((deadline: { date: string | null; title: string; active: boolean }, i: number) => (
                     <div
                       key={i}
                       className={cn('border-l-2 pl-4', deadline.active ? 'border-secondary' : 'border-outline-variant/30')}

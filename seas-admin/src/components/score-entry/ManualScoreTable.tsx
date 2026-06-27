@@ -3,6 +3,7 @@ import { Download, Plus, CheckCircle, AlertTriangle, X } from 'lucide-react';
 import { toast } from 'sonner';
 import { useResults } from '@/hooks/useResults';
 import { useApplications } from '@/hooks/useApplications';
+import { ApplicationStatus } from '@/types/entities';
 
 interface CandidateScore {
   id: string;
@@ -27,7 +28,7 @@ export default function ManualScoreTable({ onValidatedScoresChange }: ManualScor
   const [searchInput, setSearchInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const { data: appsData, isLoading: appsLoading } = useApplications(
-    showAddModal ? { status: 'approved', limit: 200 } : undefined
+    showAddModal ? { status: ApplicationStatus.APPROVED, limit: 200 } : undefined
   );
   const approvedApps = Array.isArray(appsData) ? appsData : (appsData as any)?.items ?? [];
 

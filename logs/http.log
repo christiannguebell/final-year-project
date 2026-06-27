@@ -5137,3 +5137,32 @@ Error: Result not found
 2026-06-25 21:23:09 [INFO]: GET /api/candidates?limit=100
 2026-06-25 21:23:36 [INFO]: GET /api/exams/sessions
 2026-06-25 21:24:11 [INFO]: SIGTERM signal received: closing HTTP server
+2026-06-26 22:18:16 [INFO]: Email templates loaded
+2026-06-26 22:18:17 [INFO]: Validating critical connections...
+2026-06-26 22:18:21 [INFO]: Database connection verified
+2026-06-26 22:18:21 [INFO]: Email service skipped (SKIP_EMAIL=true)
+2026-06-26 22:18:21 [INFO]: Server running on port 3000
+2026-06-26 23:39:35 [INFO]: POST /api/auth/login
+2026-06-26 23:39:40 [INFO]: GET /api/notifications/unread
+2026-06-26 23:39:41 [INFO]: GET /api/applications/mine
+2026-06-26 23:39:41 [INFO]: GET /api/candidates/me
+2026-06-26 23:39:41 [INFO]: GET /api/exams/sessions
+2026-06-26 23:40:03 [INFO]: GET /api/payments/my
+2026-06-26 23:40:04 [INFO]: GET /api/exams/my-assignment
+2026-06-26 23:40:04 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-26 23:40:10 [INFO]: GET /api/payments/my
+2026-06-26 23:40:10 [ERROR]: API Error: "id" must be a valid GUID
+ValidationError: "id" must be a valid GUID
+    at /app/dist/middlewares/validation.middleware.js:16:19
+    at Layer.handleRequest (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/.pnpm/router@2.2.0/node_modules/router/lib/route.js:157:13)
+    at authenticate (/app/dist/middlewares/auth.middleware.js:26:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2026-06-26 23:40:15 [INFO]: GET /api/results/my-result
+2026-06-26 23:40:59 [INFO]: GET /api/payments/my

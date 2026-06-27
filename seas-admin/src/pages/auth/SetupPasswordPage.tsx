@@ -35,7 +35,7 @@ export default function SetupPasswordPage() {
         onSuccess: () => {
           navigate('/admin/login', { state: { message: 'Password set! Please login.' } });
         },
-        onError: (error) => {
+        onError: (_error) => {
           toast.error('Failed to set password. Please try again.');
         },
       }
