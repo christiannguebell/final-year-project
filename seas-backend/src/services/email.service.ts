@@ -36,11 +36,11 @@ class EmailService {
     }
 
     try {
-      await this.transporter.sendMail({
+      const info = await this.transporter.sendMail({
         from: options.from || emailConfig.from,
         ...options,
       });
-      logger.info(`Email sent to ${options.to}`);
+      logger.info(`Email sent to ${options.to} (messageId: ${info.messageId}, from: ${emailConfig.from})`);
     } catch (error) {
       logger.error(`Failed to send email to ${options.to}:`, error);
       throw error;

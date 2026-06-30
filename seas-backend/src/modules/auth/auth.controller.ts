@@ -32,6 +32,15 @@ export const authController = {
     }
   },
 
+  async resendOtp(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email } = req.body;
+      const result = await authService.resendOtp(email);
+      res.status(200).json(successResponse(result, 'OTP sent successfully'));
+    } catch (error) {
+      next(error);
+    }
+  },
 
   async login(req: Request, res: Response, next: NextFunction) {
     try {

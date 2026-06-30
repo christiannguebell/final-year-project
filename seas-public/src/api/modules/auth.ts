@@ -21,6 +21,11 @@ export const authApi = {
     return response.data;
   },
 
+  async resendOtp(email: string) {
+    const response = await apiClient.post('/auth/resend-otp', { email });
+    return response.data;
+  },
+
   async login(data: LoginRequest) {
     const response = await apiClient.post<LoginResponse>('/auth/login', data);
     return response.data;

@@ -36,6 +36,10 @@ export const verifyOtpSchema = Joi.object({
   otp: Joi.string().length(6).required(),
 });
 
+export const resendOtpSchema = Joi.object({
+  email: Joi.string().email().required(),
+});
+
 export default {
   registerSchema,
   loginSchema,
@@ -44,4 +48,5 @@ export default {
   forgotPasswordSchema,
   resetPasswordSchema,
   verifyOtpSchema,
+  resendOtpSchema,
 };

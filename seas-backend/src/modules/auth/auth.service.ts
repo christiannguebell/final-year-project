@@ -7,6 +7,28 @@ import { User, UserRole, UserStatus } from '../../database';
 import { AUTH_MESSAGES } from './auth.constants';
 import { generateId } from '../../common/utils';
 import { notificationsService } from '../notifications/notifications.service';
+import logger from '../../common/logger';
+
+function generateOtp(): string {
+  if (process.env.SKIP_EMAIL === 'true') return '000000';
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+function logOtpForDev(email: string, otp: string, context: string): void {
+  if (process.env.LOG_OTP === 'true') {
+    logger.info(`[DEV OTP ${context}] ${email}: ${otp}`);
+  }
+}
+
+async function sendVerificationOtp(user: User, otp: string): Promise<void> {
+  logOtpForDev(user.email, otp, 'send');
+  await notificationsService.sendTemplatedEmail(
+    user.id,
+    'otp-verification',
+    { name: user.firstName, otp },
+    ''
+  );
+}
 
 interface TokenPayload {
   userId: string;
@@ -35,7 +57,7 @@ export const authService = {
 
     const hashedPassword = await bcrypt.hash(password, 12);
     
-    const otp = process.env.SKIP_EMAIL === 'true' ? '000000' : Math.floor(100000 + Math.random() * 900000).toString();
+    const otp = generateOtp();
     const otpExpiry = new Date(Date.now() + 15 * 60 * 1000); // 15 mins expiry
     const hashedOtp = await bcrypt.hash(otp, 10);
     
@@ -51,14 +73,25 @@ export const authService = {
       otpExpiry,
     });
 
-    await notificationsService.sendTemplatedEmail(
-      user.id,
-      'otp-verification',
-      { name: user.firstName, otp },
-      '' // placeholder URL
-    );
+    await sendVerificationOtp(user, otp);
 
     return { message: 'OTP sent to email. Please verify to complete registration.', email: user.email };
+  },
+
+  async resendOtp(email: string): Promise<{ message: string }> {
+    const user = await authRepository.findByEmail(email);
+    if (!user || user.status !== UserStatus.PENDING) {
+      return { message: 'If the account exists and is pending verification, a new code has been sent.' };
+    }
+
+    const otp = generateOtp();
+    const otpExpiry = new Date(Date.now() + 15 * 60 * 1000);
+    const hashedOtp = await bcrypt.hash(otp, 10);
+
+    await authRepository.updateUser(user.id, { otp: hashedOtp, otpExpiry });
+    await sendVerificationOtp(user, otp);
+
+    return { message: 'OTP sent to email.' };
   },
 
   async verifyOtp(email: string, otp: string): Promise<{ user: Partial<User>; tokens: AuthTokens }> {
@@ -109,7 +142,7 @@ export const authService = {
     }
 
     if (user.status === UserStatus.PENDING) {
-      const otp = process.env.SKIP_EMAIL === 'true' ? '000000' : Math.floor(100000 + Math.random() * 900000).toString();
+      const otp = generateOtp();
       const otpExpiry = new Date(Date.now() + 15 * 60 * 1000); // 15 mins expiry
       const hashedOtp = await bcrypt.hash(otp, 10);
 
@@ -118,12 +151,7 @@ export const authService = {
         otpExpiry,
       });
 
-      await notificationsService.sendTemplatedEmail(
-        user.id,
-        'otp-verification',
-        { name: user.firstName, otp },
-        '' // placeholder URL
-      );
+      await sendVerificationOtp(user, otp);
 
       throw ApiError.forbidden('ACCOUNT_UNVERIFIED');
     }

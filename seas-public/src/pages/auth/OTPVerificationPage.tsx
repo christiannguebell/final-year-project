@@ -58,29 +58,17 @@ export default function OTPVerificationPage() {
   };
 
   const handleResend = async () => {
-    const stored = sessionStorage.getItem('seas_pending_verification');
-    if (!stored) {
+    if (!email) {
       toast.error('Please log in again to receive a new code');
       navigate('/login');
       return;
     }
 
     try {
-      const { email: storedEmail, password } = JSON.parse(stored) as {
-        email: string;
-        password: string;
-      };
-      await authApi.login({ email: storedEmail, password });
-      toast.success('You are already verified. Redirecting...');
-      navigate('/dashboard');
-    } catch (error: unknown) {
-      const message =
-        (error as { response?: { data?: { message?: string } } })?.response?.data?.message ?? '';
-      if (message === 'ACCOUNT_UNVERIFIED') {
-        toast.success('A new verification code has been sent to your email');
-        return;
-      }
-      toast.error('Could not resend code. Please try logging in again.');
+      await authApi.resendOtp(email);
+      toast.success('A new verification code has been sent to your email');
+    } catch {
+      toast.error('Could not resend code. Please try again in a moment.');
     }
   };
 

@@ -11,6 +11,7 @@ import {
   forgotPasswordSchema,
   resetPasswordSchema,
   verifyOtpSchema,
+  resendOtpSchema,
 } from './auth.validation';
 
 const router: Router = Router();
@@ -76,6 +77,8 @@ router.post('/register', validate(registerSchema), authController.register);
  *         description: OTP verified successfully
  */
 router.post('/verify-otp', validate(verifyOtpSchema), authController.verifyOtp);
+
+router.post('/resend-otp', validate(resendOtpSchema), authController.resendOtp);
 
 /**
  * @openapi
